@@ -1,1 +1,3 @@
 pytest
+webdriver-manager
+selenium
