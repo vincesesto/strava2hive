@@ -6,7 +6,7 @@ print("Running Strava 2 Hive")
 
 def strava_screenshot(activity):
   # Create the command to run on chrome
-  chrome_command = 'google-chrome --headless --screenshot="./screenshot' + str(activity) + '.png" "https://www.strava.com/activities/' + str(activity) + '"'
+  chrome_command = 'google-chrome --headless --screenshot="./screenshot_' + str(activity) + '.png" "https://www.strava.com/activities/' + str(activity) + '"'
   print(chrome_command)
   os.system(chrome_command)
   
