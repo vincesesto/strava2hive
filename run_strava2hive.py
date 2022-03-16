@@ -24,4 +24,4 @@ print("Take screenshot of activity")
 strava_screenshot(6790387629)
 
 print("Check values in hive users sheet")
-sheets_connect("HiveAthletes")
+sheets_connect("StravaActivity")
