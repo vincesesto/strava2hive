@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import os
+import pygsheets
+import pandas as pd
 
 print("Running Strava 2 Hive")
 
@@ -10,5 +12,16 @@ def strava_screenshot(activity):
   print(chrome_command)
   os.system(chrome_command)
   
+def sheets_connect(sheet_name):
+  gc = pygsheets.authorize(service_file='strava2hive.json')
+  # open the google spreadsheet
+  sh = gc.open(sheet_name)
+  #select the first sheet 
+  wks = sh[0]
+  wks.get_row(2) 
+    
 print("Take screenshot of activity")  
 strava_screenshot(6790387629)
+
+print("Check values in hive users sheet")
+sheets_connect("HiveAthletes")
