@@ -1,3 +1,5 @@
 pytest
 webdriver-manager
 selenium
+pygsheets
+pandas
