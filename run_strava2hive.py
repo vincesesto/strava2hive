@@ -13,10 +13,13 @@ def strava_screenshot(activity):
   os.system(chrome_command)
   
 def sheets_connect(sheet_name):
+  print("Test connect")
   gc = pygsheets.authorize(service_file='strava2hive.json')
   # open the google spreadsheet
+  print("Test open")
   sh = gc.open(sheet_name)
-  #select the first sheet 
+  #select the first sheet
+  print("Test get rows")
   wks = sh[0]
   wks.get_row(2) 
     
