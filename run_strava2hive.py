@@ -18,7 +18,7 @@ def sheets_connect(sheet_name):
   # open the google spreadsheet
   print("Test open")
   #sh = gc.open(sheet_name)
-  sh = gc.open_by_url("https://docs.google.com/spreadsheets/d/1Evd8kFy28cJlU08G2GMSOj0gA2PX2Hypte5W4s_LqtI/edit?usp=drivesdk")
+  sh = gc.open_by_url("https://docs.google.com/spreadsheets/d/1Evd8kFy28cJlU08G2GMSOj0gA2PX2Hypte5W4s_LqtI")
   #select the first sheet
   print("Test get rows")
   wks = sh[0]
