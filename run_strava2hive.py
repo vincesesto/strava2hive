@@ -22,7 +22,7 @@ def sheets_connect(sheet_name):
   #select the first sheet
   print("Test get rows")
   wks = sh[0]
-  wks.get_row(2) 
+  print(wks.get_row(2)) 
     
 print("Take screenshot of activity")  
 strava_screenshot(6790387629)
