@@ -18,7 +18,8 @@ def get_last_activity():
   #select the first sheet
   wks = sh[0]
   print("What is the number of rows in this sheet")
-  cells = wks.get_all_values(include_empty_rows=False, include_tailing_empty=False, returnas='cells')
+  #cells = wks.get_all_values(include_empty_rows=False, include_tailing_empty=False, returnas='cells')
+  cells = wks.get_all_values()
   print(cells)
   print(cells[-2])
   
