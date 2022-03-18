@@ -17,30 +17,34 @@ def get_last_activity():
   sh = gc.open("StravaActivity")
   #select the first sheet
   wks = sh[0]
-  print("What is the number of rows in this sheet")
-  #cells = wks.get_all_values(include_empty_rows=False, include_tailing_empty=False, returnas='cells')
   cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
-  print(cells)
-  print(cells[-2])
-  
-  
-def sheets_connect(sheet_name):
-  print("Test connect")
+  print(cells[-1])
+  return cells[-1]
+
+def get_athlete(activity):
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  # open the google spreadsheet
-  print("Test open")
-  sh = gc.open(sheet_name)
-  #select the first sheet
-  print("Test get rows")
+  sh = gc.open("HiveAthletes")
   wks = sh[0]
-  print(wks.get_row(2))
+  athletes = 5
+  for i in athletes:
+    print(wks.get_row(i))
+    row = wks.get_row(i)
+    if row[6] == activity:
+      print(row[6])
+      break
+  return row
     
-print("Take screenshot of activity")  
-strava_screenshot(6790387629)
+#print("Take screenshot of activity")  
+#strava_screenshot(6790387629)
 
-print("Check values in hive users sheet")
-sheets_connect("HiveAthletes")
+print("Get the latest Activity")
+activity = get_last_activity()
 
-get_last_activity()
-
+print("See if the activity is a Run")
+if activity[6] == "Run":
+  print("Yay, activity is a run, so ship it!!!")
+  athlete = get_athlete(activity[0])
+  print(athlete)
+  
+  
 
