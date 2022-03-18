@@ -14,7 +14,7 @@ def strava_screenshot(activity):
   
 def get_last_activity():
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("StravaActivity)
+  sh = gc.open("StravaActivity")
   #select the first sheet
   wks = sh[0]
   print("What is the number of rows in this sheet")
