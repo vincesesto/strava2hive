@@ -27,10 +27,8 @@ def get_athlete(activity):
   wks = sh[0]
   athletes = 5
   for i in range(athletes):
-    print(wks.get_row(i + 1))
     row = wks.get_row(i + 1)
     if row[6] == activity:
-      print(row[6])
       break
   return row
     
@@ -44,6 +42,7 @@ print("See if the activity is a Run")
 if activity[6] == "Run":
   print("Yay, activity is a run, so ship it!!!")
   athlete = get_athlete(activity[0])
+  print("Here are the athletes details")
   print(athlete)
   
   
