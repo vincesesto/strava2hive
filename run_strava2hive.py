@@ -18,7 +18,9 @@ def get_last_activity():
   #select the first sheet
   wks = sh[0]
   print("What is the number of rows in this sheet")
-  print(wks.row_count)
+  cells = wks.get_all_values(include_empty_rows=False, include_tailing_empty=False, returnas='cells')
+  bottom_left = cells[-1][1]
+  print(bottom_left)
   
 def sheets_connect(sheet_name):
   print("Test connect")
