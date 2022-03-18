@@ -26,7 +26,7 @@ def get_athlete(activity):
   sh = gc.open("HiveAthletes")
   wks = sh[0]
   athletes = 5
-  for i in athletes:
+  for i in range(athletes):
     print(wks.get_row(i))
     row = wks.get_row(i)
     if row[6] == activity:
