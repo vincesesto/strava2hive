@@ -37,6 +37,6 @@ strava_screenshot(6790387629)
 print("Check values in hive users sheet")
 sheets_connect("HiveAthletes")
 
-#get_last_activity()
+get_last_activity()
 
 
