@@ -59,7 +59,7 @@ athlete_values = get_athlete("1778778")
 print(athlete_values[5])
 try:
   response = requests.post("https://www.strava.com/api/v3/oauth/token",
-                            params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete_values[5],
+                            params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': 645a839659e8363233682d3fd6609649361ab0fc,
                             'grant_type': 'authorization_code'})
   access_info = dict()
   activity_data = response.json()
