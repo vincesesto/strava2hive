@@ -52,5 +52,5 @@ if activity[6] == "Run":
   
 print("Now use details to get activity from strava")
 athlete_values = get_athlete(1778778)
-print(athlete)
+print(athlete_values)
 
