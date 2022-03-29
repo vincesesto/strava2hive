@@ -49,11 +49,8 @@ if activity[6] == "Run":
   print("Yay, activity is a run, so ship it!!!")
   athlete = get_athlete(activity[0])
   print("Here are the athletes details")
-  print(athlete[6])
-  strava_activity(athlete[6])
   
 print("Now use details to get activity from strava")
-
-
-  
+athlete_values = get_athlete(1778778)
+print(athlete)
 
