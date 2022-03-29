@@ -15,6 +15,7 @@ def strava_screenshot(activity):
   os.system(chrome_command)
   
 def get_last_activity():
+  # Last activity from google spreadsheet created by zapier
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("StravaActivity")
   #select the first sheet
@@ -44,14 +45,14 @@ def strava_activity(athlete_id):
 #print("Take screenshot of activity")  
 #strava_screenshot(6790387629)
 
-print("Get the latest Activity")
-activity = get_last_activity()
+#print("Get the latest Activity")
+#activity = get_last_activity()
 
-print("See if the activity is a Run")
-if activity[6] == "Run":
-  print("Yay, activity is a run, so ship it!!!")
-  athlete = get_athlete(activity[0])
-  print("Here are the athletes details")
+#print("See if the activity is a Run")
+#if activity[6] == "Run":
+#  print("Yay, activity is a run, so ship it!!!")
+#  athlete = get_athlete(activity[0])
+#  print("Here are the athletes details")
   
 print("Now use details to get activity from strava")
 athlete_values = get_athlete("1778778")
