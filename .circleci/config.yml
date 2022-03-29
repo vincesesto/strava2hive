@@ -41,7 +41,7 @@ jobs:
           command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo dpkg -i google-chrome-stable_current_amd64.deb
       - run:
           name: Run the main strava to hive script
-          command: ls -l; pwd; python run_strava2hive.py; ls -l
+          command: ls -l; pwd; python run_strava2hive.py
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
