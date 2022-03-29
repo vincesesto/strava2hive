@@ -32,6 +32,11 @@ def get_athlete(activity):
       break
   return row
     
+def strava_activity(athlete_id):
+  print("Get latest activity from strava")
+  
+  
+  
 #print("Take screenshot of activity")  
 #strava_screenshot(6790387629)
 
@@ -43,7 +48,11 @@ if activity[6] == "Run":
   print("Yay, activity is a run, so ship it!!!")
   athlete = get_athlete(activity[0])
   print("Here are the athletes details")
-  print(athlete)
+  print(athlete[6])
+  strava_activity(athlete[6])
   
+print("Now use details to get activity from strava")
+
+
   
 
