@@ -30,6 +30,8 @@ def get_athlete(activity):
   for i in range(athletes):
     row = wks.get_row(i + 1)
     print(row)
+    print(row[6])
+    print(activity)
     if row[6] == activity:
       break
   return row
@@ -53,6 +55,6 @@ if activity[6] == "Run":
   print("Here are the athletes details")
   
 print("Now use details to get activity from strava")
-athlete_values = get_athlete(1778778)
+athlete_values = get_athlete("1778778")
 print(athlete_values)
 
