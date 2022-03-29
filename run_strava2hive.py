@@ -25,6 +25,7 @@ def get_athlete(activity):
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("HiveAthletes")
   wks = sh[0]
+  row = []
   athletes = 5
   for i in range(athletes):
     row = wks.get_row(i + 1)
