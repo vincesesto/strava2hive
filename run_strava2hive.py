@@ -61,9 +61,9 @@ try:
                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete_values[5],
                             'grant_type': 'authorization_code'})
   access_info = dict()
-  #activity_data = response.json()
+  activity_data = response.json()
   #access_info['access_token'] = activity_data['access_token']
-  print(response.json())
+  print(activity_data['access_token'])
 except:
   print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
   # return False
