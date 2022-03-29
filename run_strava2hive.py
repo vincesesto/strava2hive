@@ -3,6 +3,8 @@
 import os
 import pygsheets
 import pandas as pd
+import requests
+
 
 print("Running Strava 2 Hive")
 
