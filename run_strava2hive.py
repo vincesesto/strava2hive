@@ -34,6 +34,7 @@ def get_athlete(activity):
     
 def strava_activity(athlete_id):
   print("Get latest activity from strava")
+  print(athlete_id)
   
   
   
