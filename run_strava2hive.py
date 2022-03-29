@@ -55,16 +55,15 @@ if activity[6] == "Run":
   
 print("Now use details to get activity from strava")
 athlete_values = get_athlete("1778778")
-print(athlete_values)
-print(athlete_values[5])
 try:
   response = requests.post("https://www.strava.com/api/v3/oauth/token",
                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete_values[5],
                             'grant_type': 'authorization_code'})
   #access_info = dict()
-  #activity_data = response.json()
+  activity_data = response.json()
   #access_info['access_token'] = activity_data['access_token']
-  print(response)
+  new_token = activity_data['access_token']
+  print(new_token)
 except:
   print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
   # return False
