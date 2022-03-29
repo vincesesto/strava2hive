@@ -63,7 +63,7 @@ try:
   access_info = dict()
   activity_data = response.json()
   #access_info['access_token'] = activity_data['access_token']
-  print(activity_data)
+  print(activity_data['access_token'])
 except:
   #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
   print("Log - An Error occurred trying to authenticate with the Strava token")
