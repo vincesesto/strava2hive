@@ -30,6 +30,7 @@ def get_athlete(activity):
   for i in range(athletes):
     row = wks.get_row(i + 1)
     if row[6] == activity:
+      print(row)
       break
   return row
     
