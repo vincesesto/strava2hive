@@ -56,6 +56,7 @@ if activity[6] == "Run":
 print("Now use details to get activity from strava")
 athlete_values = get_athlete("1778778")
 print(athlete_values)
+print(os.getenv('STRAVA_CLIENT_ID'))
 try:
   response = requests.post("https://www.strava.com/oauth/token",
                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete_values[5],
