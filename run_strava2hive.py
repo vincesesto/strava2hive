@@ -29,8 +29,8 @@ def get_athlete(activity):
   athletes = 5
   for i in range(athletes):
     row = wks.get_row(i + 1)
+    print[row]
     if row[6] == activity:
-      print(row)
       break
   return row
     
