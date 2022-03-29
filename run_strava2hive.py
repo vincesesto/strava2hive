@@ -64,5 +64,5 @@ try:
   print(access_info)
 except:
   print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
-  return False
+  # return False
 
