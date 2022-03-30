@@ -60,7 +60,8 @@ athlete_values = get_athlete("1778778")
 print(athlete_values)
 
 # Test if athlete bearer token is still value by testing athlete_values[8]
-expire_time = athlete_values[8]
+expire_time = int(athlete_values[8])
+print(expire_time)
 local_time = time.ctime(expire_time)
 print("The local time for expire is:", local_time)
 
