@@ -4,6 +4,7 @@ import os
 import pygsheets
 import pandas as pd
 import requests
+import time
 
 
 print("Running Strava 2 Hive")
@@ -57,6 +58,14 @@ def strava_activity(athlete_id):
 print("Now use details to get activity from strava")
 athlete_values = get_athlete("1778778")
 print(athlete_values)
+
+# Test if athlete bearer token is still value by testing athlete_values[8]
+expire_time = athlete_values[8]
+local_time = time.ctime(expire_time)
+print("The local time for expire is:", local_time)
+
+
+
 #try:
 #  response = requests.post("https://www.strava.com/api/v3/oauth/token",
 #                            params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': 'c97c1a1e4e624972c7512a673c351f22b3d0b12d',
