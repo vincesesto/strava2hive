@@ -65,7 +65,7 @@ print(expire_time)
 local_time = time.ctime(expire_time)
 print("The local time for expire is:", local_time)
 t = time.time()
-lt = int(t)
+lt = time.ctime(int(t))
 print("The local time is: ", lt)
 
 
