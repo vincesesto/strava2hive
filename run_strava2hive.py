@@ -62,10 +62,11 @@ print(athlete_values)
 # Test if athlete bearer token is still valid by testing athlete_values[8]
 expire_time = int(athlete_values[8])
 current = time.time()
+print(current)
 current_time = time.ctime(int(current))
 print(current_time)
 print(type(current_time))
-expired_value = expire_time - int(float(current_time))
+expired_value = expire_time - current
 if expired_value > 0:
   print("Strava Token Still Valid")
 else:
