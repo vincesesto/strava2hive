@@ -64,6 +64,9 @@ expire_time = int(athlete_values[8])
 print(expire_time)
 local_time = time.ctime(expire_time)
 print("The local time for expire is:", local_time)
+t = time.time()
+lt = int(t)
+print("The local time is: ", lt)
 
 
 
