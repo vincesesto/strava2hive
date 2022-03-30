@@ -64,7 +64,7 @@ expire_time = int(athlete_values[8])
 current = time.time()
 current_time = time.ctime(int(current))
 if expire_time > current_time:
-  print("Strava Token Still Valid)
+  print("Strava Token Still Valid")
 else:
   print("Strava Token Needs To Be Updated")
 
