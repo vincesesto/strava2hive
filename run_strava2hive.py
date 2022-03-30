@@ -59,14 +59,19 @@ print("Now use details to get activity from strava")
 athlete_values = get_athlete("1778778")
 print(athlete_values)
 
-# Test if athlete bearer token is still value by testing athlete_values[8]
+# Test if athlete bearer token is still valid by testing athlete_values[8]
 expire_time = int(athlete_values[8])
-print(expire_time)
-local_time = time.ctime(expire_time)
-print("The local time for expire is:", local_time)
-t = time.time()
-lt = time.ctime(int(t))
-print("The local time is: ", lt)
+current = time.time()
+current_time = time.ctime(int(current))
+if expire_time > current_time:
+  print("Strava Token Still Valid)
+else:
+  print("Strava Token Needs To Be Updated")
+
+# Get New refhresh_token
+# Update refresh token in spreadsheet
+
+
 
 
 
