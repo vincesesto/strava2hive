@@ -78,6 +78,21 @@ print(athlete_values)
 # Test if athlete bearer token is still valid by testing athlete_values[8]
 if athlete_values[8] == '':
   print("Log - Expire time is empty, so need to get auth from strava")
+  # This part of the code does not work yet
+  # You need to get this working soon
+  try:
+    response = requests.post("https://www.strava.com/api/v3/oauth/token",
+                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete_values[6],
+                                     'grant_type': 'authorization_code'})
+    access_info = dict()
+    activity_data = response.json()
+    access_info['access_token'] = activity_data['access_token']
+    print(activity_data)
+    print(access_info)
+  except:
+    #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
+    print("Log - An Error occurred trying to authenticate with the Strava token")
+    return False
 else:
   expire_time = int(athlete_values[8])
   current_time = time.time()
@@ -86,29 +101,11 @@ else:
     print("Strava Token Still Valid")
   else:
     print("Strava Token Needs To Be Updated")
-
-print(update_athlete('1778778', '94e8416188bd24cf88a1f770c01f156edf06bd22', 'H'))
-print(update_athlete('1778778', 1648714531, 'I'))
-print(update_athlete('1778778', '0a08826321138d99ddca153c0316dff41b6104f6', 'J'))
+    # This code needs to be sorted but we do have the update_athlete() function working...eg:
+    # print(update_athlete('1778778', '94e8416188bd24cf88a1f770c01f156edf06bd22', 'H'))
+    # print(update_athlete('1778778', 1648714531, 'I'))
+    # print(update_athlete('1778778', '0a08826321138d99ddca153c0316dff41b6104f6', 'J'))
 
 # Get New refhresh_token
-# Update refresh token in spreadsheet
 
-
-
-
-
-#try:
-#  response = requests.post("https://www.strava.com/api/v3/oauth/token",
-#                            params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': 'c97c1a1e4e624972c7512a673c351f22b3d0b12d',
-#                            'grant_type': 'authorization_code'})
-#  access_info = dict()
-#  activity_data = response.json()
-#  access_info['access_token'] = activity_data['access_token']
-#  print(activity_data)
-#  print(access_info)
-#except:
-#  #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
-#  print("Log - An Error occurred trying to authenticate with the Strava token")
-#  # return False
 
