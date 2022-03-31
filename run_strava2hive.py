@@ -86,9 +86,9 @@ else:
   else:
     print("Strava Token Needs To Be Updated")
 
-update_athlete(1778778, "94e8416188bd24cf88a1f770c01f156edf06bd22", "H")
-update_athlete(1778778, 1648714531, "I")
-update_athlete(1778778, "0a08826321138d99ddca153c0316dff41b6104f6", "J")
+print(update_athlete(1778778, "94e8416188bd24cf88a1f770c01f156edf06bd22", "H"))
+print(update_athlete(1778778, 1648714531, "I"))
+print(update_athlete(1778778, "0a08826321138d99ddca153c0316dff41b6104f6", "J"))
 
 # Get New refhresh_token
 # Update refresh token in spreadsheet
