@@ -125,6 +125,10 @@ else:
     refresh_access_token(athlete_values)
 
 
-# Get New refhresh_token
-
+# create a new function for new users to get access token
+# check a users activity and get relevant data to create a post
+# Add details of the post to a new spreadsheet
+# Start looking at hive automation
+# Hive - reblogging
+# Hive - posting with user posting key
 
