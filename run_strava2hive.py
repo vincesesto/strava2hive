@@ -6,9 +6,7 @@ import pandas as pd
 import requests
 import time
 
-
-print("Running Strava 2 Hive")
-
+# Functions
 def strava_screenshot(activity):
   # Create the command to run on chrome
   chrome_command = 'google-chrome --headless --screenshot="./screenshot_' + str(activity) + '.png" "https://www.strava.com/activities/' + str(activity) + '"'
@@ -64,8 +62,8 @@ def refresh_access_token(athlete):
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    print(update_athlete(athlete[6], access_info['access_token'], 'H'))
-    print(update_athlete(athlete[6], access_info['expires_at'], 'I'))
+    update_athlete(athlete[6], access_info['access_token'], 'H'))
+    update_athlete(athlete[6], access_info['expires_at'], 'I'))
     print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
     
   except:
@@ -84,20 +82,24 @@ def new_user_access_token(athlete):
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    print(update_athlete(athlete[6], access_info['access_token'], 'H'))
-    print(update_athlete(athlete[6], access_info['expires_at'], 'I'))
+    update_athlete(athlete[6], access_info['access_token'], 'H'))
+    update_athlete(athlete[6], access_info['expires_at'], 'I'))
     print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
   except:
     print("Log - An Error occurred trying to authenticate with the Strava token")
     return False
 
 def strava_activity(athlete_id):
-  print("Get latest activity from strava")
-  print(athlete_id)
-  
-  
-  
-  
+  athlete_details = get_athlete(athlete_id)
+  # activity bearer is needed as part of the data
+  print("Log - Searching For New Activities")
+  bearer_header = "Bearer " + athlete_details[8]
+  headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
+  t = datetime.now() - timedelta(days=1)
+  parameters = {"after": int(t.strftime("%s"))}
+  response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=1", headers=headers, params=parameters )
+  activity_data = response.json()
+  return activity_data
   
 #print("Take screenshot of activity")  
 #strava_screenshot(6790387629)
@@ -129,7 +131,8 @@ else:
     print("Strava Token Needs To Be Updated")
     refresh_access_token(athlete_values)
 
-
+print("See what activity the athlete has")
+strava_activity("1778778")
 
 # check a users activity and get relevant data to create a post
 # Add details of the post to a new spreadsheet
