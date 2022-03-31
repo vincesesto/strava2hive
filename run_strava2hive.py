@@ -36,6 +36,21 @@ def get_athlete(activity):
     if row[6] == activity:
       break
   return row
+
+def update_athlete(athlete_id, change_val, column):
+  gc = pygsheets.authorize(service_file='strava2hive.json')
+  sh = gc.open("HiveAthletes")
+  wks = sh[0]
+  row = []
+  athletes = 5
+  for i in range(athletes):
+    row = wks.get_row(i + 1)
+    if row[6] == athlete_id:
+      cell_value = column + str(i)
+      wks.update_value(cell_value, change_val)
+      row = wks.get_row(i + 1)
+      break
+  return row
     
 def strava_activity(athlete_id):
   print("Get latest activity from strava")
@@ -70,6 +85,10 @@ else:
     print("Strava Token Still Valid")
   else:
     print("Strava Token Needs To Be Updated")
+
+update_athlete(1778778, "94e8416188bd24cf88a1f770c01f156edf06bd22", "H")
+update_athlete(1778778, 1648714531, "I")
+update_athlete(1778778, "0a08826321138d99ddca153c0316dff41b6104f6", "J")
 
 # Get New refhresh_token
 # Update refresh token in spreadsheet
