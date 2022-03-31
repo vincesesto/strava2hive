@@ -55,19 +55,15 @@ def update_athlete(athlete_id, change_val, column):
     
 def refresh_access_token(athlete):
   # We need to update the access_token in strava every six hours
-  print(athlete[6])
-  print(athlete[9])
   try:
     response = requests.post("https://www.strava.com/api/v3/oauth/token",
                              params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 
                              'code': athlete[6], 'grant_type': 'refresh_token', 'refresh_token': athlete[9] })
-    print(response)
     access_info = dict()
     activity_data = response.json()
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    print(activity_data)
     print(update_athlete(athlete[6], access_info['access_token'], 'H'))
     print(update_athlete(athlete[6], access_info['expires_at'], 'I'))
     print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
@@ -75,7 +71,7 @@ def refresh_access_token(athlete):
   except:
     #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
     print("Log - An Error occurred trying to authenticate with the Strava token")
-    #return False
+    return False
   
 
 def strava_activity(athlete_id):
@@ -122,11 +118,10 @@ else:
   expire_time = int(athlete_values[8])
   current_time = time.time()
   expired_value = expire_time - int(current_time)
-  if expired_value < 0:
+  if expired_value > 0:
     print("Strava Token Still Valid")
   else:
     print("Strava Token Needs To Be Updated")
-    # This code needs to be sorted but we do have the update_athlete() function working...eg:
     refresh_access_token(athlete_values)
 
 
