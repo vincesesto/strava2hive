@@ -73,10 +73,29 @@ def refresh_access_token(athlete):
     print("Log - An Error occurred trying to authenticate with the Strava token")
     return False
   
+def new_user_access_token(athlete):
+  # New users have a different process for getting access tokens
+  try:
+    response = requests.post("https://www.strava.com/api/v3/oauth/token",
+                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete_values[6],
+                                     'grant_type': 'authorization_code'})
+    access_info = dict()
+    activity_data = response.json()
+    access_info['access_token'] = activity_data['access_token']
+    access_info['expires_at'] = activity_data['expires_at']
+    access_info['refresh_token'] = activity_data['refresh_token']
+    print(update_athlete(athlete[6], access_info['access_token'], 'H'))
+    print(update_athlete(athlete[6], access_info['expires_at'], 'I'))
+    print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
+  except:
+    print("Log - An Error occurred trying to authenticate with the Strava token")
+    return False
 
 def strava_activity(athlete_id):
   print("Get latest activity from strava")
   print(athlete_id)
+  
+  
   
   
   
@@ -99,21 +118,7 @@ print(athlete_values)
 # Test if athlete bearer token is still valid by testing athlete_values[8]
 if athlete_values[8] == '':
   print("Log - Expire time is empty, so need to get auth from strava")
-  # This part of the code does not work yet
-  # You need to get this working soon
-  try:
-    response = requests.post("https://www.strava.com/api/v3/oauth/token",
-                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete_values[6],
-                                     'grant_type': 'authorization_code'})
-    access_info = dict()
-    activity_data = response.json()
-    access_info['access_token'] = activity_data['access_token']
-    print(activity_data)
-    print(access_info)
-  except:
-    #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
-    print("Log - An Error occurred trying to authenticate with the Strava token")
-    #return False
+  new_user_access_token(athlete_values)
 else:
   expire_time = int(athlete_values[8])
   current_time = time.time()
@@ -125,7 +130,7 @@ else:
     refresh_access_token(athlete_values)
 
 
-# create a new function for new users to get access token
+
 # check a users activity and get relevant data to create a post
 # Add details of the post to a new spreadsheet
 # Start looking at hive automation
