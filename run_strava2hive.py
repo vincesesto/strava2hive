@@ -62,8 +62,8 @@ def refresh_access_token(athlete):
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    update_athlete(athlete[6], access_info['access_token'], 'H'))
-    update_athlete(athlete[6], access_info['expires_at'], 'I'))
+    update_athlete(athlete[6], access_info['access_token'], 'H')
+    update_athlete(athlete[6], access_info['expires_at'], 'I')
     print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
     
   except:
@@ -82,8 +82,8 @@ def new_user_access_token(athlete):
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    update_athlete(athlete[6], access_info['access_token'], 'H'))
-    update_athlete(athlete[6], access_info['expires_at'], 'I'))
+    update_athlete(athlete[6], access_info['access_token'], 'H')
+    update_athlete(athlete[6], access_info['expires_at'], 'I')
     print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
   except:
     print("Log - An Error occurred trying to authenticate with the Strava token")
