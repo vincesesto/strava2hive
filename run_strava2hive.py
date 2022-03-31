@@ -5,6 +5,7 @@ import pygsheets
 import pandas as pd
 import requests
 import time
+import datetime
 
 # Functions
 def strava_screenshot(activity):
