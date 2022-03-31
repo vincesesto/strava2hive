@@ -64,7 +64,7 @@ def refresh_access_token(athlete):
     print(response)
     access_info = dict()
     activity_data = response.json()
-    access_info['access_token'] = activity_data['expires_at']
+    access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
     print(activity_data)
