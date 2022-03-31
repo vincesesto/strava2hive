@@ -5,7 +5,7 @@ import pygsheets
 import pandas as pd
 import requests
 import time
-import datetime
+from datetime import datetime, timedelta
 
 # Functions
 def strava_screenshot(activity):
