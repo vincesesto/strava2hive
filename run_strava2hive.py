@@ -46,7 +46,7 @@ def update_athlete(athlete_id, change_val, column):
   for i in range(athletes):
     row = wks.get_row(i + 1)
     if row[6] == athlete_id:
-      cell_value = column + str(i)
+      cell_value = column + str(i + 1)
       print("Cell Value is ", cell_value)
       wks.update_value(cell_value, change_val)
       row = wks.get_row(i + 1)
