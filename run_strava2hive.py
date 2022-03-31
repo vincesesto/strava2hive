@@ -53,6 +53,23 @@ def update_athlete(athlete_id, change_val, column):
       break
   return row
     
+def refresh_access_token(athlete):
+  # We need to update the access_token in strava every six hours
+  try:
+    response = requests.post("https://www.strava.com/api/v3/oauth/token",
+                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete[6],
+                                     'grant_type': 'refresh_token', 'refresh_token': athlete[8] })
+    access_info = dict()
+    activity_data = response.json()
+    access_info['access_token'] = activity_data['access_token']
+    print(access_info)
+    
+  except:
+    #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
+    print("Log - An Error occurred trying to authenticate with the Strava token")
+    #return False
+  
+
 def strava_activity(athlete_id):
   print("Get latest activity from strava")
   print(athlete_id)
@@ -97,11 +114,12 @@ else:
   expire_time = int(athlete_values[8])
   current_time = time.time()
   expired_value = expire_time - int(current_time)
-  if expired_value > 0:
+  if expired_value < 0:
     print("Strava Token Still Valid")
   else:
     print("Strava Token Needs To Be Updated")
     # This code needs to be sorted but we do have the update_athlete() function working...eg:
+    refresh_access_token(athlete_values)
     # print(update_athlete('1778778', '94e8416188bd24cf88a1f770c01f156edf06bd22', 'H'))
     # print(update_athlete('1778778', 1648714531, 'I'))
     # print(update_athlete('1778778', '0a08826321138d99ddca153c0316dff41b6104f6', 'J'))
