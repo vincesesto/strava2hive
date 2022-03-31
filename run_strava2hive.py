@@ -93,7 +93,7 @@ def new_user_access_token(athlete):
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
   # activity bearer is needed as part of the data
-  print(activity_bearer[7])
+  print(activity_details[7])
   print("Log - Searching For New Activities")
   bearer_header = "Bearer " + athlete_details[7]
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
