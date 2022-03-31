@@ -60,10 +60,10 @@ athlete_values = get_athlete("1778778")
 print(athlete_values)
 
 # Test if athlete bearer token is still valid by testing athlete_values[8]
-expire_time = int(athlete_values[8])
-if expire_time == '':
+if athlete_values[8] == '':
   print("Log - Expire time is empty, so need to get auth from strava")
 else:
+  expire_time = int(athlete_values[8])
   current_time = time.time()
   expired_value = expire_time - int(current_time)
   if expired_value > 0:
