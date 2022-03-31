@@ -92,7 +92,7 @@ if athlete_values[8] == '':
   except:
     #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
     print("Log - An Error occurred trying to authenticate with the Strava token")
-    return False
+    #return False
 else:
   expire_time = int(athlete_values[8])
   current_time = time.time()
