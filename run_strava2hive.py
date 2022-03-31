@@ -133,9 +133,9 @@ else:
     refresh_access_token(athlete_values)
 
 print("See what activity the athlete has")
-strava_activity("1778778")
+activity_details = strava_activity("1778778")
+print(activity_details)
 
-# check a users activity and get relevant data to create a post
 # Add details of the post to a new spreadsheet
 # Start looking at hive automation
 # Hive - reblogging
