@@ -61,12 +61,15 @@ print(athlete_values)
 
 # Test if athlete bearer token is still valid by testing athlete_values[8]
 expire_time = int(athlete_values[8])
-current_time = time.time()
-expired_value = expire_time - int(current_time)
-if expired_value > 0:
-  print("Strava Token Still Valid")
+if expire_time == '':
+  print("Log - Expire time is empty, so need to get auth from strava")
 else:
-  print("Strava Token Needs To Be Updated")
+  current_time = time.time()
+  expired_value = expire_time - int(current_time)
+  if expired_value > 0:
+    print("Strava Token Still Valid")
+  else:
+    print("Strava Token Needs To Be Updated")
 
 # Get New refhresh_token
 # Update refresh token in spreadsheet
