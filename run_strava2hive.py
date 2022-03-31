@@ -56,11 +56,11 @@ def update_athlete(athlete_id, change_val, column):
 def refresh_access_token(athlete):
   # We need to update the access_token in strava every six hours
   print(athlete[6])
-  print(athlete[8])
+  print(athlete[9])
   try:
     response = requests.post("https://www.strava.com/api/v3/oauth/token",
                              params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 
-                             'code': athlete[6], 'grant_type': 'refresh_token', 'refresh_token': athlete[8] })
+                             'code': athlete[6], 'grant_type': 'refresh_token', 'refresh_token': athlete[9] })
     print(response)
     access_info = dict()
     activity_data = response.json()
