@@ -64,8 +64,13 @@ def refresh_access_token(athlete):
     print(response)
     access_info = dict()
     activity_data = response.json()
-    access_info['access_token'] = activity_data['access_token']
-    print(access_info)
+    access_info['access_token'] = activity_data['expires_at']
+    access_info['expires_at'] = activity_data['expires_at']
+    access_info['refresh_token'] = activity_data['refresh_token']
+    print(activity_data)
+    print(update_athlete(athlete[6], access_info['access_token'], 'H'))
+    print(update_athlete(athlete[6], access_info['expires_at'], 'I'))
+    print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
     
   except:
     #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
@@ -123,9 +128,7 @@ else:
     print("Strava Token Needs To Be Updated")
     # This code needs to be sorted but we do have the update_athlete() function working...eg:
     refresh_access_token(athlete_values)
-    # print(update_athlete('1778778', '94e8416188bd24cf88a1f770c01f156edf06bd22', 'H'))
-    # print(update_athlete('1778778', 1648714531, 'I'))
-    # print(update_athlete('1778778', '0a08826321138d99ddca153c0316dff41b6104f6', 'J'))
+
 
 # Get New refhresh_token
 
