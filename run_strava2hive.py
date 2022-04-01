@@ -93,7 +93,6 @@ def new_user_access_token(athlete):
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
   # activity bearer is needed as part of the data
-  print(athlete_details[7])
   print("Log - Searching For New Activities")
   bearer_header = "Bearer " + athlete_details[7]
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
@@ -101,7 +100,18 @@ def strava_activity(athlete_id):
   parameters = {"after": int(t.strftime("%s"))}
   response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=1", headers=headers, params=parameters )
   activity_data = response.json()
-  return activity_data[0]
+  basic_data = activity_data[0]
+  print("Log - Now get some more detailed information")
+  response = requests.get("https://www.strava.com/api/v3/athlete/activities/basic_data['id']", headers=headers, )
+  more_activity_data = response.json()
+  activity_info['id'] = basic_data['id']
+  activity_info['name'] = more_activity_data['name']
+  activity_info['distance'] = more_activity_data['distance']
+  activity_info['type'] = more_activity_data['type']
+  activity_info['start_date_local'] = more_activity_data['start_date_local']
+  activity_info['location_country'] = more_activity_data['location_country']
+  activity_info['description'] = more_activity_data['description']
+  return activity_info
   
 #print("Take screenshot of activity")  
 #strava_screenshot(6790387629)
@@ -135,7 +145,7 @@ else:
 
 print("See what activity the athlete has")
 activity_details = strava_activity("1778778")
-print(activity_details['id'])
+print(activity_details)
 
 # Add details of the post to a new spreadsheet
 # Start looking at hive automation
