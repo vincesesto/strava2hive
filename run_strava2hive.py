@@ -106,15 +106,14 @@ def strava_activity(athlete_id):
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
   activity_info = dict()
-  #activity_info['id'] = basic_data['id']
-  #activity_info['name'] = more_activity_data['name']
-  #activity_info['distance'] = more_activity_data['distance']
-  #activity_info['type'] = more_activity_data['type']
-  #activity_info['start_date_local'] = more_activity_data['start_date_local']
-  #activity_info['location_country'] = more_activity_data['location_country']
-  #activity_info['description'] = more_activity_data['description']
-  #return activity_info
-  return more_activity_data
+  activity_info['id'] = basic_data['id']
+  activity_info['name'] = more_activity_data['name']
+  activity_info['distance'] = more_activity_data['distance']
+  activity_info['type'] = more_activity_data['type']
+  activity_info['start_date_local'] = more_activity_data['start_date_local']
+  activity_info['location_country'] = more_activity_data['location_country']
+  activity_info['description'] = more_activity_data['description']
+  return activity_info
   
 #print("Take screenshot of activity")  
 #strava_screenshot(6790387629)
