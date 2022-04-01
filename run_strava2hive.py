@@ -101,7 +101,7 @@ def strava_activity(athlete_id):
   parameters = {"after": int(t.strftime("%s"))}
   response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=1", headers=headers, params=parameters )
   activity_data = response.json()
-  return activity_data
+  return activity_data[0]
   
 #print("Take screenshot of activity")  
 #strava_screenshot(6790387629)
@@ -135,7 +135,7 @@ else:
 
 print("See what activity the athlete has")
 activity_details = strava_activity("1778778")
-print(activity_details[0])
+print(activity_details['id'])
 
 # Add details of the post to a new spreadsheet
 # Start looking at hive automation
