@@ -46,7 +46,6 @@ def update_athlete(athlete_id, change_val, column):
     row = wks.get_row(i + 1)
     if row[6] == athlete_id:
       cell_value = column + str(i + 1)
-      print("Cell Value is ", cell_value)
       wks.update_value(cell_value, change_val)
       row = wks.get_row(i + 1)
       break
@@ -68,16 +67,15 @@ def refresh_access_token(athlete):
     print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
     
   except:
-    #print("Log - An Error occurred trying to authenticate with the {} Strava token".format(user_key))
-    print("Log - An Error occurred trying to authenticate with the Strava token")
+    print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[6]))
     return False
   
 def new_user_access_token(athlete):
   # New users have a different process for getting access tokens
   try:
     response = requests.post("https://www.strava.com/api/v3/oauth/token",
-                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 'code': athlete_values[6],
-                                     'grant_type': 'authorization_code'})
+                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'),
+                                     'code': athlete[6], 'grant_type': 'authorization_code'})
     access_info = dict()
     activity_data = response.json()
     access_info['access_token'] = activity_data['access_token']
@@ -153,4 +151,5 @@ print(activity_details)
 # Start looking at hive automation
 # Hive - reblogging
 # Hive - posting with user posting key
+# Refactor for more than one user
 
