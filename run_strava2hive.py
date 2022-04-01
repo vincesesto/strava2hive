@@ -135,7 +135,7 @@ else:
 
 print("See what activity the athlete has")
 activity_details = strava_activity("1778778")
-print(activity_details['id'])
+print(activity_details[0])
 
 # Add details of the post to a new spreadsheet
 # Start looking at hive automation
