@@ -149,6 +149,7 @@ for i in strava_athletes:
   print("Log - See what activity the athlete has")
   activity_details = strava_activity(i)
   print(activity_details)
+  # Add a test to see if the activity was a run and then post if it is
 
 # Add details of the post to a new spreadsheet
 # Start looking at hive automation
