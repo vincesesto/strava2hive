@@ -119,33 +119,36 @@ def strava_activity(athlete_id):
 #print("Get the latest Activity")
 #activity = get_last_activity()
 
-#print("See if the activity is a Run")
-#if activity[6] == "Run":
-#  print("Yay, activity is a run, so ship it!!!")
-#  athlete = get_athlete(activity[0])
-#  print("Here are the athletes details")
-  
-print("Now use details to get activity from strava")
-athlete_values = get_athlete("1778778")
-print(athlete_values)
+##################################################
+# Workflow from scratch
+##################################################
 
-# Test if athlete bearer token is still valid by testing athlete_values[8]
-if athlete_values[8] == '':
-  print("Log - Expire time is empty, so need to get auth from strava")
-  new_user_access_token(athlete_values)
-else:
-  expire_time = int(athlete_values[8])
-  current_time = time.time()
-  expired_value = expire_time - int(current_time)
-  if expired_value > 0:
-    print("Strava Token Still Valid")
+# Now we just have a list of Strava ID's but we will eventually make a list from our sheet
+strava_athletes = ['1778778']
+
+print("Log - Use athlete details to get activity from strava")
+for i in strava_athletes:
+  print("Log - First get athlete details from sheet so you can access strava")
+  athlete_values = get_athlete(i)
+  print("Log - Athlete Values: ", athlete_values)
+  # Test if athlete bearer token is still valid by testing athlete_values[8]
+  if athlete_values[8] == '':
+    print("Log - Expire time is empty, so need to get auth from strava")
+    new_user_access_token(athlete_values)
   else:
-    print("Strava Token Needs To Be Updated")
-    refresh_access_token(athlete_values)
+    print("Log - User is an existing user, so we need to check if we need to update the strava token")
+    expire_time = int(athlete_values[8])
+    current_time = time.time()
+    expired_value = expire_time - int(current_time)
+    if expired_value > 0:
+      print("Log - Strava Token Still Valid")
+    else:
+      print("Log - Strava Token Needs To Be Updated")
+      refresh_access_token(athlete_values)
 
-print("See what activity the athlete has")
-activity_details = strava_activity("1778778")
-print(activity_details)
+  print("Log - See what activity the athlete has")
+  activity_details = strava_activity(i)
+  print(activity_details)
 
 # Add details of the post to a new spreadsheet
 # Start looking at hive automation
