@@ -150,10 +150,12 @@ for i in strava_athletes:
   activity_details = strava_activity(i)
   print(activity_details)
   # Add a test to see if the activity was a run and then post if it is
+  # we might need to also bring down all the activity for the day and not just the last
 
 # Add details of the post to a new spreadsheet
 # Start looking at hive automation
 # Hive - reblogging
 # Hive - posting with user posting key
 # Refactor for more than one user
+# Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
 
