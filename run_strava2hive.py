@@ -159,3 +159,48 @@ for i in strava_athletes:
 # Refactor for more than one user
 # Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
 
+
+# Posting to Hive
+#from beem.imageuploader import ImageUploader
+#from beem import Hive
+#from beem.nodelist import NodeList
+#
+#nodelist = NodeList()
+#nodelist.update_nodes()
+#nodes = nodelist.get_hive_nodes()
+#
+#wif_post_key = getpass.getpass('Posting Key: ')
+#wif = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+#hive = Hive(nodes=nodes, keys=[wif])
+#author = 'strava2hive'
+#image_path = '/path/to/image'
+#image_name = 'IMAGE'
+#image_uploader = ImageUploader(blockchain_instance=hive)
+#img_link = image_uploader.upload(image_path, author, image_name=image_name)
+#
+#title = "Testing Posts From Code"
+#body = f'''
+#![{image_name}]({img_link['url']})
+#
+#This is a test to see if I can 
+#
+#Start to make posts in Hive using
+#
+#Code!
+#'''
+#
+#parse_body = True
+#self_vote = False
+#tags = ['exhaust', 'test']
+#
+#hive.post(title, body, author=author, tags=tags, parse_body=parse_body, self_vote=self_vote)
+
+
+
+
+
+
+
+
+
+
