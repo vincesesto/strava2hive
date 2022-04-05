@@ -64,6 +64,7 @@ def activity_posted(athlete_id, activity_id):
     print(row[1])
     if row[1] == activity_id:
       posted = True
+      print("Activity has been found, now returning True")
       break
   return posted
 
