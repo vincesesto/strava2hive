@@ -38,7 +38,7 @@ def get_athlete(activity):
 
 def update_athlete(athlete_id, change_val, column):
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("StravaActivity")
+  sh = gc.open("HiveAthletes")
   wks = sh[0]
   row = []
   athletes = 5
@@ -128,7 +128,6 @@ def strava_activity(athlete_id):
   parameters = {"after": int(t.strftime("%s"))}
   response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=5", headers=headers, params=parameters )
   activity_data = response.json()
-  print(activity_data)
   for i in range(len(activity_data)):
     activity = activity_data[i]
     if activity['type'] == "Run":
