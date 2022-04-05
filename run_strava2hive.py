@@ -65,6 +65,17 @@ def activity_posted(athlete_id, activity_id):
       posted = True
       break
   return posted
+
+def record_post(athlete_id, activity_id):
+  gc = pygsheets.authorize(service_file='strava2hive.json')
+  sh = gc.open("HiveAthletes")
+  wks = sh[1]
+  cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
+  # Add athlete id
+  cell_value = "A" + str(len(cells) + 1)
+  wks.update_value(cell_value, athlete_id)
+  # Now add the activity
+  cell_value = "B" + str(len(cells) + 1)
     
 def refresh_access_token(athlete):
   # We need to update the access_token in strava every six hours
@@ -124,6 +135,7 @@ def strava_activity(athlete_id):
       else:
         print("Log - Activity has not been posted yet, ship it!!")
         # Create a function that also adds to the sheet
+        record_post(athlete_id, activity['id'])
   # Maybe seperate this into another function
   basic_data = activity_data[0]
   print("Log - Now get some more detailed information")
