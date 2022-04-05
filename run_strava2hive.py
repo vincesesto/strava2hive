@@ -62,7 +62,7 @@ def activity_posted(athlete_id, activity_id):
   for i in range(total_rows):
     row = wks.get_row(i + 1)
     print("Activity ID is", activity_id)
-    print(typs(row[1]))
+    print(type(row[1]))
     if str(row[1]) == activity_id:
       posted = True
       print("Activity has been found, now returning True")
