@@ -53,7 +53,7 @@ def update_athlete(athlete_id, change_val, column):
 
 def activity_posted(athlete_id, activity_id):
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("HiveAthletes")
+  sh = gc.open("StravaActivity")
   wks = sh[1]
   row = []
   posted = False
@@ -68,16 +68,15 @@ def activity_posted(athlete_id, activity_id):
 
 def record_post(athlete_id, activity_id):
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("HiveAthletes")
+  sh = gc.open("StravaActivity")
   wks = sh[1]
   cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
   # Add athlete id
   cell_value = "A" + str(len(cells) + 1)
-  print("Adding value you to cell", cell_value)
   wks.update_value(cell_value, athlete_id)
   # Now add the activity
   cell_value = "B" + str(len(cells) + 1)
-  print("Adding value you to cell", cell_value)
+  wks.update_value(cell_value, activity_id)
     
 def refresh_access_token(athlete):
   # We need to update the access_token in strava every six hours
