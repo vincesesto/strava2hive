@@ -99,8 +99,7 @@ def strava_activity(athlete_id):
   response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers, params=parameters )
   activity_data = response.json()
   print(activity_data)
-  print(len(activity_data))
-  for i in len(activity_data):
+  for i in range(len(activity_data)):
     print(activity_data[i])
   basic_data = activity_data[0]
   print("Log - Now get some more detailed information")
