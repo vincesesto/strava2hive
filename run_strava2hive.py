@@ -38,7 +38,7 @@ def get_athlete(activity):
 
 def update_athlete(athlete_id, change_val, column):
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("HiveAthletes")
+  sh = gc.open("StravaActivity")
   wks = sh[0]
   row = []
   athletes = 5
@@ -50,6 +50,21 @@ def update_athlete(athlete_id, change_val, column):
       row = wks.get_row(i + 1)
       break
   return row
+
+def activity_posted(athlete_id, activity_id):
+  gc = pygsheets.authorize(service_file='strava2hive.json')
+  sh = gc.open("HiveAthletes")
+  wks = sh[1]
+  row = []
+  posted = False
+  cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
+  total_rows = len(cells)
+  for i in range(total_rows):
+    row = wks.get_row(i + 1)
+    if row[1] == activity_id:
+      posted = True
+      break
+  return posted
     
 def refresh_access_token(athlete):
   # We need to update the access_token in strava every six hours
@@ -100,7 +115,16 @@ def strava_activity(athlete_id):
   activity_data = response.json()
   for i in range(len(activity_data)):
     activity = activity_data[i]
-    print(activity['type'])
+    if activity['type'] == "Run":
+      print(activity['type'])
+      print("Log - Activity is a run, now can we see if it is already posted")
+      posted_val = activity_posted(athlete_id, activity['id'])
+      if posted_val:
+        print("Log - Activity has been posted already, move on")
+      else:
+        print("Log - Activity has not been posted yet, ship it!!")
+        # Create a function that also adds to the sheet
+  # Maybe seperate this into another function
   basic_data = activity_data[0]
   print("Log - Now get some more detailed information")
   strava_activity_url = "https://www.strava.com/api/v3/activities/" + str(basic_data['id'])
