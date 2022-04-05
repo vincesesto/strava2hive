@@ -61,6 +61,7 @@ def activity_posted(athlete_id, activity_id):
   total_rows = len(cells)
   for i in range(total_rows):
     row = wks.get_row(i + 1)
+    print(row[1])
     if row[1] == activity_id:
       posted = True
       break
