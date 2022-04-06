@@ -6,6 +6,9 @@ import pandas as pd
 import requests
 import time
 from datetime import datetime, timedelta
+from beem.imageuploader import ImageUploader
+from beem import Hive
+from beem.nodelist import NodeList
 
 # Functions
 def strava_screenshot(activity):
@@ -24,7 +27,7 @@ def get_last_activity():
   print(cells[-1])
   return cells[-1]
 
-def get_athlete(activity):
+def get_athlete(athlete_id):
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("HiveAthletes")
   wks = sh[0]
@@ -32,7 +35,7 @@ def get_athlete(activity):
   athletes = 5
   for i in range(athletes):
     row = wks.get_row(i + 1)
-    if row[6] == activity:
+    if row[6] == athlete_id:
       break
   return row
 
@@ -132,6 +135,35 @@ def strava_activity_details(activity_id, bearer_header):
   activity_info['description'] = more_activity_data['description']
   return activity_info 
 
+def post_to_hive(athlete_id, activity_details):
+  nodelist = NodeList()
+  nodelist.update_nodes()
+  nodes = nodelist.get_hive_nodes()
+  #wif_post_key = getpass.getpass('Posting Key: ')
+  # Get all the details including the posting keys
+  athlete_details = get_athlete(athlete_id)
+  wif = athlete_details[3]
+  hive = Hive(nodes=nodes, keys=[wif])
+  author = athlete_details[1]
+  distance = (activity_details['distance'] * .001)
+  #image_path = '/path/to/image'
+  #image_name = 'IMAGE'
+  #image_uploader = ImageUploader(blockchain_instance=hive)
+  #img_link = image_uploader.upload(image_path, author, image_name=image_name)
+  title = activity_details['name']
+  #body = f'''
+  #![{image_name}]({img_link['url']})
+  body = f'''  
+  This is a test to see if I can 
+  Start to make posts in Hive using
+  
+  Code!
+  '''
+  parse_body = True
+  self_vote = False
+  tags = ['exhaust', 'test']
+  hive.post(title, body, author=author, tags=tags, community=exhaust, parse_body=parse_body, self_vote=self_vote)
+
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
   # activity bearer is needed as part of the data
@@ -156,7 +188,7 @@ def strava_activity(athlete_id):
         detailed_activity = strava_activity_details(activity['id'], bearer_header)
         print(detailed_activity)
         print("Log - Add it now to the activity log")
-        record_post(athlete_id, activity['id'])
+        #record_post(athlete_id, activity['id'])
         
 
 #print("Take screenshot of activity")  
@@ -204,49 +236,3 @@ for i in strava_athletes:
 # Hive - posting with user posting key
 # Refactor for more than one user
 # Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
-
-
-# Posting to Hive
-#from beem.imageuploader import ImageUploader
-#from beem import Hive
-#from beem.nodelist import NodeList
-#
-#nodelist = NodeList()
-#nodelist.update_nodes()
-#nodes = nodelist.get_hive_nodes()
-#
-#wif_post_key = getpass.getpass('Posting Key: ')
-#wif = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-#hive = Hive(nodes=nodes, keys=[wif])
-#author = 'strava2hive'
-#image_path = '/path/to/image'
-#image_name = 'IMAGE'
-#image_uploader = ImageUploader(blockchain_instance=hive)
-#img_link = image_uploader.upload(image_path, author, image_name=image_name)
-#
-#title = "Testing Posts From Code"
-#body = f'''
-#![{image_name}]({img_link['url']})
-#
-#This is a test to see if I can 
-#
-#Start to make posts in Hive using
-#
-#Code!
-#'''
-#
-#parse_body = True
-#self_vote = False
-#tags = ['exhaust', 'test']
-#
-#hive.post(title, body, author=author, tags=tags, parse_body=parse_body, self_vote=self_vote)
-
-
-
-
-
-
-
-
-
-
