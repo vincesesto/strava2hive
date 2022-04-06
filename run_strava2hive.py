@@ -117,8 +117,9 @@ def new_user_access_token(athlete):
     print("Log - An Error occurred trying to authenticate with the Strava token")
     return False
   
-def strava_activity_details(activity_id):
+def strava_activity_details(activity_id, bearer_header):
   strava_activity_url = "https://www.strava.com/api/v3/activities/" + str(activity_id)
+  headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
   activity_info = dict()
@@ -153,7 +154,7 @@ def strava_activity(athlete_id):
         print("Log - Activity has not been posted yet, ship it!!")
         print("Log - Now get some more detailed information")
         detailed_activity = strava_activity_details(activity['id'])
-        print(detailed_activity)
+        print(detailed_activity, bearer_header)
         print("Log - Add it now to the activity log")
         record_post(athlete_id, activity['id'])
         
