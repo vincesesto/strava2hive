@@ -61,12 +61,8 @@ def activity_posted(athlete_id, activity_id):
   total_rows = len(cells)
   for i in range(total_rows):
     row = wks.get_row(i + 1)
-    print("Activity ID is", activity_id)
-    print(type(row[1]))
-    print("Sheet activity is", str(row[1]))
     if str(row[1]) == str(activity_id):
       posted = True
-      print(posted)
       print("Activity has been found, now returning True")
       return posted
       break
