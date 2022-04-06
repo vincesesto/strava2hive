@@ -123,7 +123,7 @@ def strava_activity_details(activity_id, bearer_header):
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
   activity_info = dict()
-  activity_info['id'] = basic_data['id']
+  activity_info['id'] = activity_id
   activity_info['name'] = more_activity_data['name']
   activity_info['distance'] = more_activity_data['distance']
   activity_info['type'] = more_activity_data['type']
