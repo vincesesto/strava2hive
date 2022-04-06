@@ -116,6 +116,20 @@ def new_user_access_token(athlete):
   except:
     print("Log - An Error occurred trying to authenticate with the Strava token")
     return False
+  
+def strava_activity_details(activity_id):
+  strava_activity_url = "https://www.strava.com/api/v3/activities/" + str(activity_id)
+  response = requests.get(strava_activity_url, headers=headers, )
+  more_activity_data = response.json()
+  activity_info = dict()
+  activity_info['id'] = basic_data['id']
+  activity_info['name'] = more_activity_data['name']
+  activity_info['distance'] = more_activity_data['distance']
+  activity_info['type'] = more_activity_data['type']
+  activity_info['start_date_local'] = more_activity_data['start_date_local']
+  activity_info['location_country'] = more_activity_data['location_country']
+  activity_info['description'] = more_activity_data['description']
+  return activity_info 
 
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
@@ -137,24 +151,13 @@ def strava_activity(athlete_id):
         print("Log - Activity has been posted already, move on")
       else:
         print("Log - Activity has not been posted yet, ship it!!")
-        # Create a function that also adds to the sheet
+        print("Log - Now get some more detailed information")
+        detailed_activity = strava_activity_details(activity['id'])
+        print(detailed_activity)
+        print("Log - Add it now to the activity log")
         record_post(athlete_id, activity['id'])
-  # Maybe seperate this into another function
-  basic_data = activity_data[0]
-  print("Log - Now get some more detailed information")
-  strava_activity_url = "https://www.strava.com/api/v3/activities/" + str(basic_data['id'])
-  response = requests.get(strava_activity_url, headers=headers, )
-  more_activity_data = response.json()
-  activity_info = dict()
-  activity_info['id'] = basic_data['id']
-  activity_info['name'] = more_activity_data['name']
-  activity_info['distance'] = more_activity_data['distance']
-  activity_info['type'] = more_activity_data['type']
-  activity_info['start_date_local'] = more_activity_data['start_date_local']
-  activity_info['location_country'] = more_activity_data['location_country']
-  activity_info['description'] = more_activity_data['description']
-  return activity_info
-  
+        
+
 #print("Take screenshot of activity")  
 #strava_screenshot(6790387629)
 
