@@ -188,11 +188,9 @@ def strava_activity(athlete_id):
   parameters = {"after": int(t.strftime("%s"))}
   response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=5", headers=headers, params=parameters )
   activity_data = response.json()
-  print("Log - Vince test")
-  print(activity_data)
   for i in range(len(activity_data)):
     activity = activity_data[i]
-    if activity['type'] == "Ride":
+    if activity['type'] == "Swim":
       print(activity['type'])
       print("Log - Activity is a run, now can we see if it is already posted")
       posted_val = activity_posted(athlete_id, activity['id'])
