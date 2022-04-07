@@ -129,6 +129,7 @@ def strava_activity_details(activity_id, bearer_header):
   activity_info['id'] = activity_id
   activity_info['name'] = more_activity_data['name']
   activity_info['distance'] = more_activity_data['distance']
+  activity_info['duration'] = more_activity_data['elapsed_time']
   activity_info['type'] = more_activity_data['type']
   activity_info['start_date_local'] = more_activity_data['start_date_local']
   activity_info['location_country'] = more_activity_data['location_country']
@@ -145,19 +146,25 @@ def post_to_hive(athlete_id, activity_details):
   wif = athlete_details[3]
   hive = Hive(nodes=nodes, keys=[wif])
   author = athlete_details[1]
-  distance = (activity_details['distance'] * .001)
-  #image_path = '/path/to/image'
-  #image_name = 'IMAGE'
-  #image_uploader = ImageUploader(blockchain_instance=hive)
-  #img_link = image_uploader.upload(image_path, author, image_name=image_name)
+  distance = str(activity_details['distance'] * .001)
+  activity_type = activity_details['type'].lower()
+  duration = str(activity_details['duration'] / 60)
+  strava_screenshot(activity_details['id'])
+  image_path = '.'
+  image_name = "./screenshot_' + str(activity_details['id']) + '.png"
+  image_uploader = ImageUploader(blockchain_instance=hive)
+  img_link = image_uploader.upload(image_path, author, image_name=image_name)
   title = activity_details['name']
-  #body = f'''
-  #![{image_name}]({img_link['url']})
-  body = f'''  
-  This is a test to see if I can 
-  Start to make posts in Hive using
+  body = f'''
+  ![{image_name}]({img_link['url']})
+  {author} just finished a {distance}km {activity}, that lasted for {duration} minutes.
   
-  Code!
+  Discription from Strava: {activity_details['description']}
+  
+  If you would like to check out this activity on strava you can see it here:
+  https://www.strava.com/activities/{activity_details['id']}
+  
+  This is an automated post by @strava2hive and is currently in BETA.
   '''
   parse_body = True
   self_vote = False
@@ -187,8 +194,9 @@ def strava_activity(athlete_id):
         print("Log - Now get some more detailed information")
         detailed_activity = strava_activity_details(activity['id'], bearer_header)
         print(detailed_activity)
+        post_to_hive(athlete_id, detailed_activity)
         print("Log - Add it now to the activity log")
-        #record_post(athlete_id, activity['id'])
+        record_post(athlete_id, activity['id'])
         
 
 #print("Take screenshot of activity")  
