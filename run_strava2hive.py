@@ -169,7 +169,7 @@ def post_to_hive(athlete_id, activity_details):
   parse_body = True
   self_vote = False
   tags = ['exhaust', 'test']
-  hive.post(title, body, author=author, tags=tags, community=exhaust, parse_body=parse_body, self_vote=self_vote)
+  hive.post(title, body, author=author, tags=tags, community="exhaust", parse_body=parse_body, self_vote=self_vote)
 
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
