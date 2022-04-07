@@ -157,7 +157,7 @@ def post_to_hive(athlete_id, activity_details):
   title = activity_details['name']
   body = f'''
   ![{image_name}]({img_link['url']})
-  {author} just finished a {distance}km {activity}, that lasted for {duration} minutes.
+  {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
   
   Discription from Strava: {activity_details['description']}
   
