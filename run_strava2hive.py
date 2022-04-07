@@ -143,7 +143,8 @@ def post_to_hive(athlete_id, activity_details):
   #wif_post_key = getpass.getpass('Posting Key: ')
   # Get all the details including the posting keys
   athlete_details = get_athlete(athlete_id)
-  wif = athlete_details[3]
+  wif = getenv('POSTING_KEY')
+  #wif = athlete_details[3]
   hive = Hive(nodes=nodes, keys=[wif])
   author = athlete_details[1]
   distance = str(activity_details['distance'] * .001)
@@ -169,7 +170,7 @@ def post_to_hive(athlete_id, activity_details):
   parse_body = True
   self_vote = False
   tags = ['exhaust', 'test']
-  hive.post(title, body, author=author, tags=tags, community="exhaust", parse_body=parse_body, self_vote=self_vote)
+  #hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote)
 
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
