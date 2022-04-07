@@ -150,7 +150,7 @@ def post_to_hive(athlete_id, activity_details):
   activity_type = activity_details['type'].lower()
   duration = str(activity_details['duration'] / 60)
   strava_screenshot(activity_details['id'])
-  image_path = '.'
+  image_path = '/home/circleci/project'
   image_name = "./screenshot_' + str(activity_details['id']) + '.png"
   image_uploader = ImageUploader(blockchain_instance=hive)
   img_link = image_uploader.upload(image_path, author, image_name=image_name)
