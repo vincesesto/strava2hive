@@ -143,7 +143,7 @@ def post_to_hive(athlete_id, activity_details):
   #wif_post_key = getpass.getpass('Posting Key: ')
   # Get all the details including the posting keys
   athlete_details = get_athlete(athlete_id)
-  wif = getenv('POSTING_KEY')
+  wif = os.getenv('POSTING_KEY')
   #wif = athlete_details[3]
   hive = Hive(nodes=nodes, keys=[wif])
   author = athlete_details[1]
