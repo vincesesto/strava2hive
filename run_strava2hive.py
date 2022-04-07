@@ -155,6 +155,7 @@ def post_to_hive(athlete_id, activity_details):
   #image_path = '/home/circleci/project/screenshot_' + str(activity_details['id']) + '.png'
   os.system('wget https://drive.google.com/open?id=16y8dMM0DupVASUj8VOq-72ZcLyFodz6q -O image.png')
   image_path = '/home/circleci/project/image.png'
+  image_name = 'image.png'
   #image_name = 'screenshot_' + str(activity_details['id']) + '.png'
   image_uploader = ImageUploader(blockchain_instance=hive)
   img_link = image_uploader.upload(image_path, author, image_name=image_name)
