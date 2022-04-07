@@ -150,9 +150,12 @@ def post_to_hive(athlete_id, activity_details):
   distance = str(activity_details['distance'] * .001)
   activity_type = activity_details['type'].lower()
   duration = str(activity_details['duration'] / 60)
-  strava_screenshot(activity_details['id'])
-  image_path = '/home/circleci/project/screenshot_' + str(activity_details['id']) + '.png'
-  image_name = 'screenshot_' + str(activity_details['id']) + '.png'
+  print("Log - Downloading images and getting details together")
+  #strava_screenshot(activity_details['id'])
+  #image_path = '/home/circleci/project/screenshot_' + str(activity_details['id']) + '.png'
+  os.system('wget https://drive.google.com/open?id=16y8dMM0DupVASUj8VOq-72ZcLyFodz6q -O image.png')
+  image_path = '/home/circleci/project/image.png'
+  #image_name = 'screenshot_' + str(activity_details['id']) + '.png'
   image_uploader = ImageUploader(blockchain_instance=hive)
   img_link = image_uploader.upload(image_path, author, image_name=image_name)
   title = activity_details['name']
@@ -165,12 +168,15 @@ def post_to_hive(athlete_id, activity_details):
   If you would like to check out this activity on strava you can see it here:
   https://www.strava.com/activities/{activity_details['id']}
   
+  About the Athlete: {athlete_details[2]}
+  
   This is an automated post by @strava2hive and is currently in BETA.
   '''
   parse_body = True
   self_vote = False
   tags = ['exhaust', 'test']
-  #hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote)
+  print("Log - Posting to Hive")
+  hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote)
 
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
