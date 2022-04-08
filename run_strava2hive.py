@@ -19,11 +19,14 @@ def strava_screenshot(activity):
   #print(chrome_command)
   #os.system(chrome_command)
   activity_url = "https://www.strava.com/activities/" + str(activity)
+  image_name = "image_" + str(activity) + ".png"
   driver = webdriver.Chrome('/bin/chromedriver')
   driver.get(activity_url)
   sleep(5)
-  driver.get_screenshot_as_file("screenshot.png")
+  driver.find_element_by_class_name("btn-accept-cookie-banner").click() 
+  driver.get_screenshot_as_file(image_name)
   driver.quit()
+  os.system("ls -l")
          
   
   
