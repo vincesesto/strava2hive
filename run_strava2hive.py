@@ -22,13 +22,12 @@ def strava_screenshot(activity):
   image_name = "image_" + str(activity) + ".png"
   driver = webdriver.Chrome('/bin/chromedriver')
   driver.get(activity_url)
-  sleep(5)
-  driver.find_element_by_class_name("btn-accept-cookie-banner").click() 
+  sleep(10)
+  driver.find_element(by=By.CLASS_NAME, value="btn-accept-cookie-banner").click() 
+  #driver.find_element_by_class_name("btn-accept-cookie-banner").click() 
   driver.get_screenshot_as_file(image_name)
   driver.quit()
   os.system("ls -l")
-         
-  
   
 def get_last_activity():
   # Last activity from google spreadsheet created by zapier
@@ -164,12 +163,11 @@ def post_to_hive(athlete_id, activity_details):
   activity_type = activity_details['type'].lower()
   duration = str(activity_details['duration'] / 60)
   print("Log - Downloading images and getting details together")
-  #strava_screenshot(activity_details['id'])
-  #image_path = '/home/circleci/project/screenshot_' + str(activity_details['id']) + '.png'
-  os.system('wget https://drive.google.com/open?id=16y8dMM0DupVASUj8VOq-72ZcLyFodz6q -O activity_image.png')
-  image_path = '/home/circleci/project/activity_image.png'
-  image_name = 'activity_image.png'
-  #image_name = 'screenshot_' + str(activity_details['id']) + '.png'
+  strava_screenshot(activity_details['id'])
+  image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
+  #os.system('wget https://drive.google.com/open?id=16y8dMM0DupVASUj8VOq-72ZcLyFodz6q -O activity_image.png')
+  #image_path = '/home/circleci/project/activity_image.png'
+  image_name = 'image_' + str(activity_details['id']) + '.png'
   image_uploader = ImageUploader(blockchain_instance=hive)
   img_link = image_uploader.upload(image_path, author, image_name=image_name)
   title = activity_details['name']
@@ -204,7 +202,7 @@ def strava_activity(athlete_id):
   activity_data = response.json()
   for i in range(len(activity_data)):
     activity = activity_data[i]
-    if activity['type'] == "Swim":
+    if activity['type'] == "Run":
       print(activity['type'])
       print("Log - Activity is a run, now can we see if it is already posted")
       posted_val = activity_posted(athlete_id, activity['id'])
@@ -220,8 +218,8 @@ def strava_activity(athlete_id):
         record_post(athlete_id, activity['id'])
         
 
-print("Take screenshot of activity")  
-strava_screenshot(6790387629)
+#print("Take screenshot of activity")  
+#strava_screenshot(6790387629)
 
 #print("Get the latest Activity")
 #activity = get_last_activity()
