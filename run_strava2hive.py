@@ -160,9 +160,9 @@ def post_to_hive(athlete_id, activity_details):
   wif = athlete_details[3]
   hive = Hive(nodes=nodes, keys=[wif])
   author = athlete_details[1]
-  distance = str(activity_details['distance'] * .001)
+  distance = str(round(activity_details['distance'] * .001, 2))
   activity_type = activity_details['type'].lower()
-  duration = str(activity_details['duration'] / 60)
+  duration = str(round(activity_details['duration'] / 60, 2))
   print("Log - Downloading images and getting details together")
   strava_screenshot(activity_details['id'])
   image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
@@ -209,6 +209,9 @@ def strava_activity(athlete_id):
       posted_val = activity_posted(athlete_id, activity['id'])
       if posted_val:
         print("Log - Activity has been posted already, move on")
+      elif activity['description'] == '':
+        print("Log - Activity does not have a description, move on")
+        break
       else:
         print("Log - Activity has not been posted yet, ship it!!")
         print("Log - Now get some more detailed information")
