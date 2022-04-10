@@ -209,17 +209,18 @@ def strava_activity(athlete_id):
       posted_val = activity_posted(athlete_id, activity['id'])
       if posted_val:
         print("Log - Activity has been posted already, move on")
-      if activity['description'] != True:
-        print("Log - Activity does not have a description, move on")
-        break
       else:
         print("Log - Activity has not been posted yet, ship it!!")
         print("Log - Now get some more detailed information")
         detailed_activity = strava_activity_details(activity['id'], bearer_header)
         print(detailed_activity)
-        post_to_hive(athlete_id, detailed_activity)
-        print("Log - Add it now to the activity log")
-        record_post(athlete_id, activity['id'])
+        if detailed_activity['description'] != True:
+          print("Log - Activity does not have a description, move on")
+          break
+        else:
+          post_to_hive(athlete_id, detailed_activity)
+          print("Log - Add it now to the activity log")
+          record_post(athlete_id, activity['id'])
         
 
 #print("Take screenshot of activity")  
