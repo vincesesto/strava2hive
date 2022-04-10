@@ -209,7 +209,7 @@ def strava_activity(athlete_id):
       posted_val = activity_posted(athlete_id, activity['id'])
       if posted_val:
         print("Log - Activity has been posted already, move on")
-      elif activity['description'] == '':
+      if activity['description'] != True:
         print("Log - Activity does not have a description, move on")
         break
       else:
