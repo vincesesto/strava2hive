@@ -214,7 +214,7 @@ def strava_activity(athlete_id):
         print("Log - Now get some more detailed information")
         detailed_activity = strava_activity_details(activity['id'], bearer_header)
         print(detailed_activity)
-        if detailed_activity['description'] != True:
+        if detailed_activity['description'] == False:
           print("Log - Activity does not have a description, move on")
           break
         else:
