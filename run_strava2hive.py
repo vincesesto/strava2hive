@@ -191,8 +191,9 @@ def post_to_hive(athlete_id, activity_details):
   parse_body = True
   self_vote = False
   tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
+  beneficiaries = [{'account': 'strava2hive', 'weight': 500},]
   print("Log - Posting to Hive")
-  hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote)
+  hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
 
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
