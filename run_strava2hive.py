@@ -147,6 +147,7 @@ def strava_activity_details(activity_id, bearer_header):
   activity_info['start_date_local'] = more_activity_data['start_date_local']
   activity_info['location_country'] = more_activity_data['location_country']
   activity_info['description'] = more_activity_data['description']
+  activity_info['photos'] = more_activity_data['photos']
   return activity_info 
 
 def post_to_hive(athlete_id, activity_details):
@@ -187,9 +188,9 @@ def post_to_hive(athlete_id, activity_details):
   '''
   parse_body = True
   self_vote = False
-  tags = ['exhaust', 'test']
+  tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
   print("Log - Posting to Hive")
-  hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote)
+  hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries='strava2hive:5%')
 
 def strava_activity(athlete_id):
   athlete_details = get_athlete(athlete_id)
