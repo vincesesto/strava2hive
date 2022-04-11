@@ -147,6 +147,7 @@ def strava_activity_details(activity_id, bearer_header):
   activity_info['start_date_local'] = more_activity_data['start_date_local']
   activity_info['location_country'] = more_activity_data['location_country']
   activity_info['description'] = more_activity_data['description']
+  activity_info['calories'] = more_activity_data['calories']
   activity_info['photos'] = more_activity_data['photos']
   return activity_info 
 
@@ -176,6 +177,7 @@ def post_to_hive(athlete_id, activity_details):
   body = f'''
   ![{image_name}]({img_link['url']})
   {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
+  This {activity_type} helped {author} burn {activity_details['calories']} calories.
   
   Discription from Strava: {activity_details['description']}
   
@@ -222,13 +224,8 @@ def strava_activity(athlete_id):
           post_to_hive(athlete_id, detailed_activity)
           print("Log - Add it now to the activity log")
           record_post(athlete_id, activity['id'])
-        
-
-#print("Take screenshot of activity")  
-#strava_screenshot(6790387629)
-
-#print("Get the latest Activity")
-#activity = get_last_activity()
+          print("Log - Activity posted so we only want one activity at a time for:", athlete_id)
+          break
 
 ##################################################
 # Workflow from scratch
@@ -264,8 +261,6 @@ for i in strava_athletes:
   # we might need to also bring down all the activity for the day and not just the last
 
 # Add details of the post to a new spreadsheet
-# Start looking at hive automation
 # Hive - reblogging
-# Hive - posting with user posting key
 # Refactor for more than one user
 # Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
