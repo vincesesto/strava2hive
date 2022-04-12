@@ -175,6 +175,7 @@ def post_to_hive(athlete_id, activity_details):
   image_uploader = ImageUploader(blockchain_instance=hive)
   img_link = image_uploader.upload(image_path, author, image_name=image_name)
   title = activity_details['name']
+  # We want to set up two body templates to post different things if someone includes images in strava
   body = f'''
   ![{image_name}]({img_link['url']})
   {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
@@ -235,7 +236,6 @@ def strava_activity(athlete_id):
 
 # Now we just have a list of Strava ID's but we will eventually make a list from our sheet
 strava_athletes = ['1778778']
-hive_work.test_module()
 
 print("Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
