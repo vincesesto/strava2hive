@@ -169,13 +169,12 @@ def post_to_hive(athlete_id, activity_details):
   print("Log - Downloading images and getting details together")
   strava_screenshot(activity_details['id'])
   image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
-  #os.system('wget https://drive.google.com/open?id=16y8dMM0DupVASUj8VOq-72ZcLyFodz6q -O activity_image.png')
-  #image_path = '/home/circleci/project/activity_image.png'
   image_name = 'image_' + str(activity_details['id']) + '.png'
   image_uploader = ImageUploader(blockchain_instance=hive)
   img_link = image_uploader.upload(image_path, author, image_name=image_name)
+  # Set up code to get profile image
+  # Set up if statement to use either profile or post image
   title = activity_details['name']
-  # We want to set up two body templates to post different things if someone includes images in strava
   body = f'''
   ![{image_name}]({img_link['url']})
   {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
