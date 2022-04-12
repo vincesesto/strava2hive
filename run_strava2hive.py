@@ -5,6 +5,7 @@ import pygsheets
 import pandas as pd
 import requests
 import time
+import hive_work
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -234,6 +235,7 @@ def strava_activity(athlete_id):
 
 # Now we just have a list of Strava ID's but we will eventually make a list from our sheet
 strava_athletes = ['1778778']
+hive_work.test_module()
 
 print("Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
