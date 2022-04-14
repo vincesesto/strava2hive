@@ -57,3 +57,11 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+  nightly:
+    triggers: #use the triggers key to indicate a scheduled build
+      - schedule:
+          cron: "0,2,4,6,8,10,12,14,16,18,20,22 * * *
+          filters:
+            branches:
+              only:
+                - master
