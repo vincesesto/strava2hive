@@ -58,10 +58,10 @@ workflows:
       - schedule:
           #cron: "0,2,4,6,8,10,12,14,16,18,20,22 * * *"
           cron: "0 * * * *"
-          #filters:
-          #  branches:
-          #    only:
-          #      - master
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - build-and-test
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
