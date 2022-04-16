@@ -56,7 +56,6 @@ workflows:
   hourly_build:
     triggers: #use the triggers key to indicate a scheduled build
       - schedule:
-          #cron: "0,2,4,6,8,10,12,14,16,18,20,22 * * *"
           cron: "0 * * * *"
           filters:
             branches:
@@ -64,7 +63,7 @@ workflows:
                 - master
     jobs:
       - build-and-test
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
-    jobs:
-      - build-and-test
+#  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+#    # Inside the workflow, you define the jobs you want to run.
+#    jobs:
+#      - build-and-test
