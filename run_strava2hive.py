@@ -233,7 +233,7 @@ def strava_activity(athlete_id):
   activity_data = response.json()
   for i in range(len(activity_data)):
     activity = activity_data[i]
-    if activity['type'] == "Run":
+    if activity['type'] == "Ride":
       print(activity['type'])
       print("Log - Activity is a run, now can we see if it is already posted")
       posted_val = activity_posted(athlete_id, activity['id'])
