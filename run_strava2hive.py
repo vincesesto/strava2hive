@@ -169,6 +169,10 @@ def post_to_hive(athlete_id, activity_details):
   duration = str(round(activity_details['duration'] / 60))
   print("Log - Downloading images and getting details together")
   strava_screenshot(activity_details['id'])
+  image_name = ''
+  img_link = {}
+  prof_image_name = ''
+  prof_img_link = {}
   # Get athlete profile image
   # Eventually use the image from the post as well
   if activity_details['photos']['primary'] == None:
