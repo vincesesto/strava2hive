@@ -139,6 +139,7 @@ def strava_activity_details(activity_id, bearer_header):
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
+  print(more_activity_data['name'])
   activity_info = dict()
   activity_info['id'] = activity_id
   activity_info['name'] = more_activity_data['name']
