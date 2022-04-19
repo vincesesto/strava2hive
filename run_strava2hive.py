@@ -139,7 +139,6 @@ def strava_activity_details(activity_id, bearer_header):
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
-  print(more_activity_data['name'])
   activity_info = dict()
   activity_info['id'] = activity_id
   activity_info['name'] = more_activity_data['name']
@@ -192,12 +191,12 @@ def post_to_hive(athlete_id, activity_details):
     image_path = '/home/circleci/project/prof_image_' + str(athlete_id) + '.png'
     image_name = 'prof_image_' + str(athlete_id) + '.png'
     image_uploader = ImageUploader(blockchain_instance=hive)
-    img_link = image_uploader.upload(prof_image_path, author, image_name=image_name)
+    img_link = image_uploader.upload(image_path, author, image_name=image_name)
     # The screen shot is now at the bottom of the page
     prof_image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
     prof_image_name = 'image_' + str(activity_details['id']) + '.png'
     prof_image_uploader = ImageUploader(blockchain_instance=hive)
-    prof_img_link = image_uploader.upload(image_path, author, image_name=prof_image_name)
+    prof_img_link = image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
   title = activity_details['name']
   body = f'''
   ![{image_name}]({img_link['url']})
