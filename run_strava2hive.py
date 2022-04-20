@@ -246,7 +246,7 @@ def strava_activity(athlete_id):
         print(detailed_activity)
         if detailed_activity['description'] == None:
           print("Log - Activity does not have a description, move on")
-          break
+          #break
         else:
           post_to_hive(athlete_id, detailed_activity)
           print("Log - Add it now to the activity log")
