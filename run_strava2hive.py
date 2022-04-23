@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import re
 import pygsheets
 import pandas as pd
 import requests
@@ -153,8 +154,10 @@ def strava_activity_details(activity_id, bearer_header):
   return activity_info 
 
 def description_and_tags(description):
-  pass
-
+  hashtags = re.findall("#([a-zA-Z0-9_]{1,50})", description)
+  clean_description = re.sub("#[A-Za-z0-9_]+","", description)
+  return hashtags[-5:], clean_description
+    
 def post_to_hive(athlete_id, activity_details):
   nodelist = NodeList()
   nodelist.update_nodes()
@@ -196,12 +199,13 @@ def post_to_hive(athlete_id, activity_details):
     prof_image_uploader = ImageUploader(blockchain_instance=hive)
     prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
   title = activity_details['name']
+  hashtags, description = description_and_tags(activity_details['description'])
   body = f'''
   ![{image_name}]({img_link['url']})
   {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
   This {activity_type} helped {author} burn {activity_details['calories']} calories.
   
-  Discription from Strava: {activity_details['description']}
+  Discription from Strava: {description}
   
   If you would like to check out this activity on strava you can see it here:
   https://www.strava.com/activities/{activity_details['id']}
@@ -214,7 +218,8 @@ def post_to_hive(athlete_id, activity_details):
   '''
   parse_body = True
   self_vote = False
-  tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
+  #tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
+  tags = hashtags
   beneficiaries = [{'account': 'strava2hive', 'weight': 500},]
   print("Log - Posting to Hive")
   hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
@@ -231,26 +236,25 @@ def strava_activity(athlete_id):
   activity_data = response.json()
   for i in range(len(activity_data)):
     activity = activity_data[i]
-    if activity['type'] == "Run":
-      print(activity['type'])
-      print("Log - Activity is a run, now can we see if it is already posted")
-      posted_val = activity_posted(athlete_id, activity['id'])
-      if posted_val:
-        print("Log - Activity has been posted already, move on")
+    print(activity['type'])
+    print("Log - Activity is a run, now can we see if it is already posted")
+    posted_val = activity_posted(athlete_id, activity['id'])
+    if posted_val:
+      print("Log - Activity has been posted already, move on")
+    else:
+      print("Log - Activity has not been posted yet, ship it!!")
+      print("Log - Now get some more detailed information")
+      detailed_activity = strava_activity_details(activity['id'], bearer_header)
+      print(detailed_activity)
+      if detailed_activity['description'] == None:
+        print("Log - Activity does not have a description, move on")
+        #break
       else:
-        print("Log - Activity has not been posted yet, ship it!!")
-        print("Log - Now get some more detailed information")
-        detailed_activity = strava_activity_details(activity['id'], bearer_header)
-        print(detailed_activity)
-        if detailed_activity['description'] == None:
-          print("Log - Activity does not have a description, move on")
-          #break
-        else:
-          post_to_hive(athlete_id, detailed_activity)
-          print("Log - Add it now to the activity log")
-          record_post(athlete_id, activity['id'])
-          print("Log - Activity posted so we only want one activity at a time for:", athlete_id)
-          break
+        post_to_hive(athlete_id, detailed_activity)
+        print("Log - Add it now to the activity log")
+        record_post(athlete_id, activity['id'])
+        print("Log - Activity posted so we only want one activity at a time for:", athlete_id)
+        break
 
 ##################################################
 # Workflow from scratch
