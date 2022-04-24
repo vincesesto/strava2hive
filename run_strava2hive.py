@@ -203,7 +203,7 @@ def post_to_hive(athlete_id, activity_details):
     prof_image_uploader = ImageUploader(blockchain_instance=hive)
     prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
   title = activity_details['name']
-  hashtags, description = description_and_tags(activity_details['description'])
+  hashtags, description =  hive_work.description_and_tags(activity_details['description'])
   body = f'''
   ![{image_name}]({img_link['url']})
   {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
