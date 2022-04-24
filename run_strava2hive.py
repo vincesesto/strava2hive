@@ -156,6 +156,8 @@ def strava_activity_details(activity_id, bearer_header):
 def description_and_tags(description):
   hashtags = re.findall("#([a-zA-Z0-9_]{1,50})", description)
   clean_description = re.sub("#[A-Za-z0-9_]+","", description)
+  if not hashtags:
+    hashtags = ["hive", "strava2hive", "runningproject", "sportstalk", "health"]
   return hashtags[-5:], clean_description
     
 def post_to_hive(athlete_id, activity_details):
