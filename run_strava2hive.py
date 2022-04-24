@@ -158,6 +158,8 @@ def description_and_tags(description):
   clean_description = re.sub("#[A-Za-z0-9_]+","", description)
   if not hashtags:
     hashtags = ["hive", "strava2hive", "runningproject", "sportstalk", "health"]
+  if not clean_description:
+    clean_description = "Make sure you keep running and posting to Strava...Stay Strong Everyone!"
   return hashtags[-5:], clean_description
     
 def post_to_hive(athlete_id, activity_details):
