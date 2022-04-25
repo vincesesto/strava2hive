@@ -54,6 +54,19 @@ def get_athlete(athlete_id):
       break
   return row
 
+def list_athletes():
+  gc = pygsheets.authorize(service_file='strava2hive.json')
+  sh = gc.open("HiveAthletes")
+  wks = sh[0]
+  row = []
+  athletes = []
+  cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
+  total_rows = len(cells)
+  for i in range(total_rows):
+    row = wks.get_row(i + 1)
+    athletes.append(row[6])
+  return athletes
+
 def update_athlete(athlete_id, change_val, column):
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("HiveAthletes")
@@ -266,6 +279,7 @@ def strava_activity(athlete_id):
 ##################################################
 
 # Now we just have a list of Strava ID's but we will eventually make a list from our sheet
+print(list_athletes())
 strava_athletes = ['1778778']
 
 print("Log - Use athlete details to get activity from strava")
