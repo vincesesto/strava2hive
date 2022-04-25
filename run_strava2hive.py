@@ -65,6 +65,8 @@ def list_athletes():
   for i in range(total_rows):
     row = wks.get_row(i + 1)
     athletes.append(row[6])
+  # Drop the first value cause its 'Athlete ID'
+  athletes.pop(0)
   return athletes
 
 def update_athlete(athlete_id, change_val, column):
@@ -279,8 +281,8 @@ def strava_activity(athlete_id):
 ##################################################
 
 # Now we just have a list of Strava ID's but we will eventually make a list from our sheet
-print(list_athletes())
-strava_athletes = ['1778778']
+strava_athletes = list_athletes()
+print(strava_athletes)
 
 print("Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
