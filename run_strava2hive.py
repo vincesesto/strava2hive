@@ -167,15 +167,6 @@ def strava_activity_details(activity_id, bearer_header):
   activity_info['calories'] = more_activity_data['calories']
   activity_info['photos'] = more_activity_data['photos']
   return activity_info 
-
-def description_and_tags(description):
-  hashtags = re.findall("#([a-zA-Z0-9_]{1,50})", description)
-  clean_description = re.sub("#[A-Za-z0-9_]+","", description)
-  if not hashtags:
-    hashtags = ["hive", "strava2hive", "runningproject", "sportstalk", "health"]
-  if not clean_description:
-    clean_description = "Make sure you keep running and posting to Strava...Stay Strong Everyone!"
-  return hashtags[-5:], clean_description
     
 def post_to_hive(athlete_id, activity_details):
   nodelist = NodeList()
@@ -281,7 +272,7 @@ def strava_activity(athlete_id):
 ##################################################
 
 # Now we just have a list of Strava ID's but we will eventually make a list from our sheet
-strava_athletes = list_athletes()
+hive_work.strava_athletes = list_athletes()
 print(strava_athletes)
 
 print("Log - Use athlete details to get activity from strava")
