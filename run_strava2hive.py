@@ -47,7 +47,7 @@ def get_athlete(athlete_id):
   sh = gc.open("HiveAthletes")
   wks = sh[0]
   row = []
-  athletes = 5
+  athletes = 15
   for i in range(athletes):
     row = wks.get_row(i + 1)
     if row[6] == athlete_id:
