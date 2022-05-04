@@ -55,6 +55,7 @@ def get_athlete(athlete_id):
   return row
 
 def update_athlete(athlete_id, change_val, column):
+  # Update athlete in the spreadsheet with the changed cell value and column you need to change
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("HiveAthletes")
   wks = sh[0]
@@ -70,6 +71,7 @@ def update_athlete(athlete_id, change_val, column):
   return row
 
 def activity_posted(athlete_id, activity_id):
+  # Check if an activity has been posted already
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("StravaActivity")
   wks = sh[1]
@@ -86,7 +88,8 @@ def activity_posted(athlete_id, activity_id):
       break
   return posted
 
-def record_post(athlete_id, activity_id):
+def record_post(athlete_id, activity_id, activity_type, activity_date):
+  # Update the activity spreadsheet once activity has been posted to Hive
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("StravaActivity")
   wks = sh[1]
@@ -97,6 +100,12 @@ def record_post(athlete_id, activity_id):
   # Now add the activity
   cell_value = "B" + str(len(cells) + 1)
   wks.update_value(cell_value, activity_id)
+  # Add activity type
+  cell_value = "C" + str(len(cells) + 1)
+  wks.update_value(cell_value, activity_type)
+  # Now add the activity date
+  cell_value = "D" + str(len(cells) + 1)
+  wks.update_value(cell_value, activity_date)
     
 def refresh_access_token(athlete):
   # We need to update the access_token in strava every six hours
@@ -254,7 +263,8 @@ def strava_activity(athlete_id):
       else:
         post_to_hive(athlete_id, detailed_activity)
         print("Log - Add it now to the activity log")
-        record_post(athlete_id, activity['id'])
+        activity_date = datetime.now().strftime("%Y-%m-%d %H:%M")
+        record_post(athlete_id, activity['id'], activity['type'], activity_date)
         print("Log - Activity posted so we only want one activity at a time for:", athlete_id)
         break
 
