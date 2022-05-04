@@ -32,15 +32,16 @@ def strava_screenshot(activity):
   driver.quit()
   os.system("ls -l")
   
-def get_last_activity():
-  # Last activity from google spreadsheet created by zapier
-  gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("StravaActivity")
-  #select the first sheet
-  wks = sh[0]
-  cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
-  print(cells[-1])
-  return cells[-1]
+#def get_last_activity():
+#  # Last activity from google spreadsheet created by zapier
+#  # Removing cause we are no longer using this
+#  gc = pygsheets.authorize(service_file='strava2hive.json')
+#  sh = gc.open("StravaActivity")
+#  #select the first sheet
+#  wks = sh[0]
+#  cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
+# # print(cells[-1])
+#  return cells[-1]
 
 def get_athlete(athlete_id):
   gc = pygsheets.authorize(service_file='strava2hive.json')
@@ -263,7 +264,7 @@ def strava_activity(athlete_id):
       else:
         post_to_hive(athlete_id, detailed_activity)
         print("Log - Add it now to the activity log")
-        activity_date = datetime.now().strftime("%Y-%m-%d")
+        activity_date = datetime.now().strftime("%Y-%m-%d" %H:%M")
         record_post(athlete_id, activity['id'], activity['type'], activity_date)
         print("Log - Activity posted so we only want one activity at a time for:", athlete_id)
         break
