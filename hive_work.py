@@ -47,12 +47,12 @@ def get_latest_activity_date(athlete_id):
   sh = gc.open("HiveAthletes")
   wks = sh[0]
   row = []
-  athlete_date = []
+  athlete_date = ""
   cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
   total_rows = len(cells)
   for i in range(total_rows):
     row = wks.get_row(i + 1)
-    athletes.append(row[6])
-  # Drop the first value cause its 'Athlete ID'
-  athletes.pop(0)
-  return athletes
+    if row[0] == athlete_id:
+      athlete_date = row[3]
+
+  return athlete_date
