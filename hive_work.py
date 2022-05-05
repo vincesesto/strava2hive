@@ -44,8 +44,8 @@ def list_athletes():
 def get_latest_activity_date(athlete_id):
   # Get the last time this athlete has posted
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("HiveAthletes")
-  wks = sh[0]
+  sh = gc.open("StravaActivity")
+  wks = sh[1]
   row = []
   athlete_date = ""
   cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
