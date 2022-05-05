@@ -31,17 +31,6 @@ def strava_screenshot(activity):
   driver.get_screenshot_as_file(image_name)
   driver.quit()
   os.system("ls -l")
-  
-#def get_last_activity():
-#  # Last activity from google spreadsheet created by zapier
-#  # Removing cause we are no longer using this
-#  gc = pygsheets.authorize(service_file='strava2hive.json')
-#  sh = gc.open("StravaActivity")
-#  #select the first sheet
-#  wks = sh[0]
-#  cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
-# # print(cells[-1])
-#  return cells[-1]
 
 def get_athlete(athlete_id):
   gc = pygsheets.authorize(service_file='strava2hive.json')
@@ -279,6 +268,9 @@ print(strava_athletes)
 
 print("Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
+  print("Log - When did the user post their last activity")
+  activity_date = hive_work.get_latest_activity_date(i)
+  print(f'Log - The last activity for the user {i} was on the date {activity_date}')
   print("Log - First get athlete details from sheet so you can access strava")
   athlete_values = get_athlete(i)
   print("Log - Athlete Values: ", athlete_values)
