@@ -281,6 +281,7 @@ for i in strava_athletes:
     print(f'Log - The last activity for the user {i} was more than 24 hours ago')
   else:
     print(f'Log - The last activity for the user {i} was NOT more than 24 hours ago')
+    continue
   print("Log - First get athlete details from sheet so you can access strava")
   athlete_values = get_athlete(i)
   print("Log - Athlete Values: ", athlete_values)
