@@ -44,15 +44,15 @@ def list_athletes():
 def get_latest_activity_date(athlete_id):
   # Get the last time this athlete has posted
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("StravaActivity")
-  wks = sh[1]
+  sh = gc.open("HiveAthletes")
+  wks = sh[0]
   row = []
   athlete_date = ""
   cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
   total_rows = len(cells)
   for i in range(total_rows):
     row = wks.get_row(i + 1)
-    if row[0] == athlete_id:
-      athlete_date = row[3]
+    if row[6] == athlete_id:
+      athlete_date = row[0]
 
   return athlete_date
