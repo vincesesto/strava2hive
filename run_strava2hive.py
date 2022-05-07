@@ -271,7 +271,7 @@ for i in strava_athletes:
   print("Log - When did the user post their last activity")
   activity_date = hive_work.get_latest_activity_date(i)
   print(f'Log - The last activity for the user {i} was on the date {activity_date}')
-  date = datetime.strptime(activity_date, "%Y-%m-%d %H:%M")
+  date = datetime.strptime(activity_date, "%m/%d/%Y %H:%M:%S")
   act_timestamp = datetime.timestamp(date)
   current_time = time.time()
   NUMBER_OF_SECONDS = 86400 # seconds in 24 hours
