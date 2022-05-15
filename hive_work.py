@@ -52,8 +52,8 @@ def get_latest_activity_date(athlete_id, sheet_name, column):
   total_rows = len(cells)
   for i in range(total_rows):
     row = wks.get_row(i + 1)
-    if row[6] == athlete_id:
-      athlete_date = row[int(column)]
+    if row[int(column)] == athlete_id:
+      athlete_date = row[0]
 
   return athlete_date
 
