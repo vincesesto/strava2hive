@@ -276,7 +276,7 @@ for i in strava_athletes:
   date = datetime.strptime(activity_date, "%m/%d/%Y %H:%M:%S")
   act_timestamp = datetime.timestamp(date)
   current_time = time.time()
-  NUMBER_OF_SECONDS = 86400 # seconds in 24 hours
+  NUMBER_OF_SECONDS = 43200 # seconds in 12 hours
   if (current_time - act_timestamp) > NUMBER_OF_SECONDS:
     print(f'Log - The last activity for the user {i} was more than 24 hours ago')
   else:
