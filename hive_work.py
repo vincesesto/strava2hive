@@ -68,3 +68,19 @@ def get_athlete(athlete_id, sheet_name):
     if row[6] == athlete_id:
       break
   return row
+
+def update_athlete(athlete_id, change_val, column, sheet_name):
+  # Update athlete in the spreadsheet with the changed cell value and column you need to change
+  gc = pygsheets.authorize(service_file='strava2hive.json')
+  sh = gc.open(sheet_name)
+  wks = sh[0]
+  row = []
+  athletes = 5
+  for i in range(athletes):
+    row = wks.get_row(i + 1)
+    if row[6] == athlete_id:
+      cell_value = column + str(i + 1)
+      wks.update_value(cell_value, change_val)
+      row = wks.get_row(i + 1)
+      break
+  return row
