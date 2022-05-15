@@ -74,15 +74,15 @@ def refresh_access_token(athlete):
   try:
     response = requests.post("https://www.strava.com/api/v3/oauth/token",
                              params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 
-                             'code': athlete[6], 'grant_type': 'refresh_token', 'refresh_token': athlete[9] })
+                             'code': athlete[9], 'grant_type': 'refresh_token', 'refresh_token': athlete[13] })
     access_info = dict()
     activity_data = response.json()
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    hive_work.update_athlete(athlete[6], access_info['access_token'], 'H', "Strava2HiveNewUserSignUp")
-    hive_work.update_athlete(athlete[6], access_info['expires_at'], 'I', "Strava2HiveNewUserSignUp")
-    print(hive_work.update_athlete(athlete[6], access_info['refresh_token'], 'J', "Strava2HiveNewUserSignUp"))
+    hive_work.update_athlete(athlete[10], access_info['access_token'], 'L', "Strava2HiveNewUserSignUp")
+    hive_work.update_athlete(athlete[10], access_info['expires_at'], 'M', "Strava2HiveNewUserSignUp")
+    print(hive_work.update_athlete(athlete[10], access_info['refresh_token'], 'N', "Strava2HiveNewUserSignUp"))
     
   except:
     print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[6]))
@@ -93,15 +93,15 @@ def new_user_access_token(athlete):
   try:
     response = requests.post("https://www.strava.com/api/v3/oauth/token",
                              params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'),
-                                     'code': athlete[6], 'grant_type': 'authorization_code'})
+                                     'code': athlete[9], 'grant_type': 'authorization_code'})
     access_info = dict()
     activity_data = response.json()
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    hive_work.update_athlete(athlete[6], access_info['access_token'], 'H', "Strava2HiveNewUserSignUp")
-    hive_work.update_athlete(athlete[6], access_info['expires_at'], 'I', "Strava2HiveNewUserSignUp")
-    print(hive_work.update_athlete(athlete[6], access_info['refresh_token'], 'J', "Strava2HiveNewUserSignUp"))
+    hive_work.update_athlete(athlete[10], access_info['access_token'], 'L', "Strava2HiveNewUserSignUp")
+    hive_work.update_athlete(athlete[10], access_info['expires_at'], 'M', "Strava2HiveNewUserSignUp")
+    print(hive_work.update_athlete(athlete[10], access_info['refresh_token'], 'N', "Strava2HiveNewUserSignUp"))
   except:
     print("Log - An Error occurred trying to authenticate with the Strava token")
     return False
@@ -194,7 +194,7 @@ def strava_activity(athlete_id):
   athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
   # activity bearer is needed as part of the data
   print("Log - Searching For New Activities")
-  bearer_header = "Bearer " + athlete_details[7]
+  bearer_header = "Bearer " + athlete_details[11]
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   t = datetime.now() - timedelta(days=1)
   parameters = {"after": int(t.strftime("%s"))}
@@ -258,12 +258,12 @@ for i in strava_athletes:
   athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
   print("Log - Athlete Values: ", athlete_values)
   # Test if athlete bearer token is still valid by testing athlete_values[8]
-  if athlete_values[8] == '':
+  if athlete_values[12] == '':
     print("Log - Expire time is empty, so need to get auth from strava")
     new_user_access_token(athlete_values)
   else:
     print("Log - User is an existing user, so we need to check if we need to update the strava token")
-    expire_time = int(athlete_values[8])
+    expire_time = int(athlete_values[12])
     current_time = time.time()
     expired_value = expire_time - int(current_time)
     if expired_value > 0:
