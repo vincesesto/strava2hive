@@ -26,7 +26,7 @@ def description_and_tags(description):
     clean_description = "Make sure you keep running and posting to Strava...Stay Strong Everyone!"
   return hashtags[-5:], clean_description
 
-def list_athletes(sheet_name):
+def list_athletes(column, sheet_name):
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open(sheet_name)
   wks = sh[0]
@@ -36,7 +36,7 @@ def list_athletes(sheet_name):
   total_rows = len(cells)
   for i in range(total_rows):
     row = wks.get_row(i + 1)
-    athletes.append(row[6])
+    athletes.append(row[int(column)])
   # Drop the first value cause its 'Athlete ID'
   athletes.pop(0)
   return athletes
