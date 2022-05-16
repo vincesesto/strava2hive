@@ -57,7 +57,7 @@ def get_latest_activity_date(athlete_id, sheet_name, column):
 
   return athlete_date
 
-def get_athlete(athlete_id, sheet_name):
+def get_athlete(athlete_id, sheet_name, column):
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open(sheet_name)
   wks = sh[0]
@@ -66,7 +66,7 @@ def get_athlete(athlete_id, sheet_name):
   for i in range(athletes):
     row = wks.get_row(i + 1)
     print(row)
-    if row[6] == athlete_id:
+    if row[int(column)] == athlete_id:
       break
   return row
 
