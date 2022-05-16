@@ -57,7 +57,7 @@ def get_latest_activity_date(athlete_id, sheet_name, column):
 
   return athlete_date
 
-def get_athlete(athlete_id, sheet_name, column):
+def get_athlete(athlete_id, sheet_name):
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open(sheet_name)
   wks = sh[0]
@@ -66,8 +66,12 @@ def get_athlete(athlete_id, sheet_name, column):
   for i in range(athletes):
     row = wks.get_row(i + 1)
     print(row)
-    if row[int(column)] == athlete_id:
-      break
+    if sheet_name == "HiveAthletes":
+      if row[6] == athlete_id:
+        break
+    else:
+      if row[10] == athlete_id:
+        break
   return row
 
 def update_athlete(athlete_id, change_val, column, sheet_name):
