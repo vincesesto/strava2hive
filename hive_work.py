@@ -65,7 +65,6 @@ def get_athlete(athlete_id, sheet_name):
   athletes = 15
   for i in range(athletes):
     row = wks.get_row(i + 1)
-    print(row)
     if sheet_name == "HiveAthletes":
       if row[6] == athlete_id:
         break
