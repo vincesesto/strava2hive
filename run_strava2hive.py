@@ -140,17 +140,23 @@ def strava_activity_details(activity_id, bearer_header):
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
   activity_info = dict()
-  activity_info['id'] = activity_id
-  activity_info['name'] = more_activity_data['name']
-  activity_info['distance'] = more_activity_data['distance']
-  activity_info['duration'] = more_activity_data['elapsed_time']
-  activity_info['type'] = more_activity_data['type']
-  activity_info['start_date_local'] = more_activity_data['start_date_local']
-  activity_info['location_country'] = more_activity_data['location_country']
-  activity_info['description'] = more_activity_data['description']
-  activity_info['calories'] = more_activity_data['calories']
-  activity_info['photos'] = more_activity_data['photos']
-  return activity_info 
+  try:
+    activity_info['id'] = activity_id
+    activity_info['name'] = more_activity_data['name']
+    activity_info['distance'] = more_activity_data['distance']
+    activity_info['duration'] = more_activity_data['elapsed_time']
+    activity_info['type'] = more_activity_data['type']
+    activity_info['start_date_local'] = more_activity_data['start_date_local']
+    activity_info['location_country'] = more_activity_data['location_country']
+    activity_info['description'] = more_activity_data['description']
+    activity_info['calories'] = more_activity_data['calories']
+    activity_info['photos'] = more_activity_data['photos']
+  except:
+    print("Log - An Error occurred trying to get date from Strava")
+    activity_info['name'] = "NameError"
+    activity_info['description'] = None
+  return activity_info
+  
     
 def post_to_hive(athlete_id, activity_details):
   nodelist = NodeList()
@@ -250,6 +256,8 @@ def strava_activity(athlete_id):
       elif detailed_activity['description'] == '':
         print("Log - Activity does not have a description, move on")
         #break
+      elif activity_info['name'] == "NameError":
+        print("Log - There was an error getting details for this activity, move on")
       else:
         post_to_hive(athlete_id, detailed_activity)
         print("Log - Add it now to the activity log")
