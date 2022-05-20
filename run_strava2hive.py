@@ -153,7 +153,6 @@ def strava_activity_details(activity_id, bearer_header):
     activity_info['photos'] = more_activity_data['photos']
   except:
     print("Log - An Error occurred trying to get date from Strava")
-    activity_info['name'] = "NameError"
     activity_info['description'] = None
   return activity_info
   
@@ -256,8 +255,6 @@ def strava_activity(athlete_id):
       elif detailed_activity['description'] == '':
         print("Log - Activity does not have a description, move on")
         #break
-      elif activity_info['name'] == "NameError":
-        print("Log - There was an error getting details for this activity, move on")
       else:
         post_to_hive(athlete_id, detailed_activity)
         print("Log - Add it now to the activity log")
