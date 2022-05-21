@@ -5,7 +5,7 @@ import json
 
 def activity_posted_api(activity_id):
   url = 'https://eoe0c053dx0czcp.m.pipedream.net'
-  activity_query = {'activity_id': 'activity_id'}
+  activity_query = {'activity_id': activity_id}
   header_vals = {'Content-Type': 'application/json' }
   # Use the pipedream api to test if activity has been posted
   try:
