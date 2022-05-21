@@ -142,22 +142,21 @@ def strava_activity_details(activity_id, bearer_header):
   more_activity_data = response.json()
   print(more_activity_data)
   activity_info = dict()
-  #try:
-  activity_info['id'] = activity_id
-  activity_info['name'] = more_activity_data['name']
-  activity_info['distance'] = more_activity_data['distance']
-  activity_info['duration'] = more_activity_data['elapsed_time']
-  activity_info['type'] = more_activity_data['type']
-  activity_info['start_date_local'] = more_activity_data['start_date_local']
-  activity_info['location_country'] = more_activity_data['location_country']
-  activity_info['description'] = more_activity_data['description']
-  activity_info['calories'] = more_activity_data['calories']
-  activity_info['photos'] = more_activity_data['photos']
-  #except:
-  #  print("Log - An Error occurred trying to get date from Strava")
-  #  activity_info['description'] = None
+  try:
+    activity_info['id'] = activity_id
+    activity_info['name'] = more_activity_data['name']
+    activity_info['distance'] = more_activity_data['distance']
+    activity_info['duration'] = more_activity_data['elapsed_time']
+    activity_info['type'] = more_activity_data['type']
+    activity_info['start_date_local'] = more_activity_data['start_date_local']
+    activity_info['location_country'] = more_activity_data['location_country']
+    activity_info['description'] = more_activity_data['description']
+    activity_info['calories'] = more_activity_data['calories']
+    activity_info['photos'] = more_activity_data['photos']
+  except:
+    print("Log - An Error occurred trying to get date from Strava")
+    activity_info['description'] = None
   return activity_info
-  
     
 def post_to_hive(athlete_id, activity_details):
   nodelist = NodeList()
@@ -243,9 +242,9 @@ def strava_activity(athlete_id):
       print("Log - Activity is not a run or ride, so we can stop running this")
       continue
     print("Log - Activity is a run or ride, now can we see if it is already posted")
-    print(pipedream_modules.activity_posted_api(activity['id']))
+    #posted_val = pipedream_modules.activity_posted_api(activity['id']))
     posted_val = activity_posted(athlete_id, activity['id'])
-    if posted_val:
+    if posted_val > :
       print("Log - Activity has been posted already, move on")
     else:
       print("Log - Activity has not been posted yet, ship it!!")
