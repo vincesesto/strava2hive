@@ -124,7 +124,6 @@ def new_user_access_token(athlete):
                                      'code': athlete[6], 'grant_type': 'authorization_code'})
     access_info = dict()
     activity_data = response.json()
-    print(activity_data)
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
@@ -140,6 +139,7 @@ def strava_activity_details(activity_id, bearer_header):
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
+  print(more_activity_data)
   activity_info = dict()
   #try:
   activity_info['id'] = activity_id
