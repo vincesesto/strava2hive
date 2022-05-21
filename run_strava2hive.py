@@ -242,9 +242,9 @@ def strava_activity(athlete_id):
       print("Log - Activity is not a run or ride, so we can stop running this")
       continue
     print("Log - Activity is a run or ride, now can we see if it is already posted")
-    #posted_val = pipedream_modules.activity_posted_api(activity['id']))
-    posted_val = activity_posted(athlete_id, activity['id'])
-    if posted_val > :
+    posted_val = pipedream_modules.activity_posted_api(activity['id']))
+    #posted_val = activity_posted(athlete_id, activity['id'])
+    if posted_val > 0:
       print("Log - Activity has been posted already, move on")
     else:
       print("Log - Activity has not been posted yet, ship it!!")
