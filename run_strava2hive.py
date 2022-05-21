@@ -140,20 +140,20 @@ def strava_activity_details(activity_id, bearer_header):
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
   activity_info = dict()
-  try:
-    activity_info['id'] = activity_id
-    activity_info['name'] = more_activity_data['name']
-    activity_info['distance'] = more_activity_data['distance']
-    activity_info['duration'] = more_activity_data['elapsed_time']
-    activity_info['type'] = more_activity_data['type']
-    activity_info['start_date_local'] = more_activity_data['start_date_local']
-    activity_info['location_country'] = more_activity_data['location_country']
-    activity_info['description'] = more_activity_data['description']
-    activity_info['calories'] = more_activity_data['calories']
-    activity_info['photos'] = more_activity_data['photos']
-  except:
-    print("Log - An Error occurred trying to get date from Strava")
-    activity_info['description'] = None
+  #try:
+  activity_info['id'] = activity_id
+  activity_info['name'] = more_activity_data['name']
+  activity_info['distance'] = more_activity_data['distance']
+  activity_info['duration'] = more_activity_data['elapsed_time']
+  activity_info['type'] = more_activity_data['type']
+  activity_info['start_date_local'] = more_activity_data['start_date_local']
+  activity_info['location_country'] = more_activity_data['location_country']
+  activity_info['description'] = more_activity_data['description']
+  activity_info['calories'] = more_activity_data['calories']
+  activity_info['photos'] = more_activity_data['photos']
+  #except:
+  #  print("Log - An Error occurred trying to get date from Strava")
+  #  activity_info['description'] = None
   return activity_info
   
     
