@@ -12,7 +12,7 @@ def activity_posted_api(activity_id):
     response = requests.post(url, data = activity_query, headers=header_vals)
     return_data = response.json()
   except:
-    print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[6]))
+    print("Log - An Error occurred trying to authenticate with pipedream")
     return False
 
   return return_data
