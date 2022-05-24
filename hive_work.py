@@ -108,6 +108,6 @@ def refresh_hivesigner_token(athlete):
     hive_work.update_athlete(athlete[10], hive_signer_info['hive_signer_access_token'], 'G', "Strava2HiveNewUserSignUp")
     hive_work.update_athlete(athlete[10], hive_signer_info['hive_signer_expires'], 'I', "Strava2HiveNewUserSignUp")
   except:
-    print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[6]))
+    print("Log - An Error occurred trying to authenticate with the {} hive token".format(athlete[5]))
     return False
   
