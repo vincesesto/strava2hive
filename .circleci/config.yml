@@ -27,7 +27,8 @@ jobs:
           command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo dpkg -i google-chrome-stable_current_amd64.deb
       - run:
           name: Install Chrome Driver
-          command: wget https://chromedriver.storage.googleapis.com/100.0.4896.60/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
+          #command: wget https://chromedriver.storage.googleapis.com/100.0.4896.60/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
+          command: wget https://chromedriver.storage.googleapis.com/102.0.5005.27/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
       - run:
           name: Run the dev strava to hive script
           command: ls -l; pwd; ls -l /bin/chromedriver; python run_strava2hive.py
