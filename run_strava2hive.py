@@ -33,18 +33,6 @@ def strava_screenshot(activity):
   driver.quit()
   os.system("ls -l")
 
-def get_athlete(athlete_id):
-  gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("HiveAthletes")
-  wks = sh[0]
-  row = []
-  athletes = 15
-  for i in range(athletes):
-    row = wks.get_row(i + 1)
-    if row[6] == athlete_id:
-      break
-  return row
-
 def update_athlete(athlete_id, change_val, column):
   # Update athlete in the spreadsheet with the changed cell value and column you need to change
   gc = pygsheets.authorize(service_file='strava2hive.json')
@@ -164,7 +152,7 @@ def post_to_hive(athlete_id, activity_details):
   nodes = nodelist.get_hive_nodes()
   #wif_post_key = getpass.getpass('Posting Key: ')
   # Get all the details including the posting keys
-  athlete_details = get_athlete(athlete_id)
+  athlete_details = hive_work.get_athlete(athlete_id, "HiveAthletes")
   #wif = os.getenv('POSTING_KEY')
   wif = athlete_details[3]
   hive = Hive(nodes=nodes, keys=[wif])
@@ -225,7 +213,7 @@ def post_to_hive(athlete_id, activity_details):
   hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
 
 def strava_activity(athlete_id):
-  athlete_details = get_athlete(athlete_id)
+  athlete_details = hive_work.get_athlete(athlete_id, "HiveAthletes")
   # activity bearer is needed as part of the data
   print("Log - Searching For New Activities")
   bearer_header = "Bearer " + athlete_details[7]
@@ -290,7 +278,7 @@ for i in strava_athletes:
     print(f'Log - The last activity for the user {i} was NOT more than 24 hours ago')
     continue
   print("Log - First get athlete details from sheet so you can access strava")
-  athlete_values = get_athlete(i)
+  athlete_values = hive_work.get_athlete(i, "HiveAthletes")
   print("Log - Athlete Values: ", athlete_values)
   # Test if athlete bearer token is still valid by testing athlete_values[8]
   if athlete_values[8] == '':
