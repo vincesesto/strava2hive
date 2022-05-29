@@ -128,7 +128,6 @@ def strava_activity_details(activity_id, bearer_header):
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
-  print(more_activity_data)
   activity_info = dict()
   try:
     activity_info['id'] = activity_id
@@ -273,9 +272,9 @@ for i in strava_athletes:
   current_time = time.time()
   NUMBER_OF_SECONDS = 43200 # seconds in 12 hours
   if (current_time - act_timestamp) > NUMBER_OF_SECONDS:
-    print(f'Log - The last activity for the user {i} was more than 24 hours ago')
+    print(f'Log - The last activity for the user {i} was more than 12 hours ago')
   else:
-    print(f'Log - The last activity for the user {i} was NOT more than 24 hours ago')
+    print(f'Log - The last activity for the user {i} was NOT more than 12 hours ago')
     continue
   print("Log - First get athlete details from sheet so you can access strava")
   athlete_values = hive_work.get_athlete(i, "HiveAthletes")
@@ -298,10 +297,7 @@ for i in strava_athletes:
   print("Log - See what activity the athlete has")
   activity_details = strava_activity(i)
   print(activity_details)
-  # Add a test to see if the activity was a run and then post if it is
-  # we might need to also bring down all the activity for the day and not just the last
 
-# Add details of the post to a new spreadsheet
-# Hive - reblogging
-# Refactor for more than one user
+# Stuff To Do
 # Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
+# Hive - reblogging
