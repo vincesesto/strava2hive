@@ -268,9 +268,9 @@ for i in strava_athletes:
     current_time = time.time()
     expired_value = expire_time - int(current_time)
     if expired_value > 0:
-      print("Log - Hivesigner Token Still Valid")
+      print("Log - Strava Token Still Valid")
     else:
-      print("Log - Hivesigner Token Needs To Be Updated")
+      print("Log - Strava Token Needs To Be Updated")
       refresh_access_token(athlete_values)
       
   # Test if athlete hivesigner token is still valid by testing athlete_values[8]
@@ -279,9 +279,9 @@ for i in strava_athletes:
   current_time = time.time()
   expired_value = expire_time - int(current_time)
   if expired_value > 0:
-    print("Log - Strava Token Still Valid")
+    print("Log - Hivesigner Token Still Valid")
   else:
-    print("Log - Strava Token Needs To Be Updated")
+    print("Log - Hivesigner Token Needs To Be Updated")
     hive_work.refresh_hivesigner_token(athlete_values)
 
   print("Log - See what activity the athlete has")
