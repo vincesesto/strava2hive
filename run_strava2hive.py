@@ -33,22 +33,6 @@ def strava_screenshot(activity):
   driver.quit()
   os.system("ls -l")
 
-def update_athlete(athlete_id, change_val, column):
-  # Update athlete in the spreadsheet with the changed cell value and column you need to change
-  gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("HiveAthletes")
-  wks = sh[0]
-  row = []
-  athletes = 5
-  for i in range(athletes):
-    row = wks.get_row(i + 1)
-    if row[6] == athlete_id:
-      cell_value = column + str(i + 1)
-      wks.update_value(cell_value, change_val)
-      row = wks.get_row(i + 1)
-      break
-  return row
-
 def activity_posted(athlete_id, activity_id):
   # Check if an activity has been posted already
   gc = pygsheets.authorize(service_file='strava2hive.json')
@@ -229,7 +213,6 @@ def strava_activity(athlete_id):
       continue
     print("Log - Activity is a run or ride, now can we see if it is already posted")
     posted_val = pipedream_modules.activity_posted_api(activity['id'])
-    #posted_val = activity_posted(athlete_id, activity['id'])
     if posted_val > 0:
       print("Log - Activity has been posted already, move on")
     else:
