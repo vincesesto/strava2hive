@@ -97,10 +97,9 @@ def refresh_access_token(athlete):
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    update_athlete(athlete[6], access_info['access_token'], 'H')
-    update_athlete(athlete[6], access_info['expires_at'], 'I')
-    print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
-    
+    hive_work.update_athlete(athlete[6], access_info['access_token'], "H", "HiveAthletes")
+    hive_work.update_athlete(athlete[6], access_info['expires_at'], "I", "HiveAthletes")
+    print(hive_work.update_athlete(athlete[6], access_info['refresh_token'], "J", "HiveAthletes"))
   except:
     print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[6]))
     return False
@@ -116,9 +115,9 @@ def new_user_access_token(athlete):
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    update_athlete(athlete[6], access_info['access_token'], 'H')
-    update_athlete(athlete[6], access_info['expires_at'], 'I')
-    print(update_athlete(athlete[6], access_info['refresh_token'], 'J'))
+    hive_work.update_athlete(athlete[6], access_info['access_token'], "H", "HiveAthletes")
+    hive_work.update_athlete(athlete[6], access_info['expires_at'], "I", "HiveAthletes")
+    print(hive_work.update_athlete(athlete[6], access_info['refresh_token'], "J", "HiveAthletes"))
   except:
     print("Log - An Error occurred trying to authenticate with the Strava token")
     return False
@@ -250,7 +249,7 @@ def strava_activity(athlete_id):
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         record_post(athlete_id, activity['id'], activity['type'], activity_date)
         # Work around for most recent post to be stored in HiveAthletes sheet
-        update_athlete(athlete_id, activity_date, "A")
+        hive_work.update_athlete(athlete_id, activity_date, "A", "HiveAthletes")
         print("Log - Activity posted so we only want one activity at a time for:", athlete_id)
         break
 
