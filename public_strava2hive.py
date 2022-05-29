@@ -7,6 +7,7 @@ import pandas as pd
 import requests
 import time
 import hive_work
+import pipedream_modules
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -208,7 +209,7 @@ def strava_activity(athlete_id):
       print("Log - Activity is not a run or ride, so we can stop running this")
       continue
     print("Log - Activity is a run or ride, now can we see if it is already posted")
-    posted_val = activity_posted(athlete_id, activity['id'])
+    posted_val = pipedream_modules.activity_posted_api(activity['id'])
     if posted_val:
       print("Log - Activity has been posted already, move on")
     else:
