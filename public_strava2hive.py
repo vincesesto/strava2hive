@@ -207,8 +207,8 @@ def post_to_hive(athlete_id, activity_details):
     json_metadata={"tags":tags},
   )
   comment_options = CommentOptions(
-      allow_curation_rewards = True
-      percent_hive_dollars = 5
+      allow_curation_rewards = True,
+      percent_hive_dollars = 5,
   )
   c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()])
   
