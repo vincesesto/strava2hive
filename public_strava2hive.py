@@ -6,6 +6,8 @@ import pygsheets
 import pandas as pd
 import requests
 import time
+import random
+import string
 import hive_work
 import pipedream_modules
 from selenium import webdriver
@@ -15,6 +17,9 @@ from datetime import datetime, timedelta
 from beem.imageuploader import ImageUploader
 from beem import Hive
 from beem.nodelist import NodeList
+from hivesigner.operations import Comment
+from hivesigner.client import Client
+from hivesigner.operations import CommentOptions
 
 # Functions
 def strava_screenshot(activity):
@@ -189,8 +194,24 @@ def post_to_hive(athlete_id, activity_details):
   tags = hashtags
   beneficiaries = [{'account': 'strava2hive', 'weight': 500},]
   print("Log - Posting to Hive")
-  hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
-
+  #hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
+  # This is the new work with Hivesigner
+  c = Client(access_token=athlete_details[2],)
+  permlink = ''.join(random.choices(string.digits, k=10))
+  comment = Comment(
+    author,
+    permlink,
+    body,
+    title=title,
+    parent_permlink="hive-176853",
+    json_metadata={\"tags\":tags},
+  )
+  comment_options = CommentOptions(
+      allow_curation_rewards = True
+      percent_hive_dollars = 5
+  )
+  c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()])
+  
 def strava_activity(athlete_id):
   athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
   # activity bearer is needed as part of the data
