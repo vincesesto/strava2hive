@@ -164,7 +164,8 @@ def post_to_hive(athlete_id, activity_details):
     image_path = '/home/circleci/project/prof_image_' + str(athlete_id) + '.png'
     image_name = 'prof_image_' + str(athlete_id) + '.png'
     image_uploader = ImageUploader(blockchain_instance=hive)
-    img_link = image_uploader.upload(image_path, author, image_name=image_name)
+    #img_link = image_uploader.upload(image_path, author, image_name=image_name)
+    img_link = image_uploader.upload(image_path, "strava2hive", image_name=image_name)
     # The screen shot is now at the bottom of the page
     prof_image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
     prof_image_name = 'image_' + str(activity_details['id']) + '.png'
