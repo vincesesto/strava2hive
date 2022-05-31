@@ -211,6 +211,7 @@ def post_to_hive(athlete_id, activity_details):
       allow_curation_rewards = True,
       percent_hive_dollars = 5,
   )
+  print("Log - Using Hivesigner to post")
   c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()])
   
 def strava_activity(athlete_id):
