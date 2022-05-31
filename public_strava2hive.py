@@ -238,7 +238,6 @@ def strava_activity(athlete_id):
       print("Log - Now get some more detailed information")
       detailed_activity = strava_activity_details(activity['id'], bearer_header)
       print(detailed_activity)
-      print(detailed_activity['description'])
       if detailed_activity['description'] == None:
         print("Log - Activity does not have a description, move on")
         #break
@@ -246,6 +245,9 @@ def strava_activity(athlete_id):
         print("Log - Activity does not have a description, move on")
         #break
       else:
+        new_dets = detailed_activity['description'].replace('\r','')
+        detailed_activity['description'] = new_dets
+        print(detailed_activity['description'])
         post_to_hive(athlete_id, detailed_activity)
         print("Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
