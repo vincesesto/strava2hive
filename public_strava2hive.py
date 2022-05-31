@@ -197,7 +197,7 @@ def post_to_hive(athlete_id, activity_details):
   print("Log - Posting to Hive")
   #hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
   # This is the new work with Hivesigner
-  c = Client(access_token=athlete_details[2],)
+  c = Client(access_token=athlete_details[6],)
   permlink = ''.join(random.choices(string.digits, k=10))
   comment = Comment(
     author,
