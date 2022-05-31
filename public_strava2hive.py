@@ -151,12 +151,12 @@ def post_to_hive(athlete_id, activity_details):
     prof_image_path = '/home/circleci/project/S2HLogo.PNG'
     prof_image_name = 'S2HLogo.PNG'
     prof_image_uploader = ImageUploader(blockchain_instance=hive)
-    prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
+    prof_img_link = prof_image_uploader.upload(prof_image_path, "strava2hive", image_name=prof_image_name)
     # Now set up the main image
     image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
     image_name = 'image_' + str(activity_details['id']) + '.png'
     image_uploader = ImageUploader(blockchain_instance=hive)
-    img_link = image_uploader.upload(image_path, author, image_name=image_name)
+    img_link = image_uploader.upload(image_path, "strava2hive", image_name=image_name)
   else:
     profile_img = activity_details['photos']['primary']['urls']['600']
     command = 'wget ' + profile_img + ' -O prof_image_' + str(athlete_id) + '.png'
@@ -170,7 +170,7 @@ def post_to_hive(athlete_id, activity_details):
     prof_image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
     prof_image_name = 'image_' + str(activity_details['id']) + '.png'
     prof_image_uploader = ImageUploader(blockchain_instance=hive)
-    prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
+    prof_img_link = prof_image_uploader.upload(prof_image_path, "strava2hive", image_name=prof_image_name)
   title = activity_details['name']
   hashtags, description =  hive_work.description_and_tags(activity_details['description'])
   body = f'''
