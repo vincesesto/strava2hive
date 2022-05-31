@@ -199,8 +199,9 @@ def post_to_hive(athlete_id, activity_details):
   # This is the new work with Hivesigner
   c = Client(access_token=athlete_details[6],)
   permlink = ''.join(random.choices(string.digits, k=10))
+  full_author = "@" + author
   comment = Comment(
-    author,
+    full_author,
     permlink,
     body,
     title=title,
