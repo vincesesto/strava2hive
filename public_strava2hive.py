@@ -212,7 +212,7 @@ def post_to_hive(athlete_id, activity_details):
       percent_hive_dollars = 5,
   )
   print("Log - Using Hivesigner to post")
-  c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()])
+  print(c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()]))
   
 def strava_activity(athlete_id):
   athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
