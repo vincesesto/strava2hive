@@ -150,6 +150,7 @@ def post_to_hive(athlete_id, activity_details):
     prof_image_name = 'S2HLogo.PNG'
     prof_image_uploader = ImageUploader(blockchain_instance=hive)
     prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
+    print(prof_img_link)
     # Now set up the main image
     image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
     image_name = 'image_' + str(activity_details['id']) + '.png'
