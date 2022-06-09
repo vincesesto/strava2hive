@@ -209,8 +209,8 @@ def post_to_hive(athlete_id, activity_details):
     json_metadata={"tags":tags},
   )
   comment_options = CommentOptions(
-      allow_curation_rewards = True,
-      percent_hive_dollars = 5,
+      allow_votes = True,
+      extensions =  ["strava2hive": 5],
   )
   print("Log - Using Hivesigner to post")
   print(c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()]))
