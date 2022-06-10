@@ -214,8 +214,8 @@ def post_to_hive(athlete_id, activity_details):
       allow_votes = True,
       extensions =  [[0,{"beneficiaries": [{"account": "strava2hive", "weight": 500}]}]])
   print("Log - Using Hivesigner to post")
-  #print(c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()]))
-  print(c.broadcast([comment.to_operation_structure()]))
+  print(c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()]))
+  #print(c.broadcast([comment.to_operation_structure()]))
   
 def strava_activity(athlete_id):
   athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
