@@ -218,7 +218,7 @@ def post_to_hive(athlete_id, activity_details):
   print(broadcast_results)
   if "error" in broadcast_results:
     print("Log - Something went wrong broadcasting with posting for:", author)
-    break
+    exit()
   #print(c.broadcast([comment.to_operation_structure()]))
   
 def strava_activity(athlete_id):
