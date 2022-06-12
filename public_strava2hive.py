@@ -213,8 +213,8 @@ def post_to_hive(athlete_id, activity_details):
   comment_options = CommentOptions(
       author = author,
       permlink = permlink,
-      allow_curation_rewards = true,
-      allow_votes = true,
+      allow_curation_rewards = True,
+      allow_votes = True,
       extensions =  [[0,{"beneficiaries": [{"account": "strava2hive", "weight": 500}]}]])
   print("Log - Using Hivesigner to post")
   broadcast_results = c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()])
