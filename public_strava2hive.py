@@ -211,11 +211,14 @@ def post_to_hive(athlete_id, activity_details):
     json_metadata={"tags":tags},
   )
   comment_options = CommentOptions(
-      allow_votes = True,
+      author = author,
+      permlink = permlink,
+      allow_curation_rewards = true,
+      allow_votes = true,
       extensions =  [[0,{"beneficiaries": [{"account": "strava2hive", "weight": 500}]}]])
   print("Log - Using Hivesigner to post")
-  #broadcast_results = c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()])
-  broadcast_results = c.broadcast([comment.to_operation_structure()])
+  broadcast_results = c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()])
+  #broadcast_results = c.broadcast([comment.to_operation_structure()])
   print(broadcast_results)
   if "error" in broadcast_results:
     print("Log - Something went wrong broadcasting with posting for:", author)
