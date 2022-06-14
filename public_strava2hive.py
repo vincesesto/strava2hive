@@ -6,8 +6,6 @@ import pygsheets
 import pandas as pd
 import requests
 import time
-import random
-import string
 import hive_work
 import pipedream_modules
 from selenium import webdriver
@@ -198,8 +196,7 @@ def post_to_hive(athlete_id, activity_details):
   #hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
   # This is the new work with Hivesigner
   c = Client(access_token=athlete_details[6],)
-  permlink = ''.join(random.choices(string.digits, k=10))
-  full_author = "@" + author
+  permlink = hive_work.create_permlink(title)
   comment = Comment(
     author,
     permlink,
