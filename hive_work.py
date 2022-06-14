@@ -6,6 +6,8 @@ import pandas as pd
 import requests
 import time
 import re
+import random
+import string
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -114,3 +116,8 @@ def refresh_hivesigner_token(athlete):
     print("Log - An Error occurred trying to authenticate with the {} hive token".format(athlete[5]))
     return False
   
+def create_permlink(title):
+  # Function to combine title with random number to create a permlink
+  random_link = ''.join(random.choices(string.digits, k=10))
+  permlink = title.lower().replace(" ", "-") + "-" + random_link
+  return permlink
