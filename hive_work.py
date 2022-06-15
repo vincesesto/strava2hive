@@ -109,10 +109,9 @@ def refresh_hivesigner_token(athlete):
     hive_response_data = response.json()
     hive_signer_info['hive_signer_access_token'] = hive_response_data['access_token']
     hive_signer_info['hive_signer_expires'] = int(time.time()) + 604800
-    print(hive_signer_info['hive_signer_access_token'])
-    print(hive_signer_info['hive_signer_expires'])
-    hive_work.update_athlete(athlete[10], hive_signer_info['hive_signer_access_token'], 'G', "Strava2HiveNewUserSignUp")
-    hive_work.update_athlete(athlete[10], hive_signer_info['hive_signer_expires'], 'I', "Strava2HiveNewUserSignUp")
+    print(athlete[10])
+    print(update_athlete(athlete[10], hive_signer_info['hive_signer_access_token'], 'G', "Strava2HiveNewUserSignUp"))
+    print(update_athlete(athlete[10], hive_signer_info['hive_signer_expires'], 'I', "Strava2HiveNewUserSignUp"))
   except:
     print("Log - An Error occurred trying to authenticate with the {} hive token".format(athlete[5]))
     return False
