@@ -81,8 +81,9 @@ def update_athlete(athlete_id, change_val, column, sheet_name):
   sh = gc.open(sheet_name)
   wks = sh[0]
   row = []
-  athletes = 5
-  for i in range(athletes):
+  cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
+  total_rows = len(cells)
+  for i in range(total_rows):
     row = wks.get_row(i + 1)
     if sheet_name == "HiveAthletes":
       if row[6] == athlete_id:
@@ -108,6 +109,8 @@ def refresh_hivesigner_token(athlete):
     hive_response_data = response.json()
     hive_signer_info['hive_signer_access_token'] = hive_response_data['access_token']
     hive_signer_info['hive_signer_expires'] = int(time.time()) + 604800
+    print(hive_signer_info['hive_signer_access_token'])
+    print(hive_signer_info['hive_signer_expires'])
     hive_work.update_athlete(athlete[10], hive_signer_info['hive_signer_access_token'], 'G', "Strava2HiveNewUserSignUp")
     hive_work.update_athlete(athlete[10], hive_signer_info['hive_signer_expires'], 'I', "Strava2HiveNewUserSignUp")
   except:
