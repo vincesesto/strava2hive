@@ -8,6 +8,7 @@ import requests
 import time
 import hive_work
 import pipedream_modules
+import post_functions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -185,8 +186,7 @@ def post_to_hive(athlete_id, activity_details):
   
   ![{prof_image_name}]({prof_img_link['url']})
   
-  This is an automated post by @strava2hive and is currently in BETA.
-  '''
+  ''' + post_functions.post_footer()
   parse_body = True
   self_vote = False
   #tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
