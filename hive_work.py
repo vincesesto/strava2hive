@@ -100,14 +100,12 @@ def update_athlete(athlete_id, change_val, column, sheet_name):
 
 def refresh_hivesigner_token(athlete):
   # We need to update the hivesigner token every six days
+  print(athlete)
   hive_signer_info = dict()
-  print(athlete[7])
-  print(os.getenv('HIVE_SIGN_SECRET'))
   try:
     response = requests.post("https://hivesigner.com/api/oauth2/token?", 
                           params={'code': athlete[7], 'client_secret': os.getenv('HIVE_SIGN_SECRET')})
     hive_response_data = response.json()
-    print(hive_response_data)
     hive_signer_info['hive_signer_access_token'] = hive_response_data['access_token']
     hive_signer_info['hive_signer_expires'] = int(time.time()) + 604800
     hive_work.update_athlete(athlete[10], hive_signer_info['hive_signer_access_token'], 'G', "Strava2HiveNewUserSignUp")
