@@ -4,8 +4,7 @@
 
 import os
 from selenium import webdriver
-from selenium.webdriver.common.by import 
-
+from selenium.webdriver.common.by import By
 
 # Functions
 def strava_screenshot(activity):
