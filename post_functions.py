@@ -29,6 +29,14 @@ def top_image(image_name, image_link):
   '''
   return top_image
 
+def activity_summary(author, distance, activity_type, duration, calories):
+  # Create the top summary for the post
+  act_summary = f'''
+  {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
+  This {activity_type} helped {author} burn {calories} calories.
+  '''
+  return act_summary
+  
 def post_footer():
   # Create a footer for our posts
   footer = f'''
