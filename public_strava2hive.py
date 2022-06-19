@@ -236,22 +236,22 @@ def strava_activity(athlete_id):
     if activity['type'] == 'Workout':
       print("Log - Activity is not a run or ride, so we can stop running this")
       continue
-    print("Log - Activity is a run or ride, now can we see if it is already posted")
-    posted_val = pipedream_modules.activity_posted_api(activity['id'])
-    if posted_val:
-      print("Log - Activity has been posted already, move on")
+    print("Log - Activity is a run or ride, now can we it has a description")
+    print("Log - Now get some more detailed information")
+    detailed_activity = strava_activity_details(activity['id'], bearer_header)
+    print(detailed_activity)
+    if detailed_activity['description'] == None:
+      print("Log - Activity does not have a description, move on")
+      #break
+    elif detailed_activity['description'] == '':
+      print("Log - Activity does not have a description, move on")
+      #break
     else:
-      print("Log - Activity has not been posted yet, ship it!!")
-      print("Log - Now get some more detailed information")
-      detailed_activity = strava_activity_details(activity['id'], bearer_header)
-      print(detailed_activity)
-      if detailed_activity['description'] == None:
-        print("Log - Activity does not have a description, move on")
-        #break
-      elif detailed_activity['description'] == '':
-        print("Log - Activity does not have a description, move on")
-        #break
+      posted_val = pipedream_modules.activity_posted_api(activity['id'])
+      if posted_val:
+        print("Log - Activity has been posted already, move on")
       else:
+        print("Log - Activity has not been posted yet, ship it!!")   
         new_dets = detailed_activity['description'].replace('\r','')
         detailed_activity['description'] = new_dets
         print(detailed_activity['description'])
