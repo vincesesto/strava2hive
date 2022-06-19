@@ -246,7 +246,7 @@ def strava_activity(athlete_id):
 strava_athletes = hive_work.list_athletes(6, "HiveAthletes")
 print(strava_athletes)
 
-print("Log - Use athlete details to get activity from strava")
+print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
   print("Log - When did the user post their last activity")
   activity_date = hive_work.get_latest_activity_date(i,"HiveAthletes", 6)
