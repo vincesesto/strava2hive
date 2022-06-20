@@ -198,7 +198,7 @@ def post_to_hive(athlete_id, activity_details):
 def strava_activity(athlete_id):
   athlete_details = hive_work.get_athlete(athlete_id, "HiveAthletes")
   # activity bearer is needed as part of the data
-  print("Log - Searching For New Activities")
+  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Searching For New Activities")
   bearer_header = "Bearer " + athlete_details[7]
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   t = datetime.now() - timedelta(days=1)
@@ -210,32 +210,32 @@ def strava_activity(athlete_id):
     activity = activity_data[i]
     print(activity['type'])
     if activity['type'] == 'Workout':
-      print("Log - Activity is not a run or ride, so we can stop running this")
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is not a run or ride, so we can stop running this")
       continue
-    print("Log - Activity is a run or ride, now we can see if it has a discription")
-    print("Log - Now get some more detailed information")
+    print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is a run or ride, now we can see if it has a discription")
+    print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Now get some more detailed information")
     detailed_activity = strava_activity_details(activity['id'], bearer_header)
     print(detailed_activity)
     if detailed_activity['description'] == None:
-      print("Log - Activity does not have a description, move on")
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity does not have a description, move on")
       #break
     elif detailed_activity['description'] == '':
-      print("Log - Activity does not have a description, move on")
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity does not have a description, move on")
       #break
     else:
-      print("Log - Activity has a description, now can we see if it is already posted")
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has a description, now can we see if it is already posted")
       posted_val = pipedream_modules.activity_posted_api(activity['id'])
       if posted_val > 0:
-        print("Log - Activity has been posted already, move on")
+        print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has been posted already, move on")
       else:
-        print("Log - Activity has not been posted yet, ship it!!")
+        print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has not been posted yet, ship it!!")
         post_to_hive(athlete_id, detailed_activity)
-        print("Log - Add it now to the activity log")
+        print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         record_post(athlete_id, activity['id'], activity['type'], activity_date)
         # Work around for most recent post to be stored in HiveAthletes sheet
         hive_work.update_athlete(athlete_id, activity_date, "A", "HiveAthletes")
-        print("Log - Activity posted so we only want one activity at a time for:", athlete_id)
+        print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity posted so we only want one activity at a time for:", athlete_id)
         break
 
 ##################################################
@@ -248,7 +248,7 @@ print(strava_athletes)
 
 print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
-  print("Log - When did the user post their last activity")
+  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - When did the user post their last activity")
   activity_date = hive_work.get_latest_activity_date(i,"HiveAthletes", 6)
   print(f'Log - The last activity for the user {i} was on the date {activity_date}')
   date = datetime.strptime(activity_date, "%m/%d/%Y %H:%M:%S")
@@ -260,25 +260,25 @@ for i in strava_athletes:
   else:
     print(f'Log - The last activity for the user {i} was NOT more than 12 hours ago')
     continue
-  print("Log - First get athlete details from sheet so you can access strava")
+  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - First get athlete details from sheet so you can access strava")
   athlete_values = hive_work.get_athlete(i, "HiveAthletes")
-  print("Log - Athlete Values: ", athlete_values)
+  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Athlete Values: ", athlete_values)
   # Test if athlete bearer token is still valid by testing athlete_values[8]
   if athlete_values[8] == '':
-    print("Log - Expire time is empty, so need to get auth from strava")
+    print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Expire time is empty, so need to get auth from strava")
     new_user_access_token(athlete_values)
   else:
-    print("Log - User is an existing user, so we need to check if we need to update the strava token")
+    print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - User is an existing user, so we need to check if we need to update the strava token")
     expire_time = int(athlete_values[8])
     current_time = time.time()
     expired_value = expire_time - int(current_time)
     if expired_value > 0:
-      print("Log - Strava Token Still Valid")
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Strava Token Still Valid")
     else:
-      print("Log - Strava Token Needs To Be Updated")
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Strava Token Needs To Be Updated")
       refresh_access_token(athlete_values)
 
-  print("Log - See what activity the athlete has")
+  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - See what activity the athlete has")
   activity_details = strava_activity(i)
   print(activity_details)
 
