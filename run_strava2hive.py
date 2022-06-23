@@ -245,10 +245,11 @@ def strava_activity(athlete_id):
 # Now we just have a list of Strava ID's but we will eventually make a list from our sheet
 strava_athletes = hive_work.list_athletes(6, "HiveAthletes")
 print(strava_athletes)
+dt = "%d-%b-%Y %H:%M:%S"
 
-print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Use athlete details to get activity from strava")
+print(datetime.now().strftime(dt), "Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
-  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - When did the user post their last activity")
+  print(datetime.now().strftime(dt), "Log - When did the user post their last activity")
   activity_date = hive_work.get_latest_activity_date(i,"HiveAthletes", 6)
   print(f'Log - The last activity for the user {i} was on the date {activity_date}')
   date = datetime.strptime(activity_date, "%m/%d/%Y %H:%M:%S")
@@ -260,25 +261,25 @@ for i in strava_athletes:
   else:
     print(f'Log - The last activity for the user {i} was NOT more than 12 hours ago')
     continue
-  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - First get athlete details from sheet so you can access strava")
+  print(datetime.now().strftime(dt), "Log - First get athlete details from sheet so you can access strava")
   athlete_values = hive_work.get_athlete(i, "HiveAthletes")
-  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Athlete Values: ", athlete_values)
+  print(datetime.now().strftime(dt), "Log - Athlete Values: ", athlete_values)
   # Test if athlete bearer token is still valid by testing athlete_values[8]
   if athlete_values[8] == '':
-    print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Expire time is empty, so need to get auth from strava")
+    print(datetime.now().strftime(dt), "Log - Expire time is empty, so need to get auth from strava")
     new_user_access_token(athlete_values)
   else:
-    print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - User is an existing user, so we need to check if we need to update the strava token")
+    print(datetime.now().strftime(dt), "Log - User is an existing user, so we need to check if we need to update the strava token")
     expire_time = int(athlete_values[8])
     current_time = time.time()
     expired_value = expire_time - int(current_time)
     if expired_value > 0:
-      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Strava Token Still Valid")
+      print(datetime.now().strftime(dt), "Log - Strava Token Still Valid")
     else:
-      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Strava Token Needs To Be Updated")
+      print(datetime.now().strftime(dt), "Log - Strava Token Needs To Be Updated")
       refresh_access_token(athlete_values)
 
-  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - See what activity the athlete has")
+  print(datetime.now().strftime(dt), "Log - See what activity the athlete has")
   activity_details = strava_activity(i)
   print(activity_details)
 
