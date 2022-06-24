@@ -227,6 +227,8 @@ def strava_activity(athlete_id):
       posted_val = pipedream_modules.activity_posted_api(activity['id'])
       if posted_val > 0:
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has been posted already, move on")
+      elif "Error" in posted_val:
+        print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - There was an error connecting to pipedream")  
       else:
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has not been posted yet, ship it!!")
         post_to_hive(athlete_id, detailed_activity)
