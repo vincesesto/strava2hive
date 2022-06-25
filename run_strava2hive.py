@@ -124,6 +124,7 @@ def strava_activity_details(activity_id, bearer_header):
     activity_info['description'] = more_activity_data['description']
     activity_info['calories'] = more_activity_data['calories']
     activity_info['photos'] = more_activity_data['photos']
+    activity_info['achievements'] = more_activity_data['achievements']
   except:
     print("Log - An Error occurred trying to get date from Strava")
     activity_info['description'] = None
