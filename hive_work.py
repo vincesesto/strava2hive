@@ -119,5 +119,5 @@ def refresh_hivesigner_token(athlete):
 def create_permlink(activity_id):
   # Function to combine title with random number to create a permlink
   random_link = ''.join(random.choices(string.digits, k=10))
-  permlink = activity_id + "-" + random_link
+  permlink = str(activity_id) + "-" + random_link
   return permlink
