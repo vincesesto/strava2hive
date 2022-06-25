@@ -65,7 +65,9 @@ def get_athlete(athlete_id, sheet_name):
   wks = sh[0]
   row = []
   athletes = 15
-  for i in range(athletes):
+  cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
+  total_rows = len(cells)
+  for i in range(total_rows):
     row = wks.get_row(i + 1)
     if sheet_name == "HiveAthletes":
       if row[6] == athlete_id:
