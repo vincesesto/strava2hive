@@ -192,7 +192,7 @@ def post_to_hive(athlete_id, activity_details):
   #tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
   tags = hashtags
   beneficiaries = [{'account': 'strava2hive', 'weight': 500},]
-  hive_work.create_permlink(activity_details['id'])
+  permlink = hive_work.create_permlink(activity_details['id'])
   print("Log - Posting to Hive")
   hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
 
