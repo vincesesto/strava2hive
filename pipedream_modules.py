@@ -13,6 +13,6 @@ def activity_posted_api(activity_id):
     return_data = response.json()
   except:
     print("Log - An Error occurred trying to authenticate with pipedream")
-    return False
+    return_data = False
 
   return return_data
