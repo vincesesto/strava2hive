@@ -177,8 +177,7 @@ def post_to_hive(athlete_id, activity_details):
   {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
   This {activity_type} helped {author} burn {activity_details['calories']} calories.
   ---
-  **Description from Strava:**
-  {description}
+  **Description from Strava:**  {description}
   ---
   If you would like to check out this activity on strava you can see it here:
   https://www.strava.com/activities/{activity_details['id']}
