@@ -31,4 +31,12 @@ from beem.nodelist import
 
 
 
-# Main workflow
+##################################################
+# Workflow from scratch
+##################################################
+
+print("Book Keeping")
+print("Log - Count/Record/Comment/Upvote")
+
+
+
