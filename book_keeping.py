@@ -14,7 +14,7 @@ from time import sleep
 from datetime import datetime, timedelta
 from beem.imageuploader import ImageUploader
 from beem import Hive
-from beem.nodelist import 
+from beem.nodelist import NodeList
 
 # Script to run after posting to count up records and post to accounts
 
