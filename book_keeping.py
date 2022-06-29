@@ -49,7 +49,7 @@ download_sheet_as_csv("StravaActivity", 1)
 print(os.system("ls -l"))
 
 print("Log - get all athletes and start working through them")
-athletes = list_all_thletes()
+athletes = list_all_athletes()
 for i in athletes:
   print(i)
 
