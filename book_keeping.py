@@ -16,9 +16,21 @@ from datetime import datetime, timedelta
 from beem.imageuploader import ImageUploader
 from beem import Hive
 from beem.nodelist import NodeList
+from beem.account import Account
+from beem.comment import Comment
 
 # Script to run after posting to count up records and post to accounts
 
+
+# Function to get the last post from the user
+def get_hive_posts(hive_user_name):
+  nodelist = NodeList()
+  nodelist.update_nodes()
+  nodes = nodelist.get_hive_nodes()
+  hive = Hive(node=nodelist.get_hive_nodes())
+  account = Account(hive_user_name, blockchain_instance=hive)
+  authorperm = account.get_blog(limit=1)
+  return authorperm
 
 # Function to donwload activity file as csv
 def download_sheet_as_csv(sheet_name, sheet_number):
@@ -49,9 +61,15 @@ download_sheet_as_csv("StravaActivity", 1)
 print(os.system("ls -l"))
 
 print("Log - get all athletes and start working through them")
-athletes = list_all_athletes()
-for i in athletes:
-  print(i)
+dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
+prod_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
+
+for i in dev_athletes:
+  # get the hive username
+  athlete_details = hive_work.get_athlete(i, "HiveAthletes")
+  latest_post = get_hive_posts(athlete_details[1])
+  print("Log - Latest post for user: ", i)
+  print(latest_post)
 
 
 
