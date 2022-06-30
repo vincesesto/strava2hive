@@ -76,3 +76,23 @@ if file_exists:
   f = open("post_list.txt", "r")
   for i in f.readlines():
     print(i)
+   
+#>>> from beem import Hive
+#>>> from beem.nodelist import NodeList
+#>>> from beem.account import Account
+#>>> from beem.comment import Comment
+#>>> nodelist = NodeList()
+#>>> nodelist.update_nodes()
+#>>> nodes = nodelist.get_hive_nodes()    
+#>>> wif = ''
+#>>> hive = Hive(nodes=nodes, keys=[wif])
+#>>> author = "strava2hive"
+#>>> authorperm = "@run.kirsty.run/7391262908-6486885355"
+#>>> body = f'''
+#... Thanks so much for using @strava2hive
+#... You're smashing your training at the
+#... moment and getting stronger every day.
+#... https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
+#... '''
+#>>> c = Comment(authorperm, hive_instance=hive)
+#>>> c.reply(body, author=author)
