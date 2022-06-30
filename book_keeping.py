@@ -93,7 +93,7 @@ if file_exists:
     wif = os.getenv('POSTING_KEY')
     hive = Hive(nodes=nodes, keys=[wif])
     author = "strava2hive"
-    authorperm = "@run.kirsty.run/7391262908-6486885355"
+    authorperm = "@run.vince.run/7394608845-0066764884"
     body = comment_body()
     c = Comment(authorperm, hive_instance=hive)
     c.reply(body, author=author)
