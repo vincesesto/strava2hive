@@ -220,6 +220,7 @@ def post_to_hive(athlete_id, activity_details):
   if "error" in broadcast_results:
     print("Log - Something went wrong broadcasting with posting for:", author)
     exit()
+  hive_work.new_posts_list("@" + author + "/" + permlink)
   
 def strava_activity(athlete_id):
   athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
