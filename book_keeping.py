@@ -9,8 +9,7 @@ import re
 import random
 import string
 import hive_work
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import os.path
 from time import sleep
 from datetime import datetime, timedelta
 from beem.imageuploader import ImageUploader
@@ -71,5 +70,9 @@ for i in dev_athletes:
   print("Log - Latest post for user: ", i)
   print(latest_post)
 
-
-
+# Test if posts have been made
+file_exists = os.path.exists('post_list.txt')
+if file_exists:
+  f = open("post_list.txt", "r")
+  for i in f.readlines():
+    print(i)
