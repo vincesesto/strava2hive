@@ -121,3 +121,10 @@ def create_permlink(activity_id):
   random_link = ''.join(random.choices(string.digits, k=10))
   permlink = str(activity_id) + "-" + random_link
   return permlink
+
+def new_posts_list(permlink):
+  # Create a list of permlinks posted in a text file
+  f = open("post_list.txt","a")
+  f.write(permlink + "\n")
+  f.close()
+  
