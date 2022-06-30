@@ -45,6 +45,16 @@ def list_all_athletes():
   all_athletes = dev_athletes + prod_athletes
   return all_athletes
 
+# Function to create the body of our comment
+def comment_body():
+  comment_body = f'''
+  Thanks so much for using @strava2hive
+  You're smashing your training at the
+  moment and getting stronger every day.
+  https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
+  '''
+  return comment_body
+  
 # Maybe set up a function to count from Hive
 
 
@@ -75,24 +85,15 @@ file_exists = os.path.exists('post_list.txt')
 if file_exists:
   f = open("post_list.txt", "r")
   for i in f.readlines():
+    # We want to comment on a new post from strava2hive
     print(i)
-   
-#>>> from beem import Hive
-#>>> from beem.nodelist import NodeList
-#>>> from beem.account import Account
-#>>> from beem.comment import Comment
-#>>> nodelist = NodeList()
-#>>> nodelist.update_nodes()
-#>>> nodes = nodelist.get_hive_nodes()    
-#>>> wif = ''
-#>>> hive = Hive(nodes=nodes, keys=[wif])
-#>>> author = "strava2hive"
-#>>> authorperm = "@run.kirsty.run/7391262908-6486885355"
-#>>> body = f'''
-#... Thanks so much for using @strava2hive
-#... You're smashing your training at the
-#... moment and getting stronger every day.
-#... https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
-#... '''
-#>>> c = Comment(authorperm, hive_instance=hive)
-#>>> c.reply(body, author=author)
+    nodelist = NodeList()
+    nodelist.update_nodes()
+    nodes = nodelist.get_hive_nodes()    
+    wif = os.getenv('POSTING_KEY')
+    hive = Hive(nodes=nodes, keys=[wif])
+    author = "strava2hive"
+    authorperm = "@run.kirsty.run/7391262908-6486885355"
+    body = comment_body()
+    c = Comment(authorperm, hive_instance=hive)
+    c.reply(body, author=author)
