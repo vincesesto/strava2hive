@@ -86,14 +86,14 @@ if file_exists:
   f = open("post_list.txt", "r")
   for i in f.readlines():
     # We want to comment on a new post from strava2hive
-    print(i)
+    print("Log - S2H Comment On Post: ", i)
     nodelist = NodeList()
     nodelist.update_nodes()
     nodes = nodelist.get_hive_nodes()    
     wif = os.getenv('POSTING_KEY')
     hive = Hive(nodes=nodes, keys=[wif])
     author = "strava2hive"
-    authorperm = "@run.vince.run/7394608845-0066764884"
+    authorperm = i
     body = comment_body()
     c = Comment(authorperm, hive_instance=hive)
     c.reply(body, author=author)
