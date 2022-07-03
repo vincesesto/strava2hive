@@ -97,3 +97,10 @@ if file_exists:
     body = comment_body()
     c = Comment(authorperm, hive_instance=hive)
     c.reply(body, author=author)
+    print("Log - Test if values are in spreadsheet")
+    url_val = i.split("/")
+    activity_test = url_val[1].split("-")
+    
+    lines = open('*.csv', 'r').read()
+    if i in lines:
+      print("Log - this value is already added to the csv list - Use this to test")
