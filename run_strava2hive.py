@@ -15,7 +15,7 @@ from time import sleep
 from datetime import datetime, timedelta
 from beem.imageuploader import ImageUploader
 from beem import Hive
-from beem import Account
+from beem.account import Account
 from beem.nodelist import NodeList
 
 # Functions
