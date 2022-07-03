@@ -15,6 +15,7 @@ from time import sleep
 from datetime import datetime, timedelta
 from beem.imageuploader import ImageUploader
 from beem import Hive
+from beem.account import Account
 from beem.nodelist import NodeList
 from hivesigner.operations import Comment
 from hivesigner.client import Client
@@ -214,6 +215,9 @@ def post_to_hive(athlete_id, activity_details):
       allow_votes = True,
       extensions =  [[0,{"beneficiaries": [{"account": "strava2hive", "weight": 500}]}]])
   print("Log - Using Hivesigner to post")
+  account_deets = Account(author, blockchain_instance=hive)
+  auth = account_deets.get_blog(limit=5)
+  
   broadcast_results = c.broadcast([comment.to_operation_structure(),comment_options.to_operation_structure()])
   #broadcast_results = c.broadcast([comment.to_operation_structure()])
   print(broadcast_results)
