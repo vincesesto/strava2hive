@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import glob
 import pygsheets
 import pandas as pd
 import requests
@@ -101,6 +102,7 @@ if file_exists:
     url_val = i.split("/")
     activity_test = url_val[1].split("-")
     
-    lines = open('*.csv', 'r').read()
+    activity_csv = glob.glob("*.png")
+    lines = open(activity_csv, 'r').read()
     if i in lines:
       print("Log - this value is already added to the csv list - Use this to test")
