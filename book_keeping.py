@@ -103,6 +103,6 @@ if file_exists:
     activity_test = url_val[1].split("-")
     
     activity_csv = glob.glob("*.png")
-    lines = open(activity_csv, 'r').read()
+    lines = open(activity_csv[0], 'r').read()
     if i in lines:
       print("Log - this value is already added to the csv list - Use this to test")
