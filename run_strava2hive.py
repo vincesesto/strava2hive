@@ -197,8 +197,8 @@ def post_to_hive(athlete_id, activity_details):
   beneficiaries = [{'account': 'strava2hive', 'weight': 500},]
   permlink = hive_work.create_permlink(activity_details['id'])
   print("Log - Posting to Hive")
-  account = Account(account, blockchain_instance=hive)
-  auth = account.get_blog(limit=5)
+  account_deets = Account(author, blockchain_instance=hive)
+  auth = account_deets.get_blog(limit=5)
   
   hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
   hive_work.new_posts_list("@" + author + "/" + permlink)
