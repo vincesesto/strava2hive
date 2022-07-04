@@ -107,5 +107,5 @@ if file_exists:
     # https://stackoverflow.com/questions/42339876/error-unicodedecodeerror-utf-8-codec-cant-decode-byte-0xff-in-position-0-in
     
     lines = open(activity_csv[0], 'rb').read()
-    if i in lines:
+    if i.encode() in lines:
       print("Log - this value is already added to the csv list - Use this to test")
