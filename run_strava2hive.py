@@ -226,6 +226,15 @@ def strava_activity(athlete_id):
     print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Now get some more detailed information")
     detailed_activity = strava_activity_details(activity['id'], bearer_header)
     print(detailed_activity)
+    
+    # Testing if the CSV file can be used instead of checking the api
+    activity_csv = glob.glob("*.csv")
+    print(activity_csv)    
+    with open(activity_csv[0], "r") as fp:
+      s = fp.read()
+    if str(activity['id']) in s:
+      print("Log - this value is already added to the csv list - Use this to test")
+    
     if detailed_activity['description'] == None:
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity does not have a description, move on")
       #break
@@ -233,14 +242,6 @@ def strava_activity(athlete_id):
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity does not have a description, move on")
       #break
     else:
-      # Testing if the CSV file can be used instead of checking the api
-      activity_csv = glob.glob("*.csv")
-      print(activity_csv)    
-      with open(activity_csv[0], "r") as fp:
-        s = fp.read()
-      if str(activity['id']) in s:
-        print("Log - this value is already added to the csv list - Use this to test")
-      
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has a description, now can we see if it is already posted")
       posted_val = pipedream_modules.activity_posted_api(activity['id'])
       if posted_val > 0:
