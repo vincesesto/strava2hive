@@ -6,9 +6,11 @@ import pygsheets
 import pandas as pd
 import requests
 import time
+import glob
 import hive_work
 import pipedream_modules
 import post_functions
+import book_keeping
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -231,6 +233,14 @@ def strava_activity(athlete_id):
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity does not have a description, move on")
       #break
     else:
+      # Testing if the CSV file can be used instead of checking the api
+      activity_csv = glob.glob("*.csv")
+      print(activity_csv)    
+      with open(activity_csv[0], "r") as fp:
+        s = fp.read()
+      if str(activity['id']) in s:
+        print("Log - this value is already added to the csv list - Use this to test")
+      
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has a description, now can we see if it is already posted")
       posted_val = pipedream_modules.activity_posted_api(activity['id'])
       if posted_val > 0:
@@ -256,6 +266,8 @@ def strava_activity(athlete_id):
 strava_athletes = hive_work.list_athletes(6, "HiveAthletes")
 print(strava_athletes)
 dt = "%d-%b-%Y %H:%M:%S"
+# Get a list of activities in CSV format
+book_keeping.download_sheet_as_csv("StravaActivity", 1)
 
 print(datetime.now().strftime(dt), "Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
