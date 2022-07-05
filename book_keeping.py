@@ -108,8 +108,10 @@ if file_exists:
     
     with open(activity_csv[0], "r") as fp:
       s = fp.read()
+      print(s)
     if i in s:
       print("Log - this value is already added to the csv list - Use this to test")
+    print(s)
 
     #lines = open(activity_csv[0], 'rb').read()
     #if i.encode() in lines:
