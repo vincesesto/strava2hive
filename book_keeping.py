@@ -103,15 +103,11 @@ if file_exists:
     activity_test = url_val[1].split("-")
     
     activity_csv = glob.glob("*.csv")
-    print(activity_csv)
-    # https://stackoverflow.com/questions/42339876/error-unicodedecodeerror-utf-8-codec-cant-decode-byte-0xff-in-position-0-in
-    
+    print(activity_csv)    
     with open(activity_csv[0], "r") as fp:
       s = fp.read()
-      print(s)
-    if i in s:
+    if activity_test in s:
       print("Log - this value is already added to the csv list - Use this to test")
-    print(s)
 
     #lines = open(activity_csv[0], 'rb').read()
     #if i.encode() in lines:
