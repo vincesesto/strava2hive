@@ -101,12 +101,13 @@ if file_exists:
     print("Log - Test if values are in spreadsheet")
     url_val = i.split("/")
     activity_test = url_val[1].split("-")
+    print(activity_test)
     
     activity_csv = glob.glob("*.csv")
     print(activity_csv)    
     with open(activity_csv[0], "r") as fp:
       s = fp.read()
-    if activity_test in s:
+    if str(activity_test[0]) in s:
       print("Log - this value is already added to the csv list - Use this to test")
 
     #lines = open(activity_csv[0], 'rb').read()
