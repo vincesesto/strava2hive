@@ -10,7 +10,6 @@ import glob
 import hive_work
 import pipedream_modules
 import post_functions
-import book_keeping
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -267,7 +266,7 @@ strava_athletes = hive_work.list_athletes(6, "HiveAthletes")
 print(strava_athletes)
 dt = "%d-%b-%Y %H:%M:%S"
 # Get a list of activities in CSV format
-book_keeping.download_sheet_as_csv("StravaActivity", 1)
+hive_work.download_sheet_as_csv("StravaActivity", 1)
 
 print(datetime.now().strftime(dt), "Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
