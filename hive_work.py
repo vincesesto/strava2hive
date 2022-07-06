@@ -128,3 +128,10 @@ def new_posts_list(permlink):
   f.write(permlink + "\n")
   f.close()
   
+def download_sheet_as_csv(sheet_name, sheet_number):
+  # Function to donwload activity file as csv
+  gc = pygsheets.authorize(service_file='strava2hive.json')
+  sh = gc.open(sheet_name)
+  wks = sh[sheet_number]
+  wks.export(pygsheets.ExportType.CSV)
+  
