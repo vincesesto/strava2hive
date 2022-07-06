@@ -232,15 +232,14 @@ def strava_activity(athlete_id):
     print(activity_csv)    
     with open(activity_csv[0], "r") as fp:
       s = fp.read()
-    if str(activity['id']) in s:
-      print("Log - this value is already added to the csv list - Use this to test")
-    
     if detailed_activity['description'] == None:
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity does not have a description, move on")
       #break
     elif detailed_activity['description'] == '':
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity does not have a description, move on")
       #break
+    elif str(activity['id']) in s:
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is in our CSV file as already posted, move on")
     else:
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has a description, now can we see if it is already posted")
       posted_val = pipedream_modules.activity_posted_api(activity['id'])
