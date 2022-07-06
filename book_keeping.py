@@ -32,13 +32,6 @@ def get_hive_posts(hive_user_name):
   authorperm = account.get_blog(limit=1)
   return authorperm
 
-# Function to donwload activity file as csv
-def download_sheet_as_csv(sheet_name, sheet_number):
-  gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open(sheet_name)
-  wks = sh[sheet_number]
-  wks.export(pygsheets.ExportType.CSV)
-
 # Function to get all users from both dev and prod sheets
 def list_all_athletes():
   dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
@@ -67,7 +60,7 @@ def comment_body():
 print("Book Keeping")
 print("Log - Count/Record/Comment/Upvote")
 print("Download the activity sheet to work directly with")
-download_sheet_as_csv("StravaActivity", 1)
+#download_sheet_as_csv("StravaActivity", 1)
 print(os.system("ls -l"))
 
 print("Log - get all athletes and start working through them")
