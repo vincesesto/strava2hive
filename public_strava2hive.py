@@ -247,12 +247,21 @@ def strava_activity(athlete_id):
     print("Log - Now get some more detailed information")
     detailed_activity = strava_activity_details(activity['id'], bearer_header)
     print(detailed_activity)
+    
+    # Testing if the CSV file can be used instead of checking the api
+    activity_csv = glob.glob("*.csv")
+    print(activity_csv)    
+    with open(activity_csv[0], "r") as fp:
+      s = fp.read()
+    
     if detailed_activity['description'] == None:
       print("Log - Activity does not have a description, move on")
       #break
     elif detailed_activity['description'] == '':
       print("Log - Activity does not have a description, move on")
       #break
+    elif str(activity['id']) in s:
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is in our CSV file as already posted, move on")
     else:
       posted_val = pipedream_modules.activity_posted_api(activity['id'])
       if posted_val:
@@ -280,6 +289,9 @@ def strava_activity(athlete_id):
 # Now we just have a list of Strava ID's but we will eventually make a list from our sheet
 strava_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
 print(strava_athletes)
+dt = "%d-%b-%Y %H:%M:%S"
+# Get a list of activities in CSV format
+hive_work.download_sheet_as_csv("StravaActivity", 1)
 
 print("Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
@@ -330,7 +342,4 @@ for i in strava_athletes:
   # Add a test to see if the activity was a run and then post if it is
   # we might need to also bring down all the activity for the day and not just the last
 
-# Add details of the post to a new spreadsheet
-# Hive - reblogging
-# Refactor for more than one user
-# Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
+
