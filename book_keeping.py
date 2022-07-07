@@ -10,6 +10,7 @@ import re
 import random
 import string
 import hive_work
+import csv
 import os.path
 from time import sleep
 from datetime import datetime, timedelta
@@ -73,6 +74,14 @@ for i in dev_athletes:
   latest_post = get_hive_posts(athlete_details[1])
   print("Log - Latest post for user: ", i)
   print(latest_post)
+  
+  activity_csv = glob.glob("*.csv")
+  print(activity_csv)    
+  with open(activity_csv[0], "r") as fp:
+    reader = csv.reader(fp)
+    for row in reader:
+      if(row[0] == i ):
+        print(row)
 
 # Test if posts have been made
 file_exists = os.path.exists('post_list.txt')
@@ -91,18 +100,9 @@ if file_exists:
     body = comment_body()
     c = Comment(authorperm, hive_instance=hive)
     c.reply(body, author=author)
-    print("Log - Test if values are in spreadsheet")
-    url_val = i.split("/")
-    activity_test = url_val[1].split("-")
-    print(activity_test)
+    #print("Log - Test if values are in spreadsheet")
+    #url_val = i.split("/")
+    #activity_test = url_val[1].split("-")
+    #print(activity_test)
     
-    activity_csv = glob.glob("*.csv")
-    print(activity_csv)    
-    with open(activity_csv[0], "r") as fp:
-      s = fp.read()
-    if str(activity_test[0]) in s:
-      print("Log - this value is already added to the csv list - Use this to test")
 
-    #lines = open(activity_csv[0], 'rb').read()
-    #if i.encode() in lines:
-    #  print("Log - this value is already added to the csv list - Use this to test")
