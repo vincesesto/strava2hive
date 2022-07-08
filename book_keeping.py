@@ -82,7 +82,7 @@ for i in dev_athletes:
       if(row[0] == i ):
         activity_total =+ 1 
         # print(row)
-      print("Athlete: " + i + "Activities: " + activity_total)
+      print("Athlete: " + str(i) + "Activities: " + str(activity_total))
       
 
 # Test if posts have been made
