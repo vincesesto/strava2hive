@@ -73,15 +73,17 @@ for i in dev_athletes:
   athlete_details = hive_work.get_athlete(i, "HiveAthletes")
   latest_post = get_hive_posts(athlete_details[1])
   print("Log - Latest post for user: ", i)
-  print(latest_post)
   
   activity_csv = glob.glob("*.csv")
-  print(activity_csv)    
+  activity_total = 0
   with open(activity_csv[0], "r") as fp:
     reader = csv.reader(fp)
     for row in reader:
       if(row[0] == i ):
-        print(row)
+        activity_total =+ 1 
+        # print(row)
+      print("Athlete: " + i + "Activities: " + activity_total)
+      
 
 # Test if posts have been made
 file_exists = os.path.exists('post_list.txt')
