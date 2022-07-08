@@ -68,6 +68,8 @@ print("Log - get all athletes and start working through them")
 dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
 prod_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
 
+leader_board = {}
+
 for i in dev_athletes:
   # get the hive username
   athlete_details = hive_work.get_athlete(i, "HiveAthletes")
@@ -82,8 +84,10 @@ for i in dev_athletes:
       if(row[0] == i ):
         activity_total = activity_total + 1 
         # print(row)
-  print("Athlete: " + str(i) + " Activities: " + str(activity_total))
-      
+  leader_board[i] = activity_total
+  #print("Athlete: " + str(i) + " Activities: " + str(activity_total))
+
+print(leader_board)
 
 # Test if posts have been made
 file_exists = os.path.exists('post_list.txt')
