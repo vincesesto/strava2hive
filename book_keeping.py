@@ -55,7 +55,6 @@ def comment_body():
 # Function to reblog a post
 def reblog_strava2hive(permlink):
   athlete_values = hive_work.get_athlete('101635754', "Strava2HiveNewUserSignUp")
-  print(athlete_values)
   c = Client(access_token=athlete_values[6], )
   reblog = Reblog("strava2hive", "strava2hive", permlink)
   print(c.broadcast([reblog.to_operation_structure()]))
@@ -81,9 +80,10 @@ for i in all_athletes:
   # get the hive username
   athlete_details = hive_work.get_athlete(i, "HiveAthletes")
   latest_post = get_hive_posts(athlete_details[1])
-  print("Log - Latest post for user: ", i)
+  #print("Log - Latest post for user: ", i)
   
   activity_csv = glob.glob("*.csv")
+  print(activity_csv)
   activity_total = 0
   with open(activity_csv[0], "r") as fp:
     reader = csv.reader(fp)
