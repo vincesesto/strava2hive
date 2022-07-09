@@ -54,7 +54,7 @@ def comment_body():
   
 # Function to reblog a post
 def reblog_strava2hive(permlink):
-  athlete_values = hive_work.get_athlete(101635754, "HiveAthletes")
+  athlete_values = hive_work.get_athlete(101635754, "Strava2HiveNewUserSignUp")
   c = Client(access_token=athlete_values[6], )
   reblog = Reblog("strava2hive", "strava2hive", permlink)
   print(c.broadcast([reblog.to_operation_structure()]))
@@ -72,6 +72,8 @@ print("Download the activity sheet to work directly with")
 print("Log - get all athletes and start working through them")
 dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
 prod_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
+
+reblog_strava2hive("@run.vince.run/7437593887-2442649343")
 
 leader_board = {}
 
@@ -93,8 +95,6 @@ for i in dev_athletes:
   #print("Athlete: " + str(i) + " Activities: " + str(activity_total))
 
 print(leader_board)
-
-reblog_strava2hive("@run.vince.run/7437593887-2442649343")
 
 # Test if posts have been made
 file_exists = os.path.exists('post_list.txt')
