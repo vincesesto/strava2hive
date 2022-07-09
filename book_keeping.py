@@ -74,7 +74,7 @@ print("Log - get all athletes and start working through them")
 dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
 prod_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
 
-#reblog_strava2hive("@run.vince.run/7437593887-2442649343")
+reblog_strava2hive("@svanbo/7441413907-7100511427")
 
 leader_board = {}
 
