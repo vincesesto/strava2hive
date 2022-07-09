@@ -258,7 +258,7 @@ def strava_activity(athlete_id):
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         record_distance = str(round(activity['distance'] * .001, 2))
-        record_post(athlete_id, activity['id'], activity['type'], activity_date, record_distance, activity['calories'])
+        record_post(athlete_id, activity['id'], activity['type'], activity_date, record_distance, detailed_activity['calories'])
         # Work around for most recent post to be stored in HiveAthletes sheet
         hive_work.update_athlete(athlete_id, activity_date, "A", "HiveAthletes")
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity posted so we only want one activity at a time for:", athlete_id)
