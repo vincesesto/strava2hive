@@ -19,6 +19,8 @@ from beem import Hive
 from beem.nodelist import NodeList
 from beem.account import Account
 from beem.comment import Comment
+from hivesigner.client import Client
+from hivesigner.operations import Reblog
 
 # Script to run after posting to count up records and post to accounts
 
@@ -50,8 +52,12 @@ def comment_body():
   '''
   return comment_body
   
-# Maybe set up a function to count from Hive
-
+# Function to reblog a post
+def reblog_strava2hive(permlink)
+  athlete_values = hive_work.get_athlete(101635754, "HiveAthletes")
+  c = Client(access_token=athlete_values[6], )
+  reblog = Reblog("strava2hive", "strava2hive", permlink)
+  print(c.broadcast([reblog.to_operation_structure()]))
 
 
 ##################################################
@@ -62,7 +68,6 @@ print("Book Keeping")
 print("Log - Count/Record/Comment/Upvote")
 print("Download the activity sheet to work directly with")
 #download_sheet_as_csv("StravaActivity", 1)
-print(os.system("ls -l"))
 
 print("Log - get all athletes and start working through them")
 dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
@@ -88,6 +93,8 @@ for i in dev_athletes:
   #print("Athlete: " + str(i) + " Activities: " + str(activity_total))
 
 print(leader_board)
+
+reblog_strava2hive("@run.vince.run/7437593887-2442649343")
 
 # Test if posts have been made
 file_exists = os.path.exists('post_list.txt')
