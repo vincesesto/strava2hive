@@ -53,7 +53,7 @@ def comment_body():
   return comment_body
   
 # Function to reblog a post
-def reblog_strava2hive(permlink)
+def reblog_strava2hive(permlink):
   athlete_values = hive_work.get_athlete(101635754, "HiveAthletes")
   c = Client(access_token=athlete_values[6], )
   reblog = Reblog("strava2hive", "strava2hive", permlink)
