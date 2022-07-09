@@ -73,12 +73,11 @@ print("Download the activity sheet to work directly with")
 print("Log - get all athletes and start working through them")
 dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
 prod_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
-
-reblog_strava2hive("@svanbo/7441413907-7100511427")
+all_athletes = dev_athletes + prod_athletes
 
 leader_board = {}
 
-for i in dev_athletes:
+for i in all_athletes:
   # get the hive username
   athlete_details = hive_work.get_athlete(i, "HiveAthletes")
   latest_post = get_hive_posts(athlete_details[1])
@@ -97,6 +96,8 @@ for i in dev_athletes:
 
 print(leader_board)
 
+reblog_count = 0
+
 # Test if posts have been made
 file_exists = os.path.exists('post_list.txt')
 if file_exists:
@@ -114,6 +115,10 @@ if file_exists:
     body = comment_body()
     c = Comment(authorperm, hive_instance=hive)
     c.reply(body, author=author)
+    if reblog_count == 0:
+      reblog_strava2hive(i)
+      reblog_count = reblog_count + 1
+    
     #print("Log - Test if values are in spreadsheet")
     #url_val = i.split("/")
     #activity_test = url_val[1].split("-")
