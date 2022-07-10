@@ -100,13 +100,13 @@ for i in prod_athletes:
   #print("Log - Latest post for user: ", i)
   
   activity_csv = glob.glob("*.csv")
-  print(activity_csv)
+  #print(activity_csv)
   activity_total = 0
   with open(activity_csv[0], "r") as fp:
     reader = csv.reader(fp)
     for row in reader:
       row_count += 1
-      if row_count > new_week_row:
+      if row_count < new_week_row:
         if(row[0] == i ):
           activity_total = activity_total + 1 
           # print(row)
