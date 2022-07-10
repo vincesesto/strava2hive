@@ -59,10 +59,10 @@ def create_leader_board(high):
   top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
   top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
   leader_comment = f'''
-  Current Weeks Leader Board:
-  {top1[1]}
-  {top2[1]}
-  {top3[1]}
+  This Weeks Leader Board(Top 3):
+  1. {top1[1]}
+  2. {top2[1]}
+  3. {top3[1]}
   '''
   return leader_comment
   
@@ -132,7 +132,7 @@ if file_exists:
     hive = Hive(nodes=nodes, keys=[wif])
     author = "strava2hive"
     authorperm = i
-    body = comment_body()
+    body = comment_body() + leaders
     c = Comment(authorperm, hive_instance=hive)
     c.reply(body, author=author)
     if reblog_count == 0:
