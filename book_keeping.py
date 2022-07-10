@@ -52,6 +52,14 @@ def comment_body():
   https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
   '''
   return comment_body
+
+# Function to create a leaderboard to add to the body comment
+def leader_board(high):
+  leader_comment = f'''
+  Current Weeks Leader Board
+  {high}
+  '''
+  return leader_comment
   
 # Function to reblog a post
 def reblog_strava2hive(permlink):
@@ -99,8 +107,8 @@ print(leader_board)
 
 k = Counter(leader_board)
 high = k.most_common(3)
-for i in high:
-  print(i[0]," :",i[1]," ")
+print(high)
+print(leader_board(high))
 
 reblog_count = 0
 
