@@ -54,7 +54,7 @@ def comment_body():
   return comment_body
 
 # Function to create a leaderboard to add to the body comment
-def leader_board(high):
+def create_leader_board(high):
   top1 = hive_work.get_athlete(high[0][0], "Strava2HiveNewUserSignUp")
   top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
   top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
@@ -113,7 +113,8 @@ print(leader_board)
 k = Counter(leader_board)
 high = k.most_common(3)
 print(high)
-print(leader_board(high))
+leaders = create_leader_board(high)
+print(leaders)
 
 reblog_count = 0
 
