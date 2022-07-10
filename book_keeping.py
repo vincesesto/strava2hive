@@ -13,6 +13,7 @@ import hive_work
 import csv
 import os.path
 from time import sleep
+from collections import Counter
 from datetime import datetime, timedelta
 from beem.imageuploader import ImageUploader
 from beem import Hive
@@ -95,6 +96,11 @@ for i in all_athletes:
   #print("Athlete: " + str(i) + " Activities: " + str(activity_total))
 
 print(leader_board)
+
+k = Counter(leader_board)
+high = k.most_common(3)
+for i in high:
+  print(i[0]," :",i[1]," ")
 
 reblog_count = 0
 
