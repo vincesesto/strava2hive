@@ -55,9 +55,14 @@ def comment_body():
 
 # Function to create a leaderboard to add to the body comment
 def leader_board(high):
+  top1 = hive_work.get_athlete(high[0][0], "Strava2HiveNewUserSignUp")
+  top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
+  top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
   leader_comment = f'''
-  Current Weeks Leader Board
-  {high}
+  Current Weeks Leader Board:
+  {top1[1]}
+  {top2[1]}
+  {top3[1]}
   '''
   return leader_comment
   
@@ -85,10 +90,10 @@ all_athletes = dev_athletes + prod_athletes
 
 leader_board = {}
 
-for i in all_athletes:
+for i in prod_athletes:
   # get the hive username
   athlete_details = hive_work.get_athlete(i, "HiveAthletes")
-  latest_post = get_hive_posts(athlete_details[1])
+  #latest_post = get_hive_posts(athlete_details[1])
   #print("Log - Latest post for user: ", i)
   
   activity_csv = glob.glob("*.csv")
