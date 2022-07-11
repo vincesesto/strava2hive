@@ -91,7 +91,6 @@ all_athletes = dev_athletes + prod_athletes
 leader_board = {}
 
 new_week_row = 83
-row_count = 0
 
 for i in prod_athletes:
   # get the hive username
@@ -104,9 +103,10 @@ for i in prod_athletes:
   activity_total = 0
   with open(activity_csv[0], "r") as fp:
     reader = csv.reader(fp)
+    row_count = 0
     for row in reader:
       row_count += 1
-      if row_count < new_week_row:
+      if row_count > new_week_row:
         if(row[0] == i ):
           activity_total = activity_total + 1 
           # print(row)
