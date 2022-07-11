@@ -90,7 +90,7 @@ all_athletes = dev_athletes + prod_athletes
 
 leader_board = {}
 
-new_week_row = 83
+new_week_row = 106
 
 for i in prod_athletes:
   # get the hive username
