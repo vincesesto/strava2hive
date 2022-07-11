@@ -23,7 +23,7 @@ def description_and_tags(description):
   hashtags = re.findall("#([a-zA-Z0-9_]{1,50})", description)
   clean_description = re.sub("#[A-Za-z0-9_]+","", description)
   if not hashtags:
-    hashtags = ["hive", "strava2hive", "runningproject", "sportstalk", "health"]
+    hashtags = ["strava2hive", "runningproject", "sportstalk", "health", "fitness"]
   if not clean_description:
     clean_description = "Make sure you keep running and posting to Strava...Stay Strong Everyone!"
   return hashtags[-5:], clean_description
