@@ -89,6 +89,7 @@ prod_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
 all_athletes = dev_athletes + prod_athletes
 
 leader_board = {}
+new_leader_board = {}
 
 new_week_row = 106
 
@@ -101,6 +102,7 @@ for i in prod_athletes:
   activity_csv = glob.glob("*.csv")
   #print(activity_csv)
   activity_total = 0
+  new_activity_total = 0
   with open(activity_csv[0], "r") as fp:
     reader = csv.reader(fp)
     row_count = 0
@@ -108,12 +110,14 @@ for i in prod_athletes:
       row_count += 1
       if row_count > new_week_row:
         if(row[0] == i ):
-          activity_total = activity_total + 1 
+          activity_total = activity_total + 1
+          new_activity_total = new_activity_total + int(row[5]) + int(row[6])
           # print(row)
   leader_board[i] = activity_total
+  new_leader_board[i] = new_activity_total
   #print("Athlete: " + str(i) + " Activities: " + str(activity_total))
 
-print(leader_board)
+print(new_leader_board)
 
 k = Counter(leader_board)
 high = k.most_common(3)
