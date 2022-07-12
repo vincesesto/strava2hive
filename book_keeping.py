@@ -81,7 +81,7 @@ def reblog_strava2hive(permlink):
 print("Book Keeping")
 print("Log - Count/Record/Comment/Upvote")
 print("Download the activity sheet to work directly with")
-#download_sheet_as_csv("StravaActivity", 1)
+hive_work.download_sheet_as_csv("StravaActivity", 1)
 
 print("Log - get all athletes and start working through them")
 dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
@@ -102,7 +102,7 @@ for i in prod_athletes:
   activity_csv = glob.glob("*.csv")
   #print(activity_csv)
   activity_total = 0
-  new_activity_total = 0
+  new_activity_total = 0.0
   with open(activity_csv[0], "r") as fp:
     reader = csv.reader(fp)
     row_count = 0
@@ -111,7 +111,7 @@ for i in prod_athletes:
       if row_count > new_week_row:
         if(row[0] == i ):
           activity_total = activity_total + 1
-          new_activity_total = new_activity_total + int(row[5]) + int(row[6])
+          new_activity_total = new_activity_total + float(row[5]) + float(row[6])
           # print(row)
   leader_board[i] = activity_total
   new_leader_board[i] = new_activity_total
