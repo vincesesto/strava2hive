@@ -47,8 +47,8 @@ def list_all_athletes():
 def comment_body():
   comment_body = f'''
   Thanks so much for using @strava2hive
-  You're smashing your training at the
-  moment and getting stronger every day.
+  You're smashing your training at the moment and getting stronger every day.
+  Leaderboards have started this week, so keep posting activity to be in it!
   https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
   '''
   return comment_body
@@ -64,13 +64,13 @@ def create_leader_board(high):
   if high[0][0] == '8764738':
     top2 = hive_work.get_athlete(high[1][0], "HiveAthletes")
   elif high[0][0] == '1778778':
-    top1 = hive_work.get_athlete(high[0][0], "HiveAthletes")
+    top2 = hive_work.get_athlete(high[0][0], "HiveAthletes")
   else:
     top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
   if high[0][0] == '8764738':
     top3 = hive_work.get_athlete(high[2][0], "HiveAthletes")
   elif high[0][0] == '1778778':
-    top1 = hive_work.get_athlete(high[0][0], "HiveAthletes")
+    top3 = hive_work.get_athlete(high[0][0], "HiveAthletes")
   else:
     top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
   leader_comment = f'''
