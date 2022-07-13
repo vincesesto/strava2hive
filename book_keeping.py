@@ -55,9 +55,24 @@ def comment_body():
 
 # Function to create a leaderboard to add to the body comment
 def create_leader_board(high):
-  top1 = hive_work.get_athlete(high[0][0], "Strava2HiveNewUserSignUp")
-  top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
-  top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
+  if high[0][0] == '8764738':
+    top1 = hive_work.get_athlete(high[0][0], "HiveAthletes")
+  elif high[0][0] == '1778778':
+    top1 = hive_work.get_athlete(high[0][0], "HiveAthletes")
+  else:
+    top1 = hive_work.get_athlete(high[0][0], "Strava2HiveNewUserSignUp")
+  if high[0][0] == '8764738':
+    top2 = hive_work.get_athlete(high[1][0], "HiveAthletes")
+  elif high[0][0] == '1778778':
+    top1 = hive_work.get_athlete(high[0][0], "HiveAthletes")
+  else:
+    top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
+  if high[0][0] == '8764738':
+    top3 = hive_work.get_athlete(high[2][0], "HiveAthletes")
+  elif high[0][0] == '1778778':
+    top1 = hive_work.get_athlete(high[0][0], "HiveAthletes")
+  else:
+    top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
   leader_comment = f'''
   This Weeks Leader Board(Top 3):
   1. @{top1[1]} - {high[0][1]} Posted Activity(s)
@@ -93,7 +108,7 @@ new_leader_board = {}
 
 new_week_row = 106
 
-for i in prod_athletes:
+for i in all_athletes:
   # get the hive username
   athlete_details = hive_work.get_athlete(i, "HiveAthletes")
   #latest_post = get_hive_posts(athlete_details[1])
