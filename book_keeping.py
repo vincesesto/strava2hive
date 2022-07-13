@@ -61,15 +61,15 @@ def create_leader_board(high):
     top1 = hive_work.get_athlete(high[0][0], "HiveAthletes")
   else:
     top1 = hive_work.get_athlete(high[0][0], "Strava2HiveNewUserSignUp")
-  if high[0][0] == '8764738':
+  if high[1][0] == '8764738':
     top2 = hive_work.get_athlete(high[1][0], "HiveAthletes")
-  elif high[0][0] == '1778778':
+  elif high[1][0] == '1778778':
     top2 = hive_work.get_athlete(high[1][0], "HiveAthletes")
   else:
     top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
-  if high[0][0] == '8764738':
+  if high[2][0] == '8764738':
     top3 = hive_work.get_athlete(high[2][0], "HiveAthletes")
-  elif high[0][0] == '1778778':
+  elif high[2][0] == '1778778':
     top3 = hive_work.get_athlete(high[2][0], "HiveAthletes")
   else:
     top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
