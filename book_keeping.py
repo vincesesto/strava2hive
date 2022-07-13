@@ -64,13 +64,13 @@ def create_leader_board(high):
   if high[0][0] == '8764738':
     top2 = hive_work.get_athlete(high[1][0], "HiveAthletes")
   elif high[0][0] == '1778778':
-    top2 = hive_work.get_athlete(high[0][0], "HiveAthletes")
+    top2 = hive_work.get_athlete(high[1][0], "HiveAthletes")
   else:
     top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
   if high[0][0] == '8764738':
     top3 = hive_work.get_athlete(high[2][0], "HiveAthletes")
   elif high[0][0] == '1778778':
-    top3 = hive_work.get_athlete(high[0][0], "HiveAthletes")
+    top3 = hive_work.get_athlete(high[2][0], "HiveAthletes")
   else:
     top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
   leader_comment = f'''
