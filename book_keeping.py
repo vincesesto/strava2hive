@@ -105,6 +105,7 @@ all_athletes = dev_athletes + prod_athletes
 
 leader_board = {}
 new_leader_board = {}
+activity_calories = {}
 
 new_week_row = 106
 
@@ -118,6 +119,7 @@ for i in all_athletes:
   #print(activity_csv)
   activity_total = 0
   new_activity_total = 0.0
+  activity_calories_total = 0.0
   with open(activity_csv[0], "r") as fp:
     reader = csv.reader(fp)
     row_count = 0
@@ -127,14 +129,18 @@ for i in all_athletes:
         if(row[0] == i ):
           activity_total = activity_total + 1
           new_activity_total = new_activity_total + float(row[5]) + float(row[6])
+          activity_calories_total = activity_calories_total + float(row[5])
           # print(row)
   leader_board[i] = activity_total
   new_leader_board[i] = new_activity_total
+  activity_calories[i] = activity_calories_total
   #print("Athlete: " + str(i) + " Activities: " + str(activity_total))
 
 print(new_leader_board)
+print(activity_calories)
 
 k = Counter(leader_board)
+top10 = k.most_common(10)
 high = k.most_common(3)
 print(high)
 leaders = create_leader_board(high)
