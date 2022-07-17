@@ -34,6 +34,7 @@ def description_and_tags(description):
     hashtags = ["strava2hive", "runningproject", "sportstalk", "health", "fitness"]
   if not clean_description:
     clean_description = "Make sure you keep running and posting to Strava...Stay Strong Everyone!"
+  print("Log - Community to post to: ", community)
   return hashtags[-5:], clean_description, community
 
 def list_athletes(column, sheet_name):
