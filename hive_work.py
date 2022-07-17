@@ -20,7 +20,7 @@ def test_module():
   print("This is a test module")
   
 def description_and_tags(description):
-  communiy = re.findall("@([a-zA-Z0-9_]{1,50})", description)
+  community = re.findall("@([a-zA-Z0-9_]{1,50})", description)
   hashtags = re.findall("#([a-zA-Z0-9_]{1,50})", description)
   new_description = re.sub("@[A-Za-z0-9_]+","", description)
   clean_description = re.sub("#[A-Za-z0-9_]+","", new_description)
