@@ -182,7 +182,7 @@ def post_to_hive(athlete_id, activity_details):
     prof_image_uploader = ImageUploader(blockchain_instance=hive)
     prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
   title = activity_details['name']
-  hashtags, description =  hive_work.description_and_tags(activity_details['description'])
+  hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
   body = f'''
   ![{image_name}]({img_link['url']})
   {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
@@ -210,7 +210,7 @@ def post_to_hive(athlete_id, activity_details):
   account_deets = Account(author, blockchain_instance=hive)
   auth = account_deets.get_blog(limit=5)
   
-  hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
+  hive.post(title, body, author=author, tags=tags, community=community, parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
   hive_work.new_posts_list("@" + author + "/" + permlink)
 
 def strava_activity(athlete_id):
