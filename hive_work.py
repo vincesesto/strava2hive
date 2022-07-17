@@ -20,13 +20,21 @@ def test_module():
   print("This is a test module")
   
 def description_and_tags(description):
+  communiy = re.findall("@([a-zA-Z0-9_]{1,50})", description)
   hashtags = re.findall("#([a-zA-Z0-9_]{1,50})", description)
-  clean_description = re.sub("#[A-Za-z0-9_]+","", description)
+  new_description = re.sub("@[A-Za-z0-9_]+","", description)
+  clean_description = re.sub("#[A-Za-z0-9_]+","", new_description)
+  if community == "hikenz"::
+    community = "hive-155184"
+  elif community == "running":
+    community = "hive-107275"
+  else:
+    community = "hive-176853"
   if not hashtags:
     hashtags = ["strava2hive", "runningproject", "sportstalk", "health", "fitness"]
   if not clean_description:
     clean_description = "Make sure you keep running and posting to Strava...Stay Strong Everyone!"
-  return hashtags[-5:], clean_description
+  return hashtags[-5:], clean_description, community
 
 def list_athletes(column, sheet_name):
   gc = pygsheets.authorize(service_file='strava2hive.json')
