@@ -107,7 +107,7 @@ leader_board = {}
 new_leader_board = {}
 activity_calories = {}
 
-new_week_row = 106
+new_week_row = 131
 
 for i in all_athletes:
   # get the hive username
