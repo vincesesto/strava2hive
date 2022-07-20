@@ -213,8 +213,10 @@ def post_to_hive(athlete_id, activity_details):
   hive.post(title, body, author=author, tags=tags, community=community, parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
   hive_work.new_posts_list("@" + author + "/" + permlink)
 
-def strava_activity(athlete_id):
-  athlete_details = hive_work.get_athlete(athlete_id, "HiveAthletes")
+def strava_activity(athlete_deets):
+  #athlete_details = hive_work.get_athlete(athlete_id, "HiveAthletes")
+  athlete_details = athlete_deets
+  print("new change to strava_activity function: ", athlete_details)
   # activity bearer is needed as part of the data
   print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Searching For New Activities")
   bearer_header = "Bearer " + athlete_details[7]
@@ -263,10 +265,10 @@ def strava_activity(athlete_id):
         word = detailed_activity['description'].split()
         wcount = len(word)
         record_distance = str(round(activity['distance'] * .001, 2))
-        record_post(athlete_id, activity['id'], activity['type'], activity_date, record_distance, detailed_activity['calories'], wcount)
+        record_post(athlete_details[6], activity['id'], activity['type'], activity_date, record_distance, detailed_activity['calories'], wcount)
         # Work around for most recent post to be stored in HiveAthletes sheet
-        hive_work.update_athlete(athlete_id, activity_date, "A", "HiveAthletes")
-        print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity posted so we only want one activity at a time for:", athlete_id)
+        hive_work.update_athlete(athlete_details[6], activity_date, "A", "HiveAthletes")
+        print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity posted so we only want one activity at a time for:", athlete_details[6])
         break
 
 ##################################################
@@ -311,11 +313,15 @@ for i in strava_athletes:
     else:
       print(datetime.now().strftime(dt), "Log - Strava Token Needs To Be Updated")
       refresh_access_token(athlete_values)
+      athlete_values = hive_work.get_athlete(i, "HiveAthletes")
 
   print(datetime.now().strftime(dt), "Log - See what activity the athlete has")
-  activity_details = strava_activity(i)
+  #activity_details = strava_activity(i)
+  activity_details = strava_activity(athlete_values)
   print(activity_details)
 
 # Stuff To Do
 # Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
 # Hive - reblogging
+# Different Community Posting
+# Passing Athlete Values to strava_activity function
