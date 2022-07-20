@@ -259,7 +259,7 @@ def strava_activity(athlete_deets):
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - There was an error connecting to pipedream")  
       else:
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has not been posted yet, ship it!!")
-        post_to_hive(athlete_id, detailed_activity)
+        post_to_hive(athlete_details[6], detailed_activity)
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         word = detailed_activity['description'].split()
