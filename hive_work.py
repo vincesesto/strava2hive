@@ -144,3 +144,18 @@ def download_sheet_as_csv(sheet_name, sheet_number):
   wks = sh[sheet_number]
   wks.export(pygsheets.ExportType.CSV)
   
+def calc_calories(activity, duration):
+  METS = 0.0
+  weight = 75
+  if activity == Swim:
+    METS = 8.3
+  elif activity == Run:
+    METS = 11.5   
+  elif activity == Bike:
+    METS = 7.5
+  else:
+    METS = 6
+  per_minute = (METS * weight * 3.5) / 200
+  calories = per_minute * duration
+  return calories
+  
