@@ -154,6 +154,9 @@ def post_to_hive(athlete_id, activity_details):
   distance = str(round(activity_details['distance'] * .001, 2))
   activity_type = activity_details['type'].lower()
   duration = str(round(activity_details['duration'] / 60))
+  calories = activity_details['calories']
+  if calories == 0:
+    calories = hive_work.calc_calories(activity_type, duration)
   print("Log - Downloading images and getting details together")
   strava_screenshot(activity_details['id'])
   # Get athlete profile image
@@ -186,7 +189,7 @@ def post_to_hive(athlete_id, activity_details):
   body = f'''
   ![{image_name}]({img_link['url']})
   {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
-  This {activity_type} helped {author} burn {activity_details['calories']} calories.
+  This {activity_type} helped {author} burn {calories} calories.
   ---
   
   **Description from Strava:** {description}
