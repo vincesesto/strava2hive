@@ -345,6 +345,7 @@ for i in strava_athletes:
     else:
       print("Log - Strava Token Needs To Be Updated")
       refresh_access_token(athlete_values)
+      athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
       
   # Test if athlete hivesigner token is still valid by testing athlete_values[8]
   print("Log - User is an existing user, so we need to check if we need to update the hivesigner token")
@@ -356,6 +357,7 @@ for i in strava_athletes:
   else:
     print("Log - Hivesigner Token Needs To Be Updated")
     hive_work.refresh_hivesigner_token(athlete_values)
+    athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
 
   print("Log - See what activity the athlete has")
   activity_details = strava_activity(athlete_values)
