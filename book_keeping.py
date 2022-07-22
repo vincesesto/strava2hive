@@ -106,6 +106,7 @@ all_athletes = dev_athletes + prod_athletes
 leader_board = {}
 new_leader_board = {}
 activity_calories = {}
+total_activity_count = 0
 
 new_week_row = 131
 
@@ -127,6 +128,7 @@ for i in all_athletes:
       row_count += 1
       if row_count > new_week_row:
         if(row[0] == i ):
+          total_activity_count = total_activity_count + 1
           activity_total = activity_total + 1
           new_activity_total = new_activity_total + float(row[5]) + float(row[6])
           activity_calories_total = activity_calories_total + float(row[5])
@@ -138,6 +140,7 @@ for i in all_athletes:
 
 print(new_leader_board)
 print(activity_calories)
+print(total_activity_count)
 
 k = Counter(leader_board)
 top10 = k.most_common(10)
