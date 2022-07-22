@@ -147,11 +147,11 @@ def download_sheet_as_csv(sheet_name, sheet_number):
 def calc_calories(activity, duration):
   METS = 0.0
   weight = 75
-  if activity == Swim:
+  if activity == "Swim":
     METS = 8.3
-  elif activity == Run:
+  elif activity == "Run":
     METS = 11.5   
-  elif activity == Bike:
+  elif activity == "Ride":
     METS = 7.5
   else:
     METS = 6
