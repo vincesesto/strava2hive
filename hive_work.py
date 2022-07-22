@@ -146,7 +146,7 @@ def download_sheet_as_csv(sheet_name, sheet_number):
   
 def calc_calories(activity, duration):
   METS = 0.0
-  weight = 75
+  weight = 75.0
   if activity == "Swim":
     METS = 8.3
   elif activity == "Run":
@@ -157,5 +157,5 @@ def calc_calories(activity, duration):
     METS = 6
   per_minute = (METS * weight * 3.5) / 200
   calories = float(per_minute) * float(duration)
-  return str(round(calories * .001, 1))
+  return str(round(calories, 1))
   
