@@ -287,7 +287,7 @@ def strava_activity(athlete_deets):
         new_dets = detailed_activity['description'].replace('\r','')
         detailed_activity['description'] = new_dets
         print(detailed_activity['description'])
-        post_to_hive(athlete_details[6], detailed_activity)
+        post_to_hive(athlete_details[10], detailed_activity)
         print("Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         word = detailed_activity['description'].split()
@@ -299,7 +299,7 @@ def strava_activity(athlete_deets):
           calories = hive_work.calc_calories(activity['type'], duration)
         record_post(athlete_details[6], activity['id'], activity['type'], activity_date, record_distance, calories, wcount)
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
-        hive_work.update_athlete(athlete_details[6], activity_date, "A", "Strava2HiveNewUserSignUp")
+        hive_work.update_athlete(athlete_details[10], activity_date, "A", "Strava2HiveNewUserSignUp")
         print("Log - Activity posted so we only want one activity at a time for:", athlete_details[6])
         break
 
