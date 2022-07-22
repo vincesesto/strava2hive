@@ -268,6 +268,7 @@ def strava_activity(athlete_deets):
         word = detailed_activity['description'].split()
         wcount = len(word)
         record_distance = str(round(activity['distance'] * .001, 2))
+        duration = str(round(detailed_activity['duration'] / 60))
         record_post(athlete_details[6], activity['id'], activity['type'], activity_date, record_distance, detailed_activity['calories'], wcount)
         # Work around for most recent post to be stored in HiveAthletes sheet
         hive_work.update_athlete(athlete_details[6], activity_date, "A", "HiveAthletes")
