@@ -294,7 +294,7 @@ def strava_activity(athlete_deets):
         wcount = len(word)
         record_distance = str(round(activity['distance'] * .001, 2))
         calories = detailed_activity['calories']
-        duration = str(round(activity_details['duration'] / 60))
+        duration = round(detailed_activity['duration'] / 60)
         if calories == 0:
           calories = hive_work.calc_calories(activity['type'], duration)
         record_post(athlete_details[6], activity['id'], activity['type'], activity_date, record_distance, calories, wcount)
