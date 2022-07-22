@@ -239,8 +239,9 @@ def post_to_hive(athlete_id, activity_details):
     exit()
   hive_work.new_posts_list("@" + author + "/" + permlink)
   
-def strava_activity(athlete_id):
-  athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
+def strava_activity(athlete_deets):
+  #athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
+  athlete_details = athlete_deets
   # activity bearer is needed as part of the data
   print("Log - Searching For New Activities")
   bearer_header = "Bearer " + athlete_details[11]
@@ -286,15 +287,19 @@ def strava_activity(athlete_id):
         new_dets = detailed_activity['description'].replace('\r','')
         detailed_activity['description'] = new_dets
         print(detailed_activity['description'])
-        post_to_hive(athlete_id, detailed_activity)
+        post_to_hive(athlete_details[6], detailed_activity)
         print("Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         word = detailed_activity['description'].split()
         wcount = len(word)
         record_distance = str(round(activity['distance'] * .001, 2))
-        record_post(athlete_id, activity['id'], activity['type'], activity_date, record_distance, detailed_activity['calories'], wcount)
+        calories = detailed_activity['calories']
+        duration = str(round(activity_details['duration'] / 60))
+        if calories == 0:
+          calories = hive_work.calc_calories(activity['type'], duration)
+        record_post(athlete_details[6], activity['id'], activity['type'], activity_date, record_distance, detailed_activity['calories'], wcount)
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
-        hive_work.update_athlete(athlete_id, activity_date, "A", "Strava2HiveNewUserSignUp")
+        hive_work.update_athlete(athlete_details[6], activity_date, "A", "Strava2HiveNewUserSignUp")
         print("Log - Activity posted so we only want one activity at a time for:", athlete_id)
         break
 
@@ -353,7 +358,7 @@ for i in strava_athletes:
     hive_work.refresh_hivesigner_token(athlete_values)
 
   print("Log - See what activity the athlete has")
-  activity_details = strava_activity(i)
+  activity_details = strava_activity(athlete_values)
   print(activity_details)
   # Add a test to see if the activity was a run and then post if it is
   # we might need to also bring down all the activity for the day and not just the last
