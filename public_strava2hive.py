@@ -218,7 +218,7 @@ def post_to_hive(athlete_id, activity_details):
     permlink,
     body,
     title=title,
-    parent_permlink="hive-176853",
+    parent_permlink=community,
     json_metadata={"tags":tags},
   )
   comment_options = CommentOptions(
