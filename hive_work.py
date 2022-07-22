@@ -156,6 +156,6 @@ def calc_calories(activity, duration):
   else:
     METS = 6
   per_minute = (METS * weight * 3.5) / 200
-  calories = per_minute * duration
-  return calories
+  calories = float(per_minute) * float(duration)
+  return str(round(calories * .001, 1))
   
