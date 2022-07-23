@@ -172,6 +172,7 @@ if file_exists:
     if reblog_count == 0:
       reblog_strava2hive(i)
       reblog_count = reblog_count + 1
+    sleep(10)
     
     #print("Log - Test if values are in spreadsheet")
     #url_val = i.split("/")
