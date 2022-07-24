@@ -46,9 +46,10 @@ def list_all_athletes():
 # Function to create the body of our comment
 def comment_body():
   comment_body = f'''
-  Thanks so much for using @strava2hive
   You're smashing your training at the moment and getting stronger every day.
-  Leaderboards have started this week, so keep posting activity to be in it!
+  Did you know you can now post your activity to the Running community New Zealand community.
+  Simply start your activity description with the \@running or \@hikenz tag at the start of your post.
+  Of course, you can still leave it blank to have you posts delivered to the Exhaust community by default.
   https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
   '''
   return comment_body
@@ -108,7 +109,7 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 131
+new_week_row = 173
 
 for i in all_athletes:
   # get the hive username
