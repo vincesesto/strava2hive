@@ -143,7 +143,7 @@ print(activity_calories)
 print(total_activity_count)
 
 k = Counter(leader_board)
-top10 = k.most_common(10)
+top10 = k.most_common(15)
 high = k.most_common(3)
 print(top10)
 print(high)
