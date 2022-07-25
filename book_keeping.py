@@ -109,7 +109,7 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 173
+new_week_row = 172
 
 for i in all_athletes:
   # get the hive username
