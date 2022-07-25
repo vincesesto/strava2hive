@@ -49,7 +49,7 @@ def comment_body():
   You're smashing your training at the moment and getting stronger every day.
   Did you know you can now post your activity to the Running community New Zealand community.
   Simply start your activity description with the \@running or \@hikenz tag at the start of your post.
-  Of course, you can still leave it blank to have you posts delivered to the Exhaust community by default.
+  Of course, you can still leave it blank to have your posts delivered to the Exhaust community by default.
   https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
   '''
   return comment_body
