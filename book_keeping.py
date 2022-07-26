@@ -100,7 +100,8 @@ print("Download the activity sheet to work directly with")
 hive_work.download_sheet_as_csv("StravaActivity", 1)
 
 print("Log - get all athletes and start working through them")
-dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
+#dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
+dev_athletes = ['8764738', '1778778']
 prod_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
 all_athletes = dev_athletes + prod_athletes
 
