@@ -317,7 +317,9 @@ hive_work.download_sheet_as_csv("StravaActivity", 1)
 print("Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
   print("Log - When did the user post their last activity")
-  activity_date = hive_work.get_latest_activity_date(i, "Strava2HiveNewUserSignUp", 10)
+  athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
+  #activity_date = hive_work.get_latest_activity_date(i, "Strava2HiveNewUserSignUp", 10)
+  activity_date = athlete_values[0]
   print(f'Log - The last activity for the user {i} was on the date {activity_date}')
   date = datetime.strptime(activity_date, "%m/%d/%Y %H:%M:%S")
   act_timestamp = datetime.timestamp(date)
@@ -329,7 +331,7 @@ for i in strava_athletes:
     print(f'Log - The last activity for the user {i} was NOT more than 12 hours ago')
     continue
   print("Log - First get athlete details from sheet so you can access strava")
-  athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
+  #athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
   print("Log - Athlete Values: ", athlete_values)
   # Test if athlete bearer token is still valid by testing athlete_values[12]
   if athlete_values[12] == '':
