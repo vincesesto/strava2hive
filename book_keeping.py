@@ -57,21 +57,21 @@ def comment_body():
 # Function to create a leaderboard to add to the body comment
 def create_leader_board(high):
   if high[0][0] == '8764738':
-    top1 = "run.kirsty.run"
+    top1 = ['8764738', 'run.kirsty.run']
   elif high[0][0] == '1778778':
-    top1 = "run.vince.run"
+    top1 = ['1778778', 'run.vince.run']
   else:
     top1 = hive_work.get_athlete(high[0][0], "Strava2HiveNewUserSignUp")
   if high[1][0] == '8764738':
-    top2 = "run.kirsty.run"
+    top2 = ['8764738', 'run.kirsty.run']
   elif high[1][0] == '1778778':
-    top2 = "run.vince.run"
+    top2 = ['1778778', 'run.vince.run']
   else:
     top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
   if high[2][0] == '8764738':
-    top3 = "run.kirsty.run"
+    top3 = ['8764738', 'run.kirsty.run']
   elif high[2][0] == '1778778':
-    top3 = "run.vince.run"
+    top3 = ['1778778', 'run.vince.run']
   else:
     top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
   leader_comment = f'''
