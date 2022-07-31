@@ -76,9 +76,9 @@ def create_leader_board(high):
     top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
   leader_comment = f'''
   This Weeks Leader Board(Top 3):
-  1. @{top1[1]} - {high[0][1]} Posted Activity(s)
-  2. @{top2[1]} - {high[1][1]} Posted Activity(s)
-  3. @{top3[1]} - {high[2][1]} Posted Activity(s)
+  1. @{top1[1]} - {high[0][1]} Calories Burned
+  2. @{top2[1]} - {high[1][1]} Calories Burned
+  3. @{top3[1]} - {high[2][1]} Calories Burned
   '''
   return leader_comment
   
@@ -145,7 +145,7 @@ print(new_leader_board)
 print(activity_calories)
 print(total_activity_count)
 
-k = Counter(leader_board)
+k = Counter(activity_calories)
 top10 = k.most_common(15)
 high = k.most_common(3)
 print(top10)
