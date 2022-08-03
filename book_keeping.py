@@ -47,9 +47,7 @@ def list_all_athletes():
 def comment_body():
   comment_body = f'''
   You're smashing your training at the moment and getting stronger every day.
-  Did you know you can now post your activity to the Running community New Zealand community.
-  Simply start your activity description with the \@running or \@hikenz tag at the start of your post.
-  Of course, you can still leave it blank to have your posts delivered to the Exhaust community by default.
+  For the month of August 2022, the Strava2Hive leader board will be determined by "calories burned"!
   https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
   '''
   return comment_body
