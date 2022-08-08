@@ -99,8 +99,8 @@ hive_work.download_sheet_as_csv("StravaActivity", 1)
 
 print("Log - get all athletes to work through")
 #dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
-dev_athletes = ['8764738', '1778778']
-prod_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
+dev_athletes = ['run.vince.run', 'run.kirsty.run']
+prod_athletes = hive_work.list_athletes(1, "Strava2HiveNewUserSignUp")
 all_athletes = dev_athletes + prod_athletes
 
 leader_board = {}
@@ -148,8 +148,8 @@ top10 = k.most_common(15)
 high = k.most_common(3)
 print(top10)
 print(high)
-leaders = create_leader_board(high)
-print(leaders)
+#leaders = create_leader_board(high)
+#print(leaders)
 
 reblog_count = 0
 
