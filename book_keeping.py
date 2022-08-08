@@ -54,29 +54,11 @@ def comment_body():
 
 # Function to create a leaderboard to add to the body comment
 def create_leader_board(high):
-  if high[0][0] == '8764738':
-    top1 = ['8764738', 'run.kirsty.run']
-  elif high[0][0] == '1778778':
-    top1 = ['1778778', 'run.vince.run']
-  else:
-    top1 = hive_work.get_athlete(high[0][0], "Strava2HiveNewUserSignUp")
-  if high[1][0] == '8764738':
-    top2 = ['8764738', 'run.kirsty.run']
-  elif high[1][0] == '1778778':
-    top2 = ['1778778', 'run.vince.run']
-  else:
-    top2 = hive_work.get_athlete(high[1][0], "Strava2HiveNewUserSignUp")
-  if high[2][0] == '8764738':
-    top3 = ['8764738', 'run.kirsty.run']
-  elif high[2][0] == '1778778':
-    top3 = ['1778778', 'run.vince.run']
-  else:
-    top3 = hive_work.get_athlete(high[2][0], "Strava2HiveNewUserSignUp")
   leader_comment = f'''
   This Weeks Leader Board(Top 3):
-  1. @{top1[1]} - {high[0][1]} Calories Burned
-  2. @{top2[1]} - {high[1][1]} Calories Burned
-  3. @{top3[1]} - {high[2][1]} Calories Burned
+  1. @{high[0][0]} - {high[0][1]} Calories Burned
+  2. @{high[1][0]} - {high[1][1]} Calories Burned
+  3. @{high[2][0]} - {high[2][1]} Calories Burned
   '''
   return leader_comment
   
@@ -108,7 +90,8 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 246
+new_week_row = 210
+#new_week_row = 246
 
 print("Log - Tally up top athletes")
 for i in all_athletes:
@@ -148,8 +131,8 @@ top10 = k.most_common(15)
 high = k.most_common(3)
 print(top10)
 print(high)
-#leaders = create_leader_board(high)
-#print(leaders)
+leaders = create_leader_board(high)
+print(leaders)
 
 reblog_count = 0
 
