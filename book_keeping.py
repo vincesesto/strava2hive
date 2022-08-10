@@ -68,7 +68,17 @@ def reblog_strava2hive(permlink):
   c = Client(access_token=athlete_values[6], )
   reblog = Reblog("strava2hive", "strava2hive", permlink)
   print(c.broadcast([reblog.to_operation_structure()]))
-
+  
+# Function to work out weekly top 10
+def create_top_10(top_10_dictionary):
+  top_10 = f'''
+  This Weeks Leader Board:
+  1. @{high[0][0]} - {high[0][1]} Calories Burned
+  2. @{high[1][0]} - {high[1][1]} Calories Burned
+  3. @{high[2][0]} - {high[2][1]} Calories Burned
+  '''
+  return top_10
+  
 
 ##################################################
 # Workflow from scratch
