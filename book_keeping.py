@@ -70,12 +70,16 @@ def reblog_strava2hive(permlink):
   print(c.broadcast([reblog.to_operation_structure()]))
   
 # Function to work out weekly top 10
-def create_top_10(top_10_dictionary):
+def create_top_10(top_10):
+  tot_cal = 0
+  for i in range(len(top_10):
+    tot_cal = tot_cal + top[i][1]
+  print(tot_cal)
   top_10 = f'''
   This Weeks Leader Board:
-  1. @{high[0][0]} - {high[0][1]} Calories Burned
-  2. @{high[1][0]} - {high[1][1]} Calories Burned
-  3. @{high[2][0]} - {high[2][1]} Calories Burned
+  1. @{top_10[0][0]} - {top_10[0][1]} Calories Burned 
+  2. @{top_10[1][0]} - {top_10[1][1]} Calories Burned
+  3. @{top_10[2][0]} - {top_10[2][1]} Calories Burned
   '''
   return top_10
   
