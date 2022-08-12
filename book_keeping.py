@@ -74,7 +74,7 @@ def create_top_10(top_10):
   total_hbd = 4
   tot_cal = 0
   for i in range(len(top_10)):
-    tot_cal = tot_cal + top[i][1]
+    tot_cal = tot_cal + top_10[i][1]
   print(tot_cal)
   top_10 = f'''
   This Weeks Leader Board of {tot_cal} total calories burned:
