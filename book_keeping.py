@@ -71,15 +71,16 @@ def reblog_strava2hive(permlink):
   
 # Function to work out weekly top 10
 def create_top_10(top_10):
+  total_hbd
   tot_cal = 0
   for i in range(len(top_10)):
     tot_cal = tot_cal + top[i][1]
   print(tot_cal)
   top_10 = f'''
   This Weeks Leader Board of {tot_cal} total calories burned:
-  1. @{top_10[0][0]} - {top_10[0][1]} Calories Burned - {(top_10[0][1]/tot_cal)*100} percentage of total  
-  2. @{top_10[1][0]} - {top_10[1][1]} Calories Burned - {(top_10[1][1]/tot_cal)*100} percentage of total  
-  3. @{top_10[2][0]} - {top_10[2][1]} Calories Burned - {(top_10[2][1]/tot_cal)*100} percentage of total  
+  1. @{top_10[0][0]} - {top_10[0][1]} Calories Burned - {(top_10[0][1]/tot_cal)*total_hbd} HBD
+  2. @{top_10[1][0]} - {top_10[1][1]} Calories Burned - {(top_10[1][1]/tot_cal)*total_hbd} HBD
+  3. @{top_10[2][0]} - {top_10[2][1]} Calories Burned - {(top_10[2][1]/tot_cal)*total_hbd} HBD 
   '''
   return top_10
   
@@ -147,6 +148,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
+print(create_top_10(top10))
 reblog_count = 0
 
 # Test if posts have been made
