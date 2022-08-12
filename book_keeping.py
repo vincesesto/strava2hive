@@ -76,10 +76,10 @@ def create_top_10(top_10):
     tot_cal = tot_cal + top[i][1]
   print(tot_cal)
   top_10 = f'''
-  This Weeks Leader Board:
-  1. @{top_10[0][0]} - {top_10[0][1]} Calories Burned 
-  2. @{top_10[1][0]} - {top_10[1][1]} Calories Burned
-  3. @{top_10[2][0]} - {top_10[2][1]} Calories Burned
+  This Weeks Leader Board of {tot_cal} total calories burned:
+  1. @{top_10[0][0]} - {top_10[0][1]} Calories Burned - {(top_10[0][1]\tot_cal)*100} percentage of total  
+  2. @{top_10[1][0]} - {top_10[1][1]} Calories Burned - {(top_10[1][1]\tot_cal)*100} percentage of total  
+  3. @{top_10[2][0]} - {top_10[2][1]} Calories Burned - {(top_10[2][1]\tot_cal)*100} percentage of total  
   '''
   return top_10
   
