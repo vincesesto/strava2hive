@@ -71,7 +71,7 @@ def reblog_strava2hive(permlink):
   
 # Function to work out weekly top 10
 def create_top_10(top_10):
-  total_hbd = 4
+  total_hbd = 5
   tot_cal = 0
   for i in range(len(top_10)):
     tot_cal = tot_cal + top_10[i][1]
@@ -88,6 +88,11 @@ def create_top_10(top_10):
   8. @{top_10[7][0]} - {top_10[7][1]} Calories Burned - {(top_10[7][1]/tot_cal)*total_hbd} HBD
   9. @{top_10[8][0]} - {top_10[8][1]} Calories Burned - {(top_10[8][1]/tot_cal)*total_hbd} HBD 
   10. @{top_10[9][0]} - {top_10[9][1]} Calories Burned - {(top_10[9][1]/tot_cal)*total_hbd} HBD 
+  11. @{top_10[10][0]} - {top_10[10][1]} Calories Burned - {(top_10[10][1]/tot_cal)*total_hbd} HBD
+  12. @{top_10[11][0]} - {top_10[11][1]} Calories Burned - {(top_10[11][1]/tot_cal)*total_hbd} HBD
+  13. @{top_10[12][0]} - {top_10[12][1]} Calories Burned - {(top_10[12][1]/tot_cal)*total_hbd} HBD 
+  14. @{top_10[13][0]} - {top_10[13][1]} Calories Burned - {(top_10[13][1]/tot_cal)*total_hbd} HBD
+  15. @{top_10[14][0]} - {top_10[14][1]} Calories Burned - {(top_10[14][1]/tot_cal)*total_hbd} HBD
   '''
   return top_10
   
