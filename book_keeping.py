@@ -55,10 +55,12 @@ def comment_body():
 # Function to create a leaderboard to add to the body comment
 def create_leader_board(high):
   leader_comment = f'''
-  This Weeks Leader Board(Top 3):
+  This Weeks Leader Board(Top 5):
   1. @{high[0][0]} - {high[0][1]} Calories Burned
   2. @{high[1][0]} - {high[1][1]} Calories Burned
   3. @{high[2][0]} - {high[2][1]} Calories Burned
+  4. @{high[3][0]} - {high[3][1]} Calories Burned
+  5. @{high[4][0]} - {high[4][1]} Calories Burned
   '''
   return leader_comment
   
@@ -154,7 +156,7 @@ print(total_activity_count)
 
 k = Counter(activity_calories)
 top10 = k.most_common(15)
-high = k.most_common(3)
+high = k.most_common(5)
 print(top10)
 print(high)
 leaders = create_leader_board(high)
