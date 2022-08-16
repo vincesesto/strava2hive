@@ -104,7 +104,7 @@ def refresh_access_token(athlete):
     print(hive_work.update_athlete(athlete[10], access_info['refresh_token'], 'N', "Strava2HiveNewUserSignUp"))
     
   except:
-    print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[6]))
+    print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[10]))
     return False
   
 def new_user_access_token(athlete):
