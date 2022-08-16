@@ -164,7 +164,7 @@ def post_to_hive(athlete_id, activity_details):
   strava_screenshot(activity_details['id'])
   # Get athlete profile image
   if activity_details['photos']['primary'] == None:
-    image_name, img_link, prof_image_name, prof_img_link = post_functions.zero_image_post(author, activity_details['id'])
+    image_name, img_link, prof_image_name, prof_img_link = post_functions.zero_image_post(author, athlete_details[3], activity_details['id'])
     #prof_image_path = '/home/circleci/project/S2HLogo.PNG'
     #prof_image_name = 'S2HLogo.PNG'
     #prof_image_uploader = ImageUploader(blockchain_instance=hive)
