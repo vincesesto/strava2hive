@@ -44,3 +44,17 @@ def post_footer():
   '''
   return footer
 
+def zero_image_post(author, activity_id):
+  # Create images for a post with zero photos provided by user
+  prof_image_path = '/home/circleci/project/S2HLogo.PNG'
+  prof_image_name = 'S2HLogo.PNG'
+  prof_image_uploader = ImageUploader(blockchain_instance=hive)
+  prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
+  print(prof_img_link)
+  # Now set up the main image
+  image_path = '/home/circleci/project/image_' + str(activity_id) + '.png'
+  image_name = 'image_' + str(activity_id) + '.png'
+  image_uploader = ImageUploader(blockchain_instance=hive)
+  img_link = image_uploader.upload(image_path, author, image_name=image_name)
+  return image_name img_link prof_image_name prof_img_link
+  
