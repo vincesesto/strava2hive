@@ -56,5 +56,5 @@ def zero_image_post(author, activity_id):
   image_name = 'image_' + str(activity_id) + '.png'
   image_uploader = ImageUploader(blockchain_instance=hive)
   img_link = image_uploader.upload(image_path, author, image_name=image_name)
-  #return image_name img_link prof_image_name prof_img_link
+  return image_name, img_link, prof_image_name, prof_img_link
   
