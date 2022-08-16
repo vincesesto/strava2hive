@@ -48,8 +48,13 @@ def post_footer():
   '''
   return footer
 
-def zero_image_post(author, activity_id):
+def zero_image_post(author, user_wif, activity_id):
   # Create images for a post with zero photos provided by user
+  nodelist = NodeList()
+  nodelist.update_nodes()
+  nodes = nodelist.get_hive_nodes()
+  wif = user_wif
+  hive = Hive(nodes=nodes, keys=[wif])
   prof_image_path = '/home/circleci/project/S2HLogo.PNG'
   prof_image_name = 'S2HLogo.PNG'
   prof_image_uploader = ImageUploader(blockchain_instance=hive)
