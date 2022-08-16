@@ -138,7 +138,7 @@ for i in all_athletes:
     row_count = 0
     for row in reader:
       row_count += 1
-      if row_count > new_week_row:
+      if row_count >= new_week_row:
         if(row[7] == i ):
           total_activity_count = total_activity_count + 1
           activity_total = activity_total + 1
