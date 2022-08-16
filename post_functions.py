@@ -5,6 +5,10 @@
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from beem.imageuploader import ImageUploader
+from beem import Hive
+from beem.account import Account
+from beem.nodelist import NodeList
 
 # Functions
 def strava_screenshot(activity):
