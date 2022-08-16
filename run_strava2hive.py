@@ -174,7 +174,7 @@ def post_to_hive(athlete_id, activity_details):
     #image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
     #image_name = 'image_' + str(activity_details['id']) + '.png'
     #image_uploader = ImageUploader(blockchain_instance=hive)
-    img_link = image_uploader.upload(image_path, author, image_name=image_name)
+    #img_link = image_uploader.upload(image_path, author, image_name=image_name)
   else:
     profile_img = activity_details['photos']['primary']['urls']['600']
     command = 'wget ' + profile_img + ' -O prof_image_' + str(athlete_id) + '.png'
