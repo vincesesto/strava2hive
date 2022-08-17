@@ -257,7 +257,7 @@ def strava_activity(athlete_deets):
   if type(activity_data) is dict:
     print(activity_data)
     print("Log - It looks like there is an issue with strava authentication")
-    break
+    return None
   for i in range(len(activity_data)):
     activity = activity_data[i]
     print(activity['type'])
