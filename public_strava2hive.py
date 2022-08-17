@@ -255,7 +255,7 @@ def strava_activity(athlete_deets):
   response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers)
   activity_data = response.json()
   for i in range(len(activity_data)):
-    if 'Authorization Error' in i:
+    if 'Authorization Error' in str(i):
       print(i)
       print("Log - there seems to be an error with loggin into strava")
       break
