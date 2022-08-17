@@ -320,7 +320,7 @@ hive_work.download_sheet_as_csv("StravaActivity", 1)
 print("Log - Use athlete details to get activity from strava")
 for i in strava_athletes:
   if i == 77830218 :
-    continue
+    break
   print(f'Log - When did the user {i} post their last activity')
   athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
   #activity_date = hive_work.get_latest_activity_date(i, "Strava2HiveNewUserSignUp", 10)
