@@ -144,6 +144,7 @@ def download_sheet_as_csv(sheet_name, sheet_number):
   wks = sh[sheet_number]
   print(wks)
   wks.export(pygsheets.ExportType.CSV)
+  wks.export(filename=testingcsv)
   
 def calc_calories(activity, duration):
   METS = 0.0
