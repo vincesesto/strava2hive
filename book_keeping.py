@@ -166,8 +166,8 @@ print(leaders)
 reblog_count = 0
 
 # Test if posts have been made
-#file_exists = os.path.exists('post_list.txt')
-file_exists = False
+file_exists = os.path.exists('post_list.txt')
+#file_exists = False
 if file_exists:
   f = open("post_list.txt", "r")
   for i in f.readlines():
