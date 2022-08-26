@@ -230,7 +230,7 @@ try:
             'ReadCapacityUnits': 10,
             'WriteCapacityUnits': 10
         }
-    }
+    )
     print("Creating table")
     waiter = client.get_waiter('table_exists')
     waiter.wait(TableName='ISS_locations')
