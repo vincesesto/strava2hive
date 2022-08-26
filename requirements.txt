@@ -5,3 +5,4 @@ pygsheets
 pandas
 beem
 hivesigner
+boto3
