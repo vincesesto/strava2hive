@@ -196,6 +196,8 @@ if file_exists:
 #=================================================
 # DynamoDB Stuff
 import boto3
+import requests
+import time
 
 client = boto3.client(
     'dynamodb',
@@ -241,7 +243,23 @@ try:
 except ddb_exceptions.ResourceInUseException:
     print("Table exists")
 
+def call_ISS_API():
+    print("Calling ISS")
+    time.sleep(1)
+    r = requests.get('http://api.open-notify.org/iss-now.json')
+    json = r.json()
+    print(json)
+    json['latitude'] = json['iss_position']['latitude']
+    json['longitude'] = json['iss_position']['longitude']
+    del json['iss_position']
+    del json['message']
+    return json    
 
+api_calls = {}
+
+for i in range(5):
+    response = call_ISS_API()
+    api_calls[response['timestamp']] = response
 
 
 
