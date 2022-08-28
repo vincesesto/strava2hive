@@ -7,6 +7,7 @@ import pandas as pd
 import requests
 import time
 import glob
+import boto3
 import hive_work
 import pipedream_modules
 import post_functions
@@ -320,8 +321,28 @@ for i in strava_athletes:
   activity_details = strava_activity(athlete_values)
   print(activity_details)
 
-# Stuff To Do
+##################################################
+# DynamoDB Workflow
+##################################################
+
+# This will be the new code working from DynamoDB
+client = boto3.client(
+    'dynamodb',
+    region_name='ap-southeast-2',
+    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+    )
+
+dynamodb = boto3.resource(
+    'dynamodb',
+    region_name='ap-southeast-2',
+    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+    )
+
+ddb_exceptions = client.exceptions
+
+
+
 # Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
 # Hive - reblogging
-# Different Community Posting
-# Passing Athlete Values to strava_activity function
