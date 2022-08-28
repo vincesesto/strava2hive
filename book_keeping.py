@@ -277,7 +277,7 @@ from boto3.dynamodb.conditions import Key
 k = api_calls[list(api_calls)[0]]['timestamp']
 
 response = dynamodb.Table('ISS_locations').query(
-    KeyConditionExpression=Key('timesptamp').eq(k)
+    KeyConditionExpression=Key('timestamp').eq(k)
 )
 
 for i in response['Items']:
