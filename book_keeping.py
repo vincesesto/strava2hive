@@ -261,5 +261,25 @@ for i in range(5):
     response = call_ISS_API()
     api_calls[response['timestamp']] = response
 
+print("Adding items to dynamodb")
+for response in api_calls:
+    dynamodb.Table('ISS_locations').put_items(Item=api_calls[response])
 
+print("Scanning table")
+response = dynamodb.Table('ISS_locations').scan()
+
+for i in response['Items']:
+    print(i)
+
+print("Query table")
+from boto3.dynamodb.conditions import Key
+
+k = api_calls[list(api_calls)[0]]['timestamp']
+
+response = dynamodb.Table('ISS_locations').query(
+    KeyConditionExpression=Key('timesptamp').eq(k)
+)
+
+for i in response['Items']:
+    print(i)
 
