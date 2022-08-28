@@ -263,7 +263,7 @@ for i in range(5):
 
 print("Adding items to dynamodb")
 for response in api_calls:
-    dynamodb.Table('ISS_locations').put_items(Item=api_calls[response])
+    dynamodb.Table('ISS_locations').put_item(Item=api_calls[response])
 
 print("Scanning table")
 response = dynamodb.Table('ISS_locations').scan()
