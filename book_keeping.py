@@ -248,7 +248,7 @@ athlete_values = hive_work.get_athlete("1778778", "HiveAthletes")
 print(athlete_values)
 
 print("Adding items to dynamodb")
-dynamodb.Table('legacy_athletes').put_item(Item=athlete_values)
+#dynamodb.Table('legacy_athletes').put_item(Item=athlete_values)
 
 print("Scanning table")
 response = dynamodb.Table('legacy_athletes').scan()
