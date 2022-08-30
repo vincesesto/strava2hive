@@ -217,7 +217,7 @@ ddb_exceptions = client.exceptions
 
 try:
     table = client.create_table(
-        TableName='ISS_locations',
+        TableName='legacy_athletes',
         KeySchema=[
             {
                 'AttributeName': 'timestamp',
@@ -237,61 +237,35 @@ try:
     )
     print("Creating table")
     waiter = client.get_waiter('table_exists')
-    waiter.wait(TableName='ISS_locations')
+    waiter.wait(TableName='legacy_athletes')
     print("Table created")
 
 except ddb_exceptions.ResourceInUseException:
     print("Table exists")
 
-def call_ISS_API():
-    print("Calling ISS")
-    time.sleep(1)
-    r = requests.get('http://api.open-notify.org/iss-now.json')
-    json = r.json()
-    print(json)
-    json['latitude'] = json['iss_position']['latitude']
-    json['longitude'] = json['iss_position']['longitude']
-    del json['iss_position']
-    del json['message']
-    return json    
-
-api_calls = {}
-
-for i in range(5):
-    response = call_ISS_API()
-    api_calls[response['timestamp']] = response
+    
+athlete_values = hive_work.get_athlete("1778778", "HiveAthletes")   
+print(athlete_values)
 
 print("Adding items to dynamodb")
-for response in api_calls:
-    dynamodb.Table('ISS_locations').put_item(Item=api_calls[response])
+dynamodb.Table('legacy_athletes').put_item(Item=athlete_values)
 
 print("Scanning table")
-response = dynamodb.Table('ISS_locations').scan()
+response = dynamodb.Table('legacy_athletes').scan()
 
 for i in response['Items']:
     print(i)
 
 print("Query table")
-from boto3.dynamodb.conditions import Key
+#from boto3.dynamodb.conditions import Key
 
-k = api_calls[list(api_calls)[0]]['timestamp']
+#k = api_calls[list(api_calls)[0]]['timestamp']
 
-response = dynamodb.Table('ISS_locations').query(
+#response = dynamodb.Table('ISS_locations').query(
     KeyConditionExpression=Key('timestamp').eq(k)
-)
+#)
 
-for i in response['Items']:
-    print(i)
+#for i in response['Items']:
+#    print(i)
 
-print("Remove item")
-k = api_calls[list(api_calls)[1]]['timestamp']
-response = dynamodb.Table('ISS_locations').delete_item(
-    Key={'timestamp':k}
-)
-
-print("Scanning table")
-response = dynamodb.Table('ISS_locations').scan()
-for i in response['Items']:
-    print(i)
-    
 
