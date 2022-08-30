@@ -262,7 +262,7 @@ print("Query table")
 #k = api_calls[list(api_calls)[0]]['timestamp']
 
 #response = dynamodb.Table('ISS_locations').query(
-    KeyConditionExpression=Key('timestamp').eq(k)
+    #KeyConditionExpression=Key('timestamp').eq(k)
 #)
 
 #for i in response['Items']:
