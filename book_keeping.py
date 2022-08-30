@@ -220,13 +220,13 @@ try:
         TableName='legacy_athletes',
         KeySchema=[
             {
-                'AttributeName': 'timestamp',
+                'AttributeName': 'athleteId',
                 'KeyType': 'HASH'
             }
         ],
         AttributeDefinitions=[
             {
-                'AttributeName': 'timestamp',
+                'AttributeName': 'athleteId',
                 'AttributeType': 'N'
             }
         ],
