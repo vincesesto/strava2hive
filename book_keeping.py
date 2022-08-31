@@ -227,7 +227,7 @@ try:
         AttributeDefinitions=[
             {
                 'AttributeName': 'athleteId',
-                'AttributeType': 'N'
+                'AttributeType': 'S'
             }
         ],
         ProvisionedThroughput={
