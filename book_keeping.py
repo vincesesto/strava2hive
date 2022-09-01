@@ -257,15 +257,13 @@ for i in response['Items']:
     print(i)
 
 print("Query table")
-#from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key
 
-#k = api_calls[list(api_calls)[0]]['timestamp']
+response = dynamodb.Table('legacy_athletes').query(
+    KeyConditionExpression=Key('timestamp').eq('1778778')
+)
 
-#response = dynamodb.Table('ISS_locations').query(
-    #KeyConditionExpression=Key('timestamp').eq(k)
-#)
-
-#for i in response['Items']:
-#    print(i)
+for i in response['Items']:
+    print(i)
 
 
