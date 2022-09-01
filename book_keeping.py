@@ -265,5 +265,6 @@ response = dynamodb.Table('legacy_athletes').query(
 
 for i in response['Items']:
     print(i)
+    type(i)
 
 
