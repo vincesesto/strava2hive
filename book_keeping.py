@@ -263,7 +263,7 @@ response = dynamodb.Table('legacy_athletes').query(
     KeyConditionExpression=Key('athleteId').eq(1778778)
 )
 
-for k, v in response['Items'][0]:
+for k, v in response['Items'][0].items():
   print(k, v)
 
 
