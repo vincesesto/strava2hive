@@ -260,7 +260,7 @@ print("Query table")
 from boto3.dynamodb.conditions import Key
 
 response = dynamodb.Table('legacy_athletes').query(
-    KeyConditionExpression=Key('athleteId').eq('1778778')
+    KeyConditionExpression=Key('athleteId').eq(Decimal('1778778'))
 )
 
 for i in response['Items']:
