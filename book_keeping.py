@@ -267,3 +267,9 @@ for k, v in response['Items'][0].items():
   print(k, v)
 
 
+table = boto3.resource('dynamodb').Table('legacy_athletes')
+
+# get item
+response = table.get_item(Key={'athleteId': 1778778 })
+item = response['Item']
+print(item)
