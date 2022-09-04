@@ -266,10 +266,10 @@ response = dynamodb.Table('legacy_athletes').query(
 for k, v in response['Items'][0].items():
   print(k, v)
 
-
-table = boto3.resource('dynamodb').Table('legacy_athletes')
-
-# get item
-response = table.get_item(Key={'athleteId': 1778778 })
-item = response['Item']
-print(item)
+last_post_date 8/31/2022 21:34:11
+response.update_item(
+    Key={'athleteId': 1778778},
+    AttributeUpdates={
+        'last_post_date': '9/1/2022 21:34:11',
+    },
+)
