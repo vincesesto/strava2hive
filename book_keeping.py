@@ -162,7 +162,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-#print(create_top_10(top10))
+print(create_top_10(top10))
 reblog_count = 0
 
 # Test if posts have been made
@@ -266,7 +266,6 @@ response = dynamodb.Table('legacy_athletes').query(
 for k, v in response['Items'][0].items():
   print(k, v)
 
-last_post_date 8/31/2022 21:34:11
 response.update_item(
     Key={'athleteId': 1778778},
     AttributeUpdates={
