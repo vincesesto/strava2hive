@@ -272,14 +272,14 @@ for k, v in response['Items'][0].items():
 
 table = dynamodb.Table('legacy_athletes')
 
-response = table.update_item(
-    Key={
-        'athleteId': '1778778'
-    },
-    UpdateExpression='SET last_post_date = :newDate',
-    ExpressionAttributeValues={
-        ':newDate': "8/30/2022 21:34:11"
-    },
-    ReturnValues="UPDATED_NEW"
-)
+#response = table.update_item(
+#    Key={
+#        'athleteId': '1778778'
+#    },
+#    UpdateExpression='SET last_post_date = :newDate',
+#    ExpressionAttributeValues={
+#        ':newDate': "8/30/2022 21:34:11"
+#    },
+#    ReturnValues="UPDATED_NEW"
+#)
   
