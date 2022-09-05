@@ -268,7 +268,7 @@ for k, v in response['Items'][0].items():
 
 
   
-dynamodb = boto3.resource('dynamodb', region_name='ap-southeast-2')
+#dynamodb = boto3.resource('dynamodb', region_name='ap-southeast-2')
 
 table = dynamodb.Table('legacy_athletes')
 
