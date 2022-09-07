@@ -21,6 +21,18 @@ from beem.account import Account
 from beem.nodelist import NodeList
 
 # Functions
+
+def dynamo_access():
+  client = boto3.client('dynamodb', region_name='ap-southeast-2',
+    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+  )
+  dynamodb = boto3.resource('dynamodb', region_name='ap-southeast-2',
+    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+  )
+  ddb_exceptions = client.exceptions
+
 def strava_screenshot(activity):
   # Create the command to run on chrome
   #chrome_command = 'google-chrome --headless --screenshot="./screenshot_' + str(activity) + '.png" "https://www.strava.com/activities/' + str(activity) + '"'
@@ -325,22 +337,12 @@ for i in strava_athletes:
 # DynamoDB Workflow
 ##################################################
 
-# This will be the new code working from DynamoDB
-client = boto3.client(
-    'dynamodb',
-    region_name='ap-southeast-2',
-    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
-    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
-    )
+print(dynamo_access())
+print("Scanning table")
+response = dynamodb.Table('legacy_athletes').scan()
 
-dynamodb = boto3.resource(
-    'dynamodb',
-    region_name='ap-southeast-2',
-    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
-    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
-    )
-
-ddb_exceptions = client.exceptions
+for i in response['Items']:
+    print(i)
 
 
 
