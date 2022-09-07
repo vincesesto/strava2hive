@@ -376,4 +376,44 @@ for i in strava_athletes:
   # Add a test to see if the activity was a run and then post if it is
   # we might need to also bring down all the activity for the day and not just the last
 
+##############################################################33
+# Move Processing to DynamoDB
+
+dynamoTable = 'athletes'
+sheetName = 'Strava2HiveNewUserSignUp'
+
+dynamodb = hive_work.dynamo_access()
+print("Scanning table")
+response = dynamodb.Table(dynamoTable).scan()
+
+for i in response['Items']:
+    print(i)
+
+athlete_values = hive_work.get_athlete("101635754", sheetName)   
+print(athlete_values)
+
+print("Testing and update post date")
+dynamo_date = response['Items'][0]['last_post_date']
+sheet_date = athlete_values[0]
+if dynamo_date == sheet_date:
+  print("It looks like the date is the same, so do not update")
+else:
+  print("Updating date on dynamo")
+  table = dynamodb.Table(dynamoTable)
+  response = table.update_item(
+    Key={
+        'athleteId': int(athlete_values[10])
+    },
+    UpdateExpression='SET last_post_date = :newDate',
+    ExpressionAttributeValues={
+        ':newDate': sheet_date
+    },
+    ReturnValues="UPDATED_NEW"
+)
+
+
+
+
+
+
 
