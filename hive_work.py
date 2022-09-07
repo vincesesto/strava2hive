@@ -8,6 +8,8 @@ import time
 import re
 import random
 import string
+import boto3
+from boto3.dynamodb.conditions import Key
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -18,6 +20,19 @@ from beem.nodelist import NodeList
 
 def test_module():
   print("This is a test module")
+  
+def dynamo_access():
+  # Access the dynamo db to then do other stuff using it
+  client = boto3.client('dynamodb', region_name='ap-southeast-2',
+    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+  )
+  dynamodb = boto3.resource('dynamodb', region_name='ap-southeast-2',
+    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+  )
+  ddb_exceptions = client.exceptions
+  return dynamodb  
   
 def description_and_tags(description):
   community = re.findall("@([a-zA-Z0-9_]{1,50})", description)
