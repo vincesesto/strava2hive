@@ -15,6 +15,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
 from datetime import datetime, timedelta
+from boto3.dynamodb.conditions import Key
 from beem.imageuploader import ImageUploader
 from beem import Hive
 from beem.account import Account
@@ -345,6 +346,27 @@ response = dynamodb.Table('legacy_athletes').scan()
 for i in response['Items']:
     print(i)
 
+athlete_values = hive_work.get_athlete("1778778", "HiveAthletes")   
+print(athlete_values)
+
+print("Testing and update post date")
+dynamo_date = response['Items'][0]['last_post_date']
+sheet_date = athlete_values[0]
+if dynamo_date == sheet_date:
+  print("It looks like the date is the same, so do not update")
+else:
+  print("Updating date on dynamo")
+  table = dynamodb.Table('legacy_athletes')
+  response = table.update_item(
+    Key={
+        'athleteId': response['Items'][0]['athleteId']
+    },
+    UpdateExpression='SET last_post_date = :newDate',
+    ExpressionAttributeValues={
+        ':newDate': sheet_date
+    },
+    ReturnValues="UPDATED_NEW"
+)
 
 
 # Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
