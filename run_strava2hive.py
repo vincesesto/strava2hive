@@ -32,6 +32,7 @@ def dynamo_access():
     aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
   )
   ddb_exceptions = client.exceptions
+  return dynamodb
 
 def strava_screenshot(activity):
   # Create the command to run on chrome
@@ -337,7 +338,7 @@ for i in strava_athletes:
 # DynamoDB Workflow
 ##################################################
 
-print(dynamo_access())
+dynamodb = dynamo_access()
 print("Scanning table")
 response = dynamodb.Table('legacy_athletes').scan()
 
