@@ -265,22 +265,4 @@ response = dynamodb.Table('legacy_athletes').query(
 
 for k, v in response['Items'][0].items():
   print(k, v)
-
-print("Testing to see if the dates are correct")
-print(response['Items'][0]['last_post_date'])
-  
-#dynamodb = boto3.resource('dynamodb', region_name='ap-southeast-2')
-
-table = dynamodb.Table('legacy_athletes')
-
-response = table.update_item(
-    Key={
-        'athleteId': 1778778
-    },
-    UpdateExpression='SET last_post_date = :newDate',
-    ExpressionAttributeValues={
-        ':newDate': "8/30/2022 21:34:11"
-    },
-    ReturnValues="UPDATED_NEW"
-)
   
