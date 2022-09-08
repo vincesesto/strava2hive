@@ -401,16 +401,33 @@ else:
   print("Updating date on dynamo")
   table = dynamodb.Table(dynamoTable)
   response = table.update_item(
-    Key={
-        'athleteId': int(athlete_values[10])
-    },
+    Key={ 'athleteId': int(athlete_values[10])},
     UpdateExpression='SET last_post_date = :newDate',
-    ExpressionAttributeValues={
-        ':newDate': sheet_date
-    },
+    ExpressionAttributeValues={':newDate': sheet_date },
     ReturnValues="UPDATED_NEW"
-)
-
+  )
+  
+print("Testing HiveSigner Tokens are correct")
+dynamo_hive_token = response['Items'][0]['hive_signer_access_token']
+sheet_hive_token = athlete_values[6]
+if dynamo_hive_token == sheet_hive_token:
+  print("It looks like the hivesigner token is the same, so do not update")
+else:
+  print("Updating hivesigner token on dynamo")
+  table = dynamodb.Table(dynamoTable)
+  response = table.update_item(
+    Key={ 'athleteId': int(athlete_values[10])},
+    UpdateExpression='SET hive_signer_access_token = :newHiveToken',
+    ExpressionAttributeValues={':newHiveToken': sheet_hive_token },
+    ReturnValues="UPDATED_NEW"
+  )
+  print("And the token expire date")
+  response = table.update_item(
+    Key={ 'athleteId': int(athlete_values[10])},
+    UpdateExpression='SET hive_signer_expires = :newHiveExpire',
+    ExpressionAttributeValues={':newHiveExpire': athlete_values[8] },
+    ReturnValues="UPDATED_NEW"
+  )
 
 
 
