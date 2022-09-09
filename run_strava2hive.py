@@ -224,7 +224,7 @@ def post_to_hive(athlete_id, activity_details):
   
   hive.post(title, body, author=author, tags=tags, community=community, parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
   hive_work.new_posts_list("@" + author + "/" + permlink)
-  pipedream_modules.hive_post_api(author, "@" + author + "/" + permlink):
+  pipedream_modules.hive_post_api(author, "@" + author + "/" + permlink)
 
 def strava_activity(athlete_deets):
   #athlete_details = hive_work.get_athlete(athlete_id, "HiveAthletes")
