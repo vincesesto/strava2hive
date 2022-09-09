@@ -16,3 +16,17 @@ def activity_posted_api(activity_id):
     return_data = False
 
   return return_data
+
+def hive_post_api(hive_user, post_url):
+  # Add details to the user store in pipedream after posting to hive
+  url = 'https://eovp49jyklnn22n.m.pipedream.net'
+  hive_post_details = {"user": hive_user, "url": post_url }
+  header_vals = {'Content-Type': 'application/json' }
+  try:
+    response = requests(url, data=json.dumps(hive_post_details), headers=header_vals)
+    return_data = response.json()
+  except:
+    print("Log - An Error occurred trying to authenticate with pipedream")
+    return_data = False
+
+  return return_data    
