@@ -447,7 +447,7 @@ else:
   response = table.update_item(
     Key={ 'athleteId': int(athlete_values[10])},
     UpdateExpression='SET strava_token_expires = :newStravaExpire',
-    ExpressionAttributeValues={':newHiveExpire': athlete_values[12] },
+    ExpressionAttributeValues={':newStravaExpire': athlete_values[12] },
     ReturnValues="UPDATED_NEW"
   )  
 
