@@ -21,6 +21,7 @@ def hive_post_api(hive_user, post_url):
   # Add details to the user store in pipedream after posting to hive
   url = 'https://eovp49jyklnn22n.m.pipedream.net'
   hive_post_details = {"user": hive_user, "url": post_url }
+  print(hive_post_details)
   header_vals = {'Content-Type': 'application/json' }
   try:
     response = requests(url, data=json.dumps(hive_post_details), headers=header_vals)
