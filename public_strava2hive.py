@@ -458,6 +458,8 @@ athlete_list = [101635754]
 for i in athlete_list:
   print(i)
   #	3. get the dynamo details for that athleteId
+  dynamodb = hive_work.dynamo_access()
+  table = dynamodb.Table(dynamoTable)
   athletedb_response = table.query(
     KeyConditionExpression=Key('athleteId').eq(i)
   )
