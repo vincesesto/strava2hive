@@ -451,11 +451,21 @@ else:
     ReturnValues="UPDATED_NEW"
   )  
 
-#Start from scratch
-#1. get a list of all the athleteId's
+#Start from scratch again
+#1. get a list of all the athleteId's(we are doing this the easy way for now)
+athlete_list = [101635754]
 #2. loop through all the athleteId's
-#	3. get the dynamo details for that athleteId
-#	4. change the last_post_date is more that 12 hours old
+for i in athlete_list:
+  print(i)
+  #	3. get the dynamo details for that athleteId
+  athletedb_response = table.query(
+    KeyConditionExpression=Key('athleteId').eq(i)
+  )
+  print(athletedb_response['Items'])
+  
+  
+  
+#	4. check the last_post_date is more that 12 hours old
 #	5. check if strava token has expired, refresh if not
 #	6. check if hivesigner token has expired, refresh if not
 #	7. now see if the user has had any activities
