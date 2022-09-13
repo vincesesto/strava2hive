@@ -24,7 +24,7 @@ def hive_post_api(hive_user, post_url):
   print(hive_post_details)
   header_vals = {'Content-Type': 'application/json' }
   try:
-    response = requests(url, data=json.dumps(hive_post_details), headers=header_vals)
+    response = requests.post(url, data=json.dumps(hive_post_details), headers=header_vals)
     return_data = response.json()
   except:
     print("Log - An Error occurred trying to authenticate with pipedream")
