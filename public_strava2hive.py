@@ -458,7 +458,7 @@ else:
 athlete_list = [101635754]
 #2. loop through all the athleteId's
 for i in athlete_list:
-  print(i)
+  print(f'Log - Working throuh activity for the user {i}')
   #	3. get the dynamo details for that athleteId
   dynamodb = hive_work.dynamo_access()
   table = dynamodb.Table(dynamoTable)
@@ -466,10 +466,20 @@ for i in athlete_list:
     KeyConditionExpression=Key('athleteId').eq(i)
   )
   print(athletedb_response['Items'])
+  #	4. check the last_post_date is more that 12 hours old
+  last_activity_date = athletedb_response['Items'][0]['last_post_date']
+  print(f'Log - The last activity for the user {i} was on the date {last_activity_date}')
+  date = datetime.strptime(last_activity_date, "%m/%d/%Y %H:%M:%S")
+  act_timestamp = datetime.timestamp(date)
+  current_time = time.time()
+  NUMBER_OF_SECONDS = 43200 # seconds in 12 hours
+  if (current_time - act_timestamp) > NUMBER_OF_SECONDS:
+    print(f'Log - The last activity for the user {i} was more than 12 hours ago')
+  else:
+    print(f'Log - The last activity for the user {i} was NOT more than 12 hours ago')
+    continue
   
   
-  
-#	4. check the last_post_date is more that 12 hours old
 #	5. check if strava token has expired, refresh if not
 #	6. check if hivesigner token has expired, refresh if not
 #	7. now see if the user has had any activities
