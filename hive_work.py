@@ -176,3 +176,14 @@ def calc_calories(activity, duration):
   calories = float(per_minute) * float(duration)
   return str(round(calories, 1))
   
+def check_last_post_date(athleteId, last_post_date):
+  # Check if the last post date is older than 12 hours old
+  print(f'Log - The last activity for the user {athleteId} was on the date {last_post_date}')
+  date = datetime.strptime(last_post_date, "%m/%d/%Y %H:%M:%S")
+  act_timestamp = datetime.timestamp(date)
+  current_time = time.time()
+  NUMBER_OF_SECONDS = 43200 # seconds in 12 hours
+  if (current_time - act_timestamp) > NUMBER_OF_SECONDS:
+    return True
+  else:
+    return False
