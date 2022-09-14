@@ -468,12 +468,8 @@ for i in athlete_list:
   print(athletedb_response['Items'])
   #	4. check the last_post_date is more that 12 hours old
   last_activity_date = athletedb_response['Items'][0]['last_post_date']
-  print(f'Log - The last activity for the user {i} was on the date {last_activity_date}')
-  date = datetime.strptime(last_activity_date, "%m/%d/%Y %H:%M:%S")
-  act_timestamp = datetime.timestamp(date)
-  current_time = time.time()
-  NUMBER_OF_SECONDS = 43200 # seconds in 12 hours
-  if (current_time - act_timestamp) > NUMBER_OF_SECONDS:
+  post_val = check_last_post_date(i, last_activity_date)
+  if post_val:
     print(f'Log - The last activity for the user {i} was more than 12 hours ago')
   else:
     print(f'Log - The last activity for the user {i} was NOT more than 12 hours ago')
