@@ -468,7 +468,7 @@ for i in athlete_list:
   print(athletedb_response['Items'])
   #	4. check the last_post_date is more that 12 hours old
   last_activity_date = athletedb_response['Items'][0]['last_post_date']
-  post_val = check_last_post_date(i, last_activity_date)
+  post_val = hive_work.check_last_post_date(i, last_activity_date)
   if post_val:
     print(f'Log - The last activity for the user {i} was more than 12 hours ago')
   else:
