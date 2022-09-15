@@ -474,9 +474,20 @@ for i in athlete_list:
   else:
     print(f'Log - The last activity for the user {i} was NOT more than 12 hours ago')
     continue
+  #	5. check if strava token has expired, refresh if not
+  strava_expire_date = athletedb_response['Items'][0]['strava_token_expires']
+  expire_time = int(strava_expire_date)
+  current_time = time.time()
+  expired_value = expire_time - int(current_time)
+  if expired_value > 0:
+    print(datetime.now().strftime(dt), "Log - Strava Token Still Valid")
+  else:
+    print(datetime.now().strftime(dt), "Log - Strava Token Needs To Be Updated")
+    #refresh_access_token(athlete_values)  
   
   
-#	5. check if strava token has expired, refresh if not
+  
+  
 #	6. check if hivesigner token has expired, refresh if not
 #	7. now see if the user has had any activities
 #
