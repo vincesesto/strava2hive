@@ -484,11 +484,18 @@ for i in athlete_list:
   else:
     print(datetime.now().strftime(dt), "Log - Strava Token Needs To Be Updated")
     #refresh_access_token(athlete_values)  
+  #	6. check if hivesigner token has expired, refresh if not
+  hive_expire_date = athletedb_response['Items'][0]['hive_signer_expires']
+  expire_time = int(hive_expire_date)
+  current_time = time.time()
+  expired_value = expire_time - int(current_time)
+  if expired_value > 0:
+    print("Log - Hivesigner Token Still Valid")
+  else:
+    print("Log - Hivesigner Token Needs To Be Updated")
+    #hive_work.refresh_hivesigner_token(athlete_values)
+   
   
-  
-  
-  
-#	6. check if hivesigner token has expired, refresh if not
 #	7. now see if the user has had any activities
 #
 
