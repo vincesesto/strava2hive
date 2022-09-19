@@ -369,6 +369,40 @@ else:
     ReturnValues="UPDATED_NEW"
 )
 
+print("Testing if Strava Tokens are correct")
+dynamo_strava_token = response['Items'][0]['strava_access_token']
+sheet_strava_token = athlete_values[11]
+if dynamo_strava_token == sheet_strava_token:
+  print("It looks like the strava token is the same, so do not update")
+else:
+  print("Updating strava token on dynamo")
+  table = dynamodb.Table(dynamoTable)
+  response = table.update_item(
+    Key={ 'athleteId': int(athlete_values[10])},
+    UpdateExpression='SET strava_access_token = :newStravaToken',
+    ExpressionAttributeValues={':newStravaToken': sheet_strava_token },
+    ReturnValues="UPDATED_NEW"
+  )
+  print("And the strava expire date")
+  response = table.update_item(
+    Key={ 'athleteId': int(athlete_values[10])},
+    UpdateExpression='SET strava_token_expires = :newStravaExpire',
+    ExpressionAttributeValues={':newStravaExpire': athlete_values[12] },
+    ReturnValues="UPDATED_NEW"
+  ) 
+  
 
 # Use the hive blocks explorer to help troubleshoot issues https://hiveblocks.com/@run.vince.run
 # Hive - reblogging
+
+
+
+
+#Start from scratch again
+#1. get a list of all the athleteId's(we are doing this the easy way for now)
+athlete_list = [1778778]
+
+
+
+
+
