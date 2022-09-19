@@ -371,23 +371,23 @@ else:
 
 print("Testing if Strava Tokens are correct")
 dynamo_strava_token = response['Items'][0]['strava_access_token']
-sheet_strava_token = athlete_values[11]
+sheet_strava_token = athlete_values[7]
 if dynamo_strava_token == sheet_strava_token:
   print("It looks like the strava token is the same, so do not update")
 else:
   print("Updating strava token on dynamo")
-  table = dynamodb.Table(dynamoTable)
+  table = dynamodb.Table('legacy_athletes')
   response = table.update_item(
-    Key={ 'athleteId': int(athlete_values[10])},
+    Key={ 'athleteId': int(athlete_values[6])},
     UpdateExpression='SET strava_access_token = :newStravaToken',
     ExpressionAttributeValues={':newStravaToken': sheet_strava_token },
     ReturnValues="UPDATED_NEW"
   )
   print("And the strava expire date")
   response = table.update_item(
-    Key={ 'athleteId': int(athlete_values[10])},
+    Key={ 'athleteId': int(athlete_values[6])},
     UpdateExpression='SET strava_token_expires = :newStravaExpire',
-    ExpressionAttributeValues={':newStravaExpire': athlete_values[12] },
+    ExpressionAttributeValues={':newStravaExpire': athlete_values[8] },
     ReturnValues="UPDATED_NEW"
   ) 
   
