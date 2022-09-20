@@ -494,8 +494,23 @@ for i in athlete_list:
   else:
     print("Log - Hivesigner Token Needs To Be Updated")
     #hive_work.refresh_hivesigner_token(athlete_values)
-   
+  #	7. now see if the user has had any activities
   
-#	7. now see if the user has had any activities
-#
+  print("Log - Searching For New Activities")
+  bearer_header = "Bearer " + str(athletedb_response['Items'][0]['strava_access_token'])
+  headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
+  response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers)
+  activity_data = response.json()
+  if type(activity_data) is dict:
+    print(activity_data)
+    print("Log - It looks like there is an issue with strava authentication")
+    return None
+  print(activity_data)
+  
+  
+  
+  
+# TODO
+# Need to do the refress of hivesigner and strava auth
+
 
