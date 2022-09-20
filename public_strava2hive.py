@@ -501,10 +501,9 @@ for i in athlete_list:
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers)
   activity_data = response.json()
-  if type(activity_data) is dict:
-    print(activity_data)
-    print("Log - It looks like there is an issue with strava authentication")
-    return None
+  #if type(activity_data) is dict:
+  #  print(activity_data)
+  #  print("Log - It looks like there is an issue with strava authentication")
   print(activity_data)
   
   
