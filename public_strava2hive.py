@@ -512,7 +512,7 @@ for i in athlete_list:
       print("Log - Activity is not a run or ride, so we can stop running this")
       continue
     print("Log - Activity is a run or ride, now can we it has a description")
-    detailed_activity = hive_work.strava_activity_details(activity['id'], bearer_header)
+    detailed_activity = hive_work.strava_activity_details(activity['id'], athletedb_response['Items'][0]['strava_access_token'])
     
     # Testing if the CSV file can be used instead of checking the api
     activity_csv = glob.glob("*.csv")
