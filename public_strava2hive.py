@@ -502,13 +502,44 @@ for i in athlete_list:
     print(activity_data)
     print("Log - It looks like there is an issue with strava authentication")
     break
-  print(activity_data)
+  
+  
+  for i in range(len(activity_data)):
+    activity = activity_data[i]
+    # a. Check if activity is a run or a ride...not a workout
+    print(activity['type'])
+    if activity['type'] == 'Workout':
+      print("Log - Activity is not a run or ride, so we can stop running this")
+      continue
+    print("Log - Activity is a run or ride, now can we it has a description")
+    detailed_activity = hive_work.strava_activity_details(activity['id'], bearer_header)
+    
+    # Testing if the CSV file can be used instead of checking the api
+    activity_csv = glob.glob("*.csv")
+    print(activity_csv)    
+    with open(activity_csv[0], "r") as fp:
+      s = fp.read()
+    
+    if detailed_activity['description'] == None:
+      print("Log - Activity does not have a description, move on")
+    elif detailed_activity['description'] == '':
+      print("Log - Activity does not have a description, move on")
+    elif str(activity['id']) in s:
+      print("Log - Activity is in our CSV file as already posted, move on")
+    else:
+      posted_val = pipedream_modules.activity_posted_api(activity['id'])
+      if posted_val:
+        print("Log - Activity has been posted already, move on")
+      elif posted_val is False:
+        print("Log - There was an error connecting to pipedream")
+      else:
+        print("Log - Activity has not been posted yet, ship it!!")   
   
   # Activity Tests
-  # 1. Check if activity is a run or a ride...not a workout
-  # 2. Get more details information from strava
-  # 3. Check if the activity has a description?
-  # 4. Check if the activity has been posted already?
+  # b. Check if activity is a run or a ride...not a workout
+  # c. Get more details information from strava
+  # d. Check if the activity has a description?
+  # e. Check if the activity has been posted already?
   
   
 # TODO
