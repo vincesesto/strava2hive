@@ -187,3 +187,10 @@ def check_last_post_date(athleteId, last_post_date):
     return True
   else:
     return False
+
+def strava_activity_check(strava_access_token):
+  bearer_header = "Bearer " + str(strava_access_token)
+  headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
+  response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers)
+  activity_data = response.json()
+  return activity_data
