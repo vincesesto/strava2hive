@@ -369,8 +369,6 @@ else:
 
 print("Testing if Strava Tokens are correct")
 dynamo_strava_token = response['Items'][0]['strava_access_token']
-dynamo_strava_token = response['Items'][0]['strava_access_token']
-                                            strava_access_token
 sheet_strava_token = athlete_values[7]
 if dynamo_strava_token == sheet_strava_token:
   print("It looks like the strava token is the same, so do not update")
