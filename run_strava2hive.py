@@ -368,7 +368,7 @@ else:
 )
 
 print("Testing if Strava Tokens are correct")
-print(response['Items'][0]['strava_access_token'])
+print(response['Items'][0].keys())
 print(type(response['Items'][0]['strava_access_token']))
 dynamo_strava_token = response['Items'][0]['strava_access_token']
 sheet_strava_token = athlete_values[7]
