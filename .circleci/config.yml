@@ -29,7 +29,7 @@ jobs:
           name: Install Chrome Driver
           # Find the latest driver version at the following url: https://chromedriver.chromium.org/downloads
           #command: wget https://chromedriver.storage.googleapis.com/100.0.4896.60/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
-          command: wget https://chromedriver.storage.googleapis.com/104.0.5112.29/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
+          command: wget https://chromedriver.storage.googleapis.com/106.0.5249.21/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
       - run:
           name: Run the dev strava to hive script
           command: ls -l; pwd; ls -l /bin/chromedriver; python run_strava2hive.py
