@@ -368,6 +368,7 @@ else:
 )
 
 print("Testing if Strava Tokens are correct")
+response = dynamodb.Table('legacy_athletes').scan()
 print(response['Items'][0].keys())
 print(type(response['Items'][0]['strava_access_token']))
 dynamo_strava_token = response['Items'][0]['strava_access_token']
