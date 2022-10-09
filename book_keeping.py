@@ -47,7 +47,7 @@ def list_all_athletes():
 def comment_body():
   comment_body = f'''
   You're smashing your training at the moment and getting stronger every day.
-  For the month of August 2022, the Strava2Hive leader board will be determined by "calories burned"!
+  From the month of August 2022, the Strava2Hive leader board will be determined by "calories burned"!
   https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
   '''
   return comment_body
