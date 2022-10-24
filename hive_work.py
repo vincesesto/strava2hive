@@ -226,7 +226,7 @@ def refresh_dynamo_access_token(athlete):
     access_info['access_token'] = activity_data['access_token']
     access_info['expires_at'] = activity_data['expires_at']
     access_info['refresh_token'] = activity_data['refresh_token']
-    return access_info['access_token'], access_info['expires_at'], access_info['refresh_token']
+    return access_info['access_token'], access_info['expires_at']
   except:
     print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[10]))
     return False 
