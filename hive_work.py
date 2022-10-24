@@ -213,3 +213,35 @@ def strava_activity_details(activity_id, strava_access_token):
   activity_info['calories'] = more_activity_data['calories']
   activity_info['photos'] = more_activity_data['photos']
   return activity_info 
+
+def refresh_dynamo_access_token(athlete):
+  # We need to update the access_token in strava every six hours
+  # This one is specific for the dynamo DB's
+  try:
+    response = requests.post("https://www.strava.com/api/v3/oauth/token",
+                             params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 
+                             'code': athlete[9], 'grant_type': 'refresh_token', 'refresh_token': athlete[13] })
+    access_info = dict()
+    activity_data = response.json()
+    access_info['access_token'] = activity_data['access_token']
+    access_info['expires_at'] = activity_data['expires_at']
+    access_info['refresh_token'] = activity_data['refresh_token']
+    return access_info['access_token'], access_info['expires_at'], access_info['refresh_token']
+  except:
+    print("Log - An Error occurred trying to authenticate with the {} Strava token".format(athlete[10]))
+    return False 
+  
+def refresh_dynamo_hivesigner_token(athlete):
+  # We need to update the hivesigner token every six days
+  # This is for the dynamoDB as well
+  hive_signer_info = dict()
+  try:
+    response = requests.post("https://hivesigner.com/api/oauth2/token?", 
+                          params={'code': athlete[7], 'client_secret': os.getenv('HIVE_SIGN_SECRET')})
+    hive_response_data = response.json()
+    hive_signer_info['hive_signer_access_token'] = hive_response_data['access_token']
+    hive_signer_info['hive_signer_expires'] = int(time.time()) + 604800
+    return hive_signer_info['hive_signer_access_token'], hive_signer_info['hive_signer_expires']
+  except:
+    print("Log - An Error occurred trying to authenticate with the {} hive token".format(athlete[5]))
+    return False
