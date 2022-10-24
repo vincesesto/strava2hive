@@ -483,7 +483,23 @@ for i in athlete_list:
     print(datetime.now().strftime(dt), "Log - Strava Token Still Valid")
   else:
     print(datetime.now().strftime(dt), "Log - Strava Token Needs To Be Updated")
-    #refresh_access_token(athlete_values)  
+    # new_strava_access_token, new_strava_expires = hive_work.refresh_dynbamo_access_token(athlete_values)  
+  #  print("Updating strava token on dynamo")
+  #  table = dynamodb.Table(dynamoTable)
+  #  response = table.update_item(
+  #    Key={ 'athleteId': int(i)},
+  #    UpdateExpression='SET strava_access_token = :newStravaToken',
+  #    ExpressionAttributeValues={':newStravaToken': new_strava_access_token },
+  #    ReturnValues="UPDATED_NEW"
+  #  )
+  #  print("And the strava expire date")
+  #  response = table.update_item(
+  #    Key={ 'athleteId': int(athlete_values[10])},
+  #    UpdateExpression='SET strava_token_expires = :newStravaExpire',
+  #    ExpressionAttributeValues={':newStravaExpire': athlete_values[12] },
+  #    ReturnValues="UPDATED_NEW"
+  #  )  
+    
   #	6. check if hivesigner token has expired, refresh if not
   hive_expire_date = athletedb_response['Items'][0]['hive_signer_expires']
   expire_time = int(hive_expire_date)
@@ -493,7 +509,7 @@ for i in athlete_list:
     print("Log - Hivesigner Token Still Valid")
   else:
     print("Log - Hivesigner Token Needs To Be Updated")
-    #hive_work.refresh_hivesigner_token(athlete_values)
+    # new_hive_signer_access_token, new_hive_signer_expires = hive_work.refresh_dynamo_hivesigner_token(athlete_values)
   #	7. now see if the user has had any activities
   
   print("Log - Searching For New Activities for user {i}")
