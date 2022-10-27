@@ -316,6 +316,7 @@ def strava_activity(athlete_deets):
 # Workflow from scratch
 ##################################################
 
+print("Vince test")
 # Now we just have a list of Strava ID's but we will eventually make a list from our sheet
 strava_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
 print(strava_athletes)
