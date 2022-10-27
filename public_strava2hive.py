@@ -510,6 +510,22 @@ for i in athlete_list:
   else:
     print("Log - Hivesigner Token Needs To Be Updated")
     # new_hive_signer_access_token, new_hive_signer_expires = hive_work.refresh_dynamo_hivesigner_token(athlete_values)
+#    print("Updating hivesigner token on dynamo")
+#    table = dynamodb.Table(dynamoTable)
+#    response = table.update_item(
+#      Key={ 'athleteId': int(athlete_values[10])},
+#      UpdateExpression='SET hive_signer_access_token = :newHiveToken',
+#      ExpressionAttributeValues={':newHiveToken': sheet_hive_token },
+#      ReturnValues="UPDATED_NEW"
+#    )
+#    print("And the token expire date")
+#    response = table.update_item(
+#      Key={ 'athleteId': int(athlete_values[10])},
+#      UpdateExpression='SET hive_signer_expires = :newHiveExpire',
+#      ExpressionAttributeValues={':newHiveExpire': athlete_values[8] },
+#      ReturnValues="UPDATED_NEW"
+#    )
+    
   #	7. now see if the user has had any activities
   
   print("Log - Searching For New Activities for user {i}")
