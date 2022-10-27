@@ -58,8 +58,8 @@ def list_athletes(column, sheet_name):
   wks = sh[0]
   row = []
   athletes = []
-  print("Vince testing function")
   cells = wks.get_all_values(majdim='ROWS', include_tailing_empty=False, include_tailing_empty_rows=False)
+  print("Vince testing function")
   total_rows = len(cells)
   for i in range(total_rows):
     row = wks.get_row(i + 1)
