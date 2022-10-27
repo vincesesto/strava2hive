@@ -32,7 +32,7 @@ jobs:
           command: wget https://chromedriver.storage.googleapis.com/106.0.5249.21/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
       - run:
           name: Run the dev strava to hive script
-          command: ls -l; pwd; ls -l /bin/chromedriver; openssl version -d; python run_strava2hive.py
+          command: ls -l; pwd; ls -l /bin/chromedriver; cat /usr/bin/ssl ; python run_strava2hive.py
       - run:
           name: Run the public strava to hive script
           command: ls -l; pwd; ls -l /bin/chromedriver; python public_strava2hive.py 
