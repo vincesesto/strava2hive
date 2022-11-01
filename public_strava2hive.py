@@ -255,7 +255,7 @@ def strava_activity(athlete_deets):
   t = datetime.now() - timedelta(days=1)
   parameters = {"after": int(t.strftime("%s"))}
   #response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers, params=parameters )
-  response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=1", headers=headers)
+  response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers)
   activity_data = response.json()
   if type(activity_data) is dict:
     print(activity_data)
