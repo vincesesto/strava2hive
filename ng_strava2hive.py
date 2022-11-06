@@ -374,9 +374,9 @@ for i in athlete_list:
   current_time = time.time()
   expired_value = expire_time - int(current_time)
   if expired_value > 0:
-    print(datetime.now().strftime(dt), "Log - Strava Token Still Valid")
+    print("Log - Strava Token Still Valid")
   else:
-    print(datetime.now().strftime(dt), "Log - Strava Token Needs To Be Updated")
+    print("Log - Strava Token Needs To Be Updated")
     new_strava_access_token, new_strava_expires = hive_work.refresh_dynbamo_access_token(athlete_values)  
     print("Updating strava token on dynamo")
     table = dynamodb.Table(dynamoTable)
