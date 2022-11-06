@@ -314,72 +314,7 @@ def strava_activity(athlete_deets):
         break
 
 ##################################################
-# Workflow from scratch
-##################################################
-
-print("Vince test")
-# Now we just have a list of Strava ID's but we will eventually make a list from our sheet
-strava_athletes = hive_work.list_athletes(10, "Strava2HiveNewUserSignUp")
-print(strava_athletes)
-dt = "%d-%b-%Y %H:%M:%S"
-# Get a list of activities in CSV format
-hive_work.download_sheet_as_csv("StravaActivity", 1)
-
-print("Log - Use athlete details to get activity from strava")
-for i in strava_athletes:
-  if i == '77830218' :
-    continue
-  print(f'Log - When did the user {i} post their last activity')
-  athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
-  #activity_date = hive_work.get_latest_activity_date(i, "Strava2HiveNewUserSignUp", 10)
-  activity_date = athlete_values[0]
-  print(f'Log - The last activity for the user {i} was on the date {activity_date}')
-  date = datetime.strptime(activity_date, "%m/%d/%Y %H:%M:%S")
-  act_timestamp = datetime.timestamp(date)
-  current_time = time.time()
-  NUMBER_OF_SECONDS = 43200 # seconds in 12 hours
-  if (current_time - act_timestamp) > NUMBER_OF_SECONDS:
-    print(f'Log - The last activity for the user {i} was more than 12 hours ago')
-  else:
-    print(f'Log - The last activity for the user {i} was NOT more than 12 hours ago')
-    continue
-  print("Log - First get athlete details from sheet so you can access strava")
-  #athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
-  print("Log - Athlete Values: ", athlete_values)
-  # Test if athlete bearer token is still valid by testing athlete_values[12]
-  if athlete_values[12] == '':
-    print("Log - Expire time is empty, so need to get auth from strava")
-    new_user_access_token(athlete_values)
-  else:
-    print("Log - User is an existing user, so we need to check if we need to update the strava token")
-    expire_time = int(athlete_values[12])
-    current_time = time.time()
-    expired_value = expire_time - int(current_time)
-    if expired_value > 0:
-      print("Log - Strava Token Still Valid")
-    else:
-      print("Log - Strava Token Needs To Be Updated")
-      refresh_access_token(athlete_values)
-      athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
-      
-  # Test if athlete hivesigner token is still valid by testing athlete_values[8]
-  print("Log - User is an existing user, so we need to check if we need to update the hivesigner token")
-  expire_time = int(athlete_values[8])
-  current_time = time.time()
-  expired_value = expire_time - int(current_time)
-  if expired_value > 0:
-    print("Log - Hivesigner Token Still Valid")
-  else:
-    print("Log - Hivesigner Token Needs To Be Updated")
-    hive_work.refresh_hivesigner_token(athlete_values)
-    athlete_values = hive_work.get_athlete(i,"Strava2HiveNewUserSignUp")
-
-  print("Log - See what activity the athlete has")
-  activity_details = strava_activity(athlete_values)
-  print(activity_details)
-  # Add a test to see if the activity was a run and then post if it is
-  # we might need to also bring down all the activity for the day and not just the last
-
+# NG Strava2Hive Processing
 ##############################################################33
 # Move Processing to DynamoDB
 
