@@ -38,6 +38,9 @@ jobs:
           command: ls -l; pwd; ls -l /bin/chromedriver; cat /usr/lib/ssl/openssl.cnf; python public_strava2hive.py 
       - run:
           name: Run the book keeper script
+          command: ls -l; pwd; ls -l /bin/chromedriver; python public_strava2hive.py 
+      - run:
+          name: Run the book keeper script
           command: ls -l; pwd; ls -l /bin/chromedriver; python book_keeping.py 
       - run:
           name: Run tests
