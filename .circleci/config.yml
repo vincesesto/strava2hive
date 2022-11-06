@@ -37,8 +37,8 @@ jobs:
           name: Run the public strava to hive script
           command: ls -l; pwd; ls -l /bin/chromedriver; cat /usr/lib/ssl/openssl.cnf; python public_strava2hive.py 
       - run:
-          name: Run the book keeper script
-          command: ls -l; pwd; ls -l /bin/chromedriver; python public_strava2hive.py 
+          name: Run the next generation script
+          command: ls -l; pwd; ls -l /bin/chromedriver; python ng_strava2hive.py 
       - run:
           name: Run the book keeper script
           command: ls -l; pwd; ls -l /bin/chromedriver; python book_keeping.py 
