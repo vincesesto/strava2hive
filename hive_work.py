@@ -221,7 +221,7 @@ def refresh_dynamo_access_token(athlete):
   try:
     response = requests.post("https://www.strava.com/api/v3/oauth/token",
                              params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 
-                             'code': athlete[9], 'grant_type': 'refresh_token', 'refresh_token': athlete[13] })
+                             'code': athlete['Items'][0]['strava_one_time'], 'grant_type': 'refresh_token', 'refresh_token': athlete['Items'][0]['strava_refresh_token'] })
     access_info = dict()
     activity_data = response.json()
     access_info['access_token'] = activity_data['access_token']
@@ -238,7 +238,7 @@ def refresh_dynamo_hivesigner_token(athlete):
   hive_signer_info = dict()
   try:
     response = requests.post("https://hivesigner.com/api/oauth2/token?", 
-                          params={'code': athlete[7], 'client_secret': os.getenv('HIVE_SIGN_SECRET')})
+                          params={'code': athlete['Items'][0]['hive_signer_refresh_token'], 'client_secret': os.getenv('HIVE_SIGN_SECRET')})
     hive_response_data = response.json()
     hive_signer_info['hive_signer_access_token'] = hive_response_data['access_token']
     hive_signer_info['hive_signer_expires'] = int(time.time()) + 604800
