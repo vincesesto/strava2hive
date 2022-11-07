@@ -374,7 +374,7 @@ for i in athlete_list:
     print("Log - Strava Token Still Valid")
   else:
     print("Log - Strava Token Needs To Be Updated")
-    new_strava_access_token, new_strava_expires = hive_work.refresh_dynamo_access_token(athlete_values)  
+    new_strava_access_token, new_strava_expires = hive_work.refresh_dynamo_access_token(athletedb_response['Items'])  
     print("Updating strava token on dynamo")
     table = dynamodb.Table(dynamoTable)
     response = table.update_item(
@@ -400,7 +400,7 @@ for i in athlete_list:
     print("Log - Hivesigner Token Still Valid")
   else:
     print("Log - Hivesigner Token Needs To Be Updated")
-    new_hive_signer_access_token, new_hive_signer_expires = hive_work.refresh_dynamo_hivesigner_token(athlete_values)
+    new_hive_signer_access_token, new_hive_signer_expires = hive_work.refresh_dynamo_hivesigner_token(athletedb_response['Items'])
     print("Updating hivesigner token on dynamo")
     table = dynamodb.Table(dynamoTable)
     response = table.update_item(
