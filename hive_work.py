@@ -218,7 +218,8 @@ def strava_activity_details(activity_id, strava_access_token):
 def refresh_dynamo_access_token(athlete):
   # We need to update the access_token in strava every six hours
   # This one is specific for the dynamo DB's
-  code_val = str(athlete['Items'][0]['strava_one_time'])
+  print(athlete)
+  code_val = athlete['Items'][0]['strava_one_time']
   print(type(code_val))
   print(code_val)
   try:
