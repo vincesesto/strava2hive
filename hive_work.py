@@ -218,14 +218,15 @@ def strava_activity_details(activity_id, strava_access_token):
 def refresh_dynamo_access_token(athlete):
   # We need to update the access_token in strava every six hours
   # This one is specific for the dynamo DB's
-  print(athlete)
-  code_val = athlete['Items'][0]['strava_one_time']
+  athlete_vals = athlete['Items'][0]
+  print(type(athlete_vals))
+  code_val = athlete_vals['strava_one_time']
   print(type(code_val))
   print(code_val)
   try:
     response = requests.post("https://www.strava.com/api/v3/oauth/token",
                              params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 
-                             'code': code_val, 'grant_type': 'refresh_token', 'refresh_token': int(athlete['Items'][0]['strava_refresh_token']) })
+                             'code': code_val, 'grant_type': 'refresh_token', 'refresh_token': athlete_vals['strava_refresh_token'] })
     access_info = dict()
     activity_data = response.json()
     access_info['access_token'] = activity_data['access_token']
