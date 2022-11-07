@@ -385,7 +385,7 @@ for i in athlete_list:
     )
     print("And the strava expire date")
     response = table.update_item(
-      Key={ 'athleteId': int(athlete_values[10])},
+      Key={ 'athleteId': int(i)},
       UpdateExpression='SET strava_token_expires = :newStravaExpire',
       ExpressionAttributeValues={':newStravaExpire': new_strava_expires },
       ReturnValues="UPDATED_NEW"
@@ -404,14 +404,14 @@ for i in athlete_list:
     print("Updating hivesigner token on dynamo")
     table = dynamodb.Table(dynamoTable)
     response = table.update_item(
-      Key={ 'athleteId': int(athlete_values[10])},
+      Key={ 'athleteId': int(i)},
       UpdateExpression='SET hive_signer_access_token = :newHiveToken',
       ExpressionAttributeValues={':newHiveToken': new_hive_signer_access_token },
       ReturnValues="UPDATED_NEW"
     )
     print("And the token expire date")
     response = table.update_item(
-      Key={ 'athleteId': int(athlete_values[10])},
+      Key={ 'athleteId': int(i)},
       UpdateExpression='SET hive_signer_expires = :newHiveExpire',
       ExpressionAttributeValues={':newHiveExpire': new_hive_signer_expires },
       ReturnValues="UPDATED_NEW"
