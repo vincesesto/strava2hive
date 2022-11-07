@@ -328,9 +328,6 @@ response = dynamodb.Table(dynamoTable).scan()
 for i in response['Items']:
     print(i)
 
-athlete_values = hive_work.get_athlete("101635754", sheetName)   
-print(athlete_values)
-
 #print("Testing and update post date")
 #dynamo_date = response['Items'][0]['last_post_date']
 #sheet_date = athlete_values[0]
@@ -422,7 +419,7 @@ for i in athlete_list:
     
   #	7. now see if the user has had any activities
   
-  print("Log - Searching For New Activities for user {i}")
+  print(f'Log - Searching For New Activities for user {i}')
   activity_data = hive_work.strava_activity_check(athletedb_response['Items'][0]['strava_access_token'])
   if type(activity_data) is dict:
     print(activity_data)
@@ -430,8 +427,8 @@ for i in athlete_list:
     break
   
   
-  for i in range(len(activity_data)):
-    activity = activity_data[i]
+  for j in range(len(activity_data)):
+    activity = activity_data[j]
     # a. Check if activity is a run or a ride...not a workout
     print(activity['type'])
     if activity['type'] == 'Workout':
