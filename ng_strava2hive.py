@@ -325,25 +325,6 @@ dynamodb = hive_work.dynamo_access()
 print("Scanning table")
 response = dynamodb.Table(dynamoTable).scan()
 
-for i in response['Items']:
-    print(i)
-
-#print("Testing and update post date")
-#dynamo_date = response['Items'][0]['last_post_date']
-#sheet_date = athlete_values[0]
-#if dynamo_date == sheet_date:
-#  print("It looks like the date is the same, so do not update")
-#else:
-#  print("Updating date on dynamo")
-#  table = dynamodb.Table(dynamoTable)
-#  response = table.update_item(
-#    Key={ 'athleteId': int(athlete_values[10])},
-#    UpdateExpression='SET last_post_date = :newDate',
-#    ExpressionAttributeValues={':newDate': sheet_date },
-#    ReturnValues="UPDATED_NEW"
-#  )
-  
-
 #Start from scratch again
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
 athlete_list = [101635754]
@@ -390,6 +371,12 @@ for i in athlete_list:
       ExpressionAttributeValues={':newStravaExpire': new_strava_expires },
       ReturnValues="UPDATED_NEW"
     )  
+    print("Log - New strava expires: ", new_strava_expires)
+    print("Log - We need to get the new details for the athlete now")
+    dynamodb = hive_work.dynamo_access()
+    table = dynamodb.Table(dynamoTable)
+    athletedb_response = table.query(KeyConditionExpression=Key('athleteId').eq(i))
+    print("Log - New strava expires in the db: ", athletedb_response['Items'][0]['strava_token_expires'])
     
   #	6. check if hivesigner token has expired, refresh if not
   hive_expire_date = athletedb_response['Items'][0]['hive_signer_expires']
