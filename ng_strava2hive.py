@@ -403,6 +403,16 @@ for i in athlete_list:
       ExpressionAttributeValues={':newHiveExpire': new_hive_signer_expires },
       ReturnValues="UPDATED_NEW"
     )
+    print("Log - New hivesigner expires: ", new_hive_signer_expires)
+    print("Log - We need to get the new details for the athlete now")
+    dynamodb = hive_work.dynamo_access()
+    table = dynamodb.Table(dynamoTable)
+    athletedb_response = table.query(KeyConditionExpression=Key('athleteId').eq(i))
+    print("Log - New strava expires in the db: ", athletedb_response['Items'][0]['hive_signer_expires'])
+    
+    
+    
+    
     
   #	7. now see if the user has had any activities
   
