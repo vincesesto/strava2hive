@@ -184,7 +184,7 @@ if file_exists:
     c = Comment(authorperm, hive_instance=hive)
     c.reply(body, author=author)
     if reblog_count == 0:
-      reblog_strava2hive(i)
+      #reblog_strava2hive(i)
       reblog_count = reblog_count + 1
     sleep(10)
     
