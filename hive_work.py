@@ -240,10 +240,12 @@ def refresh_dynamo_access_token(athlete):
 def refresh_dynamo_hivesigner_token(athlete):
   # We need to update the hivesigner token every six days
   # This is for the dynamoDB as well
+  athlete_vals = athlete[0]
+  code_val = athlete_vals['hive_signer_refresh_token']
   hive_signer_info = dict()
   try:
     response = requests.post("https://hivesigner.com/api/oauth2/token?", 
-                          params={'code': athlete['Items'][0]['hive_signer_refresh_token'], 'client_secret': os.getenv('HIVE_SIGN_SECRET')})
+                          params={'code': code_val, 'client_secret': os.getenv('HIVE_SIGN_SECRET')})
     hive_response_data = response.json()
     hive_signer_info['hive_signer_access_token'] = hive_response_data['access_token']
     hive_signer_info['hive_signer_expires'] = int(time.time()) + 604800
