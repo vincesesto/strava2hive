@@ -166,7 +166,7 @@ def post_to_hive(athlete_id, activity_details):
   print("Log - Downloading images and getting details together")
   strava_screenshot(activity_details['id'])
   # Get athlete profile image
-  if activity_details['photos']['primary'] != None:
+  if activity_details['photos']['primary'] == None:
     prof_image_path = '/home/circleci/project/S2HLogo.PNG'
     prof_image_name = 'S2HLogo.PNG'
     prof_image_uploader = ImageUploader(blockchain_instance=hive)
@@ -178,7 +178,7 @@ def post_to_hive(athlete_id, activity_details):
     img_link = image_uploader.upload(image_path, "strava2hive", image_name=image_name)
   else:
     profile_img = activity_details['photos']['primary']['urls']['600']
-    command = '/usr/bin/wget ' + profile_img + ' -O prof_image_' + str(athlete_id) + '.png'
+    command = '/usr/bin/wget "' + profile_img + '" -O prof_image_' + str(athlete_id) + '.png'
     print(command)
     os.system(command)
     image_path = '/home/circleci/project/prof_image_' + str(athlete_id) + '.png'
