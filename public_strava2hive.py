@@ -39,7 +39,7 @@ def strava_screenshot(activity):
   #driver.find_element_by_class_name("btn-accept-cookie-banner").click() 
   driver.get_screenshot_as_file(image_name)
   driver.quit()
-  os.system("ls -l")
+  os.system("ls -l"; which wget)
 
 def activity_posted(athlete_id, activity_id):
   # Check if an activity has been posted already
@@ -178,7 +178,7 @@ def post_to_hive(athlete_id, activity_details):
     img_link = image_uploader.upload(image_path, "strava2hive", image_name=image_name)
   else:
     profile_img = activity_details['photos']['primary']['urls']['600']
-    command = 'wget ' + profile_img + ' -O prof_image_' + str(athlete_id) + '.png'
+    command = '/usr/bin/wget ' + profile_img + ' -O prof_image_' + str(athlete_id) + '.png'
     print(command)
     os.system(command)
     image_path = '/home/circleci/project/prof_image_' + str(athlete_id) + '.png'
