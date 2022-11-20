@@ -182,7 +182,7 @@ def post_to_hive(athlete_id, activity_details):
     image_name, img_link, prof_image_name, prof_img_link = post_functions.zero_image_post(author, athlete_details[3], activity_details['id'])
   else:
     profile_img = activity_details['photos']['primary']['urls']['600']
-    command = 'wget ' + profile_img + ' -O prof_image_' + str(athlete_id) + '.png'
+    command = '/usr/bin/wget "' + profile_img + '" -O prof_image_' + str(athlete_id) + '.png'
     os.system(command)
     image_path = '/home/circleci/project/prof_image_' + str(athlete_id) + '.png'
     image_name = 'prof_image_' + str(athlete_id) + '.png'
