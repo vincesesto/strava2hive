@@ -178,7 +178,7 @@ def post_to_hive(athlete_id, activity_details):
     img_link = image_uploader.upload(image_path, "strava2hive", image_name=image_name)
   else:
     profile_img = activity_details['photos']['primary']['urls']['600']
-    command = 'wget ' + profile_img + ' -O prof_image_' + str(athlete_id) + '.png'
+    command = '/usr/bin/wget "' + profile_img + '" -O prof_image_' + str(athlete_id) + '.png'
     os.system(command)
     image_path = '/home/circleci/project/prof_image_' + str(athlete_id) + '.png'
     image_name = 'prof_image_' + str(athlete_id) + '.png'
@@ -411,9 +411,7 @@ for i in athlete_list:
     print("Log - New strava expires in the db: ", athletedb_response['Items'][0]['hive_signer_expires'])
     
     
-    
-    
-    
+  # ############################################# 
   #	7. now see if the user has had any activities
   
   print(f'Log - Searching For New Activities for user {i}')
@@ -453,14 +451,24 @@ for i in athlete_list:
       elif posted_val is False:
         print("Log - There was an error connecting to pipedream")
       else:
-        print("Log - Activity has not been posted yet, ship it!!")   
-  
-  # Activity Tests
-  # b. Check if activity is a run or a ride...not a workout
-  # c. Get more details information from strava
-  # d. Check if the activity has a description?
-  # e. Check if the activity has been posted already?
-  
-  
-# TODO
-# Need to do the refress of hivesigner and strava auth
+        print("Log - Activity has not been posted yet, ship it!!") 
+        new_dets = detailed_activity['description'].replace('\r','')
+        detailed_activity['description'] = new_dets
+        print(detailed_activity['description'])
+        post_to_hive(i, detailed_activity)
+        print("Log - Add it now to the activity log")
+        activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+        word = detailed_activity['description'].split()
+        wcount = len(word)
+        record_distance = str(round(activity['distance'] * .001, 2))
+        calories = detailed_activity['calories']
+        duration = str(round(detailed_activity['duration'] / 60))
+        if calories == 0:
+          calories = hive_work.calc_calories(activity['type'], duration)
+        record_post(i, activity['id'], activity['type'], activity_date, record_distance, calories, wcount, athletedb_response['Items'][0]['hive_user'])
+        # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
+        hive_work.update_athlete(i, activity_date, "A", "Strava2HiveNewUserSignUp")
+        print("Log - Activity posted so we only want one activity at a time for:", athlete_details[10])
+        break
+        
+        
