@@ -151,11 +151,18 @@ def post_to_hive(athlete_id, activity_details):
   nodes = nodelist.get_hive_nodes()
   #wif_post_key = getpass.getpass('Posting Key: ')
   # Get all the details including the posting keys
-  athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
-  print(athlete_details)
+  # athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
+  dynamodb = hive_work.dynamo_access()
+  table = dynamodb.Table(dynamoTable)
+  athlete_details = table.query(
+    KeyConditionExpression=Key('athleteId').eq(i)
+  )
+  print(athlete_details['Items'])
   wif = os.getenv('POSTING_KEY')
   #wif = athlete_details[6]
   hive = Hive(nodes=nodes, keys=[wif])
+  
+  
   author = athlete_details[1]
   distance = str(round(activity_details['distance'] * .001, 2))
   activity_type = activity_details['type'].lower()
