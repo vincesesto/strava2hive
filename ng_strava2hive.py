@@ -146,6 +146,7 @@ def strava_activity_details(activity_id, bearer_header):
   return activity_info 
     
 def post_to_hive(athlete_id, activity_details):
+  print("Posting to Hive")
   nodelist = NodeList()
   nodelist.update_nodes()
   nodes = nodelist.get_hive_nodes()
@@ -155,15 +156,14 @@ def post_to_hive(athlete_id, activity_details):
   dynamodb = hive_work.dynamo_access()
   table = dynamodb.Table(dynamoTable)
   athlete_details = table.query(
-    KeyConditionExpression=Key('athleteId').eq(i)
+    KeyConditionExpression=Key('athleteId').eq(athlete_id)
   )
   print(athlete_details['Items'])
   wif = os.getenv('POSTING_KEY')
   #wif = athlete_details[6]
   hive = Hive(nodes=nodes, keys=[wif])
-  
-  
-  author = athlete_details[1]
+  ##### athlete_details['Items'][0]['hive_user']
+  author = athlete_details['Items'][0]['hive_user']
   distance = str(round(activity_details['distance'] * .001, 2))
   activity_type = activity_details['type'].lower()
   duration = str(round(activity_details['duration'] / 60))
@@ -211,7 +211,7 @@ def post_to_hive(athlete_id, activity_details):
   If you would like to check out this activity on strava you can see it here:
   https://www.strava.com/activities/{activity_details['id']}
   
-  **About the Athlete:** *{athlete_details[2]}*
+  **About the Athlete:** *{athlete_details['Items'][0]['about_me']}*
   
   ![{prof_image_name}]({prof_img_link['url']})
   
@@ -224,7 +224,7 @@ def post_to_hive(athlete_id, activity_details):
   print("Log - Posting to Hive")
   #hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
   # This is the new work with Hivesigner
-  c = Client(access_token=athlete_details[6],)
+  c = Client(access_token=athlete_details['Items'][0]['hive_signer_access_token'],)
   permlink = hive_work.create_permlink(activity_details['id'])
   comment = Comment(
     author,
