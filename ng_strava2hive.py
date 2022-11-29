@@ -475,7 +475,7 @@ for i in athlete_list:
         record_post(i, activity['id'], activity['type'], activity_date, record_distance, calories, wcount, athletedb_response['Items'][0]['hive_user'])
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
         hive_work.update_athlete(i, activity_date, "A", "Strava2HiveNewUserSignUp")
-        print("Log - Activity posted so we only want one activity at a time for:", athlete_details[10])
+        print("Log - Activity posted so we only want one activity at a time for:", i)
         break
         
         
