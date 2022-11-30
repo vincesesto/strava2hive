@@ -474,7 +474,20 @@ for i in athlete_list:
           calories = hive_work.calc_calories(activity['type'], duration)
         record_post(i, activity['id'], activity['type'], activity_date, record_distance, calories, wcount, athletedb_response['Items'][0]['hive_user'])
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
-        hive_work.update_athlete(i, activity_date, "A", "Strava2HiveNewUserSignUp")
+        last_log = athletedb_response['Items'][0]['last_post_date']
+        print("Log - finially we need to update dynamodb's last post data, which is currently:", last_log)
+        response = table.update_item(
+          Key={ 'athleteId': int(i)},
+          UpdateExpression='SET last_post_date = :newLastPost',
+          ExpressionAttributeValues={':newLastPost': activity_date },
+          ReturnValues="UPDATED_NEW"
+        )
+        dynamodb = hive_work.dynamo_access()
+        table = dynamodb.Table(dynamoTable)
+        athletedb_response = table.query(KeyConditionExpression=Key('athleteId').eq(i))
+        print("Log - New last log date in the db: ", athletedb_response['Items'][0]['last_post_date'])
+  
+        #hive_work.update_athlete(i, activity_date, "A", "Strava2HiveNewUserSignUp")
         print("Log - Activity posted so we only want one activity at a time for:", i)
         break
         
