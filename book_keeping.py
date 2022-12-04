@@ -119,7 +119,7 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 1090
+new_week_row = 1153
 
 print("Log - Tally up top athletes")
 for i in all_athletes:
@@ -162,8 +162,9 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-print(create_top_10(top10))
+#print(create_top_10(top10))
 reblog_count = 0
+print("Personal Best 60 blog posts")
 
 # Test if posts have been made
 file_exists = os.path.exists('post_list.txt')
@@ -188,8 +189,8 @@ if file_exists:
       reblog_count = reblog_count + 1
     sleep(10)
     
-    #print("Log - Test if values are in spreadsheet")
-    #url_val = i.split("/")
-    #activity_test = url_val[1].split("-")
-    #print(activity_test)
+    print("Log - Test if values are in spreadsheet")
+    url_val = i.split("/")
+    activity_test = url_val[1].split("-")
+    print(activity_test)
     
