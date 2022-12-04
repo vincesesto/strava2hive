@@ -251,6 +251,7 @@ def post_to_hive(athlete_id, activity_details):
     print("Log - Something went wrong broadcasting with posting for:", author)
     exit()
   hive_work.new_posts_list("@" + author + "/" + permlink)
+  pipedream_modules.hive_post_api(author, "@" + author + "/" + permlink)
   
 def strava_activity(athlete_deets):
   #athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
@@ -482,11 +483,6 @@ for i in athlete_list:
           ExpressionAttributeValues={':newLastPost': activity_date },
           ReturnValues="UPDATED_NEW"
         )
-        dynamodb = hive_work.dynamo_access()
-        table = dynamodb.Table(dynamoTable)
-        athletedb_response = table.query(KeyConditionExpression=Key('athleteId').eq(i))
-        print("Log - New last log date in the db: ", athletedb_response['Items'][0]['last_post_date'])
-  
         #hive_work.update_athlete(i, activity_date, "A", "Strava2HiveNewUserSignUp")
         print("Log - Activity posted so we only want one activity at a time for:", i)
         break
