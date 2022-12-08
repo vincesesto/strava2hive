@@ -335,7 +335,7 @@ response = dynamodb.Table(dynamoTable).scan()
 
 #Start from scratch again
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
-athlete_list = [101635754, 1778778, 105596627, 105808129]
+athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365]
 #2. loop through all the athleteId's
 for i in athlete_list:
   print(f'Log - Working throuh the next set of activity for the user {i}')
@@ -442,7 +442,6 @@ for i in athlete_list:
     
     # Testing if the CSV file can be used instead of checking the api
     activity_csv = glob.glob("*.csv")
-    print(activity_csv)    
     with open(activity_csv[0], "r") as fp:
       s = fp.read()
     
