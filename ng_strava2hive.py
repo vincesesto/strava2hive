@@ -335,7 +335,7 @@ response = dynamodb.Table(dynamoTable).scan()
 
 #Start from scratch again
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
-athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365]
+athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365, 107153228]
 #2. loop through all the athleteId's
 for i in athlete_list:
   print(f'Log - Working throuh the next set of activity for the user {i}')
@@ -425,7 +425,6 @@ for i in athlete_list:
   print(f'Log - Searching For New Activities for user {i}')
   activity_data = hive_work.strava_activity_check(athletedb_response['Items'][0]['strava_access_token'])
   if type(activity_data) is dict:
-    print(activity_data)
     print("Log - It looks like there is an issue with strava authentication")
     break
   
@@ -461,7 +460,6 @@ for i in athlete_list:
         print("Log - Activity has not been posted yet, ship it!!") 
         new_dets = detailed_activity['description'].replace('\r','')
         detailed_activity['description'] = new_dets
-        print(detailed_activity['description'])
         post_to_hive(i, detailed_activity)
         print("Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
