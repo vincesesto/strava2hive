@@ -335,7 +335,7 @@ response = dynamodb.Table(dynamoTable).scan()
 
 #Start from scratch again
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
-athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365, 107153228, 18345670]
+athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365, 107153228, 18345670, 30471548]
 #2. loop through all the athleteId's
 for i in athlete_list:
   print(f'Log - Working throuh the next set of activity for the user {i}')
@@ -345,7 +345,6 @@ for i in athlete_list:
   athletedb_response = table.query(
     KeyConditionExpression=Key('athleteId').eq(i)
   )
-  print(athletedb_response['Items'])
   #	4. check the last_post_date is more that 12 hours old
   last_activity_date = athletedb_response['Items'][0]['last_post_date']
   post_val = hive_work.check_last_post_date(i, last_activity_date)
