@@ -335,7 +335,7 @@ response = dynamodb.Table(dynamoTable).scan()
 
 #Start from scratch again
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
-athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365, 107153228, 18345670, 30471548, 10864136, 63571991, 24013473, 105691374]
+athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365, 107153228, 18345670, 30471548, 10864136, 63571991, 24013473, 105691374, 27627544]
 #2. loop through all the athleteId's
 for i in athlete_list:
   print(f'Log - Working throuh the next set of activity for the user {i}')
