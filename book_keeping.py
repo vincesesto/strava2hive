@@ -102,6 +102,7 @@ def create_top_10(top_10):
 post_upvote(post_permlink):
   pass
   # This is going to be a bit more involved
+  # Details here: https://hivesigner-python-client.readthedocs.io/en/latest/gettingstarted.html
   # This is what post_permlink will look like "@run.vince.run/8300095141-2696039387"
   #list_of_upvoters = [101635754, 1778778, 105596627]
   # 1 - loop through all the users
