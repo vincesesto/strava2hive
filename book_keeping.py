@@ -99,7 +99,7 @@ def create_top_10(top_10):
   return top_10
 
 # Function to upvote new posts
-post_upvote(post_permlink):
+def post_upvote(post_permlink):
   pass
   # This is going to be a bit more involved
   # Details here: https://hivesigner-python-client.readthedocs.io/en/latest/gettingstarted.html
