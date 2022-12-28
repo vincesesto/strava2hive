@@ -97,6 +97,23 @@ def create_top_10(top_10):
   15. @{top_10[14][0]} - {top_10[14][1]} Calories Burned - {(top_10[14][1]/tot_cal)*total_hbd} HBD
   '''
   return top_10
+
+# Function to upvote new posts
+post_upvote(post_permlink):
+  pass
+  # This is going to be a bit more involved
+  # This is what post_permlink will look like "@run.vince.run/8300095141-2696039387"
+  #list_of_upvoters = [101635754, 1778778, 105596627]
+  # 1 - loop through all the users
+  # 2 - For each user get the hivesigner token from dynamodb
+  # 3 - Create the client with the hivesigner token
+  #c = Client( access_token="<access_token>",)
+  # 4 - Create the upvote details
+  # - Need to get the voter name from dynamodb
+  # - Need to split the permlink to get the auther name
+  # vote = Vote("voter", "author", "permlink", 50)
+  # 5 - Broadcast the vote
+  # c.broadcast([vote.to_operation_structure()])
   
 
 ##################################################
@@ -184,6 +201,9 @@ if file_exists:
     body = comment_body() + leaders
     c = Comment(authorperm, hive_instance=hive)
     c.reply(body, author=author)
+    # Now we want to get upvotes for the new post
+    print("Log - Now Upvote On Post: ", i)
+    post_upvote(i)
     if reblog_count == 0:
       #reblog_strava2hive(i)
       reblog_count = reblog_count + 1
