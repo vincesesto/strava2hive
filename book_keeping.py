@@ -105,13 +105,13 @@ def post_upvote(post_permlink):
   # This is what post_permlink will look like "@run.vince.run/8300095141-2696039387"
   list_of_upvoters = [101635754, 1778778, 105596627]
   # 1 - loop through all the users
-  for i in list_of_upvoters:
+  for j in list_of_upvoters:
     # 2 - For each user get the hivesigner token from dynamodb
-    print(i)
+    print(j)
     dynamoTable = 'athletes'
     dynamodb = hive_work.dynamo_access()
     table = dynamodb.Table(dynamoTable)
-    athletedb_response = table.query(KeyConditionExpression=Key('athleteId').eq(i))
+    athletedb_response = table.query(KeyConditionExpression=Key('athleteId').eq(j))
     hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
     print(hive_signer_token)
     # 3 - Create the client with the hivesigner token
