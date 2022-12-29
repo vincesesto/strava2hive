@@ -100,21 +100,34 @@ def create_top_10(top_10):
 
 # Function to upvote new posts
 def post_upvote(post_permlink):
-  pass
   # This is going to be a bit more involved
   # Details here: https://hivesigner-python-client.readthedocs.io/en/latest/gettingstarted.html
   # This is what post_permlink will look like "@run.vince.run/8300095141-2696039387"
-  #list_of_upvoters = [101635754, 1778778, 105596627]
+  list_of_upvoters = [101635754, 1778778, 105596627]
   # 1 - loop through all the users
-  # 2 - For each user get the hivesigner token from dynamodb
-  # 3 - Create the client with the hivesigner token
-  #c = Client( access_token="<access_token>",)
-  # 4 - Create the upvote details
-  # - Need to get the voter name from dynamodb
-  # - Need to split the permlink to get the auther name
-  # vote = Vote("voter", "author", "permlink", 50)
-  # 5 - Broadcast the vote
-  # c.broadcast([vote.to_operation_structure()])
+  for i in list_of_upvoters:
+    # 2 - For each user get the hivesigner token from dynamodb
+    print(i)
+    dynamoTable = 'athletes'
+    dynamodb = hive_work.dynamo_access()
+    table = dynamodb.Table(dynamoTable)
+    athletedb_response = table.query(KeyConditionExpression=Key('athleteId').eq(i))
+    hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
+    print(hive_signer_token)
+    # 3 - Create the client with the hivesigner token
+    #c = Client( access_token="<access_token>",)
+    # 4 - Create the upvote details
+    # - Need to get the voter name from dynamodb
+    voter = athletedb_response['Items'][0]['hive_user']
+    print(voter)
+    # - Need to split the permlink to get the auther name
+    # vote = Vote("voter", "author", "permlink", 50)
+    print(post_permlink)
+    full_name = post_permlink.split("/")[0]
+    name = full_name.split("@")[1]
+    print(name)
+    # 5 - Broadcast the vote
+    # c.broadcast([vote.to_operation_structure()])
   
 
 ##################################################
