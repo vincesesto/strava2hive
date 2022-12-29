@@ -253,6 +253,13 @@ def post_to_hive(athlete_id, activity_details):
   hive_work.new_posts_list("@" + author + "/" + permlink)
   pipedream_modules.hive_post_api(author, "@" + author + "/" + permlink)
   
+  
+## Function to post more than one image
+## Activity details looks like this notice "'total_photo_count': 3"
+## {'resource_state': 2, 'athlete': {'id': 1778778, 'resource_state': 1}, 'name': 'Afternoon Swim - Between Two Runs', 'distance': 1500.0, 'moving_time': 1985, 'elapsed_time': 1985, 'total_elevation_gain': 0, 'type': 'Swim', 'sport_type': 'Swim', 'id': 8305092413, 'start_date': '2022-12-29T02:55:09Z', 'start_date_local': '2022-12-29T15:55:09Z', 'timezone': '(GMT+12:00) Pacific/Auckland', 'utc_offset': 46800.0, 'location_city': None, 'location_state': None, 'location_country': 'New Zealand', 'achievement_count': 0, 'kudos_count': 7, 'comment_count': 0, 'athlete_count': 1, 'photo_count': 0, 'map': {'id': 'a8305092413', 'summary_polyline': '', 'resource_state': 2}, 'trainer': True, 'commute': False, 'manual': False, 'private': False, 'visibility': 'everyone', 'flagged': False, 'gear_id': None, 'start_latlng': [], 'end_latlng': [], 'average_speed': 0.756, 'max_speed': 0.0, 'has_heartrate': True, 'average_heartrate': 169.4, 'max_heartrate': 194.0, 'heartrate_opt_out': False, 'display_hide_heartrate_option': True, 'upload_id': 8903746600, 'upload_id_str': '8903746600', 'external_id': '5013379158-1672282509-swim.tcx', 'from_accepted_tag': False, 'pr_count': 0, 'total_photo_count': 3, 'has_kudoed': False}
+## hive_work.strava_activity_details needs to be extended to include extra images
+  
+  
 #def strava_activity(athlete_deets):
 #  #athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
 #  athlete_details = athlete_deets
