@@ -240,7 +240,9 @@ for j in list_of_upvoters:
   dynamoTable = 'athletes'
   dynamodb = hive_work.dynamo_access()
   table = dynamodb.Table(dynamoTable)
+  response = dynamodb.Table(dynamoTable).scan()
   print(table)
+  print(response)
   athletedb_response = table.query(
     KeyConditionExpression=Key('athleteId').eq(101635754)
   )
