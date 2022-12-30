@@ -111,15 +111,17 @@ def post_upvote(post_permlink):
     dynamoTable = 'athletes'
     dynamodb = hive_work.dynamo_access()
     table = dynamodb.Table(dynamoTable)
-    #athletedb_response = table.query(KeyConditionExpression=Key('athleteId').eq(j))
-    #hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
-    #print(hive_signer_token)
+    athletedb_response = table.query(
+      KeyConditionExpression=Key('athleteId').eq(j)
+    )
+    hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
+    print(hive_signer_token)
     # 3 - Create the client with the hivesigner token
     #c = Client( access_token="<access_token>",)
     # 4 - Create the upvote details
     # - Need to get the voter name from dynamodb
-    #voter = athletedb_response['Items'][0]['hive_user']
-    #print(voter)
+    voter = athletedb_response['Items'][0]['hive_user']
+    print(voter)
     # - Need to split the permlink to get the auther name
     # vote = Vote("voter", "author", "permlink", 50)
     print(post_permlink)
