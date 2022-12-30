@@ -243,10 +243,10 @@ for j in list_of_upvoters:
   response = dynamodb.Table(dynamoTable).scan()
   print(table)
   print(response)
-  athletedb_response = table.query(
-    KeyConditionExpression=Key('athleteId').eq(int(101635754))
-  )
-  hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
-  print(hive_signer_token)
+  #athletedb_response = table.query(
+  #  KeyConditionExpression=Key('athleteId').eq(int(101635754))
+  #)
+  #hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
+  #print(hive_signer_token)
     
     
