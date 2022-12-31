@@ -24,6 +24,7 @@ from beem.account import Account
 from beem.comment import Comment
 from hivesigner.client import Client
 from hivesigner.operations import Reblog
+from hivesigner.operations import Vote
 
 # Script to run after posting to count up records and post to accounts
 
@@ -109,30 +110,26 @@ def post_upvote(post_permlink):
   # 1 - loop through all the users
   for j in list_of_upvoters:
     # 2 - For each user get the hivesigner token from dynamodb
-    print(j)
     dynamoTable = 'athletes'
     dynamodb = hive_work.dynamo_access()
     table = dynamodb.Table(dynamoTable)
-    #print(table)
-    #athletedb_response = table.query(
-    #  KeyConditionExpression=Key('athleteId').eq(j)
-    #)
-    #hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
-    #print(hive_signer_token)
+    athletedb_response = table.query(
+      KeyConditionExpression=Key('athleteId').eq(j)
+    )
+    hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
     # 3 - Create the client with the hivesigner token
-    #c = Client( access_token="<access_token>",)
+    c = Client( access_token=hive_signer_token,)
     # 4 - Create the upvote details
     # - Need to get the voter name from dynamodb
-    #voter = athletedb_response['Items'][0]['hive_user']
-    #print(voter)
+    voter = athletedb_response['Items'][0]['hive_user']
     # - Need to split the permlink to get the auther name
-    # vote = Vote("voter", "author", "permlink", 50)
     print(post_permlink)
     full_name = post_permlink.split("/")[0]
     name = full_name.split("@")[1]
     print(name)
+    vote = Vote(voter, name, post_permlink, 50)
     # 5 - Broadcast the vote
-    # c.broadcast([vote.to_operation_structure()])
+    c.broadcast([vote.to_operation_structure()])
   
 
 ##################################################
