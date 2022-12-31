@@ -245,6 +245,7 @@ def post_to_hive(athlete_id, activity_details):
     print("Log - Something went wrong broadcasting with posting for:", author)
     exit()
   hive_work.new_posts_list("@" + author + "/" + permlink)
+  pipedream_modules.hive_post_api(author, distance)
   
 def strava_activity(athlete_deets):
   #athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
