@@ -251,7 +251,7 @@ def post_to_hive(athlete_id, activity_details):
     print("Log - Something went wrong broadcasting with posting for:", author)
     exit()
   hive_work.new_posts_list("@" + author + "/" + permlink)
-  pipedream_modules.hive_post_api(author, "@" + author + "/" + permlink)
+  pipedream_modules.hive_post_api(author, distance)
   
   
 ## Function to post more than one image
