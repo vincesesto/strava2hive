@@ -130,6 +130,8 @@ def post_upvote(post_permlink):
     vote = Vote(voter, name, post_permlink, 50)
     # 5 - Broadcast the vote
     c.broadcast([vote.to_operation_structure()])
+    print("Log - upvote for user: ", voter)
+    print("Log - upvote for permlink: ", post_permlink)
   
 
 ##################################################
@@ -229,23 +231,5 @@ if file_exists:
     url_val = i.split("/")
     activity_test = url_val[1].split("-")
     print(activity_test)
-    
-print("Log - Test to access DynamoDB")    
-list_of_upvoters = [101635754]
-# 1 - loop through all the users
-for j in list_of_upvoters:
-  # 2 - For each user get the hivesigner token from dynamodb
-  print(j)
-  dynamoTable = 'athletes'
-  dynamodb = hive_work.dynamo_access()
-  table = dynamodb.Table(dynamoTable)
-  response = dynamodb.Table(dynamoTable).scan()
-  print(table)
-  print(response)
-  athletedb_response = table.query(
-    KeyConditionExpression=Key('athleteId').eq(j)
-  )
-  hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
-  print(hive_signer_token)
-    
+      
     
