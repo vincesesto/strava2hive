@@ -28,7 +28,6 @@ from hivesigner.operations import Vote
 
 # Script to run after posting to count up records and post to accounts
 
-
 # Function to get the last post from the user
 def get_hive_posts(hive_user_name):
   nodelist = NodeList()
@@ -117,6 +116,9 @@ def post_upvote(post_permlink):
       KeyConditionExpression=Key('athleteId').eq(j)
     )
     hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
+    # If strava2hive, reblog the post
+    if j == 101635754:
+      reblog_strava2hive(post_permlink, hive_signer_token)
     # 3 - Create the client with the hivesigner token
     c = Client( access_token=hive_signer_token,)
     # 4 - Create the upvote details
@@ -154,7 +156,7 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 1294
+new_week_row = 1359
 
 print("Log - Tally up top athletes")
 for i in all_athletes:
@@ -197,7 +199,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-print(create_top_10(top10))
+#print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 60 blog posts")
 
