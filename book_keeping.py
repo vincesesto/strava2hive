@@ -127,7 +127,7 @@ def post_upvote(post_permlink):
     full_name = post_permlink.split("/")[0]
     name = full_name.split("@")[1]
     print(name)
-    vote = Vote(voter, name, post_permlink, 50)
+    vote = Vote(voter, name, post_permlink, 30)
     # 5 - Broadcast the vote
     c.broadcast([vote.to_operation_structure()])
     print("Log - upvote for user: ", voter)
@@ -197,7 +197,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-#print(create_top_10(top10))
+print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 60 blog posts")
 
