@@ -68,15 +68,14 @@ def create_leader_board(high):
   return leader_comment
   
 # Function to reblog a post
-def reblog_strava2hive(permlink):
-  athlete_values = hive_work.get_athlete('101635754', "Strava2HiveNewUserSignUp")
-  c = Client(access_token=athlete_values[6], )
+def reblog_strava2hive(permlink, hive_token):
+  c = Client(access_token=hive_token, )
   reblog = Reblog("strava2hive", "strava2hive", permlink)
   print(c.broadcast([reblog.to_operation_structure()]))
   
 # Function to work out weekly top 10
 def create_top_10(top_10):
-  total_hbd = 3
+  total_hbd = 4
   tot_cal = 0
   for i in range(len(top_10)):
     tot_cal = tot_cal + top_10[i][1]
