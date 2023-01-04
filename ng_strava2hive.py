@@ -258,75 +258,6 @@ def post_to_hive(athlete_id, activity_details):
 ## Activity details looks like this notice "'total_photo_count': 3"
 ## {'resource_state': 2, 'athlete': {'id': 1778778, 'resource_state': 1}, 'name': 'Afternoon Swim - Between Two Runs', 'distance': 1500.0, 'moving_time': 1985, 'elapsed_time': 1985, 'total_elevation_gain': 0, 'type': 'Swim', 'sport_type': 'Swim', 'id': 8305092413, 'start_date': '2022-12-29T02:55:09Z', 'start_date_local': '2022-12-29T15:55:09Z', 'timezone': '(GMT+12:00) Pacific/Auckland', 'utc_offset': 46800.0, 'location_city': None, 'location_state': None, 'location_country': 'New Zealand', 'achievement_count': 0, 'kudos_count': 7, 'comment_count': 0, 'athlete_count': 1, 'photo_count': 0, 'map': {'id': 'a8305092413', 'summary_polyline': '', 'resource_state': 2}, 'trainer': True, 'commute': False, 'manual': False, 'private': False, 'visibility': 'everyone', 'flagged': False, 'gear_id': None, 'start_latlng': [], 'end_latlng': [], 'average_speed': 0.756, 'max_speed': 0.0, 'has_heartrate': True, 'average_heartrate': 169.4, 'max_heartrate': 194.0, 'heartrate_opt_out': False, 'display_hide_heartrate_option': True, 'upload_id': 8903746600, 'upload_id_str': '8903746600', 'external_id': '5013379158-1672282509-swim.tcx', 'from_accepted_tag': False, 'pr_count': 0, 'total_photo_count': 3, 'has_kudoed': False}
 ## hive_work.strava_activity_details needs to be extended to include extra images
-  
-  
-#def strava_activity(athlete_deets):
-#  #athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
-#  athlete_details = athlete_deets
-#  # activity bearer is needed as part of the data
-#  print("Log - Searching For New Activities")
-#  bearer_header = "Bearer " + athlete_details[11]
-#  headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
-#  t = datetime.now() - timedelta(days=1)
-#  parameters = {"after": int(t.strftime("%s"))}
-#  #response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers, params=parameters )
-#  response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers)
-#  activity_data = response.json()
-#  if type(activity_data) is dict:
-#    print(activity_data)
-#    print("Log - It looks like there is an issue with strava authentication")
-#    return None
-#  for i in range(len(activity_data)):
-#    activity = activity_data[i]
-#    print(activity['type'])
-#    if activity['type'] == 'Workout':
-#      print("Log - Activity is not a run or ride, so we can stop running this")
-#      continue
-#    print("Log - Activity is a run or ride, now can we it has a description")
-#    print("Log - Now get some more detailed information")
-#    detailed_activity = strava_activity_details(activity['id'], bearer_header)
-#    print(detailed_activity)
-#    
-#    # Testing if the CSV file can be used instead of checking the api
-#    activity_csv = glob.glob("*.csv")
-#    print(activity_csv)    
-#    with open(activity_csv[0], "r") as fp:
-#      s = fp.read()
-#    
-#    if detailed_activity['description'] == None:
-#      print("Log - Activity does not have a description, move on")
-#      #break
-#    elif detailed_activity['description'] == '':
-#      print("Log - Activity does not have a description, move on")
-#      #break
-#    elif str(activity['id']) in s:
-#      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is in our CSV file as already posted, move on")
-#    else:
-#      posted_val = pipedream_modules.activity_posted_api(activity['id'])
-#      if posted_val:
-#        print("Log - Activity has been posted already, move on")
-#      elif posted_val is False:
-#        print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - There was an error connecting to pipedream")
-#      else:
-#        print("Log - Activity has not been posted yet, ship it!!")   
-#        new_dets = detailed_activity['description'].replace('\r','')
-#        detailed_activity['description'] = new_dets
-#        print(detailed_activity['description'])
-#        post_to_hive(athlete_details[10], detailed_activity)
-#        print("Log - Add it now to the activity log")
-#        activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
-#        word = detailed_activity['description'].split()
-#        wcount = len(word)
-#        record_distance = str(round(activity['distance'] * .001, 2))
-#        calories = detailed_activity['calories']
-#        duration = str(round(detailed_activity['duration'] / 60))
-#        if calories == 0:
-#          calories = hive_work.calc_calories(activity['type'], duration)
-#        record_post(athlete_details[10], activity['id'], activity['type'], activity_date, record_distance, calories, wcount, athlete_details[1])
-#        # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
-#        hive_work.update_athlete(athlete_details[10], activity_date, "A", "Strava2HiveNewUserSignUp")
-#        print("Log - Activity posted so we only want one activity at a time for:", athlete_details[10])
-#        break
 
 ##################################################
 # NG Strava2Hive Processing
@@ -342,7 +273,7 @@ response = dynamodb.Table(dynamoTable).scan()
 
 #Start from scratch again
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
-athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365, 107153228, 18345670, 30471548, 10864136, 63571991, 24013473, 105691374, 27627544, 27092562]
+athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365, 107153228, 18345670, 30471548, 10864136, 63571991, 24013473, 105691374, 27627544, 27092562, 12057602]
 #2. loop through all the athleteId's
 for i in athlete_list:
   print(f'Log - Working throuh the next set of activity for the user {i}')
