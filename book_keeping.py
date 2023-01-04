@@ -120,7 +120,7 @@ def post_upvote(post_permlink):
     if j == 101635754:
       reblog_strava2hive(post_permlink, hive_signer_token)
     # 3 - Create the client with the hivesigner token
-    c = Client( access_token=hive_signer_token,)
+    v = Client(access_token=hive_signer_token,)
     # 4 - Create the upvote details
     # - Need to get the voter name from dynamodb
     voter = athletedb_response['Items'][0]['hive_user']
@@ -131,7 +131,7 @@ def post_upvote(post_permlink):
     print(name)
     vote = Vote(voter, name, post_permlink, 30)
     # 5 - Broadcast the vote
-    c.broadcast([vote.to_operation_structure()])
+    print(v.broadcast([vote.to_operation_structure()]))
     print("Log - upvote for user: ", voter)
     print("Log - upvote for permlink: ", post_permlink)
   
@@ -147,9 +147,12 @@ hive_work.download_sheet_as_csv("StravaActivity", 1)
 
 print("Log - get all athletes to work through")
 #dev_athletes = hive_work.list_athletes(6, "HiveAthletes")
-dev_athletes = ['run.vince.run', 'run.kirsty.run']
+dev_athletes = ['run.kirsty.run']
 prod_athletes = hive_work.list_athletes(1, "Strava2HiveNewUserSignUp")
-all_athletes = dev_athletes + prod_athletes
+ng_athletes = [ 'run.vince.run', 'mervinthepogi', 'dennnmarc', 'valerianis', 'crysis', 'ataliba', 
+               'rmsadkri', 'neuerko', 'fortune1m', 'ingi1976', 'anna-newkey', 'sabajfa', 'matthewbox', 
+               'kam5iz']
+all_athletes = dev_athletes + prod_athletes + ng_athletes
 
 leader_board = {}
 new_leader_board = {}
