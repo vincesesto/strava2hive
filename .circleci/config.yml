@@ -82,9 +82,5 @@ workflows:
     triggers:
       - schedule:
           cron: "55 * * * *"
-          filters:
-            branches:
-              only:
-                - main
     jobs:
       - build-and-test
