@@ -81,6 +81,10 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     triggers:
       - schedule:
-          cron: "55 * * * *"
+          cron: "0 * * * *"
+           filters:
+             branches:
+               only:
+                 - main
     jobs:
       - build-and-test
