@@ -97,6 +97,11 @@ def create_top_10(top_10):
   13. @{top_10[12][0]} - {top_10[12][1]} Calories Burned - {(top_10[12][1]/tot_cal)*total_hbd} HBD 
   14. @{top_10[13][0]} - {top_10[13][1]} Calories Burned - {(top_10[13][1]/tot_cal)*total_hbd} HBD
   15. @{top_10[14][0]} - {top_10[14][1]} Calories Burned - {(top_10[14][1]/tot_cal)*total_hbd} HBD
+  16. @{top_10[15][0]} - {top_10[15][1]} Calories Burned - {(top_10[15][1]/tot_cal)*total_hbd} HBD
+  17. @{top_10[16][0]} - {top_10[16][1]} Calories Burned - {(top_10[16][1]/tot_cal)*total_hbd} HBD
+  18. @{top_10[17][0]} - {top_10[17][1]} Calories Burned - {(top_10[17][1]/tot_cal)*total_hbd} HBD 
+  19. @{top_10[18][0]} - {top_10[18][1]} Calories Burned - {(top_10[18][1]/tot_cal)*total_hbd} HBD
+  20. @{top_10[19][0]} - {top_10[19][1]} Calories Burned - {(top_10[19][1]/tot_cal)*total_hbd} HBD
   '''
   return top_10
 
@@ -195,14 +200,14 @@ print(activity_calories)
 print(total_activity_count)
 
 k = Counter(activity_calories)
-top10 = k.most_common(15)
+top10 = k.most_common(20)
 high = k.most_common(5)
 print(top10)
 print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-#print(create_top_10(top10))
+print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 60 blog posts")
 
