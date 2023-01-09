@@ -195,7 +195,7 @@ for i in all_athletes:
   activity_calories[i] = activity_calories_total
   #print("Athlete: " + str(i) + " Activities: " + str(activity_total))
 
-#print(new_leader_board)
+print(new_leader_board)
 print(activity_calories)
 print(total_activity_count)
 
@@ -207,7 +207,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-print(create_top_10(top10))
+#print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 60 blog posts")
 
