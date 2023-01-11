@@ -135,7 +135,7 @@ def post_upvote(post_permlink):
     name = full_name.split("@")[1]
     print(name)
     author=""
-    vote = Vote(voter, str(name), post_permlink, 30)
+    vote = Vote(voter, str(name), post_permlink.split("@")[1], 30)
     # 5 - Broadcast the vote
     print(v.broadcast([vote.to_operation_structure()]))
     print("Log - upvote for user: ", voter)
