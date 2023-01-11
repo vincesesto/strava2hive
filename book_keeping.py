@@ -134,7 +134,8 @@ def post_upvote(post_permlink):
     full_name = post_permlink.split("/")[0]
     name = full_name.split("@")[1]
     print(name)
-    vote = Vote(voter, name, post_permlink, 30)
+    author=""
+    vote = Vote(voter, str(name), post_permlink, 30)
     # 5 - Broadcast the vote
     print(v.broadcast([vote.to_operation_structure()]))
     print("Log - upvote for user: ", voter)
@@ -156,7 +157,7 @@ dev_athletes = ['run.kirsty.run']
 prod_athletes = hive_work.list_athletes(1, "Strava2HiveNewUserSignUp")
 ng_athletes = [ 'run.vince.run', 'mervinthepogi', 'dennnmarc', 'valerianis', 'crysis', 'ataliba', 
                'rmsadkri', 'neuerko', 'fortune1m', 'ingi1976', 'anna-newkey', 'sabajfa', 'matthewbox', 
-               'kam5iz', 'sodom-lv']
+               'kam5iz', 'sodom-lv', 'pinkhub']
 all_athletes = dev_athletes + prod_athletes + ng_athletes
 
 leader_board = {}
