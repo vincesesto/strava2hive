@@ -72,6 +72,7 @@ def reblog_strava2hive(permlink, hive_token):
   #reblog = Reblog("strava2hive", "strava2hive", permlink)
   author_from_pl = permlink.split("/")[0]
   reblog = Reblog("strava2hive", author_from_pl.split("@")[1] , permlink.split("/")[1])
+  print("Repost from strava2hive")
   print(c.broadcast([reblog.to_operation_structure()]))
   sleep(3)
   
@@ -137,7 +138,7 @@ def post_upvote(post_permlink):
     name = full_name.split("@")[1]
     print(name)
     author=""
-    vote = Vote(voter, str(name), post_permlink.split("@")[1], 30)
+    vote = Vote(voter, str(name), post_permlink.split("/")[1], 30)
     # 5 - Broadcast the vote
     print(v.broadcast([vote.to_operation_structure()]))
     print("Log - upvote for user: ", voter)
