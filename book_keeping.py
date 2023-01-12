@@ -70,7 +70,8 @@ def create_leader_board(high):
 def reblog_strava2hive(permlink, hive_token):
   c = Client(access_token=hive_token, )
   #reblog = Reblog("strava2hive", "strava2hive", permlink)
-  reblog = Reblog("strava2hive", "strava2hive", post_permlink.split("/")[1])
+  author_from_pl = post_permlink.split("/")[0])
+  reblog = Reblog("strava2hive", author_from_pl.split("@")[1]) , post_permlink.split("/")[1])
   print(c.broadcast([reblog.to_operation_structure()]))
   sleep(3)
   
