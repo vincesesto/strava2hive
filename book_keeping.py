@@ -157,7 +157,7 @@ dev_athletes = ['run.kirsty.run']
 prod_athletes = hive_work.list_athletes(1, "Strava2HiveNewUserSignUp")
 ng_athletes = [ 'run.vince.run', 'mervinthepogi', 'dennnmarc', 'valerianis', 'crysis', 'ataliba', 
                'rmsadkri', 'neuerko', 'fortune1m', 'ingi1976', 'anna-newkey', 'sabajfa', 'matthewbox', 
-               'kam5iz', 'sodom-lv', 'pinkhub']
+               'kam5iz', 'sodom-lv', 'pinkhub', 'maccazftw']
 all_athletes = dev_athletes + prod_athletes + ng_athletes
 
 leader_board = {}
