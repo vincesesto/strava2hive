@@ -277,7 +277,7 @@ athlete_list = [101635754, 1778778, 105596627, 105808129, 15403365, 107153228, 1
                 63571991, 24013473, 105691374, 27627544, 27092562, 12057602, 26385836, 110525401, 100382865]
 #2. loop through all the athleteId's
 for i in athlete_list:
-  if i == '27092562' :
+  if i == 27092562 :
     continue
   print(f'Log - Working throuh the next set of activity for the user {i}')
   #	3. get the dynamo details for that athleteId
