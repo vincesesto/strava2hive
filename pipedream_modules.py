@@ -17,10 +17,10 @@ def activity_posted_api(activity_id):
 
   return return_data
 
-def hive_post_api(hive_user, distance):
+def hive_post_api(hive_user, activity):
   # Add details to the user store in pipedream after posting to hive
   url = 'https://eovp49jyklnn22n.m.pipedream.net'
-  hive_post_details = {"user": hive_user, "distance": distance }
+  hive_post_details = {"user": hive_user, "url": activity }
   print(hive_post_details)
   header_vals = {'Content-Type': 'application/json' }
   try:
