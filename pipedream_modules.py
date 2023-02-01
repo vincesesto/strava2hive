@@ -31,3 +31,16 @@ def hive_post_api(hive_user, activity):
     return_data = False
 
   return return_data    
+
+def board_update():
+  # What was the last update for the leader board
+  url = 'https://eox8d7deyl6euo3.m.pipedream.net/20230201'
+  header_vals = {'Content-Type': 'application/json' }
+  try:
+    response = requests.post(url, headers=header_vals)
+    return_data = response.json()
+  except:
+    print("Log - An Error occurred trying to authenticate with pipedream")
+    return_data = False
+
+  return return_data    
