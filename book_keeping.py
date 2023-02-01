@@ -13,6 +13,7 @@ import hive_work
 import csv
 import os.path
 import boto3
+import pipedream_modules
 from boto3.dynamodb.conditions import Key, Attr
 from time import sleep
 from collections import Counter
@@ -214,6 +215,10 @@ print(leaders)
 #print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 60 blog posts")
+
+print("Update the leader board page")
+pipedream_modules.board_update()
+
 
 # Test if posts have been made
 file_exists = os.path.exists('post_list.txt')
