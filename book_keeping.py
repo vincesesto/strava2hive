@@ -169,7 +169,7 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 115
+new_week_row = 195
 
 print("Log - Tally up top athletes")
 for i in all_athletes:
@@ -212,7 +212,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-print(create_top_10(top10))
+#print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 60 blog posts")
 
