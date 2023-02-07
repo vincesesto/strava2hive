@@ -49,8 +49,8 @@ def list_all_athletes():
 # Function to create the body of our comment
 def comment_body():
   comment_body = f'''
-  You're smashing your training at the moment and getting stronger every day.
-  From the month of August 2022, the Strava2Hive leader board will be determined by "calories burned"!
+  Keep going, you're smashing your training at the moment and getting stronger every day.
+  To see the full Weekly Leader Board, [click here.](https://cypress-anorak-da8.notion.site/Leader-Board-Updated-Mon-Feb-6-23-45-03-UTC-2023-bf9e87e4106e446fb627abff356ce675)
   https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG
   '''
   return comment_body
