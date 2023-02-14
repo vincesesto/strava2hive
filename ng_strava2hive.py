@@ -12,6 +12,7 @@ import boto3
 import pipedream_modules
 import post_functions
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from boto3.dynamodb.conditions import Key
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -32,7 +33,9 @@ def strava_screenshot(activity):
   #os.system(chrome_command)
   activity_url = "https://www.strava.com/activities/" + str(activity)
   image_name = "image_" + str(activity) + ".png"
-  driver = webdriver.Chrome('/bin/chromedriver')
+  s = Service('/bin/chromedriver')
+  #driver = webdriver.Chrome('/bin/chromedriver')
+  driver = webdriver.Chrome(service=s)  
   driver.get(activity_url)
   sleep(10)
   driver.find_element(by=By.CLASS_NAME, value="btn-accept-cookie-banner").click() 
