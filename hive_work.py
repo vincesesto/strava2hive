@@ -166,13 +166,13 @@ def calc_calories(activity, duration):
   METS = 0.0
   weight = 70.0
   if activity == "Swim":
-    METS = 7.3
+    METS = 6.3
   elif activity == "Run":
-    METS = 9.5   
+    METS = 8.5   
   elif activity == "Ride":
-    METS = 5.5
+    METS = 4.5
   else:
-    METS = 5
+    METS = 4
   per_minute = (METS * weight * 3.5) / 200
   calories = float(per_minute) * float(duration)
   return str(round(calories, 1))
