@@ -43,6 +43,8 @@ def description_and_tags(description):
     community = "hive-155184"
   elif "running" in community:
     community = "hive-107275"
+  elif "cycling" in community:
+    community = "hive-177745"
   else:
     community = "hive-176853"
   if not hashtags:
