@@ -110,7 +110,7 @@ def create_top_10(top_10):
   22. @{top_10[21][0]} - {top_10[21][1]} Calories Burned - {(top_10[21][1]/tot_cal)*total_hbd} HBD
   23. @{top_10[22][0]} - {top_10[22][1]} Calories Burned - {(top_10[22][1]/tot_cal)*total_hbd} HBD 
   24. @{top_10[23][0]} - {top_10[23][1]} Calories Burned - {(top_10[23][1]/tot_cal)*total_hbd} HBD
-  25. @{top_10[24][0]} - {top_10[24][1]} Calories Burned - {(top_10[27][1]/tot_cal)*total_hbd} HBD
+  25. @{top_10[24][0]} - {top_10[24][1]} Calories Burned - {round((top_10[24][1]/tot_cal)*total_hbd,3)} HBD
   '''
   return top_10
 
