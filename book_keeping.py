@@ -96,9 +96,9 @@ def create_top_10(top_10):
   8. @{top_10[7][0]} - {top_10[7][1]} Calories Burned - {(top_10[7][1]/tot_cal)*total_hbd} HBD
   9. @{top_10[8][0]} - {top_10[8][1]} Calories Burned - {(top_10[8][1]/tot_cal)*total_hbd} HBD 
   10. @{top_10[9][0]} - {top_10[9][1]} Calories Burned - {(top_10[9][1]/tot_cal)*total_hbd} HBD 
-  11. @{top_10[10][0]} - {top_10[10][1]} Calories Burned - {(top_10[10][1]/tot_cal)*total_hbd} HBD
-  12. @{top_10[11][0]} - {top_10[11][1]} Calories Burned - {(top_10[11][1]/tot_cal)*total_hbd} HBD
-  13. @{top_10[12][0]} - {top_10[12][1]} Calories Burned - {(top_10[12][1]/tot_cal)*total_hbd} HBD 
+  11. @{top_10[10][0]} - {top_10[10][1]} Calories Burned - {round((top_10[10][1]/tot_cal)*total_hbd,3)} HBD
+  12. @{top_10[11][0]} - {top_10[11][1]} Calories Burned - {round((top_10[11][1]/tot_cal)*total_hbd,3)} HBD
+  13. @{top_10[12][0]} - {top_10[12][1]} Calories Burned - {round((top_10[12][1]/tot_cal)*total_hbd,3)} HBD
   14. @{top_10[13][0]} - {top_10[13][1]} Calories Burned - {round((top_10[13][1]/tot_cal)*total_hbd,3)} HBD
   15. @{top_10[14][0]} - {top_10[14][1]} Calories Burned - {round((top_10[14][1]/tot_cal)*total_hbd,3)} HBD
   16. @{top_10[15][0]} - {top_10[15][1]} Calories Burned - {round((top_10[15][1]/tot_cal)*total_hbd,3)} HBD
@@ -175,7 +175,7 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 654
+new_week_row = 734
 
 print("Log - Tally up top athletes")
 for i in all_athletes:
@@ -218,7 +218,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-print(create_top_10(top10))
+#print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 80 blog posts")
 
