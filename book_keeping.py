@@ -99,17 +99,17 @@ def create_top_10(top_10):
   11. @{top_10[10][0]} - {top_10[10][1]} Calories Burned - {(top_10[10][1]/tot_cal)*total_hbd} HBD
   12. @{top_10[11][0]} - {top_10[11][1]} Calories Burned - {(top_10[11][1]/tot_cal)*total_hbd} HBD
   13. @{top_10[12][0]} - {top_10[12][1]} Calories Burned - {(top_10[12][1]/tot_cal)*total_hbd} HBD 
-  14. @{top_10[13][0]} - {top_10[13][1]} Calories Burned - {(top_10[13][1]/tot_cal)*total_hbd} HBD
-  15. @{top_10[14][0]} - {top_10[14][1]} Calories Burned - {(top_10[14][1]/tot_cal)*total_hbd} HBD
-  16. @{top_10[15][0]} - {top_10[15][1]} Calories Burned - {(top_10[15][1]/tot_cal)*total_hbd} HBD
-  17. @{top_10[16][0]} - {top_10[16][1]} Calories Burned - {(top_10[16][1]/tot_cal)*total_hbd} HBD
-  18. @{top_10[17][0]} - {top_10[17][1]} Calories Burned - {(top_10[17][1]/tot_cal)*total_hbd} HBD 
-  19. @{top_10[18][0]} - {top_10[18][1]} Calories Burned - {(top_10[18][1]/tot_cal)*total_hbd} HBD
-  20. @{top_10[19][0]} - {top_10[19][1]} Calories Burned - {(top_10[19][1]/tot_cal)*total_hbd} HBD
-  21. @{top_10[20][0]} - {top_10[20][1]} Calories Burned - {(top_10[20][1]/tot_cal)*total_hbd} HBD
-  22. @{top_10[21][0]} - {top_10[21][1]} Calories Burned - {(top_10[21][1]/tot_cal)*total_hbd} HBD
-  23. @{top_10[22][0]} - {top_10[22][1]} Calories Burned - {(top_10[22][1]/tot_cal)*total_hbd} HBD 
-  24. @{top_10[23][0]} - {top_10[23][1]} Calories Burned - {(top_10[23][1]/tot_cal)*total_hbd} HBD
+  14. @{top_10[13][0]} - {top_10[13][1]} Calories Burned - {round((top_10[13][1]/tot_cal)*total_hbd,3)} HBD
+  15. @{top_10[14][0]} - {top_10[14][1]} Calories Burned - {round((top_10[14][1]/tot_cal)*total_hbd,3)} HBD
+  16. @{top_10[15][0]} - {top_10[15][1]} Calories Burned - {round((top_10[15][1]/tot_cal)*total_hbd,3)} HBD
+  17. @{top_10[16][0]} - {top_10[16][1]} Calories Burned - {round((top_10[16][1]/tot_cal)*total_hbd,3)} HBD
+  18. @{top_10[17][0]} - {top_10[17][1]} Calories Burned - {round((top_10[17][1]/tot_cal)*total_hbd,3)} HBD
+  19. @{top_10[18][0]} - {top_10[18][1]} Calories Burned - {round((top_10[18][1]/tot_cal)*total_hbd,3)} HBD
+  20. @{top_10[19][0]} - {top_10[19][1]} Calories Burned - {round((top_10[19][1]/tot_cal)*total_hbd,3)} HBD
+  21. @{top_10[20][0]} - {top_10[20][1]} Calories Burned - {round((top_10[20][1]/tot_cal)*total_hbd,3)} HBD
+  22. @{top_10[21][0]} - {top_10[21][1]} Calories Burned - {round((top_10[21][1]/tot_cal)*total_hbd,3)} HBD
+  23. @{top_10[22][0]} - {top_10[22][1]} Calories Burned - {round((top_10[22][1]/tot_cal)*total_hbd,3)} HBD
+  24. @{top_10[23][0]} - {top_10[23][1]} Calories Burned - {round((top_10[23][1]/tot_cal)*total_hbd,3)} HBD
   25. @{top_10[24][0]} - {top_10[24][1]} Calories Burned - {round((top_10[24][1]/tot_cal)*total_hbd,3)} HBD
   '''
   return top_10
@@ -218,7 +218,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-#print(create_top_10(top10))
+print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 80 blog posts")
 
