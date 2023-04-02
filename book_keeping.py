@@ -90,12 +90,12 @@ def create_top_10(top_10):
   2. @{top_10[1][0]} - {top_10[1][1]} Calories Burned - {(top_10[1][1]/tot_cal)*total_hbd} HBD
   3. @{top_10[2][0]} - {top_10[2][1]} Calories Burned - {(top_10[2][1]/tot_cal)*total_hbd} HBD 
   4. @{top_10[3][0]} - {top_10[3][1]} Calories Burned - {(top_10[3][1]/tot_cal)*total_hbd} HBD
-  5. @{top_10[4][0]} - {top_10[4][1]} Calories Burned - {(top_10[4][1]/tot_cal)*total_hbd} HBD
-  6. @{top_10[5][0]} - {top_10[5][1]} Calories Burned - {(top_10[5][1]/tot_cal)*total_hbd} HBD 
-  7. @{top_10[6][0]} - {top_10[6][1]} Calories Burned - {(top_10[6][1]/tot_cal)*total_hbd} HBD
-  8. @{top_10[7][0]} - {top_10[7][1]} Calories Burned - {(top_10[7][1]/tot_cal)*total_hbd} HBD
-  9. @{top_10[8][0]} - {top_10[8][1]} Calories Burned - {(top_10[8][1]/tot_cal)*total_hbd} HBD 
-  10. @{top_10[9][0]} - {top_10[9][1]} Calories Burned - {(top_10[9][1]/tot_cal)*total_hbd} HBD 
+  5. @{top_10[4][0]} - {top_10[4][1]} Calories Burned - {round((top_10[4][1]/tot_cal)*total_hbd,3)} HBD
+  6. @{top_10[5][0]} - {top_10[5][1]} Calories Burned - {round((top_10[5][1]/tot_cal)*total_hbd,3)} HBD
+  7. @{top_10[6][0]} - {top_10[6][1]} Calories Burned - {round((top_10[6][1]/tot_cal)*total_hbd,3)} HBD
+  8. @{top_10[7][0]} - {top_10[7][1]} Calories Burned - {round((top_10[7][1]/tot_cal)*total_hbd,3)} HBD
+  9. @{top_10[8][0]} - {top_10[8][1]} Calories Burned - {round((top_10[8][1]/tot_cal)*total_hbd,3)} HBD 
+  10. @{top_10[9][0]} - {top_10[9][1]} Calories Burned - {round((top_10[9][1]/tot_cal)*total_hbd,3)} HBD
   11. @{top_10[10][0]} - {top_10[10][1]} Calories Burned - {round((top_10[10][1]/tot_cal)*total_hbd,3)} HBD
   12. @{top_10[11][0]} - {top_10[11][1]} Calories Burned - {round((top_10[11][1]/tot_cal)*total_hbd,3)} HBD
   13. @{top_10[12][0]} - {top_10[12][1]} Calories Burned - {round((top_10[12][1]/tot_cal)*total_hbd,3)} HBD
@@ -218,7 +218,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-#print(create_top_10(top10))
+print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 80 blog posts")
 
