@@ -173,8 +173,8 @@ def post_to_hive(athlete_id, activity_details):
   if athlete_id == 105596627:
     print("Moving Time Duration")
     #print(duration)
-    print(activity_details['moving_time'])
-    print(type(activity_details['moving_time']))
+    print(activity_details)
+    #print(type(activity_details['moving_time']))
     #duration = str(round(activity_details['moving_time']/60))
   print("Duration")
   print(duration)
