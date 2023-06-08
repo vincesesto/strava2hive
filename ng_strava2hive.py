@@ -171,9 +171,11 @@ def post_to_hive(athlete_id, activity_details):
   activity_type = activity_details['type'].lower()
   duration = str(round(activity_details['duration'] / 60))
   if athlete_id == 105596627:
-    print("Old Duration")
-    print(duration)
-    duration = str(round(activity_details['moving_time']/60))
+    print("Moving Time Duration")
+    #print(duration)
+    print(activity_details['moving_time'])
+    print(type(activity_details['moving_time']))
+    #duration = str(round(activity_details['moving_time']/60))
   print("Duration")
   print(duration)
   calories = activity_details['calories']
