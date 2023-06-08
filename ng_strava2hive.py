@@ -177,7 +177,7 @@ def post_to_hive(athlete_id, activity_details):
     #print(type(activity_details['moving_time']))
     #duration = str(round(activity_details['moving_time']/60))
   print("Duration")
-  print(duration)
+  print(detailed_activity)
   calories = activity_details['calories']
   if calories == 0:
     calories = hive_work.calc_calories(activity_type, duration)
