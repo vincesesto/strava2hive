@@ -261,9 +261,9 @@ def strava_activity(athlete_deets):
   parameters = {"after": int(t.strftime("%s"))}
   #response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers, params=parameters )
   print("Testing for user " + athlete_details[10])
-  #if athlete_details[10] == '18212962':
-  if athlete_details[10] == '24839597':
-    response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=4", headers=headers)
+  if athlete_details[10] == '18212962':
+  #if athlete_details[10] == '24839597':
+    response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=5", headers=headers)
   else:
     response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=1", headers=headers)
   activity_data = response.json()
