@@ -79,7 +79,7 @@ def reblog_strava2hive(permlink, hive_token):
   
 # Function to work out weekly top 10
 def create_top_10(top_10):
-  total_hbd = 4
+  total_hbd = 8
   tot_cal = 0
   for i in range(len(top_10)):
     tot_cal = tot_cal + top_10[i][1]
