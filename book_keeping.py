@@ -79,7 +79,7 @@ def reblog_strava2hive(permlink, hive_token):
   
 # Function to work out weekly top 10
 def create_top_10(top_10):
-  total_hbd = 8
+  total_hbd = 4
   tot_cal = 0
   for i in range(len(top_10)):
     tot_cal = tot_cal + top_10[i][1]
@@ -180,7 +180,7 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 1820
+new_week_row = 2006
 
 print("Log - Tally up top athletes")
 for i in all_athletes:
@@ -223,7 +223,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-print(create_top_10(top10))
+#print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 80 blog posts")
 
