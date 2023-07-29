@@ -393,7 +393,7 @@ for i in athlete_list:
     detailed_activity = hive_work.strava_activity_details(activity['id'], athletedb_response['Items'][0]['strava_access_token'])
     print(detailed_activity)
     # TESTING for more photos
-    strava_photo_check(activity['id'], athletedb_response['Items'][0]['strava_access_token'])
+    hive_work.strava_photo_check(activity['id'], athletedb_response['Items'][0]['strava_access_token'])
     # Testing if the CSV file can be used instead of checking the api
     activity_csv = glob.glob("*.csv")
     with open(activity_csv[0], "r") as fp:
