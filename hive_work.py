@@ -198,6 +198,16 @@ def strava_activity_check(strava_access_token):
   activity_data = response.json()
   return activity_data
 
+def strava_photo_check(activity_id, strava_access_token):
+  print("TESTING - Seeing if we can get more than one image")
+  bearer_header = "Bearer " + str(strava_access_token)
+  headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
+  strava_activity_url = "https://www.strava.com/api/v3/activities/" + str(activity_id) + "/photos?size=5000"
+  response = requests.get(strava_activity_url, headers=headers)
+  photo_data = response.json()
+  print(photo_data)
+  return photo_data
+
 def strava_activity_details(activity_id, strava_access_token):
   bearer_header = "Bearer " + str(strava_access_token)
   strava_activity_url = "https://www.strava.com/api/v3/activities/" + str(activity_id)
