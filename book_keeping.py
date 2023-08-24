@@ -137,7 +137,8 @@ def post_upvote(post_permlink):
     hive_signer_token = athletedb_response['Items'][0]['hive_signer_access_token']
     # If strava2hive, reblog the post
     if j == 101635754:
-      reblog_strava2hive(post_permlink, hive_signer_token)
+      #reblog_strava2hive(post_permlink, hive_signer_token)
+      print("Taking reblog out for now")
     # 3 - Create the client with the hivesigner token
     v = Client(access_token=hive_signer_token,)
     # 4 - Create the upvote details
@@ -224,7 +225,7 @@ print(high)
 leaders = create_leader_board(high)
 print(leaders)
 
-#print(create_top_10(top10))
+print(create_top_10(top10))
 reblog_count = 0
 print("Personal Best 80 blog posts")
 
