@@ -237,7 +237,7 @@ def strava_activity(athlete_deets):
   print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Searching For New Activities")
   bearer_header = "Bearer " + athlete_details[7]
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
-  t = datetime.now() - timedelta(days=10)
+  t = datetime.now() - timedelta(days=3)
   parameters = {"after": int(t.strftime("%s"))}
   response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers, params=parameters )
   activity_data = response.json()
