@@ -239,7 +239,7 @@ def strava_activity(athlete_deets):
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   t = datetime.now() - timedelta(days=3)
   parameters = {"after": int(t.strftime("%s"))}
-  response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers, params=parameters )
+  response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=3", headers=headers )
   activity_data = response.json()
   for i in range(len(activity_data)):
     activity = activity_data[i]
