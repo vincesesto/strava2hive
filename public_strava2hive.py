@@ -235,7 +235,7 @@ def post_to_hive(athlete_id, activity_details):
       author = author,
       permlink = permlink,
       allow_curation_rewards = True,
-      #percent_hbd = 5000,
+      percent_hive_dollars = 5000,
       allow_votes = True,
       extensions =  [[0,{"beneficiaries": [{"account": "strava2hive", "weight": 500}]}]])
   print("Log - Using Hivesigner to post")
