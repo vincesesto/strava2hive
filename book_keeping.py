@@ -253,7 +253,7 @@ if file_exists:
     c.reply(body, author=author)
     # Now we want to get upvotes for the new post
     print("Log - Now Upvote On Post: ", i)
-    post_upvote(i)
+    #post_upvote(i)
     if reblog_count == 0:
       #reblog_strava2hive(i)
       reblog_count = reblog_count + 1
