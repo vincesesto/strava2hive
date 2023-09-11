@@ -287,7 +287,7 @@ response = dynamodb.Table(dynamoTable).scan()
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
 athlete_list = [101635754, 105596627, 105808129, 15403365, 107153228, 18345670, 30471548, 10864136, 
                 63571991, 24013473, 105691374, 27627544, 27092562, 12057602, 26385836, 110525401, 100382865, 
-                3811369, 107301925, 88497473, 119363780]
+                3811369, 107301925, 88497473, 119363780, 113681541]
 #2. loop through all the athleteId's
 for i in athlete_list:
   if i == 27092562 :
