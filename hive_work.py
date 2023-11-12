@@ -219,7 +219,8 @@ def strava_activity_details(activity_id, strava_access_token):
   activity_info['id'] = activity_id
   activity_info['name'] = more_activity_data['name']
   activity_info['distance'] = more_activity_data['distance']
-  activity_info['duration'] = more_activity_data['elapsed_time']
+  activity_info['old_duration'] = more_activity_data['elapsed_time']
+  activity_info['duration'] = more_activity_data['moving_time']
   activity_info['type'] = more_activity_data['type']
   activity_info['start_date_local'] = more_activity_data['start_date_local']
   activity_info['location_country'] = more_activity_data['location_country']
