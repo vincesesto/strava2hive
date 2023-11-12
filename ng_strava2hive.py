@@ -139,7 +139,8 @@ def strava_activity_details(activity_id, bearer_header):
   activity_info['id'] = activity_id
   activity_info['name'] = more_activity_data['name']
   activity_info['distance'] = more_activity_data['distance']
-  activity_info['duration'] = more_activity_data['elapsed_time']
+  # activity_info['duration'] = more_activity_data['elapsed_time']
+  activity_info['duration'] = more_activity_data['moving_time']
   activity_info['type'] = more_activity_data['type']
   activity_info['start_date_local'] = more_activity_data['start_date_local']
   activity_info['location_country'] = more_activity_data['location_country']
@@ -170,12 +171,6 @@ def post_to_hive(athlete_id, activity_details):
   distance = str(round(activity_details['distance'] * .001, 2))
   activity_type = activity_details['type'].lower()
   duration = str(round(activity_details['duration'] / 60))
-  if athlete_id == 105596627:
-    print("Moving Time Duration")
-    #print(duration)
-    print(activity_details)
-    #print(type(activity_details['moving_time']))
-    #duration = str(round(activity_details['moving_time']/60))
   print("Duration")
   print(detailed_activity)
   calories = activity_details['calories']
