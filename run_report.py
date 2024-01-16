@@ -4,6 +4,7 @@ import requests
 import json
 import random
 import string
+import os
 from beem.imageuploader import ImageUploader
 from beem import Hive
 from beem.account import Account
@@ -46,12 +47,15 @@ def check_for_weekly_reports():
   return parse_json['$return_value']
 
 def check_for_valid_user(list_of_users, report_user):
-  # 3. Check to see if user is valid
+  # 3. Check to see if user is valid and return hive user name
   if report_user in list_of_users.values():
     print("%s is valid" % report_user)
   else:
     print("%s is not valid - Kill script" % report_user)
     # Add in extra details to kill the report
+  
+  return list(list_of_users.keys())[list(list_of_users.values()).index(report_user)]
+
 
 def weekly_report_generator(athlete):
   # 5. Run the report and create the html
@@ -129,9 +133,12 @@ def post_to_hive(post_athlete, post_title, post_body):
   tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
   beneficiaries = [{'account': 'run.vince.run', 'weight': 1000},]
   random_link = ''.join(random.choices(string.digits, k=10))
-  permlink = "testingopenai-" + "-" + random_link
-  hive.post(title, body, author=author, tags=tags, community=community, parse_body=parse_body,         self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
+  permlink = "testingweeklyreport-" + "-" + random_link
+  hive.post(title, body, author=author, tags=tags, community=community, parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
 
+def create_post_title(user):
+  title = "Weekly Report For Strava2Hive User " + user
+  return title
 
 # Main function of the program
 user = check_for_weekly_reports()[0][0]
@@ -141,7 +148,13 @@ valid_users = {
   "run.kirsy.run": "8764738"
 }
  
-check_for_valid_user(valid_users, user)
+hive_user =  check_for_valid_user(valid_users, user)
 html_body = weekly_report_generator(user)
+post_title = create_post_title(hive_user)
+
 print(html_body)
+print(post_title)
+print(hive_user)
+
+#post_to_hive(hive_user, post_title, html_body)
 
