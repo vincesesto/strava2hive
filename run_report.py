@@ -56,8 +56,18 @@ def check_for_valid_user(list_of_users, report_user):
   
   return list(list_of_users.keys())[list(list_of_users.values()).index(report_user)]
 
+def previous_weeks_data(athlete):
+  # Download the data from the previous week for comparison
+  athlete_id = athlete
+  url = "https://eou6w2gk79gwb4s.m.pipedream.net/" + athlete_id
+  response_API = requests.get(url)
+  print(response_API.status_code)
+  data = response_API.text
+  parse_json = json.loads(data)
+  return parse_json
+  #return int(parse_json['$return_value'][2][0])
 
-def weekly_report_generator(athlete):
+def this_weeks_data(athlete):
   # 5. Run the report and create the html
   athlete_id = athlete
   url = "https://eojaaqdfrkizbyb.m.pipedream.net/" + athlete_id
@@ -65,17 +75,20 @@ def weekly_report_generator(athlete):
   print(response_API.status_code)
   data = response_API.text
   parse_json = json.loads(data)
-  
-  weeks = int(parse_json['$return_value'][2][0])
+  return parse_json
+
+def weekly_report_generator(this_weeks_data, previous_weeks_data, athlete):
+  # 5. Run the report and create the html
+  athlete_id = athlete
+  weeks = int(this_weeks_data['$return_value'][2][0])
   newline = "\n"
   activities = []
   top = [0, '0.0', '0.0', '0.0', '0.0', '0.0']
   for i in range(7,(7+weeks)):
     #print(top)
-    activities.append(parse_json['$return_value'][i])
-    if float(top[4]) < float(parse_json['$return_value'][i][4]):
-      #print(parse_json['$return_value'][i])
-      top = parse_json['$return_value'][i]
+    activities.append(this_weeks_data['$return_value'][i])
+    if float(top[4]) < float(this_weeks_data['$return_value'][i][4]):
+      top = this_weeks_data['$return_value'][i]
     else:
       print(top)
   print("Top value is ", top)
@@ -89,19 +102,28 @@ def weekly_report_generator(athlete):
   <table>
     <tr>
       <th></th>
+      <th></th>
       <th>Total Activities</th>
       <th>Total Kilometres</th>
       <th>Total Calories</th>
     </tr>
     <tr>
       <td></td>
-      <td style="text-align:center">{parse_json['$return_value'][2][0]}</td>
-      <td style="text-align:center">{parse_json['$return_value'][3][0]}</td>
-      <td style="text-align:center">{parse_json['$return_value'][4][0]}</td>
+      <td style="text-align:center">This Week</td>
+      <td style="text-align:center">{this_weeks_data['$return_value'][2][0]}</td>
+      <td style="text-align:center">{this_weeks_data['$return_value'][3][0]}</td>
+      <td style="text-align:center">{this_weeks_data['$return_value'][4][0]}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="text-align:center">Last Week</td>
+      <td style="text-align:center">{previous_weeks_data['$return_value'][2][0]}</td>
+      <td style="text-align:center">{previous_weeks_data['$return_value'][3][0]}</td>
+      <td style="text-align:center">{previous_weeks_data['$return_value'][4][0]}</td>
     </tr>
   </table>
 
-  {parse_json['$return_value'][5][1]}
+  {this_weeks_data['$return_value'][5][1]}
 
   <h2>Strava2Hive Activities For The Week</h2>
 
@@ -147,14 +169,17 @@ valid_users = {
   "run.vince.run": "1778778",
   "run.kirsy.run": "8764738"
 }
- 
+
 hive_user =  check_for_valid_user(valid_users, user)
-html_body = weekly_report_generator(user)
+weeks_data = this_weeks_data(user)
+previous_data = previous_weeks_data(user)
+html_body = weekly_report_generator(weeks_data, previous_data, user)
 post_title = create_post_title(hive_user)
 
+print(previous_data)
 print(html_body)
 print(post_title)
 print(hive_user)
 
-#post_to_hive(hive_user, post_title, html_body)
 
+#post_to_hive(hive_user, post_title, html_body)
