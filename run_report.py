@@ -5,10 +5,10 @@ import json
 import random
 import string
 import os
-from beem.imageuploader import ImageUploader
-from beem import Hive
-from beem.account import Account
-from beem.nodelist import NodeList
+#from beem.imageuploader import ImageUploader
+#from beem import Hive
+#from beem.account import Account
+#from beem.nodelist import NodeList
 
 
 # Whats going on here
@@ -55,6 +55,17 @@ def check_for_valid_user(list_of_users, report_user):
     # Add in extra details to kill the report
   
   return list(list_of_users.keys())[list(list_of_users.values()).index(report_user)]
+
+def upload_image(url, athlete):
+  # Add ability to add images to hive post
+  post_img = url
+  command = '/usr/bin/wget "' + post_img + '" -O post_image_' + str(athlete) + '.png'
+  os.system(command)
+  image_path = str(os.getcwd()) +  '/post_image_' + str(athlete) + '.png'
+  image_name = 'post_image_' + str(athlete) + '.png'
+  image_uploader = ImageUploader(blockchain_instance=hive)
+  img_link = image_uploader.upload(image_path, "strava2hive", image_name=image_name)
+  return image_name, img_link
 
 def previous_weeks_data(athlete):
   # Download the data from the previous week for comparison
@@ -175,6 +186,8 @@ weeks_data = this_weeks_data(user)
 previous_data = previous_weeks_data(user)
 html_body = weekly_report_generator(weeks_data, previous_data, user)
 post_title = create_post_title(hive_user)
+#image_name, img_link = upload_image(url, user)
+# All we need to do is add ![{image_name}]({img_link['url']}) to the body of the post
 
 print(previous_data)
 print(html_body)
