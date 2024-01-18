@@ -62,7 +62,7 @@ def activity_posted(athlete_id, activity_id):
       break
   return posted
 
-def record_post(athlete_id, activity_id, activity_type, activity_date, activity_distance, activity_calories, wcount, hive_name):
+def record_post(athlete_id, activity_id, activity_type, activity_date, activity_distance, activity_calories, wcount, hive_name, duration):
   # Update the activity spreadsheet once activity has been posted to Hive
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("StravaActivity")
@@ -92,6 +92,9 @@ def record_post(athlete_id, activity_id, activity_type, activity_date, activity_
   # Now add the activity hive user name
   cell_value = "H" + str(len(cells) + 1)
   wks.update_value(cell_value, hive_name)
+  # Now add the activity duration
+  cell_value = "I" + str(len(cells) + 1)
+  wks.update_value(cell_value, duration) 
     
 def refresh_access_token(athlete):
   # We need to update the access_token in strava every six hours
@@ -419,7 +422,7 @@ for i in athlete_list:
         duration = str(round(detailed_activity['duration'] / 60))
         if calories == 0:
           calories = hive_work.calc_calories(activity['type'], duration)
-        record_post(i, activity['id'], activity['type'], activity_date, record_distance, calories, wcount, athletedb_response['Items'][0]['hive_user'])
+        record_post(i, activity['id'], activity['type'], activity_date, record_distance, calories, wcount, athletedb_response['Items'][0]['hive_user'], duration)
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
         last_log = athletedb_response['Items'][0]['last_post_date']
         print("Log - finially we need to update dynamodb's last post data, which is currently:", last_log)
