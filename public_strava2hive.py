@@ -169,7 +169,7 @@ def post_to_hive(athlete_id, activity_details):
   duration = str(round(activity_details['duration'] / 60))
   calories = activity_details['calories']
   if calories == 0:
-    calories = hive_work.calc_calories(activity_type, duration)
+    calories = hive_work.calc_calories(activity_type, duration, distance)
   print("Log - Downloading images and getting details together")
   strava_screenshot(activity_details['id'])
   # Get athlete profile image
