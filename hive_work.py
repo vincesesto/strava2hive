@@ -164,7 +164,9 @@ def download_sheet_as_csv(sheet_name, sheet_number):
   wks.export(pygsheets.ExportType.CSV)
   wks.export(filename="testingcsv")
   
-def calc_calories(activity, duration):
+def calc_calories(activity, duration, distance):
+  test_vals = "Calculating Calories for " + activity + " " + str(duration) + " " + str(distance)
+  print(test_vals)
   METS = 0.0
   weight = 70.0
   if activity == "Swim":
