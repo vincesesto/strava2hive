@@ -422,7 +422,7 @@ for i in athlete_list:
         calories = detailed_activity['calories']
         duration = str(round(detailed_activity['duration'] / 60))
         if calories == 0:
-          calories = hive_work.calc_calories(activity['type'], duration, distance)
+          calories = hive_work.calc_calories(activity['type'], duration, record_distance)
         record_post(i, activity['id'], activity['type'], activity_date, record_distance, calories, wcount, athletedb_response['Items'][0]['hive_user'], duration)
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
         last_log = athletedb_response['Items'][0]['last_post_date']
