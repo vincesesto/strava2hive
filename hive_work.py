@@ -167,6 +167,9 @@ def download_sheet_as_csv(sheet_name, sheet_number):
 def calc_calories(activity, duration, distance):
   test_vals = "Calculating Calories for " + activity + " " + str(duration) + " " + str(distance)
   print(test_vals)
+  hours = float(duration)/60.0
+  speed = float(distance)/hours
+  print("Speed for this activity is " + str(speed))
   METS = 0.0
   weight = 70.0
   if activity == "Swim":
