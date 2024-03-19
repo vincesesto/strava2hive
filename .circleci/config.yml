@@ -29,7 +29,7 @@ jobs:
           name: Install Chrome Driver
           # Find the latest driver version at the following url: https://googlechromelabs.github.io/chrome-for-testing/#stable
           #command: wget https://chromedriver.storage.googleapis.com/100.0.4896.60/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver ; wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo dpkg -i google-chrome-stable_current_amd64.deb
-          command: wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/121.0.6167.85/linux64/chromedriver-linux64.zip; unzip chromedriver-linux64.zip; sudo mv chromedriver-linux64/chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
+          command: wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/123.0.6312.58/linux64/chromedriver-linux64.zip; unzip chromedriver-linux64.zip; sudo mv chromedriver-linux64/chromedriver /bin/chromedriver; sudo chown root:root /bin/chromedriver
       - run:
           name: Run the dev strava to hive script
           command: ls -l; pwd; ls -l /bin/chromedriver; chromedriver -v; sudo cp openssl.cnf /etc/ssl/openssl.cnf; sudo cp openssl.cnf /usr/lib/ssl/openssl.cnf; openssl version; cat /usr/lib/ssl/openssl.cnf; python run_strava2hive.py
@@ -81,7 +81,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     triggers:
       - schedule:
-          cron: "37 * * * *"
+          cron: "45 * * * *"
           filters:
             branches:
               only:
