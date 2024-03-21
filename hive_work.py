@@ -210,7 +210,7 @@ def strava_photo_check(activity_id, strava_access_token):
   strava_activity_url = "https://www.strava.com/api/v3/activities/" + str(activity_id) + "/photos?size=5000"
   response = requests.get(strava_activity_url, headers=headers)
   photo_data = response.json()
-  print(len(photo_data)
+  print(len(photo_data))
   for i in photo_data:
     print(i['urls']['5000'])
   return photo_data
