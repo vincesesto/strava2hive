@@ -257,7 +257,11 @@ def strava_activity(athlete_deets):
     print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is a run or ride, now we can see if it has a discription")
     print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Now get some more detailed information")
     detailed_activity = strava_activity_details(activity['id'], bearer_header)
-    print(detailed_activity)
+    #print(detailed_activity)
+
+    # Set up a test to see if the activity is older than 1 month
+    # Details should be in detailed_activity as 'start_date_local': '2024-03-20T17:03:44Z'
+    print(detailed_activity['start_date_local'])
     
     # Testing if the CSV file can be used instead of checking the api
     activity_csv = glob.glob("*.csv")
