@@ -70,3 +70,38 @@ def zero_image_post(author, user_wif, activity_id):
   img_link = image_uploader.upload(image_path, author, image_name=image_name)
   return image_name, img_link, prof_image_name, prof_img_link
   
+def one_image_post(author, user_wif, activity_id, athlete_id, image_url):
+  # Create images for a post with one image taken from strava
+
+  # 1. Download the image from strava - image_url
+  # 2. Connect to hive
+  # 3. Upload the image from strava
+  # 4. upload the activity screenshot
+
+  # Download the image from strava
+  profile_img = image_url
+  command = '/usr/bin/wget "' + profile_img + '" -O prof_image_' + str(activity_id) + '.png'
+  os.system(command)
+
+  # Connect to hive
+  nodelist = NodeList()
+  nodelist.update_nodes()
+  nodes = nodelist.get_hive_nodes()
+  wif = user_wif
+  hive = Hive(nodes=nodes, keys=[wif])
+
+  # Upload image from strava
+  image_path = '/home/circleci/project/prof_image_' + str(activity_id) + '.png'  
+  image_name = 'prof_image_' + str(activity_id) + '.png'
+  image_uploader = ImageUploader(blockchain_instance=hive)
+  img_link = image_uploader.upload(image_path, author, image_name=image_name)
+
+  # Upload activity screenshot
+  prof_image_path = '/home/circleci/project/image_' + str(activity_id) + '.png'
+  prof_image_name = 'image_' + str(activity_id) + '.png'
+  prof_image_uploader = ImageUploader(blockchain_instance=hive)
+  prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
+
+  # Return values
+  return image_name, img_link, prof_image_name, prof_img_link
+
