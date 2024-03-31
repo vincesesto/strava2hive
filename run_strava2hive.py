@@ -221,7 +221,7 @@ def post_to_hive(athlete_id, activity_details):
   
   ![{prof_image_name}]({prof_img_link['url']})
   
-  ''' + post_functions.post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
+  ''' + post_functions.post_footer_and_image(photo_data, author, wif, activity_id, athlete_id)
   parse_body = True
   self_vote = False
   #tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
