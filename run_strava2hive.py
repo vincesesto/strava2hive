@@ -185,7 +185,7 @@ def post_to_hive(athlete_id, activity_details):
   strava_screenshot(activity_details['id'])
   # Testing to see if we can get multiple photos
   # For now using strava access token from user
-  hive_work.strava_photo_check(activity_details['id'], athlete_details[7])
+  photo_data = hive_work.strava_photo_check(activity_details['id'], athlete_details[7])
 
   # Get athlete profile image
   if activity_details['photos']['primary'] == None:
