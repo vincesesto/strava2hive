@@ -51,23 +51,50 @@ def post_footer():
   '''
   return footer
 
-def post_footer_and_image():
+def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id):
   # Create a footer for our posts
   # Add in second image to post, if it is available
-  footer_with_image = f'''
-  This is an automated post by @strava2hive and is currently in BETA.
-  
-  If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
 
-  '''
-  # ![{footer_image_name}]({footer_img_link['url']})
+  footer = ''
+
+  if len(photo_data) >= 2:
+    # Download the image from strava
+    footer_img = photo_data[1]['urls']['5000']
+    command = '/usr/bin/wget "' + footer_img + '" -O footer_image_' + str(activity_id) + '.png'
+    os.system(command)
+
+    # Connect to hive
+    nodelist = NodeList()
+    nodelist.update_nodes()
+    nodes = nodelist.get_hive_nodes()
+    wif = user_wif
+    hive = Hive(nodes=nodes, keys=[wif])
+
+    # Upload image from strava
+    footer_image_path = '/home/circleci/project/footer_image_' + str(activity_id) + '.png'  
+    footer_image_name = 'footer_image_' + str(activity_id) + '.png'
+    footer_image_uploader = ImageUploader(blockchain_instance=hive)
+    footer_img_link = image_uploader.upload(footer_image_path, author, image_name=footer_image_name)
+
+    footer_with_image = f'''
+    This is an automated post by @strava2hive and is currently in BETA.
   
-  footer = f'''
-  This is an automated post by @strava2hive and is currently in BETA.
+    If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
+
+    ![{footer_image_name}]({footer_img_link['url']})
+    '''
+    
+    footer = footer_with_image
+  else:
+    footer_no_image = f'''
+    This is an automated post by @strava2hive and is currently in BETA.
   
-  If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
+    If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
   
-  '''
+    '''
+    
+    footer = footer_no_image
+  
   return footer
 
 def zero_image_post(author, user_wif, activity_id):
