@@ -77,21 +77,21 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
     footer_img_link = image_uploader.upload(footer_image_path, author, image_name=footer_image_name)
 
     footer_with_image = f'''
-    This is an automated post by @strava2hive and is currently in BETA.
+This is an automated post by @strava2hive and is currently in BETA.
   
-    If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
+If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
 
-    ![{footer_image_name}]({footer_img_link['url']})
-    '''
+![{footer_image_name}]({footer_img_link['url']})
+'''
     
     footer = footer_with_image
   else:
     footer_no_image = f'''
-    This is an automated post by @strava2hive and is currently in BETA.
+This is an automated post by @strava2hive and is currently in BETA.
   
-    If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
+If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
   
-    '''
+'''
     
     footer = footer_no_image
   
