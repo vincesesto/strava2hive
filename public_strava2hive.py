@@ -152,7 +152,7 @@ def strava_activity_details(activity_id, bearer_header):
   activity_info['photos'] = more_activity_data['photos']
   return activity_info 
     
-def post_to_hive(athlete_id, activity_details):
+def post_to_hive(athlete_id, activity_details, strava_access_token):
   nodelist = NodeList()
   nodelist.update_nodes()
   nodes = nodelist.get_hive_nodes()
@@ -172,6 +172,11 @@ def post_to_hive(athlete_id, activity_details):
     calories = hive_work.calc_calories(activity_type, duration, distance)
   print("Log - Downloading images and getting details together")
   strava_screenshot(activity_details['id'])
+
+  # Testing to see if we can get multiple photos
+  # For now using strava access token from user
+  photo_data = hive_work.strava_photo_check(activity_details['id'], strava_access_token)
+
   # Get athlete profile image
   if activity_details['photos']['primary'] == None:
     prof_image_path = '/home/circleci/project/S2HLogo.PNG'
@@ -216,7 +221,7 @@ def post_to_hive(athlete_id, activity_details):
   
   ![{prof_image_name}]({prof_img_link['url']})
   
-  ''' + post_functions.post_footer()
+  ''' + post_functions.post_footer_and_image(photo_data, author, wif, activity_details['id'], athlete_id)
   parse_body = True
   self_vote = False
   #tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
@@ -312,7 +317,7 @@ def strava_activity(athlete_deets):
         new_dets = detailed_activity['description'].replace('\r','')
         detailed_activity['description'] = new_dets
         print(detailed_activity['description'])
-        post_to_hive(athlete_details[10], detailed_activity)
+        post_to_hive(athlete_details[10], detailed_activity, athlete_details[11])
         print("Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         word = detailed_activity['description'].split()
