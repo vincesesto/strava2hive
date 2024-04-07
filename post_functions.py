@@ -74,7 +74,7 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
     footer_image_path = '/home/circleci/project/footer_image_' + str(activity_id) + '.png'  
     footer_image_name = 'footer_image_' + str(activity_id) + '.png'
     image_uploader = ImageUploader(blockchain_instance=hive)
-    footer_img_link = image_uploader.upload(footer_image_path, author, image_name=footer_image_name)
+    footer_img_link = image_uploader.upload(footer_image_path, "strava2hive", image_name=footer_image_name)
 
     footer_with_image = f'''
 ![{footer_image_name}]({footer_img_link['url']})
