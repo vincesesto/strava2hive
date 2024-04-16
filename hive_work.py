@@ -213,7 +213,7 @@ def strava_photo_check(activity_id, strava_access_token):
   print(len(photo_data))
   print(photo_data)
   for i in photo_data:
-    print(i['urls']['5000'])
+    print(i['urls']['1800'])
   return photo_data
   
 def strava_activity_details(activity_id, strava_access_token):
