@@ -258,6 +258,7 @@ def strava_activity(athlete_deets):
 
     ### Put this in early to do less strava calls
     # Testing if the CSV file can be used instead of checking the api
+    print("TESTING - Check if it is in the spreadsheet first")
     activity_csv = glob.glob("*.csv")
     print(activity_csv)    
     with open(activity_csv[0], "r") as fp:
