@@ -256,15 +256,15 @@ def strava_activity(athlete_deets):
       continue
     print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is a run or ride, now we can see if it has a discription")
 
-    #### Put this in early to do less strava calls
-    ## Testing if the CSV file can be used instead of checking the api
-    #activity_csv = glob.glob("*.csv")
-    #print(activity_csv)    
-    #with open(activity_csv[0], "r") as fp:
-    #  s = fp.read()
-    #if str(activity['id']) in s:
-    #  print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is in our CSV file as already posted, move on")
-
+    ### Put this in early to do less strava calls
+    # Testing if the CSV file can be used instead of checking the api
+    activity_csv = glob.glob("*.csv")
+    print(activity_csv)    
+    with open(activity_csv[0], "r") as fp:
+      s = fp.read()
+    if str(activity['id']) in s:
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is in our CSV file as already posted, move on")
+      continue
 
     print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Now get some more detailed information")
     detailed_activity = strava_activity_details(activity['id'], bearer_header)
