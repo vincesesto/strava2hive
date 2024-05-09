@@ -288,6 +288,18 @@ def strava_activity(athlete_deets):
     if activity['type'] == 'Workout':
       print("Log - Activity is not a run or ride, so we can stop running this")
       continue
+
+    ### Put this in early to do less strava calls
+    # Testing if the CSV file can be used instead of checking the api
+    print("TESTING - Check if it is in the spreadsheet first")
+    activity_csv = glob.glob("*.csv")
+    print(activity_csv)    
+    with open(activity_csv[0], "r") as fp:
+      s = fp.read()
+    if str(activity['id']) in s:
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is in our CSV file as already posted, move on")
+      continue
+    
     print("Log - Activity is a run or ride, now can we it has a description")
     print("Log - Now get some more detailed information")
     detailed_activity = strava_activity_details(activity['id'], bearer_header)
