@@ -231,7 +231,7 @@ def post_to_hive(athlete_id, activity_details):
   print("Log - Posting to Hive")
   account_deets = Account(author, blockchain_instance=hive)
   auth = account_deets.get_blog(limit=5)
-  if activity_type == "Ride":
+  if activity_type == "ride":
     community = "hive-177745"
   
   hive.post(title, body, author=author, tags=tags, community=community, parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries, permlink=permlink)
