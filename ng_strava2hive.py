@@ -238,6 +238,9 @@ def post_to_hive(athlete_id, activity_details, strava_access_token):
   print("Log - Posting to Hive")
   if activity_type == "ride":
     community = "hive-177745"
+
+  if author == "taushifahamed":    
+    community = "hive-176853"
   
   #hive.post(title, body, author=author, tags=tags, community="hive-176853", parse_body=parse_body, self_vote=self_vote, beneficiaries=beneficiaries)
   # This is the new work with Hivesigner
