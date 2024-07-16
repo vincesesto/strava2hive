@@ -38,7 +38,7 @@ def strava_screenshot(activity):
   driver = webdriver.Chrome(service=s)  
   driver.get(activity_url)
   sleep(3)
-  driver.find_element(by=By.CLASS_NAME, value="btn-accept-cookie-banner").click() 
+  #driver.find_element(by=By.CLASS_NAME, value="btn-accept-cookie-banner").click() 
   #driver.find_element_by_class_name("btn-accept-cookie-banner").click() 
   driver.get_screenshot_as_file(image_name)
   driver.quit()
