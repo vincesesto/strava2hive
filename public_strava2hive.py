@@ -40,7 +40,7 @@ def strava_screenshot(activity):
   sleep(3)
   #driver.find_element(by=By.CLASS_NAME, value="btn-accept-cookie-banner").click() 
   #driver.find_element_by_class_name("btn-accept-cookie-banner").click()
-  driver.find_element_by_xpath("//*[@id="__next"]/div[1]/div/div/button[1]").click()
+  driver.find_element_by_xpath("/html/body/div[1]/div[1]/div/div/button[1]").click()
   driver.get_screenshot_as_file(image_name)
   driver.quit()
   os.system("ls -l ; which wget ")
