@@ -36,23 +36,23 @@ def dynamo_access():
   ddb_exceptions = client.exceptions
   return dynamodb
 
-def strava_screenshot(activity):
-  # Create the command to run on chrome
-  #chrome_command = 'google-chrome --headless --screenshot="./screenshot_' + str(activity) + '.png" "https://www.strava.com/activities/' + str(activity) + '"'
-  #print(chrome_command)
-  #os.system(chrome_command)
-  activity_url = "https://www.strava.com/activities/" + str(activity)
-  image_name = "image_" + str(activity) + ".png"
-  s = Service('/bin/chromedriver')
-  #driver = webdriver.Chrome('/bin/chromedriver')
-  driver = webdriver.Chrome(service=s) 
-  driver.get(activity_url)
-  sleep(3)
-  #driver.find_element(by=By.CLASS_NAME, value="btn-accept-cookie-banner").click() 
-  #driver.find_element_by_class_name("btn-accept-cookie-banner").click() 
-  driver.get_screenshot_as_file(image_name)
-  driver.quit()
-  os.system("ls -l")
+#def strava_screenshot(activity):
+#  # Create the command to run on chrome
+#  #chrome_command = 'google-chrome --headless --screenshot="./screenshot_' + str(activity) + '.png" "https://www.strava.com/activities/' + str(activity) + '"'
+#  #print(chrome_command)
+#  #os.system(chrome_command)
+#  activity_url = "https://www.strava.com/activities/" + str(activity)
+#  image_name = "image_" + str(activity) + ".png"
+#  s = Service('/bin/chromedriver')
+#  #driver = webdriver.Chrome('/bin/chromedriver')
+#  driver = webdriver.Chrome(service=s) 
+#  driver.get(activity_url)
+#  sleep(3)
+#  #driver.find_element(by=By.CLASS_NAME, value="btn-accept-cookie-banner").click() 
+#  #driver.find_element_by_class_name("btn-accept-cookie-banner").click() 
+#  driver.get_screenshot_as_file(image_name)
+#  driver.quit()
+#  os.system("ls -l")
 
 def activity_posted(athlete_id, activity_id):
   # Check if an activity has been posted already
@@ -182,7 +182,7 @@ def post_to_hive(athlete_id, activity_details):
   if calories == 0:
     calories = hive_work.calc_calories(activity_type, duration, distance)
   print("Log - Downloading images and getting details together")
-  strava_screenshot(activity_details['id'])
+  post_functions.strava_screenshot(activity_details['id'])
   # Testing to see if we can get multiple photos
   # For now using strava access token from user
   photo_data = hive_work.strava_photo_check(activity_details['id'], athlete_details[7])
