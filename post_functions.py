@@ -21,7 +21,7 @@ def strava_screenshot(activity):
   s = Service('/bin/chromedriver')
   driver = webdriver.Chrome(service=s)  
   driver.get(activity_url)
-  time.sleep(3)
+  time.sleep(4)
   driver.find_element("xpath", "/html/body/div[1]/div[1]/div/div/button[1]").click()
   #driver.find_element("xpath", "/html/body/reach-portal/div[3]/div/div/div/div/div[1]/button[2]").click()
   driver.get_screenshot_as_file(image_name)
