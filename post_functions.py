@@ -22,7 +22,7 @@ def strava_screenshot(activity):
   driver = webdriver.Chrome(service=s)  
   driver.get(activity_url)
   time.sleep(3)
-  if driver.find_elements("xpath", "/html/body/div[1]/div[1]/div/div/button[1]"):
+  #if driver.find_elements("xpath", "/html/body/div[1]/div[1]/div/div/button[1]"):
   if driver.find_elements("xpath", "/html/body/div[1]/div/div/button[1]"):
     print("Element exists!")
     driver.find_element("xpath", "/html/body/div[1]/div[1]/div/div/button[1]").click()
