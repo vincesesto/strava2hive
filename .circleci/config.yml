@@ -76,12 +76,12 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  version: 2
+  version: 3
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     triggers:
       - schedule:
-          cron: "46 * * * *"
+          cron: "48 * * * *"
           filters:
             branches:
               only:
