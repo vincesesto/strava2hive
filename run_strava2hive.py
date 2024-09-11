@@ -237,6 +237,7 @@ def strava_activity(athlete_deets):
   activity_data = response.json()
   for i in range(len(activity_data)):
     activity = activity_data[i]
+    print(activity)
     print(activity['type'])
     if activity['type'] == 'Workout':
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is not a run or ride, so we can stop running this")
