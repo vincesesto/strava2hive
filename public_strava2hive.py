@@ -189,7 +189,7 @@ def post_to_hive(athlete_id, activity_details, strava_access_token):
   hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
   body = f'''
   ![{image_name}]({img_link['url']})
-  {author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
+  @{author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
   This {activity_type} helped {author} burn {calories} calories.
   ---
   
