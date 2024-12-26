@@ -63,6 +63,11 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
 
   footer = ''
 
+  if str(athlete_id) == "preciouz-01":
+    photo_data = 1
+
+  print(photo_data)
+  
   if len(photo_data) >= 2:
     # Download the image from strava
     footer_img = photo_data[1]['urls']['5000']
