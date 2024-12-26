@@ -217,7 +217,7 @@ def strava_photo_check(activity_id, strava_access_token):
     print(i['urls'])
     if p_count == 3:
       break
-  return photo_data
+  return photo_data[0]
   
 def strava_activity_details(activity_id, strava_access_token):
   bearer_header = "Bearer " + str(strava_access_token)
