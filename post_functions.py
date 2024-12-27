@@ -61,7 +61,7 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
   # Create a footer for our posts
   # Add in second image to post, if it is available
 
-  footer = '''
+  footer = ''
 
   photo_len = len(photo_data)
   if str(athlete_id) == "preciouz-01":
