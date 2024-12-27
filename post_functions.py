@@ -65,7 +65,7 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
 
   photo_len = len(photo_data)
   if str(athlete_id) == "preciouz-01":
-    photo_len = 1
+    photo_len = [1]
 
   print(photo_data)
   print(photo_len)
