@@ -61,14 +61,16 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
   # Create a footer for our posts
   # Add in second image to post, if it is available
 
-  footer = ''
+  footer = '''
 
+  photo_len = len(photo_data)
   if str(athlete_id) == "preciouz-01":
-    photo_data = 1
+    photo_len = 1
 
   print(photo_data)
+  print(photo_len)
   
-  if len(photo_data) >= 2:
+  if len(photo_len) >= 2:
     # Download the image from strava
     footer_img = photo_data[1]['urls']['5000']
     command = '/usr/bin/wget "' + footer_img + '" -O footer_image_' + str(activity_id) + '.png'
