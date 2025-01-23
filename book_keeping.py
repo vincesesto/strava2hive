@@ -177,7 +177,7 @@ ng_athletes = [ 'nicklewis', 'masoom', 'budapestguide', 'bostonadventures', 'thi
                'itravelrox22', 'crackyup', 'buzzgoblin', 'taushifahamed', 'alfazmalek02', 'akb01',
                'kingtanu', 'itz.inno', 'disgustoid88', 'nabbas0786', 'giorgakis', 'gunting', 'bobinson',
                'hasaanazam', 'captainman', 'kiwibloke', 'chris-uk', 'tom45p', 'vardatarmaion88', 
-               'alessandrawhite', 'borniet', 'jaytone']
+               'alessandrawhite', 'borniet', 'jaytone', 'tipy']
 all_athletes = dev_athletes + prod_athletes + ng_athletes
 
 leader_board = {}
