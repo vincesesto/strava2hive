@@ -159,6 +159,7 @@ def post_to_hive(athlete_id, activity_details, strava_access_token):
   photo_data = hive_work.strava_photo_check(activity_details['id'], strava_access_token)
 
   # Get athlete profile image
+  activity_details['photos']['primary'] == None
   if activity_details['photos']['primary'] == None:
     photo_data = []
     prof_image_path = '/home/circleci/project/S2HLogo.PNG'
