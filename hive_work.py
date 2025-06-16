@@ -244,10 +244,10 @@ def refresh_dynamo_access_token(athlete):
   # We need to update the access_token in strava every six hours
   # This one is specific for the dynamo DB's
   athlete_vals = athlete[0]
-  print(type(athlete_vals))
+  print(athlete_vals)
   code_val = athlete_vals['strava_one_time']
-  print(type(code_val))
-  print(code_val)
+  #print(type(code_val))
+  #print(code_val)
   try:
     response = requests.post("https://www.strava.com/api/v3/oauth/token",
                              params={'client_id': os.getenv('STRAVA_CLIENT_ID'), 'client_secret': os.getenv('STRAVA_SECRET'), 
