@@ -12,7 +12,7 @@ orbs:
 jobs:
   build-and-test: # This is the name of the job, feel free to change it to better match what you're trying to do!
     docker:
-      - image: cimg/python:3.10-browsers
+      - image: cimg/python:3.13-browsers
     steps:
       - checkout
       - python/install-packages:
@@ -81,7 +81,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     triggers:
       - schedule:
-          cron: "30 * * * *"
+          cron: "55 * * * *"
           filters:
             branches:
               only:
