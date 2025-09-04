@@ -408,6 +408,8 @@ for i in athlete_list:
       print("Log - Activity does not have a description, move on")
     elif detailed_activity['description'] == '':
       print("Log - Activity does not have a description, move on")
+    elif detailed_activity['duration'] == 0:
+      print("Log - Activity does not have a duration, so will fail...move on")
     elif str(activity['id']) in s:
       print("Log - Activity is in our CSV file as already posted, move on")
     else:
