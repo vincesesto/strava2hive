@@ -300,10 +300,10 @@ def strava_activity(athlete_deets):
     
     if detailed_activity['description'] == None:
       print("Log - Activity does not have a description, move on")
-      #break
     elif detailed_activity['description'] == '':
       print("Log - Activity does not have a description, move on")
-      #break
+    elif detailed_activity['duration'] == 0:
+      print("Log - Activity does not have a duration, so will fail...move on")
     elif str(activity['id']) in s:
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is in our CSV file as already posted, move on")
     else:
