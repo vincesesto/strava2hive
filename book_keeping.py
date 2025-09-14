@@ -186,7 +186,7 @@ new_leader_board = {}
 activity_calories = {}
 total_activity_count = 0
 
-new_week_row = 2261
+new_week_row = 2367
 
 print("Log - Tally up top athletes")
 for i in all_athletes:
