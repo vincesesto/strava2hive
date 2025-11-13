@@ -67,7 +67,7 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
 
   footer = ''
   
-  if len(photo_data) >= 2:
+  if len(photo_data) >= 20:
     # Download the image from strava
     footer_img = photo_data[1]['urls']['5000']
     command = '/usr/bin/wget "' + footer_img + '" -O footer_image_' + str(activity_id) + '.png'
