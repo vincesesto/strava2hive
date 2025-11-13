@@ -214,9 +214,7 @@ def strava_photo_check(activity_id, strava_access_token):
   p_count = 0
   for i in photo_data:
     print(i['urls'])
-    if '5000' in i['urls']:
-      p_count = p_count + 1
-      print(i['urls'])
+    p_count = p_count + 1
     if p_count == 3:
       break
   return photo_data
