@@ -21,14 +21,14 @@ def strava_screenshot(activity):
   s = Service('/bin/chromedriver')
   driver = webdriver.Chrome(service=s)  
   driver.get(activity_url)
-  time.sleep(3)
-  if driver.find_elements("xpath", "/html/body/div[1]/div/div[4]/div[1]/div/div[2]/button[4]"):
-  #if driver.find_elements("xpath", "/html/body/div[1]/div/div/button[1]"):
-    print("Element exists!")
-    driver.find_element("xpath", "/html/body/div[1]/div/div[4]/div[1]/div/div[2]/button[4]").click()
-    #driver.find_element("xpath", "/html/body/div[1]/div[1]/div/div/button[1]").click()
-    #driver.find_element("xpath", "/html/body/div[1]/div/div/button[1]").click()
-    #driver.find_element("xpath", "/html/body/reach-portal/div[3]/div/div/div/div/div[1]/button[2]").click()
+  time.sleep(1)
+  if driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept"):
+    driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept").click()
+    time.sleep(1)
+  # Just leaving this hear so I remember what I did previously
+  #if driver.find_elements("xpath", "/html/body/div[1]/div/div[4]/div[1]/div/div[2]/button[4]"):
+    #print("Element exists!")
+    #driver.find_element("xpath", "/html/body/div[1]/div/div[4]/div[1]/div/div[2]/button[4]").click()
   driver.get_screenshot_as_file(image_name)
   driver.quit()
   os.system("ls -l")
