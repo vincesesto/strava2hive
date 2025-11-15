@@ -21,7 +21,7 @@ def strava_screenshot(activity):
   s = Service('/bin/chromedriver')
   driver = webdriver.Chrome(service=s)  
   driver.get(activity_url)
-  time.sleep(1)
+  time.sleep(2)
   if driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept"):
     driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept").click()
     time.sleep(1)
