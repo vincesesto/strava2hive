@@ -24,7 +24,7 @@ def strava_screenshot(activity):
   time.sleep(2)
   if driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept"):
     driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept").click()
-    time.sleep(1)
+    #time.sleep(1)
   # Just leaving this hear so I remember what I did previously
   #if driver.find_elements("xpath", "/html/body/div[1]/div/div[4]/div[1]/div/div[2]/button[4]"):
     #print("Element exists!")
