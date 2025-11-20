@@ -177,7 +177,7 @@ ng_athletes = [ 'krios003', 'nicklewis', 'masoom', 'budapestguide', 'bostonadven
                'itravelrox22', 'crackyup', 'buzzgoblin', 'taushifahamed', 'alfazmalek02', 'akb01',
                'kingtanu', 'itz.inno', 'disgustoid88', 'nabbas0786', 'giorgakis', 'gunting', 'bobinson',
                'hasaanazam', 'captainman', 'kiwibloke', 'chris-uk', 'tom45p', 'vardatarmaion88', 
-               'alessandrawhite', 'borniet', 'jaytone', 'tipy', 'mirzaiqi', 'fizz0', 'Ismaelcastillo',
+               'alessandrawhite', 'borniet', 'jaytone', 'tipy', 'mirzaiqi', 'fizz0', 'Ismaelcastillo', 'vempromundo',
                'rostik924', 'v-36', 'tommyl33', 'alstonsjournal', 'artofkylin', 'onemoretea', 'artemisnorth']
 all_athletes = dev_athletes + prod_athletes + ng_athletes
 
