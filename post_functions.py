@@ -54,6 +54,9 @@ def activity_summary(author, distance, activity_type, duration, calories):
 def post_footer():
   # Create a footer for our posts
   footer = f'''
+  
+  <img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" >
+  
   This is an automated post by @strava2hive and is currently in BETA.
   
   If you would like to know more about the @strava2hive service, you can checkout our [Frequently Asked Questions.](https://hive.blog/hive-176853/@strava2hive/strava2hive-frequently-asked-questions)
