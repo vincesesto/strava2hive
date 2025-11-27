@@ -55,7 +55,7 @@ def post_footer():
   # Create a footer for our posts
   footer = f'''
   
-  <img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" >
+  <img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" alt="S2HLogo.PNG" srl_elementid="1">
   
   This is an automated post by @strava2hive and is currently in BETA.
   
