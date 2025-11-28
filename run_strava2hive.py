@@ -172,9 +172,13 @@ def post_to_hive(athlete_id, activity_details):
   # Get athlete profile image
   if activity_details['photos']['primary'] == None:
     # image_name, img_link, prof_image_name, prof_img_link = post_functions.zero_image_post(author, athlete_details[3], activity_details['id'])
+    title_img = "https://images.hive.blog/DQme7eUjgkDvupcM7MvbarXtbkmA9bUufXwCdwJuGo7dVp1/ActivityStravaHive.png"
+    title_img_alt = "Title_image.png"
     print("Not downloading screenshots from strava for now")
   else:
-    print("Not downloading screenshots from strava for now")
+    print("Not downloading screenshots from strava for now, but instead we will link it")
+    title_img = activity_details['photos']['primary']['urls']['600']
+    title_img_alt = "Title_image.png"
     #profile_img = activity_details['photos']['primary']['urls']['600']
     #command = '/usr/bin/wget "' + profile_img + '" -O prof_image_' + str(athlete_id) + '.png'
     #os.system(command)
@@ -194,7 +198,7 @@ def post_to_hive(athlete_id, activity_details):
   #![{image_name}]({img_link['url']})  
   #![{prof_image_name}]({prof_img_link['url']})
   body = f'''
-  <img src="https://images.hive.blog/DQme7eUjgkDvupcM7MvbarXtbkmA9bUufXwCdwJuGo7dVp1/ActivityStravaHive.png" alt="AltS2HLogo.PNG" srl_elementid="1">
+  <img src={title_img} alt={title_img_alt} srl_elementid="1">
   
   <h3>We are currently experiencing issues posting images on @strava2hive...Please bear with us</h3>
 
