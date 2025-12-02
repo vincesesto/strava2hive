@@ -5,6 +5,7 @@
 import os
 import re
 import time
+from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -50,7 +51,39 @@ def activity_summary(author, distance, activity_type, duration, calories):
   This {activity_type} helped {author} burn {calories} calories.
   '''
   return act_summary
+
+def post_header(header_image, distance, activity_type, duration, calories, activity_date):
+  # Create header with
+  ## Header image
+  ## Activity icon, type, date
+  ## Activity distance, duration, calories
+  # Get icon type
+  activity_icon = ""
+  if activity_type == "Swim":
+    activity_icon = "🏊"
+  elif activity_type == "Bike":
+    activity_icon = "🚴"
+  elif activity_type == "Run":
+    activity_icon = "🏃"
+  else:
+    activity_type = "🏋"
+
+  act_date = activity_date
+  dt = datetime.strptime(act_date, '%Y-%m-%dT%H:%M:%SZ')
+  date_only = dt.date()              # datetime.date(2025, 9, 20)
+  date_str = dt.strftime('%Y-%m-%d') # '2025-09-20'  
   
+  body = f'''
+  <center><img src={header_image} alt={Title_image.png} srl_elementid="1"></center>
+  
+  | <h1>{activity_icon}</h1> | {activity_type} | {date_str} |
+  |:--------|:-----:|------:|
+  | {distance} | {duration} | {calories} kcal |
+
+  '''
+  return act_header
+  
+
 def post_footer():
   # Create a footer for our posts
   footer = f'''
@@ -71,7 +104,7 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
   # This can sometimes fail due to an issue with strava uploads
   # to fix this change line 69 to   if len(photo_data) >= 20:
 
-  footer = ''
+  footer = '''
   
   if len(photo_data) >= 20:
     # Download the image from strava
