@@ -104,7 +104,7 @@ def post_footer_and_image(photo_data, author, user_wif, activity_id, athlete_id)
   # This can sometimes fail due to an issue with strava uploads
   # to fix this change line 69 to   if len(photo_data) >= 20:
 
-  footer = '''
+  footer = ''
   
   if len(photo_data) >= 20:
     # Download the image from strava
