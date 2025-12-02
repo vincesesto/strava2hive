@@ -129,6 +129,7 @@ def strava_activity_details(activity_id, bearer_header):
   headers = {'Content-Type': 'application/json', 'Authorization': bearer_header}
   response = requests.get(strava_activity_url, headers=headers, )
   more_activity_data = response.json()
+  print(more_activity_data)
   activity_info = dict()
   try:
     activity_info['id'] = activity_id
@@ -141,7 +142,7 @@ def strava_activity_details(activity_id, bearer_header):
     activity_info['description'] = more_activity_data['description']
     activity_info['calories'] = more_activity_data['calories']
     activity_info['photos'] = more_activity_data['photos']
-    activity_info['device_name'] = more_activity_data['device_name']
+    #activity_info['device_name'] = more_activity_data['device_name']
   except:
     print("Log - An Error occurred trying to get date from Strava")
     activity_info['description'] = None
