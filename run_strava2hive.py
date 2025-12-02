@@ -197,6 +197,9 @@ def post_to_hive(athlete_id, activity_details):
   # These tags were included in the body of the post and added above
   #![{image_name}]({img_link['url']})  
   #![{prof_image_name}]({prof_img_link['url']})
+
+  # post_functions.post_header(header_image, distance, activity_type, duration, calories, activity_date)
+ 
   body = f'''
   <center><img src={title_img} alt={title_img_alt} srl_elementid="1"></center>
   
