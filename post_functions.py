@@ -68,14 +68,14 @@ def post_header(header_image, distance, activity_type, duration, calories, activ
   else:
     activity_type = "🏋"
 
-  act_date = activity_date
-  dt = datetime.strptime(act_date, '%Y-%m-%dT%H:%M:%SZ')
-  date_only = dt.date()              # datetime.date(2025, 9, 20)
-  date_str = dt.strftime('%Y-%m-%d') # '2025-09-20'  
+  #act_date = activity_date
+  #dt = datetime.strptime(act_date, '%Y-%m-%dT%H:%M:%SZ')
+  #date_only = dt.date()              # datetime.date(2025, 9, 20)
+  #date_str = dt.strftime('%Y-%m-%d') # '2025-09-20'  
   
   #<center><img src={header_image} alt={Title_image.png} srl_elementid="1"></center>
   body = f'''  
-  | <h1>{activity_icon}</h1> | <h1>{activity_type}</h1> | <h1>{date_str}</h1> |
+  | <h1>{activity_icon}</h1> | <h1>{activity_type}</h1> | <h1>{activity_date}</h1> |
   |:--------|:-----:|------:|
   | <h3>Distance</h3> |  <h3>Duration</h3> |  <h3>Calories</h3>  |
   | <h1>{distance}</h1> | <h1>{duration}</h1> | <h1>{calories} kcal</h1> |
