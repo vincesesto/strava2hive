@@ -73,12 +73,12 @@ def post_header(header_image, distance, activity_type, duration, calories, activ
   date_only = dt.date()              # datetime.date(2025, 9, 20)
   date_str = dt.strftime('%Y-%m-%d') # '2025-09-20'  
   
-  body = f'''
-  <center><img src={header_image} alt={Title_image.png} srl_elementid="1"></center>
-  
-  | <h1>{activity_icon}</h1> | {activity_type} | {date_str} |
+  #<center><img src={header_image} alt={Title_image.png} srl_elementid="1"></center>
+  body = f'''  
+  | <h1>{activity_icon}</h1> | <h1>{activity_type}</h1> | <h1>{date_str}</h1> |
   |:--------|:-----:|------:|
-  | {distance} | {duration} | {calories} kcal |
+  | <h3>Distance</h3> |  <h3>Duration</h3> |  <h3>Calories</h3>  |
+  | <h1>{distance}</h1> | <h1>{duration}</h1> | <h1>{calories} kcal</h1> |
 
   '''
   return act_header
