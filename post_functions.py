@@ -59,11 +59,12 @@ def post_header(header_image, distance, activity_type, duration, calories, activ
   ## Activity distance, duration, calories
   # Get icon type
   activity_icon = ""
-  if activity_type == "swim":
+  print(activity_type)
+  if activity_type == "Swim":
     activity_icon = "🏊"
-  elif activity_type == "bike":
+  elif activity_type == "Ride":
     activity_icon = "🚴"
-  elif activity_type == "run":
+  elif activity_type == "Run":
     activity_icon = "🏃"
   else:
     activity_type = "🏋"
