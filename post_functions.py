@@ -67,7 +67,7 @@ def post_header(header_image, distance, activity_type, duration, calories, activ
   elif activity_type == "run":
     activity_icon = "🏃"
   else:
-    activity_type = "🏋"
+    activity_icon = "🏋"
 
   #act_date = activity_date
   #dt = datetime.strptime(act_date, '%Y-%m-%dT%H:%M:%SZ')
