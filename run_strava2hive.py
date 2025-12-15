@@ -198,7 +198,7 @@ def post_to_hive(athlete_id, activity_details):
   #   <center><img src={title_img} alt={title_img_alt} srl_elementid="1"></center> 
   body = post_functions.post_header(title_img, distance, activity_type, duration, calories, activity_date) + f'''
 
-  #![{image_name}]({img_link['url']})  
+  ![{image_name}]({img_link['url']})  
 
   <h3>We are currently experiencing some issues posting images on @strava2hive...Please bear with us</h3>
 
