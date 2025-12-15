@@ -77,7 +77,7 @@ def post_header(header_image, distance, activity_type, duration, calories, activ
   act_header = f''' 
   <center><img src={header_image} alt="Title_image.png" srl_elementid="1"></center>
  
-  | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{activity_date}</h1> |
+  | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{activity_type}</h1> |
   |:--------|:-----:|------:|
   | <h3>Distance</h3> |  <h3>Duration</h3> |  <h3>Calories</h3>  |
   | <h1>{distance}</h1> | <h1>{duration}</h1> | <h1>{calories} kcal</h1> |
