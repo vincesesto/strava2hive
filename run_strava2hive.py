@@ -172,7 +172,7 @@ def post_to_hive(athlete_id, activity_details):
 
   # Get athlete profile image
   if activity_details['photos']['primary'] == None:
-    image_name, img_link, prof_image_name, prof_img_link = post_functions.zero_image_post(author, athlete_details[3], activity_details['id'])
+    #image_name, img_link, prof_image_name, prof_img_link = post_functions.zero_image_post(author, athlete_details[3], activity_details['id'])
     title_img = "https://images.hive.blog/DQme7eUjgkDvupcM7MvbarXtbkmA9bUufXwCdwJuGo7dVp1/ActivityStravaHive.png"
     title_img_alt = "Title_image.png"
   else:
@@ -215,14 +215,8 @@ def post_to_hive(athlete_id, activity_details):
 
   #![{prof_image_name}]({prof_img_link['url']})
   #   <center><img src={title_img} alt={title_img_alt} srl_elementid="1"></center> 
-  body = post_functions.post_header(title_img, distance, activity_type, duration, calories, activity_date) + f'''
-
-  ![{image_name}]({img_link['url']})  
-
-  <h3>We are currently experiencing some issues posting images on @strava2hive...Please bear with us</h3>
-
-  @{author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
-  This {activity_type} helped {author} burn {calories} calories.
+  body = post_functions.post_header_image(author, athlete_details[3], distance, activity_type, 
+                                          duration, calories, activity_date, activity_details['id'], header_image="no_image") + f'''
   ---
   
   **Description from Strava:** {description}
