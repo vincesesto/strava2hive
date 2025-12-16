@@ -78,6 +78,52 @@ def post_header(header_image, distance, activity_type, duration, calories, activ
   '''
   return act_header
   
+def post_header_image(author, distance, activity_type, duration, calories, activity_date, activity_id, header_image="no_image"):
+  # Create header with
+  ## Header image
+  # Get icon type
+  activity_icon = ""
+  print(activity_type)
+  if activity_type == "swim":
+    activity_icon = "🏊"
+  elif activity_type == "ride":
+    activity_icon = "🚴"
+  elif activity_type == "run":
+    activity_icon = "🏃"
+  else:
+    activity_icon = "🏋"
+
+  # Create the screehshot image name
+  image_name = "image_" + str(activity_id) + ".png"
+
+  header = ''
+
+  if header_image == "no_image":
+    post_header_screenshot = f''' 
+  ![{image_name}]({img_link['url']}) 
+ 
+  | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{calories} kcal</h1> |
+  |:--------|:-----:|------:|
+
+  @{author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
+  This {activity_type} helped {author} burn {calories} calories.  
+
+  '''
+  else:
+    post_header_image_screenshot = f''' 
+  <center><img src={header_image} alt="Title_image.png" srl_elementid="1"></center>
+ 
+  | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{calories} kcal</h1> |
+  |:--------|:-----:|------:|
+
+  ![{image_name}]({img_link['url']})   
+
+  @{author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
+  This {activity_type} helped {author} burn {calories} calories.  
+
+  '''
+  return header
+
 
 def post_footer():
   # Create a footer for our posts
