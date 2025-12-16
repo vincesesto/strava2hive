@@ -173,8 +173,7 @@ def post_to_hive(athlete_id, activity_details):
   # Get athlete profile image
   if activity_details['photos']['primary'] == None:
     #image_name, img_link, prof_image_name, prof_img_link = post_functions.zero_image_post(author, athlete_details[3], activity_details['id'])
-    title_img = "https://images.hive.blog/DQme7eUjgkDvupcM7MvbarXtbkmA9bUufXwCdwJuGo7dVp1/ActivityStravaHive.png"
-    title_img_alt = "Title_image.png"
+    title_img = "no_image"
   else:
     print("Not downloading screenshots from strava for now, but instead we will link it")
     title_img = activity_details['photos']['primary']['urls']['600']
@@ -216,7 +215,7 @@ def post_to_hive(athlete_id, activity_details):
   #![{prof_image_name}]({prof_img_link['url']})
   #   <center><img src={title_img} alt={title_img_alt} srl_elementid="1"></center> 
   body = post_functions.post_header_image(author, athlete_details[3], distance, activity_type, 
-                                          duration, calories, activity_date, activity_details['id'], header_image="no_image") + f'''
+                                          duration, calories, activity_date, activity_details['id'], title_img) + f'''
   ---
   
   **Description from Strava:** {description}
