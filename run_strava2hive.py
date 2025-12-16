@@ -194,6 +194,25 @@ def post_to_hive(athlete_id, activity_details):
   title = activity_details['name']
   hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
 
+
+
+  
+  # If no photos
+  ## Screeshot activity and return the screenshot image link that has been created
+  # Elsif one photo
+  ## Screeshot activity and return the screenshot image link that has been created
+  ## Get link from the image and provide it ready to creat post
+  # Else two photos
+  ## Screeshot activity and return the screenshot image link that has been created
+  ## Get link from two images and provide it ready to creat post  
+  #
+  # Create the post
+  ## post_functions.post_header
+  ## body with description
+  ## post_functins.post_footer
+
+  
+
   #![{prof_image_name}]({prof_img_link['url']})
   #   <center><img src={title_img} alt={title_img_alt} srl_elementid="1"></center> 
   body = post_functions.post_header(title_img, distance, activity_type, duration, calories, activity_date) + f'''
@@ -220,7 +239,7 @@ def post_to_hive(athlete_id, activity_details):
   self_vote = False
   #tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
   tags = hashtags
-  beneficiaries = [{'account': 'strava2hive', 'weight': 600},]
+  beneficiaries = [{'account': 'run.vince.run', 'weight': 900},]
   permlink = hive_work.create_permlink(activity_details['id'])
   print("Log - Posting to Hive")
   #account_deets = Account(author, blockchain_instance=hive)
