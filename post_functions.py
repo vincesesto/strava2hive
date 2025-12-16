@@ -78,7 +78,7 @@ def post_header(header_image, distance, activity_type, duration, calories, activ
   '''
   return act_header
   
-def post_header_image(author, distance, activity_type, duration, calories, activity_date, activity_id, header_image="no_image"):
+def post_header_image(author, user_wif, distance, activity_type, duration, calories, activity_date, activity_id, header_image="no_image"):
   # Create header with
   ## Header image
   # Get icon type
@@ -94,7 +94,7 @@ def post_header_image(author, distance, activity_type, duration, calories, activ
     activity_icon = "🏋"
 
   # Create the screehshot image name
-  image_name = "image_" + str(activity_id) + ".png"
+  image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, user_wif, activity_id)
 
   header = ''
 
