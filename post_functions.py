@@ -109,6 +109,7 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   This {activity_type} helped {author} burn {calories} calories.  
 
   '''
+    header = post_header_screenshot
   else:
     post_header_image_screenshot = f''' 
   <center><img src={header_image} alt="Title_image.png" srl_elementid="1"></center>
@@ -122,6 +123,7 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   This {activity_type} helped {author} burn {calories} calories.  
 
   '''
+    header = post_header_image_screenshot
   return header
 
 
