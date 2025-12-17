@@ -93,8 +93,11 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   else:
     activity_icon = "🏋"
 
+  wif = os.getenv('POSTING_KEY')
+
   # Create the screehshot image name
-  image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, user_wif, activity_id)
+  print("Testing: ", wif)
+  image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, wif, activity_id)
 
   header = ''
 
