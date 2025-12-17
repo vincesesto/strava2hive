@@ -187,7 +187,7 @@ def post_to_hive(athlete_id, activity_details, strava_access_token):
   self_vote = False
   #tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
   tags = hashtags
-  beneficiaries = [{'account': 'strava2hive', 'weight': 500},]
+  beneficiaries = [{'account': 'run.vince.run', 'weight': 900},]
   print("Log - Posting to Hive")
   if activity_type == "ride":
     community = "hive-177745"
