@@ -172,48 +172,31 @@ def post_to_hive(athlete_id, activity_details):
 
   # Get athlete profile image
   if activity_details['photos']['primary'] == None:
-    #image_name, img_link, prof_image_name, prof_img_link = post_functions.zero_image_post(author, athlete_details[3], activity_details['id'])
     title_img = "no_image"
   else:
     print("Not downloading screenshots from strava for now, but instead we will link it")
     title_img = activity_details['photos']['primary']['urls']['600']
     title_img_alt = "Title_image.png"
-    #profile_img = activity_details['photos']['primary']['urls']['600']
-    #command = '/usr/bin/wget "' + profile_img + '" -O prof_image_' + str(athlete_id) + '.png'
-    #os.system(command)
-    #image_path = '/home/circleci/project/prof_image_' + str(athlete_id) + '.png'
-    #image_name = 'prof_image_' + str(athlete_id) + '.png'
-    #image_uploader = ImageUploader(blockchain_instance=hive)
-    #img_link = image_uploader.upload(image_path, author, image_name=image_name)
-    ## The screen shot is now at the bottom of the page
-    #prof_image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
-    #prof_image_name = 'image_' + str(activity_details['id']) + '.png'
-    #prof_image_uploader = ImageUploader(blockchain_instance=hive)
-    #prof_img_link = prof_image_uploader.upload(prof_image_path, author, image_name=prof_image_name)
   title = activity_details['name']
   hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
 
 
-
   
   # If no photos
-  ## Screeshot activity and return the screenshot image link that has been created
-  # Elsif one photo
-  ## Screeshot activity and return the screenshot image link that has been created
-  ## Get link from the image and provide it ready to creat post
+  ## Screeshot activity and return the screenshot image link that has been created - DONE
+  # Elsif one photo - DONE
+  ## Screeshot activity and return the screenshot image link that has been created - DONE
+  ## Get link from the image and provide it ready to creat post - DONE
   # Else two photos
   ## Screeshot activity and return the screenshot image link that has been created
   ## Get link from two images and provide it ready to creat post  
   #
   # Create the post
-  ## post_functions.post_header
-  ## body with description
+  ## post_functions.post_header - DONE
+  ## body with description - DONE
   ## post_functins.post_footer
 
   
-
-  #![{prof_image_name}]({prof_img_link['url']})
-  #   <center><img src={title_img} alt={title_img_alt} srl_elementid="1"></center> 
   body = post_functions.post_header_image(author, athlete_details[3], distance, activity_type, 
                                           duration, calories, activity_date, activity_details['id'], title_img) + f'''
   ---
