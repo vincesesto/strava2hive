@@ -202,7 +202,7 @@ def zero_image_post(author, user_wif, activity_id):
   
   if author == "run.kirsty.run" or author == "run.vince.run":
       print("Dont do anything with the author")
-    else:
+  else:
       author = "strava2hive"
 
   nodelist = NodeList()
