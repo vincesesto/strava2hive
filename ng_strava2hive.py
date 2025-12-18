@@ -169,48 +169,19 @@ def post_to_hive(athlete_id, activity_details, strava_access_token):
 
   # Get athlete profile image
   if activity_details['photos']['primary'] == None:
-    #prof_image_path = '/home/circleci/project/S2HLogo.PNG'
-    #prof_image_name = 'S2HLogo.PNG'
-    #prof_image_uploader = ImageUploader(blockchain_instance=hive)
-    #prof_img_link = prof_image_uploader.upload(prof_image_path, "strava2hive", image_name=prof_image_name)
-    ## Now set up the main image
-    #image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
-    #image_name = 'image_' + str(activity_details['id']) + '.png'
-    #image_uploader = ImageUploader(blockchain_instance=hive)
-    #img_link = image_uploader.upload(image_path, "strava2hive", image_name=image_name)
-    title_img = "https://images.hive.blog/DQme7eUjgkDvupcM7MvbarXtbkmA9bUufXwCdwJuGo7dVp1/ActivityStravaHive.png"
-    title_img_alt = "Title_image.png"
-    print("Not downloading screenshots from strava for now")
+    title_img = "no_image"
   else:
     print("Not downloading screenshots from strava for now, but instead we will link it")
     title_img = activity_details['photos']['primary']['urls']['600']
     title_img_alt = "Title_image.png"
-    #profile_img = activity_details['photos']['primary']['urls']['600']
-    #command = '/usr/bin/wget "' + profile_img + '" -O prof_image_' + str(athlete_id) + '.png'
-    #os.system(command)
-    #image_path = '/home/circleci/project/prof_image_' + str(athlete_id) + '.png'
-    #image_name = 'prof_image_' + str(athlete_id) + '.png'
-    #image_uploader = ImageUploader(blockchain_instance=hive)
-    ##img_link = image_uploader.upload(image_path, author, image_name=image_name)
-    #img_link = image_uploader.upload(image_path, "strava2hive", image_name=image_name)
-    ## The screen shot is now at the bottom of the page
-    #prof_image_path = '/home/circleci/project/image_' + str(activity_details['id']) + '.png'
-    #prof_image_name = 'image_' + str(activity_details['id']) + '.png'
-    #prof_image_uploader = ImageUploader(blockchain_instance=hive)
-    #prof_img_link = prof_image_uploader.upload(prof_image_path, "strava2hive", image_name=prof_image_name)
   title = activity_details['name']
   hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
 
-  # These tags were included in the body of the post and added above
-  #![{image_name}]({img_link['url']})  
-  #![{prof_image_name}]({prof_img_link['url']})  
-  body = f'''
-  <center><img src={title_img} alt={title_img_alt} srl_elementid="1"></center>
-  
-  <h3>We are currently experiencing issues posting images on @strava2hive...Please bear with us</h3>
+  title = activity_details['name']
+  hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
 
-  @{author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
-  This {activity_type} helped {author} burn {calories} calories.
+  body = post_functions.post_header_image(author, wif, distance, activity_type, 
+                                          duration, calories, activity_date, activity_details['id'], title_img) + f'''
   ---
   
   **Description from Strava:**  {description}
@@ -227,7 +198,7 @@ def post_to_hive(athlete_id, activity_details, strava_access_token):
   self_vote = False
   #tags = ['exhaust', 'test', 'beta', 'runningproject', 'sportstalk']
   tags = hashtags
-  beneficiaries = [{'account': 'strava2hive', 'weight': 600},]
+  beneficiaries = [{'account': 'run.vince.run', 'weight': 900},]
   print("Log - Posting to Hive")
   if activity_type == "ride":
     community = "hive-177745"
