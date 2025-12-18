@@ -199,6 +199,12 @@ If you would like to know more about the @strava2hive service, you can checkout 
 
 def zero_image_post(author, user_wif, activity_id):
   # Create images for a post with zero photos provided by user
+  
+  if author == "run.kirsty.run" or author == "run.vince.run":
+      print("Dont do anything with the author")
+    else:
+      author = "strava2hive"
+
   nodelist = NodeList()
   nodelist.update_nodes()
   nodes = nodelist.get_hive_nodes()
