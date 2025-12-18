@@ -405,9 +405,10 @@ for i in athlete_list:
         print("Log - Activity has not been posted yet, ship it!!") 
         new_dets = detailed_activity['description'].replace('\r','')
         detailed_activity['description'] = new_dets
+        activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         post_to_hive(i, detailed_activity, athletedb_response['Items'][0]['strava_access_token'])
         print("Log - Add it now to the activity log")
-        activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+        #activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         word = detailed_activity['description'].split()
         wcount = len(word)
         record_distance = str(round(activity['distance'] * .001, 2))
