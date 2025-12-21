@@ -172,7 +172,7 @@ print("Log - get all athletes to work through")
 dev_athletes = ['run.kirsty.run', 'run.vince.run']
 prod_athletes = hive_work.list_athletes(1, "Strava2HiveNewUserSignUp")
 ng_athletes = [ 'krios003', 'nicklewis', 'masoom', 'budapestguide', 'bostonadventures', 'thishuman', 'mervinthepogi', 'dennnmarc', 'valerianis', 'crysis', 'ataliba', 
-               'rmsadkri', 'neuerko', 'fortune1m', 'ingi1976', 'anna-newkey', 'sabajfa', 'matthewbox', 
+               'rmsadkri', 'neuerko', 'fortune1m', 'ingi1976', 'anna-newkey', 'sabajfa', 'matthewbox', '124053011',
                'kam5iz', 'sodom-lv', 'pinkhub', 'maccazftw', 'amico.sports', 'sandralopes', 'chris-uk',
                'itravelrox22', 'crackyup', 'buzzgoblin', 'taushifahamed', 'alfazmalek02', 'akb01',
                'kingtanu', 'itz.inno', 'disgustoid88', 'nabbas0786', 'giorgakis', 'gunting', 'bobinson',
