@@ -52,6 +52,16 @@ def activity_summary(author, distance, activity_type, duration, calories):
   '''
   return act_summary
 
+
+def monthly_totals(activity_id):
+  # Check the monthly totals and provide a list of activity details
+  print("This is how we do it")
+  # Update the MonthlyReportData sheet, specifically the FormResponses1 worksheet
+  # Grab the data from the MonthlyReport worksheet from A1:C7
+  # Generate a table to the data to add into the bottom of the Hive post
+  # Adding in the below return for now
+  return activity_id
+
 def post_header(header_image, distance, activity_type, duration, calories, activity_date):
   # Create header with
   ## Header image
