@@ -53,7 +53,7 @@ def monthly_activity(athlete_id):
   total_kms = totals_ws.get_value("B4")
   total_calories = totals_ws.get_value("B5")
   
-  return total_runs total_kms total_calories
+  return total_runs, total_kms, total_calories
   
 def activity_posted(athlete_id, activity_id):
   # Check if an activity has been posted already
