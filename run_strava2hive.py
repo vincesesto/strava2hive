@@ -21,6 +21,7 @@ from beem.imageuploader import ImageUploader
 from beem import Hive
 from beem.account import Account
 from beem.nodelist import NodeList
+from typing import Any, Dict, List, Union
 
 # Functions
 
@@ -36,6 +37,24 @@ def dynamo_access():
   ddb_exceptions = client.exceptions
   return dynamodb
 
+def monthly_activity(athlete_id):
+  # Get summary of the past four weeks
+  gc = pygsheets.authorize(service_file='strava2hive.json')
+  sh = gc.open("MonthlyReportData")
+
+  # Update the athlete_id
+  input_ws = sh.worksheet_by_title(FormResponses1)
+  input_ws.update_value(B2, str(athlete_id))
+
+  # Read the values
+  totals_ws = sh.worksheet_by_title("MonthlyReport")
+
+  total_runs = totals_ws.get_value("B3")
+  total_kms = totals_ws.get_value("B4")
+  total_calories = totals_ws.get_value("B5")
+  
+  return total_runs total_kms total_calories
+  
 def activity_posted(athlete_id, activity_id):
   # Check if an activity has been posted already
   gc = pygsheets.authorize(service_file='strava2hive.json')
@@ -87,7 +106,7 @@ def record_post(athlete_id, activity_id, activity_type, activity_date, activity_
   # Now add the activity duration
   cell_value = "I" + str(len(cells) + 1)
   wks.update_value(cell_value, duration)
-    
+
 def refresh_access_token(athlete):
   # We need to update the access_token in strava every six hours
   try:
