@@ -53,14 +53,19 @@ def activity_summary(author, distance, activity_type, duration, calories):
   return act_summary
 
 
-def monthly_totals(activity_id):
-  # Check the monthly totals and provide a list of activity details
-  print("This is how we do it")
-  # Update the MonthlyReportData sheet, specifically the FormResponses1 worksheet
-  # Grab the data from the MonthlyReport worksheet from A1:C7
-  # Generate a table to the data to add into the bottom of the Hive post
-  # Adding in the below return for now
-  return activity_id
+def monthly_totals(activity_id, total_runs, total_kms, total_calories):
+  # Create a table for the monthly totals for the user
+  monthly_totals_table = f'''  
+  | <h1>Four Weeks Totals</h1> | <h1></h1> |
+  |---|---|
+  | Strava User | {activity_id} |
+  | Total Runs | {total_runs} |
+  | Total Kms | {total_kms} |
+  | Total Calories | {total_calories} kcal |
+
+  '''
+  return monthly_totals_table
+  
 
 def post_header(header_image, distance, activity_type, duration, calories, activity_date):
   # Create header with
@@ -76,6 +81,8 @@ def post_header(header_image, distance, activity_type, duration, calories, activ
     activity_icon = "🚴"
   elif activity_type == "run":
     activity_icon = "🏃"
+  elif activity_type == "walk":
+    activity_icon = "🚶"
   else:
     activity_icon = "🏋"
   
