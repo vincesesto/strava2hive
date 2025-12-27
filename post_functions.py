@@ -107,6 +107,8 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
     activity_icon = "🚴"
   elif activity_type == "run":
     activity_icon = "🏃"
+  elif activity_type == "walk":
+    activity_icon = "🚶"
   else:
     activity_icon = "🏋"
 
