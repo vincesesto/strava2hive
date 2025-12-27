@@ -26,10 +26,11 @@ def strava_screenshot(activity):
   if driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept"):
     driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept").click()
     time.sleep(3)
-  if driver.find_element(By.CSS_SELECTOR, '[data-cy="sign-up-modal-close-button"]'):
-    print("Element exists!")
-    driver.find_element(By.CSS_SELECTOR, '[data-cy="sign-up-modal-close-button"]').click()
-    time.sleep(1)
+  if "/activities/" in driver.current_url:
+    if driver.find_element(By.CSS_SELECTOR, '[data-cy="sign-up-modal-close-button"]'):
+      print("Element exists!")
+      driver.find_element(By.CSS_SELECTOR, '[data-cy="sign-up-modal-close-button"]').click()
+      time.sleep(1)
   #if driver.find_elements("xpath", "/html/body/div[1]/div/div[4]/div[1]/div/div[2]/button[4]"):
     #print("Element exists!")
     #driver.find_element("xpath", "/html/body/div[1]/div/div[4]/div[1]/div/div[2]/button[4]").click()
