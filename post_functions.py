@@ -56,6 +56,7 @@ def activity_summary(author, distance, activity_type, duration, calories):
 def monthly_totals(activity_id, total_runs, total_kms, total_calories):
   # Create a table for the monthly totals for the user
   monthly_totals_table = f'''  
+  
   | <h1>Four Weeks Totals</h1> | <h1></h1> |
   |---|---|
   | Strava User | {activity_id} |
