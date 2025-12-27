@@ -22,10 +22,10 @@ def strava_screenshot(activity):
   s = Service('/bin/chromedriver')
   driver = webdriver.Chrome(service=s)  
   driver.get(activity_url)
-  time.sleep(4)
+  time.sleep(6)
   if driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept"):
     driver.find_element(By.ID, "CybotCookiebotDialogBodyLevelButtonAccept").click()
-    time.sleep(2)
+    time.sleep(3)
   if driver.find_element(By.CSS_SELECTOR, '[data-cy="sign-up-modal-close-button"]'):
     print("Element exists!")
     driver.find_element(By.CSS_SELECTOR, '[data-cy="sign-up-modal-close-button"]').click()
