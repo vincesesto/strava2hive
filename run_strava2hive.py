@@ -199,7 +199,8 @@ def post_to_hive(athlete_id, activity_details):
   title = activity_details['name']
   hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
 
-
+  # Get details for monthly totals
+  month_runs, month_kms, month_calories = monthly_activity(athlete_id):
   
   # If no photos
   ## Screeshot activity and return the screenshot image link that has been created - DONE
@@ -228,7 +229,7 @@ def post_to_hive(athlete_id, activity_details):
   
   **About the Athlete:** *{athlete_details[2]}*
   
-  ''' + post_functions.post_footer()
+  ''' + post_functions.post_footer() + post_functions.monthly_totals(activity_id, month_runs, month_kms, month_calories)
   # REMOVED 28Nov2025 + post_functions.post_footer_and_image(photo_data, author, wif, activity_details['id'], athlete_id)
   parse_body = True
   self_vote = False
