@@ -200,7 +200,7 @@ def post_to_hive(athlete_id, activity_details):
   hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
 
   # Get details for monthly totals
-  month_runs, month_kms, month_calories = monthly_activity(athlete_id):
+  month_runs, month_kms, month_calories = monthly_activity(athlete_id)
   
   # If no photos
   ## Screeshot activity and return the screenshot image link that has been created - DONE
