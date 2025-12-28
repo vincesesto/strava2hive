@@ -229,7 +229,7 @@ def post_to_hive(athlete_id, activity_details):
   
   **About the Athlete:** *{athlete_details[2]}*
   
-  ''' + post_functions.post_footer() + post_functions.monthly_totals(activity_details['id'], month_runs, month_kms, month_calories)
+  ''' + post_functions.post_footer() + post_functions.monthly_totals(athlete_id, month_runs, month_kms, month_calories)
   # REMOVED 28Nov2025 + post_functions.post_footer_and_image(photo_data, author, wif, activity_details['id'], athlete_id)
   parse_body = True
   self_vote = False
