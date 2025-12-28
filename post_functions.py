@@ -54,13 +54,13 @@ def activity_summary(author, distance, activity_type, duration, calories):
   return act_summary
 
 
-def monthly_totals(activity_id, total_runs, total_kms, total_calories):
+def monthly_totals(athlete_id, total_runs, total_kms, total_calories):
   # Create a table for the monthly totals for the user
   monthly_totals_table = f'''  
   
   | <h1>Four Weeks Totals</h1> | <h1></h1> |
   |---|---|
-  | Strava User | {activity_id} |
+  | Strava User | {athlete_id} |
   | Total Runs | {total_runs} |
   | Total Kms | {total_kms} |
   | Total Calories | {total_calories} kcal |
