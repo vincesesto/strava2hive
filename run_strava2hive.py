@@ -44,7 +44,7 @@ def monthly_activity(athlete_id):
 
   # Update the athlete_id
   input_ws = sh.worksheet_by_title("Summary")
-  input_ws.update_value(A1, str(athlete_id))
+  input_ws.update_value("A1", str(athlete_id))
 
   # Read the values
   totals_ws = sh.worksheet_by_title("Summary")
