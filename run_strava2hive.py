@@ -40,18 +40,18 @@ def dynamo_access():
 def monthly_activity(athlete_id):
   # Get summary of the past four weeks
   gc = pygsheets.authorize(service_file='strava2hive.json')
-  sh = gc.open("MonthlyReportData")
+  sh = gc.open("StravaActivity")
 
   # Update the athlete_id
-  input_ws = sh.worksheet_by_title(FormResponses1)
-  input_ws.update_value(B2, str(athlete_id))
+  input_ws = sh.worksheet_by_title("Summary")
+  input_ws.update_value(A1, str(athlete_id))
 
   # Read the values
-  totals_ws = sh.worksheet_by_title("MonthlyReport")
+  totals_ws = sh.worksheet_by_title("Summary")
 
-  total_runs = totals_ws.get_value("B3")
-  total_kms = totals_ws.get_value("B4")
-  total_calories = totals_ws.get_value("B5")
+  total_runs = totals_ws.get_value("X3")
+  total_kms = totals_ws.get_value("X4")
+  total_calories = totals_ws.get_value("X5")
   
   return total_runs, total_kms, total_calories
   
