@@ -37,7 +37,7 @@ def dynamo_access():
   ddb_exceptions = client.exceptions
   return dynamodb
 
-def monthly_activity(athlete_id):
+def monthly_activity(athlete_id, activity_type):
   # Get summary of the past four weeks
   gc = pygsheets.authorize(service_file='strava2hive.json')
   sh = gc.open("StravaActivity")
@@ -45,6 +45,7 @@ def monthly_activity(athlete_id):
   # Update the athlete_id
   input_ws = sh.worksheet_by_title("Summary")
   input_ws.update_value("A1", str(athlete_id))
+  input_ws.update_value("B1", activity_type)
 
   # Read the values
   totals_ws = sh.worksheet_by_title("Summary")
@@ -200,7 +201,7 @@ def post_to_hive(athlete_id, activity_details):
   hashtags, description, community =  hive_work.description_and_tags(activity_details['description'])
 
   # Get details for monthly totals
-  month_runs, month_kms, month_calories = monthly_activity(athlete_id)
+  month_runs, month_kms, month_calories = monthly_activity(athlete_id, activity_details['type'])
   
   # If no photos
   ## Screeshot activity and return the screenshot image link that has been created - DONE
