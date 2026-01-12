@@ -240,6 +240,8 @@ def strava_activity(athlete_deets):
     response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=5", headers=headers)
   elif athlete_details[10] == '24345393':
     response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=5", headers=headers)
+  elif athlete_details[10] == '185989398':
+    response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=5", headers=headers)
   else:
     response = requests.get("https://www.strava.com/api/v3/athlete/activities?per_page=2", headers=headers)
   activity_data = response.json()
