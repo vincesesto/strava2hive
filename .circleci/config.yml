@@ -35,19 +35,22 @@ jobs:
           command: ls -l; pwd; ls -l /bin/chromedriver; chromedriver -v; sudo cp openssl.cnf /etc/ssl/openssl.cnf; sudo cp openssl.cnf /usr/lib/ssl/openssl.cnf; openssl version; cat /usr/lib/ssl/openssl.cnf; python run_strava2hive.py
       - run:
           name: Run the public strava to hive script
-          command: ls -l; pwd; ls -l /bin/chromedriver; chromedriver -v; cat /usr/lib/ssl/openssl.cnf; python public_strava2hive.py 
+          command: ls -l; pwd; ls -l /bin/chromedriver; chromedriver -v; cat /usr/lib/ssl/openssl.cnf; python public_strava2hive.py
       - run:
           name: Run the next generation script
-          command: ls -l; pwd; ls -l /bin/chromedriver; chromedriver -v; python ng_strava2hive.py 
+          command: ls -l; pwd; ls -l /bin/chromedriver; chromedriver -v; python ng_strava2hive.py
       - run:
           name: Run the book keeper script
-          command: ls -l; pwd; ls -l /bin/chromedriver; chromedriver -v; python book_keeping.py 
+          command: ls -l; pwd; ls -l /bin/chromedriver; chromedriver -v; python book_keeping.py
+      - run: mkdir -p test-results
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
-          command: pytest
+          command: pytest --junitxml=test-results/junit.xml -o junit_family=legacy
+      - store_test_results:
+          path: test-results
 
-  hourly-build: 
+  hourly-build:
     docker:
       - image: cimg/python:3.7-browsers
     steps:
@@ -68,11 +71,14 @@ jobs:
       - run:
           name: Run the main strava to hive script
           command: ls -l; pwd; ls -l /bin/chromedriver; python run_strava2hive.py
+      - run: mkdir -p test-results
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
-          command: pytest
-          
+          command: pytest --junitxml=test-results/junit.xml -o junit_family=legacy
+      - store_test_results:
+          path: test-results
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
