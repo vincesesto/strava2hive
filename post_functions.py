@@ -122,9 +122,17 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
 
   header = ''
 
+  # Unable to post images to Hive at the moment
+  header_image = "no_image"
+  
+
   if header_image == "no_image":
     post_header_screenshot = f''' 
-  ![{image_name}]({img_link['url']}) 
+  #![{image_name}]({img_link['url']}) 
+
+  <center><img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" alt="S2HLogo.PNG" srl_elementid="1"></center>
+  
+  There are issues posting images to Hive at the moment...please bare with us.
  
   | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{calories} kcal</h1> |
   |:--------|:-----:|------:|
