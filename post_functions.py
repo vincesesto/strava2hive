@@ -121,15 +121,10 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   #image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, wif, activity_id)
 
   header = ''
-
-  # Unable to post images to Hive at the moment
-  header_image = "no_image"
   
-  #![{image_name}]({img_link['url']})  - Add back to line 131
+  #![{image_name}]({img_link['url']})  - Add back to line 131 and 150
   if header_image == "no_image":
     post_header_screenshot = f''' 
-
-
   <center><img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" alt="S2HLogo.PNG" srl_elementid="1"></center>
   
   There are issues posting images to Hive at the moment...please bare with us.
@@ -149,7 +144,9 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{calories} kcal</h1> |
   |:--------|:-----:|------:|
 
-  ![{image_name}]({img_link['url']})   
+  <center><img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" alt="S2HLogo.PNG" srl_elementid="1"></center>
+  
+  There are issues posting images to Hive at the moment...please bare with us.  
 
   @{author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
   This {activity_type} helped {author} burn {calories} calories.  
