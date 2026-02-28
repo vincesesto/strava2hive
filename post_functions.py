@@ -118,7 +118,7 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
 
   # Create the screehshot image name
   print("Testing: ", wif)
-  image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, wif, activity_id)
+  #image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, wif, activity_id)
 
   header = ''
   
@@ -126,7 +126,9 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   #   <center><img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" alt="S2HLogo.PNG" srl_elementid="1"></center>
   if header_image == "no_image":
     post_header_screenshot = f'''   
-  ![{image_name}]({img_link['url']})
+  <center><img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" alt="S2HLogo.PNG" srl_elementid="1"></center>
+
+  We are still issues connecting to the Hive Upload API
  
   | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{calories} kcal</h1> |
   |:--------|:-----:|------:|
@@ -143,7 +145,9 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{calories} kcal</h1> |
   |:--------|:-----:|------:|
 
-  ![{image_name}]({img_link['url']}) 
+  <center><img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" alt="S2HLogo.PNG" srl_elementid="1"></center>
+
+  We are still issues connecting to the Hive Upload API
 
   @{author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
   This {activity_type} helped {author} burn {calories} calories.  
