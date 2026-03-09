@@ -6,6 +6,7 @@ import os
 import re
 import time
 import requests
+import image_generator
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -64,6 +65,18 @@ def download_strava_activity_gpx(access_token, activity_id):
                 f.write(chunk)
 
     return output_path
+
+def new_strava_maps(access_token, activity_id):
+  # First get the GPS
+  download_strava_activity_gpx(access_token, activity_id)
+  
+  # Create the new file names
+  gpx = str(activity_id) + ".gpx"
+  gif = "image_" + str(activity_id) + ".gif"
+  out = image_generator.gpx_to_landscape_map_image(
+    gpx_file=gpx,
+    output_image=png,
+  )
 
 
 def strava_screenshot(activity):
