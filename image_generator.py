@@ -120,7 +120,7 @@ def main(argv: list[str]) -> int:
     return 0
 
 
-out = gpx_to_landscape_map_image(
-    gpx_file="ATF-bikeCourse.gpx",
-    output_image="ATF-bikeCourse.png",
-)
+#out = gpx_to_landscape_map_image(
+#    gpx_file="ATF-bikeCourse.gpx",
+#    output_image="ATF-bikeCourse.png",
+#)
