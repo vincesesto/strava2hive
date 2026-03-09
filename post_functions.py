@@ -5,6 +5,7 @@
 import os
 import re
 import time
+import requests
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -15,6 +16,56 @@ from beem.account import Account
 from beem.nodelist import NodeList
 
 # Functions
+def download_strava_activity_gpx(access_token, activity_id):
+  """
+  Download a Strava activity GPX file using an OAuth access token.
+  """
+  url = f"https://www.strava.com/api/v3/activities/{activity_id}/export_gpx"
+  headers = {"Authorization": f"Bearer {access_token}"}
+
+  resp = requests.get(url, headers=headers, stream=True, timeout=30)
+  if not resp.ok:
+    # Helpful error context
+    try:
+      details = resp.json()
+    except Exception:
+      details = resp.text[:500]
+    raise requests.HTTPError(
+      f"Failed to download GPX. status={resp.status_code}, details={details}",
+      response=resp,
+    )
+
+  # Decide output location
+  output_path = Path(f"strava_activity_{activity_id}.gpx")
+  output_path.parent.mkdir(parents=True, exist_ok=True)
+
+  # Quick sanity check (GPX is XML and often starts with <?xml ... or <gpx ...)
+  content_type = (resp.headers.get("Content-Type") or "").lower()
+  if "xml" not in content_type and "gpx" not in content_type:
+    # Not definitive (some servers set odd content-types), so also check first bytes.
+    first_chunk = next(resp.iter_content(chunk_size=4096), b"")
+    if b"<gpx" not in first_chunk and b"<?xml" not in first_chunk:
+      raise ValueError(
+        f"Response does not look like GPX/XML. Content-Type={content_type!r}"
+      )
+
+      # Write the chunk we already consumed, then continue streaming
+      with open(output_path, "wb") as f:
+        f.write(first_chunk)
+        for chunk in resp.iter_content(chunk_size=1024 * 1024):
+          if chunk:
+            f.write(chunk)
+    return output_path
+
+    # Normal streaming write
+    with open(output_path, "wb") as f:
+        for chunk in resp.iter_content(chunk_size=1024 * 1024):
+            if chunk:
+                f.write(chunk)
+
+    return output_path
+
+
 def strava_screenshot(activity):
   # Create the command to run on chrome
   activity_url = "https://www.strava.com/activities/" + str(activity)
