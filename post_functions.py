@@ -21,6 +21,8 @@ def download_strava_activity_gpx(access_token, activity_id):
   """
   Download a Strava activity GPX file using an OAuth access token.
   """
+  print(str(access_token))
+  print(str(activity_id))
   url = f"https://www.strava.com/api/v3/activities/{activity_id}/export_gpx"
   headers = {"Authorization": f"Bearer {access_token}"}
 
