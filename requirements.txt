@@ -6,3 +6,7 @@ pandas
 beem
 hivesigner
 boto3
+gpxpy
+contextily
+pyproj
+shapely
