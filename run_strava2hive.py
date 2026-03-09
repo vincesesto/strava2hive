@@ -185,7 +185,8 @@ def post_to_hive(athlete_id, activity_details):
   if calories == 0:
     calories = hive_work.calc_calories(activity_type, duration, distance)
   print("Log - Downloading images and getting details together")
-  post_functions.strava_screenshot(activity_details['id'])
+  #post_functions.strava_screenshot(activity_details['id'])
+  post_functions.new_strava_maps(athlete_details[7], activity_details['id'])
   # Testing to see if we can get multiple photos
   # For now using strava access token from user
   photo_data = hive_work.strava_photo_check(activity_details['id'], athlete_details[7])
