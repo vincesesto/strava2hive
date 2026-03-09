@@ -167,7 +167,7 @@ def strava_activity_details(activity_id, bearer_header):
     activity_info['description'] = None
   return activity_info
     
-def post_to_hive(athlete_id, activity_details):
+def post_to_hive(athlete_id, activity_details, bearer_token):
   nodelist = NodeList()
   nodelist.update_nodes()
   nodes = nodelist.get_hive_nodes()
@@ -186,7 +186,7 @@ def post_to_hive(athlete_id, activity_details):
     calories = hive_work.calc_calories(activity_type, duration, distance)
   print("Log - Downloading images and getting details together")
   #post_functions.strava_screenshot(activity_details['id'])
-  post_functions.new_strava_maps(athlete_details[7], activity_details['id'])
+  post_functions.new_strava_maps(bearer_token, activity_details['id'])
   # Testing to see if we can get multiple photos
   # For now using strava access token from user
   photo_data = hive_work.strava_photo_check(activity_details['id'], athlete_details[7])
@@ -314,7 +314,7 @@ def strava_activity(athlete_deets):
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - There was an error connecting to pipedream")  
       else:
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has not been posted yet, ship it!!")
-        post_to_hive(athlete_details[6], detailed_activity)
+        post_to_hive(athlete_details[6], detailed_activity, athlete_details[7])
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Add it now to the activity log")
         activity_date = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         word = detailed_activity['description'].split()
