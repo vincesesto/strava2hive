@@ -69,17 +69,10 @@ def download_strava_activity_gpx(access_token, activity_id):
     return output_path
 
 def new_strava_maps(access_token, activity_id):
-  # First get the GPS
-  download_strava_activity_gpx(access_token, activity_id)
-  
   # Create the new file names
-  gpx = str(activity_id) + ".gpx"
-  gif = "image_" + str(activity_id) + ".gif"
-  out = image_generator.gpx_to_landscape_map_image(
-    gpx_file=gpx,
-    output_image=png,
-  )
-
+  gif = "image_" + str(activity_id) + ".png"
+  image_generator.main(["strava_streams_to_map.py", access_token, activity_id, gif, "14"])
+  
 
 def strava_screenshot(activity):
   # Create the command to run on chrome
