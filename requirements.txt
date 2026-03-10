@@ -6,7 +6,8 @@ pandas
 beem
 hivesigner
 boto3
-gpxpy
+pathlib
+matplotlib
 contextily
 pyproj
 shapely
