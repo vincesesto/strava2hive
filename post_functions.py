@@ -179,6 +179,7 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   print("Testing: ", wif)
   image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, wif, activity_id)
 
+  print(img_link)
   header = ''
   
   # Add back to line 131 and 150
@@ -196,7 +197,6 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   '''
     header = post_header_screenshot
   else:
-    print(url)
     post_header_image_screenshot = f''' 
   <center><img src={header_image} alt="Title_image.png" srl_elementid="1"></center>
  
