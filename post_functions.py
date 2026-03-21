@@ -7,6 +7,8 @@ import re
 import time
 import requests
 import image_generator
+import boto3
+from botocore.exceptions import ClientError
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -344,3 +346,15 @@ def one_image_post(author, user_wif, activity_id, athlete_id, image_url):
   # Return values
   return image_name, img_link, prof_image_name, prof_img_link
 
+def upload_image_from_path(file_path, bucket_name, object_name=None):
+    """Uploads a local file to an S3 bucket."""
+    if object_name is None:
+        object_name = os.path.basename(file_path)
+    
+    s3_client = boto3.client('s3')
+    try:
+        s3_client.upload_file(file_path, bucket_name, object_name)
+        return True
+    except ClientError as e:
+        print(f"Error: {e}")
+        return False
