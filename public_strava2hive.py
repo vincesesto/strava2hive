@@ -141,7 +141,7 @@ def post_to_hive(athlete_id, activity_details, strava_access_token):
   # Get all the details including the posting keys
   athlete_details = hive_work.get_athlete(athlete_id, "Strava2HiveNewUserSignUp")
   print(athlete_details)
-  wif = os.getenv('POSTING_KEY_NEW')
+  wif = os.getenv('POSTING_KEY')
   #wif = athlete_details[6]
   hive = Hive(nodes=nodes, keys=[wif])
   author = athlete_details[1]
