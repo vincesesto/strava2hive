@@ -196,6 +196,7 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   '''
     header = post_header_screenshot
   else:
+    print(url)
     post_header_image_screenshot = f''' 
   <center><img src={header_image} alt="Title_image.png" srl_elementid="1"></center>
  
