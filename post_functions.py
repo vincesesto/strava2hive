@@ -74,7 +74,7 @@ def new_strava_maps(access_token, activity_id):
   # Create the new file names
   gif = "image_" + str(activity_id) + ".png"
   image_generator.main(["strava_streams_to_map.py", access_token, activity_id, gif, "14"])
-  
+  upload_image_from_path(gif, "postingimages", object_name=None)" 
 
 def strava_screenshot(activity):
   # Create the command to run on chrome
@@ -348,10 +348,13 @@ def one_image_post(author, user_wif, activity_id, athlete_id, image_url):
 
 def upload_image_from_path(file_path, bucket_name, object_name=None):
     """Uploads a local file to an S3 bucket."""
+    """upload_image_from_path("./<activityid>.png", "postingimages", object_name=None)"
     if object_name is None:
         object_name = os.path.basename(file_path)
     
-    s3_client = boto3.client('s3')
+    s3_client = boto3.client('s3', region_name='ap-southeast-2',
+                             aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+                             aws_secret_access_key=os.getenv('DB_SECRET_KEY')
     try:
         s3_client.upload_file(file_path, bucket_name, object_name)
         return True
