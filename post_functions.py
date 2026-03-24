@@ -349,7 +349,7 @@ def one_image_post(author, user_wif, activity_id, athlete_id, image_url):
 
 def upload_image_from_path(file_path, bucket_name, object_name=None):
     """Uploads a local file to an S3 bucket."""
-    """upload_image_from_path("./<activityid>.png", "postingimages", object_name=None)"
+    """upload_image_from_path(<activityid>png, postingimages, object_name=None)"""
     if object_name is None:
         object_name = os.path.basename(file_path)
     
