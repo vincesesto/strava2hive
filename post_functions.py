@@ -74,7 +74,7 @@ def new_strava_maps(access_token, activity_id):
   # Create the new file names
   gif = "image_" + str(activity_id) + ".png"
   image_generator.main(["strava_streams_to_map.py", access_token, activity_id, gif, "14"])
-  upload_image_from_path(gif, "postingimages", object_name=None)" 
+  upload_image_from_path(gif, "postingimages", object_name=None)
 
 def strava_screenshot(activity):
   # Create the command to run on chrome
