@@ -183,7 +183,8 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
 
   print(img_link)
   header = ''
-  
+
+  # We need to create a new url that attaches the map_card to eg; https://postingimages.s3.ap-southeast-2.amazonaws.com/PeoplesRace2.jpg
   # ![{image_name}]({img_link['url']}) - Add back to line 189 and 208
   #   <center><img src="https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG" alt="S2HLogo.PNG" srl_elementid="1"></center>
   if header_image == "no_image":
