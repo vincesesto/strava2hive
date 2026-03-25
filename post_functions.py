@@ -353,7 +353,7 @@ def upload_image_from_path(file_path, bucket_name, object_name=None):
     if object_name is None:
         object_name = os.path.basename(file_path)
     
-    s3_client = boto3.client('s3', region_name='ap-southeast-2', aws_access_key_id=os.getenv('DB_ACCESS_KEY'), aws_secret_access_key=os.getenv('DB_SECRET_KEY')
+    s3_client = boto3.client('s3', region_name='ap-southeast-2', aws_access_key_id=os.getenv('DB_ACCESS_KEY'), aws_secret_access_key=os.getenv('DB_SECRET_KEY'))
     try:
         s3_client.upload_file(file_path, bucket_name, object_name)
         return True
