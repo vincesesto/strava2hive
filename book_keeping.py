@@ -174,7 +174,7 @@ prod_athletes = hive_work.list_athletes(1, "Strava2HiveNewUserSignUp")
 ng_athletes = [ 'krios003', 'nicklewis', 'masoom', 'budapestguide', 'bostonadventures', 'thishuman', 'mervinthepogi', 'dennnmarc', 'valerianis', 'crysis', 'ataliba', 
                'rmsadkri', 'neuerko', 'fortune1m', 'ingi1976', 'anna-newkey', 'sabajfa', 'matthewbox', 'santacruz.sports',
                'kam5iz', 'sodom-lv', 'pinkhub', 'maccazftw', 'amico.sports', 'sandralopes', 'chris-uk', 'rollie1212', 
-               'itravelrox22', 'crackyup', 'buzzgoblin', 'taushifahamed', 'alfazmalek02', 'akb01',
+               'itravelrox22', 'crackyup', 'buzzgoblin', 'taushifahamed', 'alfazmalek02', 'akb01', 'claudiavb', 
                'kingtanu', 'itz.inno', 'disgustoid88', 'nabbas0786', 'giorgakis', 'gunting', 'bobinson',
                'hasaanazam', 'captainman', 'kiwibloke', 'chris-uk', 'tom45p', 'vardatarmaion88', 
                'alessandrawhite', 'borniet', 'jaytone', 'tipy', 'mirzaiqi', 'fizz0', 'Ismaelcastillo', 'vempromundo',
