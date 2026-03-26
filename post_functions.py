@@ -179,7 +179,7 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
 
   # Create the screehshot image name
   print("Testing: ", wif)
-  image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, wif, activity_id)
+  #image_name, img_link, prof_image_name, prof_img_link = zero_image_post(author, wif, activity_id)
   map_html = "<center><img src=\"https://postingimages.s3.ap-southeast-2.amazonaws.com/image_" + str(activity_id) + ".png\" alt=\"MAPS.PNG\" srl_elementid=\"1\"></center>"
   
   header = ''
