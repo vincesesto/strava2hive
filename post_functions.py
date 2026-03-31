@@ -190,7 +190,6 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   if header_image == "no_image":
     post_header_screenshot = f'''
   {map_html}
-  We are experiencing issues with posting images to Hive at the moment...Please bear with us.
  
   | <h1>{activity_icon}</h1> | <h1></h1> | <h1>{calories} kcal</h1> |
   |:--------|:-----:|------:|
@@ -208,7 +207,6 @@ def post_header_image(author, user_wif, distance, activity_type, duration, calor
   |:--------|:-----:|------:|
 
   {map_html}
-  We are experiencing issues with posting images to Hive at the moment...Please bear with us.
 
   @{author} just finished a {distance}km {activity_type}, that lasted for {duration} minutes.
   This {activity_type} helped {author} burn {calories} calories.  
