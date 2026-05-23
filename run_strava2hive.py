@@ -303,6 +303,9 @@ def strava_activity(athlete_deets):
     elif detailed_activity['description'] == '':
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity does not have a description, move on")
       #break
+    elif "Daily Fitbit summary sync" in detailed_activity['description']:
+      print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity has description but is an Activity Sync, move on")
+      #break
     elif str(activity['id']) in s:
       print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity is in our CSV file as already posted, move on")
     else:
