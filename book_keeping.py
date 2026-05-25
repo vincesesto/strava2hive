@@ -48,7 +48,10 @@ def list_all_athletes():
 
 # Function to get all the users from dynamoDB
 def get_all_hive_users(table_name, region="ap-southeast-2"):
-  dynamodb = boto3.resource("dynamodb", region_name=region)
+  dynamodb = boto3.resource("dynamodb", region_name=region,
+    aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+    aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+  )
   table = dynamodb.Table(table_name)
   hive_users = []
   response = table.scan()
