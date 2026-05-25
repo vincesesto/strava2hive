@@ -46,6 +46,23 @@ def list_all_athletes():
   all_athletes = dev_athletes + prod_athletes
   return all_athletes
 
+# Function to get all the users from dynamoDB
+def get_all_hive_users(table_name, region="ap-southeast-2"):
+  dynamodb = boto3.resource("dynamodb", region_name=region)
+  table = dynamodb.Table(table_name)
+  hive_users = []
+  response = table.scan()
+  while True:
+    items = response.get("Items", [])
+    for item in items:
+      if "hive_user" in item:
+        hive_users.append(item["hive_user"])
+    # Handle pagination
+    if "LastEvaluatedKey" not in response:
+      break
+    response = table.scan(ExclusiveStartKey=response["LastEvaluatedKey"])
+  return hive_users
+
 # Function to create the body of our comment
 def comment_body():
   comment_body = f'''
@@ -180,6 +197,9 @@ ng_athletes = [ 'krios003', 'nicklewis', 'masoom', 'budapestguide', 'bostonadven
                'alessandrawhite', 'borniet', 'jaytone', 'tipy', 'mirzaiqi', 'fizz0', 'Ismaelcastillo', 'vempromundo',
                'rostik924', 'v-36', 'tommyl33', 'alstonsjournal', 'artofkylin', 'onemoretea', 'artemisnorth']
 all_athletes = dev_athletes + prod_athletes + ng_athletes
+
+# Testing new function to see if we can get the data directly from dynamodb
+new_function_athletes = get_all_hive_users("athletes", "ap-southeast-2")
 
 leader_board = {}
 new_leader_board = {}
