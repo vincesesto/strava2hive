@@ -281,6 +281,8 @@ def strava_activity(athlete_deets):
       print("Log - Activity does not have a description, move on")
     elif detailed_activity['description'] == '':
       print("Log - Activity does not have a description, move on")
+    elif "Daily Fitbit summary sync" in detailed_activity['description']:
+      print("Log - Activity has description but is an Activity Sync...move on")
     elif detailed_activity['duration'] == 0:
       print("Log - Activity does not have a duration, so will fail...move on")
     elif str(activity['id']) in s:
