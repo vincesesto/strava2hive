@@ -193,7 +193,7 @@ dev_athletes = ['run.kirsty.run', 'run.vince.run']
 prod_athletes = hive_work.list_athletes(1, "Strava2HiveNewUserSignUp")
 ng_athletes = [ 'krios003', 'nicklewis', 'masoom', 'budapestguide', 'bostonadventures', 'thishuman', 'mervinthepogi', 'dennnmarc', 'valerianis', 'crysis', 'ataliba', 
                'rmsadkri', 'neuerko', 'fortune1m', 'ingi1976', 'anna-newkey', 'sabajfa', 'matthewbox', 'santacruz.sports', 'stella16', 'actaylor', 'papageno26',
-               'kam5iz', 'sodom-lv', 'pinkhub', 'maccazftw', 'amico.sports', 'sandralopes', 'chris-uk', 'rollie1212', 'joscar-sw',
+               'kam5iz', 'sodom-lv', 'pinkhub', 'maccazftw', 'amico.sports', 'sandralopes', 'chris-uk', 'rollie1212', 'joscar-sw', 'javierariascbb',
                'itravelrox22', 'crackyup', 'buzzgoblin', 'taushifahamed', 'alfazmalek02', 'akb01', 'claudiavb', 
                'kingtanu', 'itz.inno', 'disgustoid88', 'nabbas0786', 'giorgakis', 'gunting', 'bobinson',
                'hasaanazam', 'captainman', 'kiwibloke', 'chris-uk', 'tom45p', 'vardatarmaion88', 
@@ -203,6 +203,7 @@ all_athletes = dev_athletes + prod_athletes + ng_athletes
 
 # Testing new function to see if we can get the data directly from dynamodb
 new_function_athletes = get_all_hive_users("athletes", "ap-southeast-2")
+print(new_function_athletes)
 
 leader_board = {}
 new_leader_board = {}
