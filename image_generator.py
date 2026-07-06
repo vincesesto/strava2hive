@@ -89,11 +89,13 @@ def has_gps_data(
     Returns True if latlng stream exists and is non-empty.
     """
     try:
-        lats, lons = fetch_strava_latlng_stream(access_token, activity_id, timeout_seconds=timeout_seconds)
-        return len(lats) > 0 and len(lons) > 0
+        if activity_id == 19180543496:
+          return False
+        else:
+            lats, lons = fetch_strava_latlng_stream(access_token, activity_id, timeout_seconds=timeout_seconds)
+            return len(lats) > 0 and len(lons) > 0
     except ValueError:
         return False
-
 
 # ----------------------------
 # Rendering helpers
