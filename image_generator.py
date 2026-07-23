@@ -89,7 +89,7 @@ def has_gps_data(
     Returns True if latlng stream exists and is non-empty.
     """
     try:
-        act_test = (activity.get("type")
+        act_test = (activity.get("type"))
         if act_test == "rockclimbing":
           return False
         else:
