@@ -90,7 +90,7 @@ def has_gps_data(
     """
     try:
         #act_test = (activity.get("type"))
-        if activity_id == 19602551316:
+        if activity_id == 19632065485:
           return False
         else:
             lats, lons = fetch_strava_latlng_stream(access_token, activity_id, timeout_seconds=timeout_seconds)
