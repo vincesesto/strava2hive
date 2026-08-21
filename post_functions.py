@@ -19,6 +19,38 @@ from beem.account import Account
 from beem.nodelist import NodeList
 
 # Functions
+# Update activity to new dynamodb
+def update_activity(table, activity):
+    return table.update_item(
+        Key={
+            "activity_id": activity["activity_id"]
+        },
+        UpdateExpression="""
+            SET activityDate = :activityDate,
+                activityType = :activityType,
+                athleteId = :athleteId,
+                calories = :calories,
+                cardImageUrl = :cardImageUrl,
+                hivePermlink = :hivePermlink,
+                queued_at = :queued_at,
+                #status = :status
+        """,
+        ExpressionAttributeNames={
+            "#status": "status"
+        },
+        ExpressionAttributeValues={
+            ":activityDate": activity["activityDate"],
+            ":activityType": activity["activityType"],
+            ":athleteId": activity["athleteId"],
+            ":calories": activity["calories"],
+            ":cardImageUrl": activity["cardImageUrl"],
+            ":hivePermlink": activity["hivePermlink"],
+            ":queued_at": activity["queued_at"],
+            ":status": activity["status"],
+        },
+        ReturnValues="UPDATED_NEW"
+    )
+
 def download_strava_activity_gpx(access_token, activity_id):
   """
   Download a Strava activity GPX file using an OAuth access token.
