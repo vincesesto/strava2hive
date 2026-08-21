@@ -224,7 +224,7 @@ def post_to_hive(athlete_id, activity_details, strava_access_token):
       allow_curation_rewards = True,
       percent_hive_dollars = 5000,
       allow_votes = True,
-      extensions =  [[0,{"beneficiaries": [{"account": "strava2hive", "weight": 500}]}]])
+      extensions =  [[0,{"beneficiaries": [{"account": "run.vince.run", "weight": 900}]}]])
   print("Log - Using Hivesigner to post")
   #account_deets = Account(author, blockchain_instance=hive)
   #auth = account_deets.get_blog(limit=5)
