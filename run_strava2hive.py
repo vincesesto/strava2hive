@@ -325,6 +325,25 @@ def strava_activity(athlete_deets):
         record_distance = str(round(activity['distance'] * .001, 2))
         duration = str(round(detailed_activity['duration'] / 60))
         record_post(athlete_details[6], activity['id'], activity['type'], activity_date, record_distance, detailed_activity['calories'], wcount, athlete_details[1], duration)
+
+        #Now also record to new dynamodb
+        dynamodb = boto3.resource("dynamodb")
+        table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
+        queued_at = int(time.time())
+        #activity = {
+        #  "activity_id": activity['id'],
+        #  "activityDate": activity_date,
+        #  "activityType": activity['type'],
+        #  "athleteId": athlete_details[6],
+        #  "calories": detailed_activity['calories'],
+        #  "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
+        #  "hivePermlink": "permlink",
+        #  "queued_at": queued_at,
+        #  "status": "POSTED"
+        #}
+        #
+        #update_activity(table, activity)
+        
         # Work around for most recent post to be stored in HiveAthletes sheet
         hive_work.update_athlete(athlete_details[6], activity_date, "A", "HiveAthletes")
         print(datetime.now().strftime("%d-%b-%Y %H:%M:%S"), "Log - Activity posted so we only want one activity at a time for:", athlete_details[6])
