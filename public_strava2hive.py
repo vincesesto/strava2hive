@@ -311,7 +311,7 @@ def strava_activity(athlete_deets):
         record_post(athlete_details[10], activity['id'], activity['type'], activity_date, record_distance, calories, wcount, athlete_details[1], duration)
 
         #Now also record to new dynamodb
-        dynamodb = boto3.resource("dynamodb")
+        dynamodb = boto3.resource("dynamodb", region_name='ap-southeast-2')
         table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
         queued_at = int(time.time())
         #activity = {
