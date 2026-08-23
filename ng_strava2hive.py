@@ -425,6 +425,25 @@ for i in athlete_list:
           ExpressionAttributeValues={':newLastPost': activity_date },
           ReturnValues="UPDATED_NEW"
         )
+
+        #Now also record to new dynamodb
+        dynamodb = boto3.resource("dynamodb", region_name='ap-southeast-2')
+        table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
+        queued_at = int(time.time())
+        activity = {
+          "activity_id": activity['id'],
+          "activityDate": activity_date,
+          "activityType": activity['type'],
+          "athleteId": athlete_details[6],
+          "calories": detailed_activity['calories'],
+          "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
+          "hivePermlink": "permlink",
+          "queued_at": queued_at,
+          "status": "POSTED"
+        }
+        
+        update_activity(table, activity)
+
         #hive_work.update_athlete(i, activity_date, "A", "Strava2HiveNewUserSignUp")
         print("Log - Activity posted so we only want one activity at a time for:", i)
         break
