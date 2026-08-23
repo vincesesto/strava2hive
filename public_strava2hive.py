@@ -314,19 +314,18 @@ def strava_activity(athlete_deets):
         dynamodb = boto3.resource("dynamodb", region_name='ap-southeast-2')
         table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
         queued_at = int(time.time())
-        #activity = {
-        #  "activity_id": activity['id'],
-        #  "activityDate": activity_date,
-        #  "activityType": activity['type'],
-        #  "athleteId": athlete_details[6],
-        #  "calories": detailed_activity['calories'],
-        #  "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
-        #  "hivePermlink": "permlink",
-        #  "queued_at": queued_at,
-        #  "status": "POSTED"
-        #}
-        #
-        #update_activity(table, activity)
+        activity = {
+          "activity_id": activity['id'],
+          "activityDate": activity_date,
+          "activityType": activity['type'],
+          "athleteId": athlete_details[6],
+          "calories": detailed_activity['calories'],
+          "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
+          "hivePermlink": "permlink",
+          "queued_at": queued_at,
+          "status": "POSTED"
+        }
+        update_activity(table, activity)
         
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
         hive_work.update_athlete(athlete_details[10], activity_date, "A", "Strava2HiveNewUserSignUp")
