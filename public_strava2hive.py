@@ -9,6 +9,7 @@ import time
 import glob
 import hive_work
 import boto3
+from decimal import Decimal
 import pipedream_modules
 import post_functions
 from selenium import webdriver
@@ -319,9 +320,9 @@ def strava_activity(athlete_deets):
           "activityDate": activity_date,
           "activityType": activity['type'],
           "athleteId": athlete_details[10],
-          "calories": calories,
+          "calories": Decimal(str(calories)),
           "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
-          "hivePermlink": "permlink",
+          "hivePermlink": permlink,
           "queued_at": queued_at,
           "status": "POSTED"
         }
