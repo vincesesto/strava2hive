@@ -433,7 +433,7 @@ for i in athlete_list:
             "dynamodb",
             region_name="ap-southeast-2",
             aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
-            aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+            aws_secret_access_key=os.getenv('DB_SECRET_KEY')
         )
         table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
         queued_at = int(time.time())
