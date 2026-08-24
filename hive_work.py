@@ -33,7 +33,40 @@ def dynamo_access():
   )
   ddb_exceptions = client.exceptions
   return dynamodb  
-  
+
+# Update activity to new dynamodb
+def update_activity(table, activity):
+    return table.update_item(
+        Key={
+            "activity_id": activity["activity_id"]
+        },
+        UpdateExpression="""
+            SET activityDate = :activityDate,
+                activityType = :activityType,
+                athleteId = :athleteId,
+                calories = :calories,
+                cardImageUrl = :cardImageUrl,
+                hivePermlink = :hivePermlink,
+                queued_at = :queued_at,
+                #status = :status
+        """,
+        ExpressionAttributeNames={
+            "#status": "status"
+        },
+        ExpressionAttributeValues={
+            ":activityDate": activity["activityDate"],
+            ":activityType": activity["activityType"],
+            ":athleteId": activity["athleteId"],
+            ":calories": activity["calories"],
+            ":cardImageUrl": activity["cardImageUrl"],
+            ":hivePermlink": activity["hivePermlink"],
+            ":queued_at": activity["queued_at"],
+            ":status": activity["status"],
+        },
+        ReturnValues="UPDATED_NEW"
+    )
+
+
 def description_and_tags(description):
   community = re.findall("@([a-zA-Z0-9_]{1,50})", description)
   hashtags = re.findall("#([a-zA-Z0-9_]{1,50})", description)
