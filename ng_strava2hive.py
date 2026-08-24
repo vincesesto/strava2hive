@@ -428,6 +428,7 @@ for i in athlete_list:
         )
 
         #Now also record to new dynamodb
+        dynamodb = hive_work.dynamo_access()
         dynamodb = boto3.resource("dynamodb", region_name='ap-southeast-2')
         table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
         queued_at = int(time.time())
