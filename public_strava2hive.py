@@ -327,7 +327,7 @@ def strava_activity(athlete_deets):
           "queued_at": queued_at,
           "status": "POSTED"
         }
-        post_functions.update_activity(table, activity)
+        hive_work.update_activity(table, activity)
         
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
         hive_work.update_athlete(athlete_details[10], activity_date, "A", "Strava2HiveNewUserSignUp")
