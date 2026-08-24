@@ -344,7 +344,7 @@ def strava_activity(athlete_deets):
           "status": "POSTED"
         }
         
-        post_functions.update_activity(table, activity)
+        hive_work.update_activity(table, activity)
         
         # Work around for most recent post to be stored in HiveAthletes sheet
         hive_work.update_athlete(athlete_details[6], activity_date, "A", "HiveAthletes")
