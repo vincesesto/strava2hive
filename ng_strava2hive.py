@@ -442,7 +442,7 @@ for i in athlete_list:
           "status": "POSTED"
         }
         
-        update_activity(table, activity)
+        post_functions.update_activity(table, activity)
 
         #hive_work.update_athlete(i, activity_date, "A", "Strava2HiveNewUserSignUp")
         print("Log - Activity posted so we only want one activity at a time for:", i)
