@@ -9,6 +9,7 @@ import time
 import glob
 import hive_work
 import boto3
+from decimal import Decimal
 import pipedream_modules
 import post_functions
 from selenium import webdriver
@@ -435,7 +436,7 @@ for i in athlete_list:
           "activityDate": activity_date,
           "activityType": activity['type'],
           "athleteId": athlete_details[6],
-          "calories": detailed_activity['calories'],
+          "calories": Decimal(str(detailed_activity['calories'])),
           "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
           "hivePermlink": "permlink",
           "queued_at": queued_at,
