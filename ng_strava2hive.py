@@ -438,7 +438,7 @@ for i in athlete_list:
         table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
         queued_at = int(time.time())
         activity = {
-          "activity_id": activity['id'],
+          "activity_id": str(activity['id']),
           "activityDate": activity_date,
           "activityType": activity['type'],
           "athleteId": athlete_details[6],
