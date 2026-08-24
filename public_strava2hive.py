@@ -322,7 +322,7 @@ def strava_activity(athlete_deets):
           "athleteId": athlete_details[10],
           "calories": Decimal(str(calories)),
           "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
-          "hivePermlink": permlink,
+          "hivePermlink": "permlink",
           "queued_at": queued_at,
           "status": "POSTED"
         }
