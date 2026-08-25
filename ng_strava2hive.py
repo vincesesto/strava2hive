@@ -441,7 +441,7 @@ for i in athlete_list:
           "activity_id": str(activity['id']),
           "activityDate": activity_date,
           "activityType": activity['type'],
-          "athleteId": athlete_details[6],
+          "athleteId": i,
           "calories": Decimal(str(detailed_activity['calories'])),
           "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
           "hivePermlink": "permlink",
