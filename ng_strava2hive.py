@@ -17,7 +17,7 @@ from selenium.webdriver.chrome.service import Service
 from boto3.dynamodb.conditions import Key
 from selenium.webdriver.common.by import By
 from time import sleep
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from beem.imageuploader import ImageUploader
 from beem import Hive
 from beem.account import Account
@@ -436,7 +436,7 @@ for i in athlete_list:
             aws_secret_access_key=os.getenv('DB_SECRET_KEY')
         )
         table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
-        queued_at = int(time.time())
+        queued_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         activity = {
           "activity_id": str(activity['id']),
           "activityDate": activity_date,
