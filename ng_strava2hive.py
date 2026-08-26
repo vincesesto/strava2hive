@@ -445,7 +445,7 @@ for i in athlete_list:
           "calories": Decimal(str(detailed_activity['calories'])),
           "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
           "hivePermlink": "permlink",
-          "queued_at": queued_at,
+          "queued_at": str(queued_at),
           "status": "POSTED"
         }
         
