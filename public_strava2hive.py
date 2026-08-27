@@ -320,7 +320,7 @@ def strava_activity(athlete_deets):
             aws_secret_access_key=os.getenv('DB_SECRET_KEY')
         )
         table = dynamodb.Table("StravaActivityProcessorStack-ActivityTrackingTable83E1F86F-1POKUI3AMG7QV")
-        queued_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        queued_at = int(time.time())
         activity = {
           "activity_id": str(activity['id']),
           "activityDate": activity_date,
@@ -329,7 +329,7 @@ def strava_activity(athlete_deets):
           "calories": Decimal(str(calories)),
           "cardImageUrl": "https://images.hive.blog/DQmNYafhCjpkKVmFD4os7BzV1F6hs4zDusvTtNiDDyGBz31/S2HLogo.PNG",
           "hivePermlink": "permlink",
-          "queued_at": str(queued_at),
+          "queued_at": queued_at,
           "status": "POSTED"
         }
         hive_work.update_activity(table, activity)
