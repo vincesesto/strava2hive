@@ -9,6 +9,8 @@ import re
 import random
 import string
 import boto3
+from datetime import datetime
+from decimal import Decimal
 from boto3.dynamodb.conditions import Key
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -20,6 +22,42 @@ from beem.nodelist import NodeList
 
 def test_module():
   print("This is a test module")
+
+def get_week_id():
+    dt = datetime.now()
+    year, week, _ = dt.isocalendar()
+    
+    return f"{year}-W{week}"
+
+def update_weekly_leaderboard(table, athleteId, hiveUser, calories):
+    week_id = get_week_id()
+
+    return table.update_item(
+        Key={
+            "weekId": week_id,
+            "athleteId": str(athleteId)
+        },
+
+        UpdateExpression="""
+            ADD totalCalories :calories,
+                activityCount :one
+
+            SET hiveUsername = :hiveUser,
+                lastUpdated = :updated
+        """,
+
+        ExpressionAttributeValues={
+            ":calories": Decimal(
+                str(calories)
+            ),
+            ":one": 1,
+            ":hiveUser": hiveUser,
+            ":updated": int(
+                time.time()
+            )
+        },
+        ReturnValues="UPDATED_NEW"
+    )
   
 def dynamo_access():
   # Access the dynamo db to then do other stuff using it
