@@ -20,19 +20,14 @@ from beem.account import Account
 from beem.nodelist import NodeList
 
 # Functions
-def get_week_id(activity_date):
-    dt = datetime.strptime(
-        activity_date,
-        "%m/%d/%Y %H:%M:%S"
-    )
+def get_week_id():
+    dt = datetime.now()
     year, week, _ = dt.isocalendar()
     
     return f"{year}-W{week}"
 
 def update_weekly_leaderboard(table, activity):
-    week_id = get_week_id(
-        activity["activityDate"]
-    )
+    week_id = get_week_id()
 
     return table.update_item(
         Key={
