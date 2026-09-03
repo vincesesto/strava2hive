@@ -10,6 +10,7 @@ import image_generator
 import boto3
 from botocore.exceptions import ClientError
 from datetime import datetime
+from decimal import Decimal
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -19,6 +20,51 @@ from beem.account import Account
 from beem.nodelist import NodeList
 
 # Functions
+def get_week_id(activity_date):
+    dt = datetime.strptime(
+        activity_date,
+        "%m/%d/%Y %H:%M:%S"
+    )
+    year, week, _ = dt.isocalendar()
+    
+    return f"{year}-W{week}"
+
+def update_weekly_leaderboard(table, activity):
+    week_id = get_week_id(
+        activity["activityDate"]
+    )
+
+    return table.update_item(
+        Key={
+            "weekId": week_id,
+            "athleteId": str(
+                activity["athleteId"]
+            )
+        },
+
+        UpdateExpression="""
+            ADD totalCalories :calories,
+                activityCount :one
+
+            SET hiveUsername = :hiveUser,
+                lastUpdated = :updated
+        """,
+
+        ExpressionAttributeValues={
+            ":calories": Decimal(
+                str(activity["calories"])
+            ),
+            ":one": 1,
+            ":hiveUser": activity[
+                "hiveUser"
+            ],
+            ":updated": int(
+                time.time()
+            )
+        },
+        ReturnValues="UPDATED_NEW"
+    )
+
 # Update activity to new dynamodb
 def update_activity(table, activity):
     return table.update_item(
