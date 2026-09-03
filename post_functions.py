@@ -26,15 +26,13 @@ def get_week_id():
     
     return f"{year}-W{week}"
 
-def update_weekly_leaderboard(table, activity):
+def update_weekly_leaderboard(table, athleteId, hiveUser, calories):
     week_id = get_week_id()
 
     return table.update_item(
         Key={
             "weekId": week_id,
-            "athleteId": str(
-                activity["athleteId"]
-            )
+            "athleteId": str(athleteId)
         },
 
         UpdateExpression="""
@@ -47,12 +45,10 @@ def update_weekly_leaderboard(table, activity):
 
         ExpressionAttributeValues={
             ":calories": Decimal(
-                str(activity["calories"])
+                str(calories)
             ),
             ":one": 1,
-            ":hiveUser": activity[
-                "hiveUser"
-            ],
+            ":hiveUser": hiveUser,
             ":updated": int(
                 time.time()
             )
