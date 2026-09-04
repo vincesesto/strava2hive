@@ -334,7 +334,7 @@ def strava_activity(athlete_deets):
         }
         hive_work.update_activity(table, activity)
         table = dynamodb.Table("s2h-weekly-leaderboard")
-        hive_work. update_weekly_leaderboard(table, athlete_details[10], athlete_details[1], detailed_activity['calories'])
+        hive_work.update_weekly_leaderboard(table, athlete_details[10], athlete_details[1], detailed_activity['calories'])
         
         # Work around for most recent post to be stored in Strava2HiveNewUserSignUp sheet
         hive_work.update_athlete(athlete_details[10], activity_date, "A", "Strava2HiveNewUserSignUp")
