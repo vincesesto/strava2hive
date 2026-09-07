@@ -450,6 +450,8 @@ for i in athlete_list:
         }
         
         hive_work.update_activity(table, activity)
+        table = dynamodb.Table("s2h-weekly-leaderboard")
+        hive_work.update_weekly_leaderboard(table, athlete_details[10], athlete_details[1], detailed_activity['calories'])
 
         #hive_work.update_athlete(i, activity_date, "A", "Strava2HiveNewUserSignUp")
         print("Log - Activity posted so we only want one activity at a time for:", i)
