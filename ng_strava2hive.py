@@ -259,10 +259,10 @@ response = dynamodb.Table(dynamoTable).scan()
 
 #Start from scratch again
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
-athlete_list = [30471548, 156935385, 166960219, 116831809,
-                63571991, 100382865, 177526590,
+athlete_list = [30471548, 156935385, 116831809,
+                63571991, 100382865,
                 88497473, 113681541, 123893901, 147351790,
-                5279093, 10791428, 24839597,
+                5279093, 24839597,
                 131361374,
                 48844017, 26026398, 7112960, 124343918, 99796410,
                 172576622 ]
