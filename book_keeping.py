@@ -30,46 +30,6 @@ from hivesigner.operations import Vote
 
 # Script to run after posting to count up records and post to accounts
 
-def generate_weekly_leaderboard(items):
-    """
-    items = list of DynamoDB items for the current week
-
-    Example item:
-    {
-        "weekId": "2026-W38",
-        "athleteId": "10457230",
-        "activityCount": 1,
-        "hiveUsername": "toofasteddie",
-        "lastUpdated": 1789389328,
-        "totalCalories": 430
-    }
-    """
-
-    if not items:
-        return (
-            "🏃‍♂️ This Week's Leader Board\n\n"
-            "No activities have been recorded yet this week.\n"
-            "Be the first athlete to get on the leaderboard! 💪"
-        )
-
-    # Sort highest calories first
-    top_5 = sorted(
-        items,
-        key=lambda x: float(x.get("totalCalories", 0)),
-        reverse=True
-    )[:5]
-
-    lines = ["🏃‍♂️ This Weeks Leader Board (Top 5)\n"]
-
-    for athlete in top_5:
-        username = athlete.get("hiveUsername", "unknown")
-        calories = float(athlete.get("totalCalories", 0))
-
-        lines.append(
-            f"@{username} - {calories:.1f} Calories Burned"
-        )
-
-    return "\n".join(lines)
 
 # Function to get the last post from the user
 def get_hive_posts(hive_user_name):
