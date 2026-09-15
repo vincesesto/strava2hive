@@ -29,7 +29,66 @@ from hivesigner.operations import Reblog
 from hivesigner.operations import Vote
 
 # Script to run after posting to count up records and post to accounts
+def get_current_week_id():
+    """Returns week format like 2026-W38"""
+    now = datetime.utcnow()
+    iso_year, iso_week, _ = now.isocalendar()
+    return f"{iso_year}-W{iso_week:02d}"
 
+def generate_weekly_leaderboard(table_name, region_name="ap-southeast-2"):
+    """
+    Generate a leaderboard for the current week.
+
+    Assumes:
+    - weekId is the partition key
+    - totalCalories is stored as a Number
+    """
+    week_id = get_current_week_id()
+
+    dynamodb = boto3.resource("dynamodb", region_name=region_name,
+      aws_access_key_id=os.getenv('DB_ACCESS_KEY'),
+      aws_secret_access_key=os.getenv('DB_SECRET_KEY'),
+    )
+    table = dynamodb.Table(table_name)
+
+    response = table.query(
+        KeyConditionExpression=boto3.dynamodb.conditions.Key("weekId").eq(week_id)
+    )
+
+    items = response.get("Items", [])
+
+    if not items:
+        return (
+            "🏃‍♂️ This Week's Leader Board\n\n"
+            "A new week has begun and no activities have been recorded yet.\n"
+            "Be the first athlete to hit the trails, roads, or gym and claim the #1 spot! 💪🔥"
+        )
+
+    top_5 = sorted(
+        items,
+        key=lambda x: float(x.get("totalCalories", 0)),
+        reverse=True,
+    )[:5]
+
+    lines = ["🏃‍♂️ This Weeks Leader Board (Top 5)\n"]
+
+    for athlete in top_5:
+        username = athlete.get("hiveUsername", "unknown")
+        calories = float(athlete.get("totalCalories", 0))
+
+        lines.append(
+            f"@{username} - {calories:.1f} Calories Burned"
+        )
+
+    return "\n".join(lines)
+
+#if __name__ == "__main__":
+#    print(
+#        generate_weekly_leaderboard(
+#            table_name="AthleteLeaderboard",
+#            region_name="ap-southeast-2"
+#        )
+#    )
 
 # Function to get the last post from the user
 def get_hive_posts(hive_user_name):
@@ -204,8 +263,10 @@ ng_athletes = [ 'krios003', 'nicklewis', 'masoom', 'budapestguide', 'bostonadven
 all_athletes = dev_athletes + prod_athletes + ng_athletes
 
 # Testing new function to see if we can get the data directly from dynamodb
-new_function_athletes = get_all_hive_users("athletes", "ap-southeast-2")
-print(new_function_athletes)
+#new_function_athletes = get_all_hive_users("athletes", "ap-southeast-2")
+#print(new_function_athletes)
+
+print(generate_weekly_leaderboard(table_name="s2h-weekly-leaderboard",region_name="ap-southeast-2"))
 
 leader_board = {}
 new_leader_board = {}
