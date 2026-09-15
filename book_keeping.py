@@ -266,7 +266,7 @@ all_athletes = dev_athletes + prod_athletes + ng_athletes
 #new_function_athletes = get_all_hive_users("athletes", "ap-southeast-2")
 #print(new_function_athletes)
 
-print(generate_weekly_leaderboard(table_name="s2h-weekly-leaderboard",region_name="ap-southeast-2"))
+# print(generate_weekly_leaderboard(table_name="s2h-weekly-leaderboard",region_name="ap-southeast-2"))
 
 leader_board = {}
 new_leader_board = {}
@@ -304,7 +304,7 @@ for i in all_athletes:
   activity_calories[i] = activity_calories_total
   #print("Athlete: " + str(i) + " Activities: " + str(activity_total))
 
-print(new_leader_board)
+#print(new_leader_board)
 print(activity_calories)
 print(total_activity_count)
 
@@ -313,7 +313,8 @@ top10 = k.most_common(30)
 high = k.most_common(5)
 print(top10)
 print(high)
-leaders = create_leader_board(high)
+#leaders = create_leader_board(high)
+leaders = generate_weekly_leaderboard(table_name="s2h-weekly-leaderboard",region_name="ap-southeast-2")
 print(leaders)
 
 print(create_top_10(top10))
