@@ -259,9 +259,7 @@ response = dynamodb.Table(dynamoTable).scan()
 
 #Start from scratch again
 #1. get a list of all the athleteId's(we are doing this the easy way for now)
-athlete_list = [113681541,
-                48844017,
-                172576622 ]
+athlete_list = [ ]
 print(athlete_list)
 #2. loop through all the athleteId's
 for i in athlete_list:
